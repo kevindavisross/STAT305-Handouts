@@ -1,0 +1,224 @@
+# Poisson Distributions
+
+
+::: {#exm-1}
+Let $X$ be the number of home runs hit (in total by both teams) in a randomly selected Major League Baseball game.
+:::
+
+1. In what ways is this like the Binomial situation?  (What is a trial?  What is "success"?)
+\
+\
+\
+\
+1. In what ways is this NOT like the Binomial situation?
+\
+\
+\
+\
+
+
+- The Binomial model has several restrictive assumptions that might not be satisfied in practice
+- Poisson models are often used to model the distribution of random variables that count the number of "relatively rare" events that occur over a certain interval of time/in a certain location 
+
+## Poisson distributions
+
+- A discrete random variable $X$ has a **Poisson distribution** with parameter $\mu>0$ if its probability mass function $p_X$ satisfies
+\begin{align*}
+p_X(x) & \propto \frac{\mu^x}{x!}, \;\qquad x=0,1,2,\ldots\\
+& = \frac{e^{-\mu}\mu^x}{x!}, \quad x=0,1,2,\ldots
+\end{align*}
+- If $X$ has a Poisson($\mu$) distribution then
+\begin{align*}
+\text{E}(X) & = \mu\\
+\text{Var}(X) & = \mu
+\end{align*}
+
+
+
+
+::: {#exm-2}
+Suppose $X_1$ and $X_2$ are independent, each having a Poisson(1) distribution, and let $X=X_1+X_2$.  Also suppose $Y$ has a Poisson(2) distribution.  For example suppose that $(X_1, X_2)$ represents the number of home runs hit by the (home, away) team in a baseball game, so $X$ is the total number of home runs hit by either team in the game, and $Y$ is the number of accidents that occur in a day on a particular stretch of highway 
+:::: 
+
+1. Compute $\text{P}(X=0)$.  (Hint: what $(X_1, X_2)$ pairs yield $X=0$).  Compare to $\text{P}(Y=0)$.
+\
+\
+\
+\
+\
+1. Compute $\text{P}(X=1)$.  (Hint: what $(X_1, X_2)$ pairs yield $X=1$).  Compare to $\text{P}(Y=1)$.
+\
+\
+\
+\
+\
+1. Compute $\text{P}(X=2)$.  (Hint: what $(X_1, X_2)$ pairs yield $X=2$).  Compare to $\text{P}(Y=2)$.
+\
+\
+\
+\
+\
+1. Are $X$ and $Y$ the same variable? Do $X$ and $Y$ have the same distribution?
+\
+\
+\
+\
+\
+
+
+- **Poisson aggregation.** If $X$ and $Y$ are independent, $X$ has a Poisson($\mu_X$) distribution,  and $Y$ has a Poisson}($\mu_Y$) distribution, then $X+Y$ has a Poisson($\mu_X+\mu_Y$) distribution.
+    - If component counts are independent and each has a Poisson distribution, then the total count also has a Poisson distribution.
+- **Poisson disaggregation (a.k.a., splitting, a.k.a., thinning).**  If $X$ and $Y$ are independent, $X$ has a Poisson($\mu_X$) distribution,  and $Y$ has a Poisson($\mu_Y$) distribution, then the conditional distribution of $X$ given $\{X+Y=n\}$ is Binomial($n$, $\frac{\mu_X}{\mu_X+\mu_Y}$).
+    - The total count of occurrences $X+Y=n$ can be disaggregated into counts for occurrences of "type $X$" or occurrences of "type $Y$". Given $n$ occurrences in total, each of the $n$ occurrences is classified as type $X$ with probability proportional to the mean number of occurrences of type X, $\frac{\mu_X}{\mu_X+\mu_Y}$, and occurrences are classified independently of each other. 
+
+## Poisson approximation
+
+::: {#exm-3}
+Suppose that each page in the book contains exactly 2000 characters and that the probability that any single character is a typo is 0.00015, independently of all other characters.  Let $X$ be the number of characters on a randomly selected page that are typos.  Identify the distribution of $X$ and its expected value and variance, and compare to a Poisson(0.3) distribution.
+:::
+\
+\
+\
+\
+\
+
+
+- **Poisson approximation to Binomial.** Consider $n$ Bernoulli trials with probability of success on each trial equal to $p_n$. Suppose that $n\to\infty$ while $p_n\to0$ and $np_n\to\mu$, where $0<\mu<\infty$. Then
+for $x=0,1,2,\ldots$
+$$
+\lim_{n\to\infty} \binom{n}{x} p_n^x \left(1-p_n\right)^{n-x} = \frac{e^{-\mu}\mu^x}{x!}
+$$
+- That is, if $n$ is large and $p$ is small then a Binomial($n$, $p$) distribution is approximately a Poisson($np$) distribution.
+
+
+::: {#exm-4}
+Recall the matching problem with a general $n$: there are $n$ rocks that are shuffled and placed uniformly at random in $n$ spots with one rock per spot.  Let $Y$ be the number of matches.  We have seen:
+
+- The exact distribution of $Y$ when $n=4$, via enumerating outcomes in the sample space
+- $\text{E}(Y)=1$ for any value of $n$, via linearity of expected value
+
+Now we'll consider the distribution of $Y$ for general $n$.
+::: 
+
+1. Use simulation to approximate the distribution of $Y$ for different values of $n$.  How does the approximate distribution of $Y$ change with $n$?
+\
+\
+\
+\
+\
+1. Does $Y$ have a Binomial distribution?  Consider: What is a trial?  What is success?  Is the number of trials fixed?  Is the probability of success the same on each trial? Are the trials independent?
+\
+\
+\
+\
+\
+1. If $Y$ has an approximate Poisson distribution, what would the parameter have to be?  Compare this Poisson distribution with the simulation results; does it seem like a reasonable approximation?
+\
+\
+\
+\
+\
+1. For a general $n$, approximate $\text{P}(Y=y)$ for $y=0, 1, 2, \ldots$.
+\
+\
+\
+\
+\
+1. For a general value of $n$, approximate the probability that there is at least one match.  How does this depend on $n$?
+\
+\
+\
+\
+\
+
+
+
+- Poisson models often provide good approximations for "count data" when the restrictive assumptions of Binomial models are not satisfied.
+- The following table summarizes the four distributions we have seen that are used to model counting random variables.
+- Note that Poisson distributions require the weakest assumptions.
+
+| Distribution      | Number of trials                                 | Number of successes   | Independent trials? | Probability of success                                                               |
+|-------------------|--------------------------------------------------|-----------------------|---------------------|--------------------------------------------------------------------------------------|
+| Binomial          | Fixed and known ($n$)                            | Random ($X$)          | Yes                 | Fixed and known ($p$), <br> same for each trial                                      |
+| Negative Binomial | Random ($X$)                                     | Fixed and known ($r$) | Yes                 | Fixed and known ($p$), <br> same for each trial                                      |
+| Hypergeometric    | Fixed and known ($n$)                            | Random ($X$)          | No                  | Fixed and known ($p = \frac{N_1}{N_1+N_0}$), <br> same for each trial                |
+| Poisson           | “Large” (could be random, <br> could be unknown) | Random ($X$)          | “Not too dependent" | “Comparably small for all trials" <br> (could vary between trials, could be unknown) |
+
+
+
+::: {#exm-6}
+Recall the birthday problem: in a group of $n$ people what is the probability that at least two have the same birthday?  (Ignore multiple births and February 29 and assume that the other 365 days are all equally likely.)  We will investigate this problem using Poisson approximation. Imagine that we have a trial for each possible *pair* of people in the group, and let "success" indicate that the pair shares a birthday.  Consider both a general $n$ and $n=35$.
+:::
+
+1. How many trials are there?
+\
+\
+\
+\
+\
+1. Do the trials have the same probability of success?  If so, what is it?
+\
+\
+\
+\
+\
+1. Are any *two* trials independent?  To answer this questions, suppose that three people in the group are Ki-taek, Chung-sook, and Ki-jung and consider any *two* of the trials that involve these three people.
+\
+\
+\
+\
+\
+1. Are any *three* trials independent?  Consider the three trials that involve Ki-taek, Chung-sook, and Ki-jung.
+\
+\
+\
+\
+\
+1. Let $X$ be the number of *pairs* that share a birthday. Does $X$ have a Binomial distribution?
+\
+\
+\
+\
+\
+1. In what way are the trials "not too dependent"?
+\
+\
+\
+\
+\
+1. If $X$ has an approximate Poisson distribution, what would the parameter have to be?  Compare this Poisson distribution with the simulation results; does it seem like a reasonable approximation?
+\
+\
+\
+\
+\
+1. Approximate the probability that at least two people share the same birthday.  Compare to the theoretical values.
+\
+\
+\
+\
+\
+1. Using the approximation from the previous part, how large does $n$ need to be for the approximate probability to be at least 0.5?
+\
+\
+\
+\
+\
+
+
+
+**Poisson paradigm.** Let $A_1, A_2, \ldots, A_n$ be a collection of $n$ events.  Suppose event $i$ occurs with marginal probability $p_i=\text{P}(A_i)$. Let $N = \text{I}_{A_i} + \text{I}_{A_2} + \cdots + \text{I}_{A_n}$ be the random variable which counts the number of the events in the collection which occur. Suppose
+
+- $n$ is "large",
+- $p_1, \ldots, p_n$ are "comparably small", and
+- the events $A_1, \ldots, A_n$ are "not too dependent",
+
+Then $N$ has an approximate Poisson distribution with parameter $\text{E}(N) = \sum_{i=1}^n p_i$.
+
+
+::: {#exm-7}
+Use Poisson approximation to approximate that probability that at least *three* people in a group of $n$ people share a birthday.  How large does $n$ need to be for the probability to be greater than 0.5?
+:::
+
+
+

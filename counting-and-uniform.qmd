@@ -1,0 +1,358 @@
+# Equally Likely Outcomes, Counting Rules, and Uniform Probability Meaures
+
+
+
+
+## Equally likely outcomes {#equally-likely}
+
+
+- For a sample space $\Omega$ with finitely many possible outcomes, assuming  **equally likely outcomes** corresponds to a probabiliy measure $\text{P}$ which satisfies
+$$
+\text{P}(A) = \frac{|A|}{|\Omega|} = \frac{\text{number of outcomes in $A$}}{\text{number of outcomes in $\Omega$}} \qquad{\text{when outcomes are equally likely}}
+$$
+- Even if the sample space outcomes are equally likely, the possible values of related random variables are usually not.
+
+
+
+::: {#exm-coin-probspace}
+
+Flip a coin 4 times and record the results in sequence.
+For example, HTHH indicates T on the second flip and H on the others.
+Let $X$ be the number of H in the four flips.
+Assume that the coin is fair and the flips are independent.
+:::
+
+
+1. Find the probability of the outcome HTHH.
+\
+\
+\
+\
+1. Find the probability of the outcome HHHH.
+\
+\
+\
+\
+1. Make a table of all the possible outcomes; there should be 16.
+Is it reasonable to assume the outcomes are equally likely?
+Explain.
+\
+\
+\
+\
+1. Identify the possible values of $X$.
+Are the values of $X$ equally likely?
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(X = 4)$.
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(X=3)$.
+\
+\
+\
+\
+1. Find the distribution of $X$.
+\
+\
+\
+\
+1. Suppose the coin were biased in favor of landing on H.
+Would the sample space change? Would the definition of $X$ and its possible values change? Would the 16 outcomes be equally likely? Would the distribution of $X$ change?
+\
+\
+\
+\
+
+
+
+
+::: {#exm-matching-probspace}
+Recall the matching problem with $n=4$: objects labeled 1, 2, 3, 4, are placed at random in spots labeled 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc.
+Recall the sample space from Example \@ref(exm:matching-outcome). 
+Let the random variable $X$ count the number of objects that are put back in the correct spot. (Hint: recall Table \@ref(tab:matching-indicator-tab).)
+Let $\text{P}$ denote the probability measure corresponding to the assumption that the objects are equally likely to be placed in any spot, so that the 24 possible placements are equally.
+:::
+
+1. Find $\text{P}(X=0)$.
+\
+\
+\
+\
+\
+1. Find the distribution of $X$.
+\
+\
+\
+\
+\
+
+
+
+## Some counting rules {#counting}
+
+- Computing probabilities in the equally likely case reduces to just counting outcomes.
+
+::: {#exm-counting-icecream}
+
+I'm serving ice cream to my kids.  They can choose to have a bowl or a cone with a single scoop from one of four different flavors.
+:::
+
+1. How many different ways could I serve the ice cream?  (For example, peppermint in a cone, birthday cake in a bowl, etc)
+\
+\
+\
+\
+1. Now suppose they can either add rainbow or chocolate sprinkles or not. How many different ways could I serve the ice cream?  (For example, peppermint in a cone with chocolate sprinkles, birthday cake in a bowl with rainbow sprinkles, etc.)
+\
+\
+\
+\
+1. Now suppose the kids who requested bowls could choose whether to have whipped cream on top.  Is the number of different ways I could serve the ice cream equal to the answer to the previous part multiplied by two?
+\
+\
+\
+\
+
+- *Multiplication principle for counting.** Suppose that stage 1 of a process can be completed
+in any one of $n_1$ ways. Further, suppose that for each way of completing the stage 1,
+stage 2 can be completed in any one of $n_2$ ways. Then the two-stage process can
+be completed in any one of $n_1\times n_2$ ways.
+- This rule extends naturally to a $\ell$-stage process,
+which can then be completed in any one of $n_1\times n_2\times n_3\times\cdots\times n_\ell$ ways. 
+- In the multiplication principle it is not important whether there is a "first" or "second" stage.  What is important is that there are distinct stages, each with its own number of "choices".
+
+
+
+::: {#exm-ceo1}
+Suppose the board of directors of a corporation has identified 5 candidates --- Ariana, Beyonce, Cardi, Drake, Elvis --- for three executive positions: chief executive officer (CEO), chief financial officer (CFO), and chief operating officer (COO). In the interest of fairness, the board assigns 3 of the 5 candidates to the positions completely at random. No individual can hold more than one of the positions.
+
+When calculating probabilities below, consider the sample space of all possible executive teams.
+:::
+
+1. How many executive teams are possible?
+\
+\
+\
+\
+1. What is the probability that Ariana is CEO, Beyonce is CFO, and Cardi is COO?  
+\
+\
+\
+\
+1. What is the probability that Ariana is CEO and Beyonce is CFO?
+\
+\
+\
+\
+1. What is the probability that Ariana is CEO?
+\
+\
+\
+\
+
+- **Number of ordered arrangements.** The number of *ordered arrangements* of $k$ items, selected *without* replacement from a set of $n$ distinct items is
+$$
+n(n-1)(n-2)\cdots(n-k+1) = \frac{n!}{(n-k)!}
+$$
+- Recall the **factorial** notation: $m!=m(m-1)(m-2)\cdots (3)(2)(1)$.  For example, $5!=5\times4\times3\times2\times1=120$.  By definition, 0!=1.
+
+
+::: {#exm-ceo2}
+Your boss is forming a committee of 3 people for a new project team, and 5 people --- Ariana, Beyonce, Cardi, Drake, Elvis--- have volunteered to be on the committee.  In the interest of fairness, 3 of the 5 people will be selected uniformly at random to form the committee.
+:::
+
+1. How is this situation different from the executive team example?
+\
+\
+\
+\
+1. How many possible committees consist of Ariana, Beyonce, Cardi?  How many executive teams consisted of Ariana, Beyonce, Cardi?
+\
+\
+\
+\
+1. How many different possible committees of 3 people can be formed from the 5 volunteers?
+\
+\
+\
+\
+
+- The following is the relationship between "ordered" and "unordered" counting.
+\scriptsize{
+\begin{align*}
+		\left(\text{number of \emph{ordered} selections of $k$ from $n$}\right) & = \left(\text{number of \emph{unordered} selections of $k$ from $n$}\right)\\
+		&\quad \times\left(\text{number of ways of arranging the $k$ items in order}\right).
+\end{align*}
+}
+- **Number of permutations.**  The number of ways of arranging $k$ items in order is
+$$
+k\times (k-1)\times (k-2)\times\cdots\times 3\times 2\times1 = k!
+$$
+- **Number of combinations.**  The number of ways to choose $k$ items without replacement from a group of $n$ distinct items where *order does not matter*, denoted $\binom{n}{k}$, is
+$$
+\binom{n}{k} = \frac{n(n-1)(n-2)\cdots(n-k+1)}{k!} = \frac{n!}{k!(n-k)!}
+$$
+- The quantity on the right is just a compact way of representing the quantity in the middle.  But since factorials can be very large, it's best to use the quantity in the middle to compute. In R: `choose(n, k)`. In Python: `scipy.special.comb(n, k)`
+- The symbol $\binom{n}{k}$ is by definition equal to the quantity in the middle above.  It is read as "$n$ choose $k$" and is referred to as a **binomial coefficient**.
+
+::: {#exm-ceo3}
+Your boss is forming a committee of 3 people for a new project team, and 5 people --- Ariana, Beyonce, Cardi, Drake, Elvis--- have volunteered to be on the committee.  In the interest of fairness, 3 of the 5 people will be selected uniformly at random to form the committee.
+:::
+
+
+1. Find the probability that the committee consists of Ariana, Beyonce, and Cardi.
+\
+\
+\
+\
+1. Find the probability that Ariana and Beyonce are on the committee.
+\
+\
+\
+\
+1. Find the probability that Ariana is on the committee.
+\
+\
+\
+\
+
+::: {#exm-coin-probspace-counting}
+Continuing @exm-coin-probspace.
+:::
+
+1. Use counting rules to find a formula for $\text{P}(X = 3)$.
+\
+\
+\
+\
+1. Use counting rules to find a formula for $\text{P}(X = 2)$.
+\
+\
+\
+\
+1. Use counting rules to find a formula for $\text{P}(X = x)$ for each possible value of $x$.
+\
+\
+\
+\
+1. Now suppose the coin is flipped $n$ times. Continue to assume the coin is fair and the flips are independent. Let $X$ count the number of H in $n$ flips.
+Use counting rules to find a formula for $\text{P}(X = x)$ for each possible value of $x$.
+\
+\
+\
+\
+
+## Uniform probability measures {#sec-uniform-prob}
+
+
+- The continuous analog of equally likely outcomes is a **uniform probability measure**.
+- When the sample space is uncountable, size is measured continuously (length, area, volume) rather that discretely (counting).
+
+$$
+\text{P}(A) = \frac{|A|}{|\Omega|} = \frac{\text{size of } A}{\text{size of } \Omega} \qquad \text{if $\text{P}$ is a uniform probability measure}
+$$
+
+::: {#exm-meeting-probspace1d}
+In the meeting problem, assume that Regina arrives at a time chosen uniformly at random between noon and 1.  If we measure measure time in minutes after noon, we can model Regina's arrival with the sample space $[0, 60]$ and a uniform probability measure.
+:::
+
+1. Find the probability that Regina arrives before 12:15.
+\
+\
+\
+\
+1. Find the probability that Regina arrives after 12:45.
+\
+\
+\
+\
+1. Find the probability that Regina arrives between 12:15 and 12:45.
+\
+\
+\
+\
+1. Find the probability that Regina arrives between 12:15:00 and 12:16:00.
+\
+\
+\
+\
+1. Find the probability that Regina arrives between 12:15:00 and 12:15:01.
+\
+\
+\
+\
+1. Find the probability that Regina arrives at the exact time 12:15:00 (with infinite precision).
+\
+\
+\
+\
+
+
+- For a continuous sample space, the probability of any particular outcome is 0.
+- For a continuous random variable, the probability it takes any particular value is 0.
+
+
+::: {#exm-uniform-dart}
+Katniss throws a dart at a circular dartboard with radius 1 foot.
+Suppose that Katniss's dart lands at a uniformly random location on the dartboard (and she never misses the dartboard).
+:::
+
+1. Compute the probability that Katniss's dart lands within 1 inch of the center of the dartboard.
+\
+\
+\
+\
+1. Compute the probability that Katniss's dart lands more than 1 inch but less than 2 inches away from  the center of the dartboard.
+\
+\
+\
+\
+1. Compute the probability that Katniss's dart lands within 1 inch of the outside edge of the dartboard (but on the dartboard).
+\
+\
+\
+\
+1. Continue the previous parts for the remaining 1 inch increments from the center to the edge of the dartboard.
+\
+\
+\
+\
+1. Let $R$ be the distance (inches) from the location of the dart to the center of the dartboard.
+Find $\text{P}(R < 1)$.
+\
+\
+\
+\
+1. Find $\text{P}(1 < R < 2)$.
+\
+\
+\
+\
+1. Sketch a plot of the distribution of $R$.
+Does $R$ follow a Uniform distribution?
+\
+\
+\
+\
+1. Find and interpret the 50th percentile of $R$.
+\
+\
+\
+\
+1. Find and interpret the 25th percentile of $R$.
+\
+\
+\
+\
+1. Find and interpret the 75th percentile of $R$.
+\
+\
+\
+\
+1. Sketch a spinner corresponding to the distribution of $R$.
+

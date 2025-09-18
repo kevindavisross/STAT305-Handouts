@@ -1,0 +1,417 @@
+# Continuous Random Variables: Probability Density Functions
+
+
+
+
+
+
+- The continuous analog of a probability mass function (pmf) is a *probability density function (pdf)*.
+- However, while pmfs and pdfs play analogous roles, they are different in one fundamental way; namely, a pmf outputs probabilities directly, while a pdf does not.
+- A pdf of a continuous random variable must be *integrated* to find probabilities of related events.
+- The **probability density function (pdf)** (a.k.a.\ density) of a *continuous* RV $X$, defined on a probability space with probability measure $\text{P}$, is a function $f_X:\mathbb{R}\mapsto[0,\infty)$ which satisfies
+\begin{align*}
+\text{P}(a \le X \le b) & =\int_a^b f_X(x) dx, \qquad \text{for all } -\infty \le a \le b \le \infty
+\end{align*}
+- For a continuous random variable $X$ with pdf $f_X$, the probability that $X$ takes a value in the interval $[a, b]$ is the *area under the pdf over the region* $[a,b]$.
+- The axioms of probability imply that a valid pdf must satisfy
+\begin{align*}
+f_X(x) & \ge 0 \qquad \text{for all } x,\\
+\int_{-\infty}^\infty f_X(x) dx & = 1
+\end{align*}
+
+
+
+
+
+
+::: {#exm-exponential-pdf}
+
+Let $X$ be a random variable with the "Exponential(1)" distribution.
+Then the pdf of $f_X$ is
+
+$$
+f_X(x) =
+\begin{cases}
+e^{-x}, & x>0,\\
+0, & \text{otherwise.}
+\end{cases}
+$$
+
+:::
+
+
+1. Verify that $f_X$ is a valid pdf.
+\
+\
+\
+\
+\
+1. Find $\text{P}(X\le 1)$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(X\le 2)$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(1 \le X< 2.5)$.
+\
+\
+\
+\
+\
+1. Compute the 25th percentile of $X$.
+\
+\
+\
+\
+\
+1. Compute the 50th percentile of $X$.
+\
+\
+\
+\
+\
+1. Compute the 75th percentile of $X$.
+\
+\
+\
+\
+\
+1. Start to construct a spinner representing the Exponential(1) distribution.
+\
+\
+\
+\
+\
+
+
+## Uniform distributions
+
+
+
+::: {#exm-meeting-pdf1}
+In the meeting problem assume that Regina's arrival time $X$ (minutes after noon) follows a Uniform(0, 60) distribution.
+:::
+
+1. Sketch a plot of the pdf of $X$.
+\
+\
+\
+\
+\
+1. Donny Dont says that the pdf is $f_X(x) = 1/60$.  Do you agree?  If not, specify the pdf of $X$.
+\
+\
+\
+\
+\
+1. Use the pdf to find the probability that Regina arrives before 12:15.
+\
+\
+\
+\
+\
+1. Use the pdf to find the probability that Regina arrives after 12:45.
+\
+\
+\
+\
+\
+1. Use the pdf to find the probability that Regina arrives between 12:15 and 12:45.
+\
+\
+\
+\
+\
+1. Use the pdf to find the probability that Regina arrives between 12:15:00 and 12:16:00.
+\
+\
+\
+\
+\
+1. Use the pdf to find the probability that Regina arrives between 12:15:00 and 12:15:01.
+\
+\
+\
+\
+\
+1. Use the pdf to find the probability that Regina arrives at the exact time 12:15:00 (with infinite precision).
+\
+\
+\
+\
+\
+
+
+- A continuous random variable $X$ has a **Uniform distribution** with parameters $a$ and $b$, with $a<b$, if its probability density function $f_X$ satisfies
+\begin{align*}
+f_X(x) & \propto \text{constant}, \quad & & a<x<b\\
+& = \frac{1}{b-a}, \quad & &  a<x<b.
+\end{align*}
+- If $X$ has a Uniform($a$, $b$) distribution then
+\begin{align*}
+\text{Long run average value of $X$} & = \frac{a+b}{2}\\
+\text{Variance of $X$} & = \frac{|b-a|^2}{12}\\
+\text{SD of $X$} & = \frac{|b-a|}{\sqrt{12}}
+\end{align*}
+- The "standard" Uniform distribution is the Uniform(0, 1) distribution.
+- If $U$ has a Uniform(0, 1) distribution then $X = a + (b-a)U$ has a Uniform($a$, $b$) distribution.
+
+
+## Density is not probability
+
+
+- **The probability that a continuous random variable $X$ equals any particular value is 0.** That is, if $X$ is continuous then $\text{P}(X=x)=0$ for all $x$.  
+- For continuous random variables, it doesn't really make sense to talk about the probability that the random value is *equal to* a particular value.  However, we can consider the probability that a random variable is *close to* a particular value.
+
+
+
+::: {#exm-meeting-nonuniform-pdf1}
+Continuing @exm-meeting-pdf1, we will now we assume Regina's arrival time in $[0, 1]$ has pdf
+
+$$
+f_X(x) =
+        \begin{cases}
+      cx, & 0\le x \le 1,\\
+      0, & \text{otherwise.}
+      \end{cases}
+$$
+
+where $c$ is an appropriate constant.
+
+Note that now we're measuring arrival time in hours (i.e., fraction of the hour after noon) instead of minutes.
+
+:::
+
+1. Sketch a plot of the pdf.  What does this say about Regina's arival time?
+\
+\
+\
+\
+\
+1. Find the value of $c$ and specify the pdf of $X$.
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives before 12:15.
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives after 12:45.  How does this compare to the previous part? What does that say about Regina's arrival time?
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives between 12:15 and 12:45.
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives between 12:15 and 12:16.
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives between 12:15:00 and 12:15:01.
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives at the exact time 12:15:00 (with infinite precision).
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives between 12:59:00 and 1:00:00. How does this compare to the probability for 12:15:00 to 12:16:00? What does that say about Regina's arrival time?
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives between 12:59:59 and 1:00:00. How does this compare to the probability for 12:15:00 to 12:15:01? What does that say about Regina's arrival time?
+\
+\
+\
+\
+\
+1. Find the probability that Regina arrives at the exact time 1:00:00 (with infinite precision).
+\
+\
+\
+\
+\
+
+
+::: {#exm-exponential-pdf-closeto}
+
+Let $X$ be a random variable with the Exponential(1) distribution.
+Then the pdf of $f_X$ is
+
+$$
+f_X(x) =
+\begin{cases}
+e^{-x}, & x>0,\\
+0, & \text{otherwise.}
+\end{cases}
+$$
+
+:::
+
+
+
+1. Compute $\text{P}(X = 1)$.
+\
+\
+\
+\
+\
+1. Without integrating, approximate the probability that $X$ rounded to two decimal places is 1.
+\
+\
+\
+\
+\
+1. Without integrating, approximate the probability that $X$ rounded to two decimal places is 1.7.
+\
+\
+\
+\
+\
+1. Find and interpret the ratio of the probabilities from the two previous parts.  How could we have obtained this ratio from the pdf?
+\
+\
+\
+\
+\
+ 
+
+- The density $f_X(x)$ at value $x$ is *not* a probability.
+- Rather, the density $f_X(x)$ at value $x$ is related to the probability that the RV $X$ takes a value "close to $x$" in the following sense
+$$
+\text{P}\left(x-\frac{\epsilon}{2} \le X \le x+\frac{\epsilon}{2}\right) \approx f_X(x)\epsilon, \qquad \text{for small $\epsilon$}
+$$
+- The quantity $\epsilon$ is a small number that represents the desired degree of precision.  For example, rounding to two decimal places corresponds to $\epsilon=0.01$.
+- What's important about a pdf is *relative* heights.  For example, if $f_X(x_2)= 2f_X(x_1)$ then $X$ is roughly "twice as likely to be near $x_2$ than to be near $x_1$" in the above sense.
+$$
+\frac{f_X(x_2)}{f_X(x_1)} = \frac{f_X(x_2)\epsilon}{f_X(x_1)\epsilon} \approx  \frac{\text{P}\left(x_2-\frac{\epsilon}{2} \le X \le x_2+\frac{\epsilon}{2}\right)}{\text{P}\left(x_1-\frac{\epsilon}{2} \le X \le x_1+\frac{\epsilon}{2}\right)}
+$$
+
+
+## Exponential distributions
+
+
+
+- Exponential distributions are often used to model the *waiting times* between events in a random process that occurs continuously over time.
+
+
+::: {#exm-exponential-quakes}
+Suppose that we model the waiting time, measured continuously in hours, from now until the next earthquake (of any magnitude) occurs in southern CA  as a continuous random variable $X$ with pdf
+$$
+f_X(x) = 2 e^{-2x}, \; x \ge0
+$$
+This is the pdf of the "Exponential(2)" distribution.
+:::
+
+1. Sketch the pdf of $X$.  What does this tell you about waiting times?
+\
+\
+\
+\
+\
+1. Without doing any integration, approximate the probability that $X$ rounded to the nearest minute is 0.5 hours.
+\
+\
+\
+\
+\
+1. Without doing any integration determine how much more likely that $X$ rounded to the nearest minute is to be 0.5 than 1.5.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(X > 0.25)$.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(X \le 3)$.
+\
+\
+\
+\
+\
+1. Compute and interpret the 25th percentile of $X$.
+\
+\
+\
+\
+\
+1. Compute and interpret the 50th percentile of $X$.
+\
+\
+\
+\
+\
+1. Compute and interpret the 75th percentile of $X$.
+\
+\
+\
+\
+\
+1. How do the values from the three previous parts compare to the percentiles from the Exponential(1) distribution>
+Suggest a method for simulating values of $X$ using the Exponential(1) spinner.
+\
+\
+\
+\
+\
+1. Use simulation to approximate the long run average value of $X$.
+Interpret this value.
+At what *rate* do earthquakes tend to occur?
+\
+\
+\
+\
+\
+1. Use simulation to approximate the standard deviation of $X$.
+What do you notice?
+\
+\
+\
+\
+\
+
+- A continuous random variable $X$ has an **Exponential distribution** with *rate* parametern$\lambda>0$ if its pdf is
+$$
+f_X(x) =
+\begin{cases}\lambda e^{-\lambda x}, & x \ge 0,\\
+0, & \text{otherwise}
+\end{cases}
+$$
+- If $X$ has an Exponential($\lambda$) distribution then
+\begin{align*}
+\text{P}(X>x)  & = e^{-\lambda x}, \quad x\ge 0\\
+\text{Long run average of $X$} & = \frac{1}{\lambda}\\
+\text{Standard deviation of $X$} & = \frac{1}{\lambda}
+\end{align*}
+- Exponential distributions are often used to model the *waiting time* in a random process until some event occurs.
+    - $\lambda$ is the average *rate* at which events occur over time (e.g., 2 per hour)
+    - $1/\lambda$ is the mean time between events (e.g., 1/2 hour)
+- The "standard" Exponential distribution is the Exponential(1) distribution, with rate parameter 1 and long run average 1.
+If $X$ has an Exponential(1) distribution and $\lambda>0$ is a constant then $X/\lambda$ has an Exponential($\lambda$) distribution.

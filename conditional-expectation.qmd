@@ -1,0 +1,369 @@
+# Conditional Expected Value
+
+
+::: {#exm-dice-ce}
+Roll a fair four-sided die twice.  Let $X$ be the sum of the two rolls, and let $Y$ be the larger of the two rolls (or the common value if a tie).
+
+:::
+
+| $p_{X, Y}(x, y)$ |      |      |      |      |            |
+|------------------|-----:|-----:|-----:|-----:|-----------:|
+| $x$ \\ $y$       |    1 |    2 |    3 |    4 | $p_{X}(x)$ |
+| 2                | 1/16 |    0 |    0 |    0 |       1/16 |
+| 3                |    0 | 2/16 |    0 |    0 |       2/16 |
+| 4                |    0 | 1/16 | 2/16 |    0 |       3/16 |
+| 5                |    0 |    0 | 2/16 | 2/16 |       4/16 |
+| 6                |    0 |    0 | 1/16 | 2/16 |       3/16 |
+| 7                |    0 |    0 |    0 | 2/16 |       2/16 |
+| 8                |    0 |    0 |    0 | 1/16 |       1/16 |
+| $p_Y(y)$         | 1/16 | 3/16 | 5/16 | 7/16 |            |
+
+
+1. Find $\text{E}(Y)$. How could you find a simulation-based approximation?
+\
+\
+\
+1. Find $\text{E}(Y|X=6)$.  How could you find a simulation-based approximation?
+\
+\
+\
+1. Find $\text{E}(Y|X=x)$ for each possible value of $x$ of $X$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(X|Y = 4)$. How could you find a simulation-based approximation?
+\
+\
+\
+1. Find $\text{E}(X|Y = y)$ for each possible value $y$ of $Y$.
+\
+\
+\
+\
+\
+
+- The **conditional expected value** (a.k.a. *conditional expectation* a.k.a. *conditional mean*), of a random variable $Y$ given the event $\{X=x\}$, defined on a probability space with measure $\text{P}$, is a *number* denoted $\text{E}(Y|X=x)$ representing the probability-weighted average value of $Y$, where the weights are determined by the conditional distribution of $Y$ given $X=x$.
+\begin{align*}
+	& \text{Discrete $X, Y$ with conditional pmf $p_{Y|X}$:} & \text{E}(Y|X=x) & = \sum_y y p_{Y|X}(y|x)\\
+	& \text{Continuous $X, Y$ with conditional pdf $f_{Y|X}$:} & \text{E}(Y|X=x) & =\int_{-\infty}^\infty y f_{Y|X}(y|x) dy
+\end{align*}
+- Remember, when conditioning on $X=x$, $x$ is treated as a fixed constant. The conditional expected value  $\text{E}(Y | X=x)$ is  a *number* representing the mean of the conditional distribution of $Y$ given $X=x$.
+- The conditional expected value $\text{E}(Y | X=x)$ is the long run average value of $Y$ over only those outcomes for which $X=x$.
+- To approximate $\text{E}(Y|X = x)$, simulate many $(X, Y)$ pairs, discard the pairs for which $X\neq x$, and average the $Y$ values for the pairs that remain. 
+
+
+
+
+
+
+
+::: {#exm-uniform-sum-max-ce}
+
+Recall @exm-uniform-sum-max-conditional. Consider the probability space corresponding to two spins of the Uniform(1, 4) spinner and let $X$ be the sum of the two spins and $Y$ the larger to the two spins (or the common value if a tie).
+
+:::
+
+
+1. Find $\text{E}(X | Y = 3)$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(X | Y = y)$ for each value $y$ of $Y$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(Y | X = 3.5)$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(Y | X = 6)$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(Y | X = x)$ for each value $x$ of $X$.
+\
+\
+\
+\
+\
+
+
+## Conditional expected value as a random variable
+
+
+
+::: {#exm-meeting-conditional-then-marginal-ce}
+
+Recall @exm-meeting-conditional-then-marginal.
+In the meeting problem, assume that $R$ follows a Normal(30, 10) distribution.
+For any value $r$, assume that the conditional distribution of $Y$ given $R=r$ is a Normal distribution with mean $30 + 0.7(r - 30)$ and standard deviation 7.14 minutes.
+:::
+
+1. Compute and interpret $\text{E}(Y| R = 40)$.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{E}(Y| R = 15)$.
+\
+\
+\
+\
+\
+1. Provide an expression for $\text{E}(Y|R)$.
+\
+\
+\
+\
+\
+1. Identify the distribution of the random variable $E(Y|R)$.
+\
+\
+\
+\
+\
+1. Explain in words in context what the distribution in the previous part represents.
+\
+\
+\
+\
+\
+
+::: {#exm-dice-ce-rv}
+Continuing @exm-dice-ce.  Let $X$ be the sum of the two rolls, and let $Y$ be the larger of the two rolls (or the common value if a tie).
+
+:::
+
+
+1. Let $\text{E}(X|Y)$ denote the *random variable* that takes value $\text{E}(X|Y=y)$ when $Y=y$.  Find the distribution of $\text{E}(X|Y)$.
+\
+\
+\
+\
+\
+
+- The **conditional expected value of $Y$ given $X$** is the *random variable*, denoted $\text{E}(Y|X)$, which takes value $\text{E}(Y|X=x)$ on the occurrence of the event $\{X=x\}$.  The random variable $\text{E}(Y|X)$ is a *function of* $X$.
+- For a given value $x$ of $X$, $\text{E}(Y|X=x)$ is a *number*. Let $\ell$ denote the function which maps $x$ to the number $\ell(x)=\text{E}(Y|X=x)$. The random variable  $\text{E}(Y|X)$ is a function of $X$, namely $\text{E}(Y|X)=\ell(X)$.
+- Roughly, $\text{E}(Y|X)$ can be thought of as the "best guess" of the value of $Y$ given only the information available from $X$.
+- Since $\text{E}(Y|X)$ is a random variable, it has a distribution.  And since $\text{E}(Y|X)$ is a function of $X$, the distribution of $X$ will be depend on the distribution of $X$.  However, remember that a transformation generally changes the shape of a distribution, so the distribution of $\text{E}(Y|X)$ will usually have a different shape than that of $X$.
+
+
+::: {#exm-uniform-sum-max-ce-rv}
+
+Continuing @exm-uniform-sum-max-ce. Consider the probability space corresponding to two spins of the Uniform(1, 4) spinner and let $X$ be the sum of the two spins and $Y$ the larger to the two spins (or the common value if a tie).
+
+:::
+
+
+1. Find an expression for $\text{E}(X | Y)$.
+\
+\
+\
+\
+\
+1. Find an expression for $\text{E}(Y | X)$.
+\
+\
+\
+\
+\
+
+
+## Law of total expectation
+
+
+::: {#exm-dice-lte}
+Continuing @exm-dice-ce-rv.  Let $X$ be the sum of the two rolls, and let $Y$ be the larger of the two rolls (or the common value if a tie).
+
+:::
+
+1. Find the expected value of the random variable $\text{E}(X|Y)$.  That is, find $\text{E}(\text{E}(X|Y))$.  How does it relate to $\text{E}(X)$?
+\
+\
+\
+\
+\
+1. Find the expected value of the random variable $\text{E}(Y|X)$.  That is, find $\text{E}(\text{E}(Y|X))$.  How does it relate to $\text{E}(Y)$?
+\
+\
+\
+\
+\
+
+- **Law of total expectation.** For any two random variables $X$ and $Y$ (defined on the same probability space)
+$$
+\text{E}(Y) = \text{E}(\text{E}(Y|X))
+$$
+- Analogous to the law of total probability, the law of total expectation 
+ provides a way of computing an expected value by breaking down a problem into various cases, computing the conditional expected value given each case, and then computing the overall expected value as a probability-weighted average of these case-by-case conditional expected values.  
+
+
+
+
+
+
+::: {#exm-lookaway-ce}
+Recall @exm-lookaway.
+You and your friend are playing the ["lookaway challenge"](https://fivethirtyeight.com/features/what-are-your-chances-of-winning-the-u-s-open/).
+The game consists of possibly multiple rounds. In the first round, you point in one of four directions: up, down, left or right. At the exact same time, your friend also looks in one of those four directions. If your friend looks in the same direction you're pointing, you win! Otherwise, you switch roles and the game continues to the next round — now your friend points in a direction and you try to look away. (So the player who starts as the pointer is the pointer in the odd-numbered rounds, and the player who starts as the looker is the pointer in the even-numbered rounds, until the game ends.) As long as no one wins, you keep switching off who points and who looks.
+The game ends, and the current "pointer" wins, whenever the  "looker" looks in the same direction as the pointer.
+
+We saw in @exm-lookaway that the probability that the player who starts as the pointer wins the game is 4/7 = 0.571.
+
+:::
+
+
+1. Compute and interpret the expected number of rounds in a game.
+\
+\
+\
+\
+\
+1. Compute and intepret the conditional expected number of rounds in a game given that the player who is the pointer in the first round wins the game.
+\
+\
+\
+\
+\
+1. Compute and interpret the conditional expected number of rounds in a game given that the player who is the looker in the first round wins the game.
+\
+\
+\
+\
+\
+
+
+
+::: {#exm-random-rectangle-height}
+
+Suppose you construct a "random rectangle" as follows. The base $X$  is a random variable with a Uniform(0, 1) distribution.  The height $Y$ is a random variable whose conditional distribution given $X=x$ is  Uniform(0, $x$). We are interested in $\text{E}(Y)$ the expected value of the height of the rectangle.
+
+:::
+
+1. Find $\text{E}(Y|X=0.5)$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(Y|X=0.2)$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(Y|X=x)$ for a generic $x\in(0, 1)$.
+\
+\
+\
+\
+\
+1. Identify the random variable $\text{E}(Y|X)$.
+\
+\
+\
+\
+\
+1. Use LTE to find $\text{E}(Y)$.
+\
+\
+\
+\
+\
+1. Sketch a plot of the joint distribution of $(X, Y)$.
+\
+\
+\
+\
+\
+1. Sketch a plot of the marginal distribution of $Y$.  Be sure to specify the possible values.  Is it Uniform?
+\
+\
+\
+\
+\
+1. What would you need to do to find $\text{E}(Y)$ using the definition of expected value?
+\
+\
+\
+\
+\
+
+
+
+
+## Taking out what is known
+
+
+
+
+::: {#exm-random-rectangle-area}
+
+Continuing the previous example. Suppose you construct a "random rectangle" as follows. The base $X$  is a random variable with a Uniform(0, 1) distribution.  The height $Y$ is a random variable whose conditional distribution given $X=x$ is  Uniform(0, $x$). We are interested in $\text{E}(XY)$ the expected value of the area of the rectangle.
+
+:::
+
+1. Explain how you could use simulation to approximate $\text{E}(XY)$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(XY|X=0.5)$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(XY|X=0.2)$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(XY|X=x)$ for a generic $x\in(0, 1)$.  How does $\text{E}(XY|X=x)$ relate to $\text{E}(Y|X=x)$?
+\
+\
+\
+\
+\
+1. Identify the random variable $\text{E}(XY|X)$. How does $\text{E}(XY|X)$ relate to $\text{E}(Y|X)$?
+\
+\
+\
+\
+\
+1. Use LTE to find $\text{E}(XY)$.
+\
+\
+\
+\
+\
+1. Find $\text{Cov}(X, Y)$.  Does the sign of the covariance make sense?
+\
+\
+\
+\
+\
+
+
+- **"Taking out what is known (TOWIK)"**
+$$
+\text{E}(g(X)Y|X) = g(X)\text{E}(Y|X)
+$$
+- In particular, $\text{E}(XY|X) = X\text{E}(Y|X)$, $\text{E}(X|X)=X$, and $\text{E}(g(X)|X)=g(X)$.
+- Intuitively, when we condition on $X$ we treat it as though its value is known, so it behaves like a non-random constant. For example, $\text{E}(XY|X)=X\text{E}(Y|X)$ is the conditional, random variable analog of the unconditional, numerical relationship $\text{E}(cY) = c\text{E}(Y)$ where $c$ is a constant.
+But note that TOWIK is a relationship between *random variables*.
+
+

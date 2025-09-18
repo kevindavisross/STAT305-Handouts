@@ -1,0 +1,144 @@
+# Joint Normal Distributions
+
+{{< include _r_setup.qmd >}}
+
+{{< include _python_setup.qmd >}}
+
+
+
+- Jointly continuous random variables $X$ and $Y$ have a **Bivariate Normal** distribution with parameters $\mu_X$, $\mu_Y$, $\sigma_X>0$, $\sigma_Y>0$, and $-1<\rho<1$ if the joint pdf is
+\scriptsize{
+\begin{align*}
+f_{X, Y}(x,y) & = 
+ \frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}\exp\left(-\frac{1}{2(1-\rho^2)}\left[\left(\frac{x-\mu_X}{\sigma_X}\right)^2+\left(\frac{y-\mu_Y}{\sigma_Y}\right)^2-2\rho\left(\frac{x-\mu_X}{\sigma_X}\right)\left(\frac{y-\mu_Y}{\sigma_Y}\right)\right]\right), \quad -\infty <x<\infty, -\infty<y<\infty
+\end{align*}
+}
+- It can be shown that if the pair $(X, Y)$ has a BivariateNormal($\mu_X$, $\mu_Y$, $\sigma_X$, $\sigma_Y$, $\rho$) distribution
+\begin{align*}
+\text{E}(X) & =\mu_X\\
+\text{E}(Y) & =\mu_Y\\
+\text{SD}(X) & = \sigma_X\\
+\text{SD}(Y) & = \sigma_Y\\
+\text{Corr}(X, Y) & = \rho
+\end{align*}
+- A Bivariate Normal Density has elliptical contours. For each height $c>0$ the set $\{(x,y): f_{X, Y}(x,y)=c\}$ is an ellipse. The density decreases as $(x, y)$ moves away from $(\mu_X, \mu_Y)$, most steeply along the minor axis of the ellipse, and least steeply along the major of the ellipse.
+- A scatterplot of $(x,y)$ pairs generated from a Bivariate Normal distribution will have a rough linear association and the cloud of points will resemble an ellipse.
+- If $X$ and $Y$ have a Bivariate Normal distribution, then the marginal distributions are also Normal: $X$ has a Normal$\left(\mu_X,\sigma_X\right)$ distribution and  $Y$ has a Normal$\left(\mu_Y,\sigma_Y\right)$.
+- If $X$ and $Y$ have a Bivariate Normal distribution and $\text{Corr}(X, Y)=0$ then $X$ and $Y$ are independent. (Remember, in general it is possible to have situations where the correlation is 0 but the random variables are not independent.)
+- It can also be shown that if $X$ and $Y$ have a Bivariate Normal distribution then any conditional distribution is Normal. The conditional distribution of $Y$ given $X=x$ is
+$$
+N\left(\mu_Y + \frac{\rho\sigma_Y}{\sigma_X}\left(x-\mu_X\right),\;\sigma_Y\sqrt{1-\rho^2}\right)
+$$
+- The conditional expected value of $Y$ given $X=x$ is a *linear* function of $x$, called the *regression line of $Y$ on $X$*:
+    $$
+    \text{E}(Y | X=x) = \mu_Y + \rho\sigma_Y\left(\frac{x-\mu_X}{\sigma_X}\right)
+    $$
+    - The regression line passes through the point of means $(\mu_X, \mu_Y)$ and has slope
+    $$
+    \frac{\rho \sigma_Y}{\sigma_X}
+    $$
+    - The regression line estimates that if the given $x$ value is $z$ SDs above of the mean of $X$, then the corresponding $Y$ values will be, on average, $\rho z$ SDs away from the mean of $Y$
+    $$
+    \frac{\text{E}(Y|X=x) - \mu_Y}{\sigma_Y} = \rho\left(\frac{x-\mu_X}{\sigma_X}\right)
+    $$
+    - Since $|\rho|\le 1$, for a given $x$ value the corresponding $Y$ values will be, on average, relatively closer to the mean of $Y$ than the given $x$ value is to the mean of $X$.  This is known as *regression to the mean*.
+- For Bivariate Normal distributions, the conditional variance of $Y$ given $X=x$ does not depend on $x$:
+    $$
+    \text{SD}(Y |X = x) = \sigma_Y\sqrt{1-\rho^2}
+    $$
+- $X$ and $Y$ have a Bivariate Normal distribution if and only if every linear combination of $X$ and $Y$ has a Normal distribution. That is, $X$ and $Y$ have a Bivariate Normal distribution if and only if $aX+bY+c$ has a  Normal distribution for all $a$, $b$, $c$. 
+
+
+::: {#exm-bvn-sat-calc}
+Suppose that SAT Math ($M$) and Reading ($R$) scores of CalPoly students have a Bivariate Normal distribution.  Math scores have mean 640 and SD 80, Reading scores have mean 610 and SD 70, and the correlation between scores is 0.7.
+:::
+
+1. Find the probability that a student has a Math score above 700.
+\
+\
+\
+\
+\
+1. Find the probability that a student has a total score above 1500.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{E}(M|R = 700)$.
+\
+\
+\
+\
+\
+1. Find the probability that a student has a higher Math than Reading score if the student scores 700 on Reading.
+\
+\
+\
+\
+\
+1. Describe how you could use a Normal(0, 1) spinner to simulate an $(X, Y)$ pair.
+\
+\
+\
+\
+\
+1. Find the probability that a student has a higher Math than Reading score.
+\
+\
+\
+\
+\
+
+::: {#exm-normal-not-bvn}
+Let $X$ and $I$ be independent, $X$ has a Normal(0,1) distribution, and $I$ takes values 1 or $-1$ with probability $1/2$ each.  Let $Y=IX$.
+:::
+
+1. How could you use spinners to simulate an $(X, Y)$ pair?
+\
+\
+\
+\
+\
+1. Identify the distribution of $Y$.
+\
+\
+\
+\
+\
+1. Sketch a scatterplot of simulated $(X, Y)$ values.
+\
+\
+\
+\
+\
+1. Are $X$ and $Y$ independent? (Careful, it is not enough to say "no, because $Y$ is a function of $X$".  You can check that $Y$ and $I$ are independent even though $Y$ is a function of $I$.)
+\
+\
+\
+\
+\
+1. Find $\text{Cov}(X,Y)$ and $\text{Corr}(X,Y)$.
+\
+\
+\
+\
+\
+1. Is the distribution of $X+Y$ Normal?  (Hint: find $\text{P}(X+Y=0)$.)
+\
+\
+\
+\
+\
+1. Does the pair $(X, Y)$ have a Bivariate Normal distribution?
+\
+\
+\
+\
+\
+
+
+- If the pair $(X,Y)$ has a joint Normal distribution then each of $X$ and $Y$ has a Normal distribution.
+- But the example shows that the converse is not true.  That is, if each of $X$ and $Y$ has a  Normal distribution, it is not necessarily true that the pair $(X, Y)$ has a joint Normal distribution
+- However, if $X$ and $Y$ are *independent* and each of $X$ and $Y$ has a  Normal distribution, then the pair $(X, Y)$ has a joint Normal distribution.
+

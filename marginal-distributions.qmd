@@ -1,0 +1,246 @@
+# Marginal Distributions
+
+
+
+- The **(probability) distribution** of a collection of random variables identifies the possible values that the random variables can take and their relative likelihoods.
+- We will see many ways of describing a distribution, depending on how many random variables are involved and their types (discrete or continuous).
+- In the context of multiple random variables, the distribution of any one of the random variables is called a **marginal distribution**.
+
+## Discrete random variables
+
+
+- The probability distribution of a single discrete random variable $X$ is often displayed in a table containing the probability of the event $\{X=x\}$ for each possible value $x$.
+- In some cases, a distribution has a "formulaic" shape. For a discrete random variable $X$, the probability mass function expresses $\text{P}(X=x)$ as a function of $x$.
+
+::: {#exm-dice-probspace2}
+Roll a fair four-sided die twice.
+Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (or the common value if both rolls are the same).
+:::
+
+
+1. Construct a table and plot displaying the marginal distribution of $X$.
+\
+\
+\
+\
+\
+1. Construct a table and plot displaying the marginal distribution of $Y$.
+\
+\
+\
+\
+\
+1. Describe the distribution of $Y$ in terms of long run relative frequency.
+\
+\
+\
+\
+\
+1. Describe the distribution of $Y$ in terms of relative degree of likelihood.
+\
+\
+\
+\
+\
+
+
+
+
+
+## Simulating from a marginal distribution
+
+- Any marginal distribution can be represented by a single spinner.
+- In principle, there are always two ways of simulating a value $x$ of a random variable $X$.
+    1. **Simulate from the probability space.** Simulate an outcome $\omega$ from the underlying probability space and set $x = X(\omega)$.
+    1. **Simulate from the distribution.** Construct a spinner corresponding to the distribution of $X$ and spin it once to generate $x$.
+- The second method requires that the distribution of $X$ is known.
+However, as we will see in many examples, *it is common to specify the distribution of a random variable directly without defining the underlying probability space*.
+
+
+
+::: {#exm-dice-spinners-ex}
+Continuing Example @exm-dice-probspace2.
+:::
+
+1. Construct a spinner to represent the marginal distribution of $X$.
+\
+\
+\
+\
+\
+1. How could you use the spinner from the previous part to simulate a value of $X$.
+\
+\
+\
+1. Construct a spinner to represent the marginal distribution of $Y$.
+\
+\
+\
+\
+\
+1. How could you use the spinner from the previous part to simulate a value of $Y$.
+\
+\
+\
+1. Donny Don't says: "Great! I can simulate an $(X, Y)$ pair just by spinning the $X$-spinner to generate $X$ and the $Y$-spinner to generate $Y$."
+Is Donny correct?
+If not, can you help him see why not?
+\
+\
+\
+\
+\
+
+
+
+## Continuous random variables
+
+
+- Simulated values of a continuous random variable are usually plotted in a **histogram** which groups the observed values into "bins" and plots densities or frequencies for each bin.
+- In a histogram *areas* of bars represent relative frequencies; the axis which represents the height of the bars is called "density".
+- **The probability that a continuous random variable $X$ equals any particular value is 0.** That is, if $X$ is continuous then $\text{P}(X=x)=0$ for all $x$.
+- Even though any specific value of a continuous random variable has probability 0, *intervals* still can have positive probability.
+- In practical applications involving continuous random variables, "equal to" really means "close to", and "close to" probabilities correspond to intervals which can have positive probability.
+- The marginal  distribution of a continuous random variable can be described by a **probability density function**, for which *areas under the density curve determine probabilities*.
+
+
+::: {#exm-uniform-zero-prob-sim}
+Let $U$ be a random variable with a Uniform(0, 1) distribution.
+Suppose we want to approximate $\text{P}(U = 0.2)$; that is,  $\text{P}(U = 0.2000000000000000000000\ldots)$, the probability that $U$ is equal to 0.2 with infinite precision.
+:::
+
+
+
+
+1. Use simulation to approximate $\text{P}(U = 0.2)$.
+\
+\
+\
+\
+\
+1. What do you notice? Why does this make sense?
+\
+\
+\
+\
+\
+1. Use simulation to approximate $\text{P}(|U - 0.2|<0.005) = \text{P}(0.195 < U < 0.205)$, the probability that $U$ *rounded to two decimal places* is equal to 0.2.
+\
+\
+\
+\
+\
+1. Use simulation to approximate $\text{P}(|U - 0.2|<0.0005) = \text{P}(0.1995 < U < 0.2005)$, the probability that $U$ *rounded to three decimal places* is equal to 0.2.
+\
+\
+\
+\
+\
+1. Explain why $\text{P}(U = 0.2) = 0.$ Also explain, why this is not a problem in practical applications.
+\
+\
+\
+\
+\
+
+## Normal distributions
+
+- Normal distributions follow a particular bell-shaped curve which corresponds to a very specific pattern of variation
+
+
+::: {#exm-normal-spinner-percentiles}
+Consider the Normal(30, 10) spinner.
+If we spin the spinner many times:
+:::
+
+1. About what percent of values would be below 30? Above 30?
+\
+\
+\
+1. About what percent of values would be between 20 and 30? Between 30 and 40?
+\
+\
+\
+1. How would the shape of the distribution below 30 compare to that above 30?
+\
+\
+\
+1. About what percent of values would be between 20 and 40?
+\
+\
+\
+1. About what percent of values would be between 10 and 50?
+\
+\
+\
+
+
+
+## Percentiles
+
+- A distribution is characterized by its percentiles.
+- Roughly, the value $x$ is the $p$th **percentile** (a.k.a. quantile) of a distribution of a random variable $X$ if $p$ percent of values of the variable are less than or equal to $x$: $\text{P}(X\le x) = p$.
+- A spinner basically describes a distribution by specifying all the percentiles. For example,
+    - The 25th percentile goes 25% of the way around the axis (at "3 o'clock")
+    - The 50th percentile goes 50% of the way around the axis (at "6 o'clock")
+    - The 75th percentile goes 75% of the way around the axis (at "9 o'clock")
+
+
+
+::: {#exm-meeting-normal-percentile}
+Recall that the spinner that represents the Normal(30, 10) distribution.
+According to this distribution:
+:::
+
+1. What percent of values are less than 23.26?
+\
+\
+\
+1. What is the 25th percentile?
+\
+\
+\
+1. What is the 75th percentile?
+\
+\
+\
+1. A value of 40 corresponds to what percentile?
+\
+\
+\
+
+
+
+## Transformations
+
+
+- Many random variables are derived as transformations of other random variables.
+- A function of a random variable is a random variable: if $X$ is a random variable and $g$ is a function then $Y=g(X)$ is a random variable.
+- In general, the distribution of $g(X)$ will have a different shape than the distribution of $X$.  The exception is when $g$ is a linear rescaling.
+
+
+::: {#exm-uniform-transform}
+Let $U$ be a random variable that follows a Uniform(0, 1) distribution.
+:::
+
+
+1. Let $Y = 60U$. Sketch a spinner corresponding to the distribution of $Y$.
+
+\\
+\
+\
+\
+1. Sketch a plot of the distribution of $Y$.
+\
+\
+\
+\
+\
+1. Let $Z = U^2$. Sketch a spinner corresponding to the distribution of $Z$
+\
+\
+\
+\
+\
+1. Sketch a plot of the distribution of $Z$. (A very rough sketch is fine for now, but be sure to determine if the density would be higher near 0, near 0.5, or near 1.)
+

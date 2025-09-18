@@ -1,0 +1,15 @@
+# Preface {.unnumbered}
+
+
+
+
+```{r}
+#| echo: false
+#| include: false
+
+# Without an R chunk first, it's looking for the Jupyter engine, which I don't seem to have
+# 
+1 + 1
+```
+
+A selection of Handouts for STAT 305.

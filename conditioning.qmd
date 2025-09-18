@@ -1,0 +1,379 @@
+# Conditioning
+
+
+
+
+- Conditioning concerns how probabilities of events or distributions of random variables are influenced by information about the occurrence of events or the values of  random variables.
+- A probability is a measure of the likelihood or degree of uncertainty of an event.
+A *conditional probability* revises this measure to reflect any "new" information about the outcome of the underlying random phenomenon.
+
+
+
+
+
+
+::: {#exm-impeach}
+
+The probability^[These number are estimates based on [data from polls as of Oct 9, 2019](https://fivethirtyeight.com/features/two-weeks-in-impeachment-is-becoming-more-popular/). I wrote this exercise in Fall 2019. In Fall 2020, I decided not to change it, knowing that would make it outdated. But then Trump was impeached again in January 2021. And now we have the Jan 6 committee hearings.] that a randomly
+selected American adult supports impeachment of President Trump is 0.49.
+
+:::
+
+1. Suppose the randomly selected person is a Democrat.  Do you think the probability that the randomly selected *Democrat* supports impeachment is 0.49?
+\
+\
+\
+\
+\
+1. The probability^[[Estimate as of Sept 2019.](https://news.gallup.com/poll/15370/party-affiliation.aspx)] that a randomly selected American is a Democrat is 0.31. Donny Don't  says that the probability that a randomly selected American both (1) is a Democrat, *and* (2) supports impeachment is equal to $0.49\times 0.31$. Do you agree?
+\
+\
+\
+\
+\
+1. Without further information, provide a range of "logically possible" values for the probability in the previous part.  ("Logically possible" means they satisfy the rules of probability, even though they might not be realistic in context.)
+\
+\
+\
+\
+\
+1. Suppose that the probability that a randomly selected American both is a Democrat and supports impeachment is 0.26. Construct an appropriate two-way table of probabilities.
+\
+\
+\
+\
+\
+1. Construct a corresponding two-way table of hypothetical counts.
+\
+\
+\
+\
+\
+1. Find the probability^[The resulting value is estimated based on [data from polls as of Oct 9, 2019](https://fivethirtyeight.com/features/two-weeks-in-impeachment-is-becoming-more-popular/) and [party affiliation as of Sept 2019](https://news.gallup.com/poll/15370/party-affiliation.aspx).] that a randomly selected American *who is a Democrat* supports impeachment.
+\
+\
+\
+\
+\
+1. How can the probability in the previous part be written in terms of the probabilities provided in the setup?
+\
+\
+\
+\
+\
+1. Find the probability that a randomly selected American *who supports impeachment* is a Democrat.
+\
+\
+\
+\
+\
+
+
+
+
+
+- The **conditional probability of event $A$ given event $B$**, denoted $\text{P}(A|B)$, is defined as 
+$$
+\text{P}(A|B) = \frac{\text{P}(A\cap B)}{\text{P}(B)}
+$$
+- The conditional probability $\text{P}(A|B)$ represents how the likelihood or degree of uncertainty of event $A$ should be updated to reflect information that event $B$ has occurred.
+- In general, knowing whether or not event $B$ occurs influences the probability of event $A$.  That is,
+$$
+\text{In general, } \text{P}(A|B) \neq \text{P}(A)
+$$
+- Be careful: order is essential in conditioning.  That is,
+$$
+\text{In general, } \text{P}(A|B) \neq \text{P}(B|A)
+$$
+
+
+## Simulating conditional probabilities
+
+::: {#exm-impeach-sim}
+
+Consider simulating a randomly selected American and determining whether or not the person supports impeachment and whether or not the person is a Democrat, as in the scenario in  Example @exm-impeach.  Remember we are given $\text{P}(A) = 0.49$, $\text{P}(D) = 0.31$, and $\text{P}(A\cap D) = 0.26$ where $A$ is the event that the selected person supports impeachment and $D$ is the event that the selected person is a Democrat.
+
+:::
+
+1. Donny Don't says we need two spinners: One spinner with areas of 0.49 and 0.51 to represent Support/Not support, and another spinner with areas of 0.31 and 0.69 to represent Democrat/Not Democrat.  Then spin each spinner once to simulate one repetition.  Do you agree?
+\
+\
+\
+\
+\
+1. How could you perform one repetition of the simulation using just a single spinner? (Hint: it needs 4 sectors.)
+\
+\
+\
+\
+\
+1. How could you perform a simulation, using the spinner in the previous part, to estimate $\text{P}(A | D)$?
+\
+\
+\
+\
+\
+1. What determines the order of magnitude of the the margin of error for your estimate in the previous part?
+\
+\
+\
+\
+\
+1. What is another method for performing the simulation and estimating $\text{P}(A |D)$ that has a smaller margin of error?  What is the disadvantage of this method?
+\
+\
+\
+\
+\
+
+
+There are two basic ways to use simulation to approximate a conditional probability $\text{P}(A|B)$.
+
+- Simulate the random phenomenon for a set number of repetitions (say 10000), *discard those repetitions on which $B$ does not occur*, and compute the relative frequency of $A$ among the remaining repetitions (on which $B$ does occur).
+    - Disadvantage: the margin of error is based on only the number of repetitions used to compute the relative frequency.
+    - Advantage: not computationally intensive.
+- Simulate the random phenomenon *until obtaining a certain number of repetitions (say 10000) on which $B$ occurs*, discarding those repetitions on which $B$ does not occur as you go, and compute the relative frequency of $A$ among the remaining repetitions (on which $B$ does occur).
+    - Advantage: the margin of error will be based on the set number of repetitions on which $B$ occurs.
+    - Disadvantage: inefficient, requires more time/computer power, especially if $\text{P}(B)$ is small
+
+## Joint, conditional, and marginal probabilities
+
+- Within the context of two events, we have joint, conditional, and marginal probabilities.
+    - Joint: unconditional probability involving both events, $\text{P}(A \cap B)$.
+    - Conditional: conditional probability of one event given the other, $\text{P}(A | B)$, $\text{P}(B | A)$.
+    - Marginal: unconditional probability of a single event $\text{P}(A)$, $\text{P}(B)$.
+- The relationship $\text{P}(A|B) = \text{P}(A\cap B)/\text{P}(B)$ can  be stated generically as
+$$
+\text{conditional} = \frac{\text{joint}}{\text{marginal}}
+$$
+- In many problems conditional probabilities are provided or can be determined directly.
+
+::: {#exm-impeach2}
+
+Recent polls^[[As of Oct 9, 2019](https://fivethirtyeight.com/features/two-weeks-in-impeachment-is-becoming-more-popular/)] suggest that
+
+- 83% of Democrats support impeachment of President Trump
+- 44% of Independents support impeachment of President Trump
+- 14% of Republicans support impeachment of President Trump
+
+:::
+
+1. The average of these three percentages is $(83+44+14)/3 = 47$.  Is it necessarily true that 47% of all Americans support impeachment?
+\
+\
+\
+\
+\
+1. Based on recent polls^[[Party affiliation as of Sept 2019.](https://news.gallup.com/poll/15370/party-affiliation.aspx)]
+    - 31% of Americans are Democrats
+    - 40% of Americans are Independent
+    - 29% of Americans are Republicans
+    Define the event $A$ to represent "supports impeachment" and $D, I, R$ to correspond to affiliation in each of the parties.  If the probability measure $\text{P}$ corresponds to randomly selecting an American, write all the percentages above as probabilities using proper notation.  
+\
+\
+\
+\
+\
+1. Find the probability that a randomly selected American is a Democrat who supports impeachment.  Is this a joint, conditional, or marginal probability?
+\
+\
+\
+\
+\
+1. Construct an appropriate two-way table.
+\
+\
+\
+\
+\
+1. Find the probability that a randomly selected American supports impeachment.  How does this differ from the average of the three percentages in part 1?  Why?
+\
+\
+\
+\
+\
+1. Now suppose that the randomly selected American supports impeachment.  How does this information change the probability that the selected American belongs to a particular political party?  Answer by computing appropriate probabilities (and using proper notation).
+\
+\
+\
+\
+\
+1. How does each of the probabilities from the previous part compare to the respective prior probability?  Does this make sense?
+\
+\
+\
+\
+\
+
+
+
+::: {#exm-impeach2-sim}
+
+Consider simulating a randomly selected American and determining whether or not the person supports impeachment and whether or not the person is a Democrat, as in the scenario in  Example @exm-impeach2.  Remember we are given $\text{P}(A|D) = 0.83$, $\text{P}(A|I) = 0.44$, $\text{P}(A|R) = 0.14$, $\text{P}(D) = 0.31$, $\text{P}(I) = 0.40$, and $\text{P}(R)=0.29$.
+
+:::
+
+How could you perform one repetition of the simulation using spinners based solely on the probabilities provided in the problem, without first constructing a two-way table or finding $\text{P}(A\cap B)$, etc?  (Hint: you'll need a few spinners, but you might not spin them all in a single repetition.)
+\
+\
+\
+\
+\
+
+## Multiplication rule
+
+- Rearranging the definition of conditional probability we get the
+**Multiplication rule:** the probability that two events both occur is
+$$
+\begin{aligned}
+\text{P}(A \cap B) & = \text{P}(A|B)\text{P}(B)\\
+& = \text{P}(B|A)\text{P}(A)
+\end{aligned}
+$$
+- The multiplication rule says that you should think "multiply" when you see "and".  However, be careful about *what* you are multiplying: to find a joint probability you need an unconditional and an appropriate conditional probability.
+- You can condition either on $A$ or on $B$, provided you have the appropriate marginal probability; often, conditioning one way is easier than the other.
+- Be careful: the multiplication rule does *not* say that $\text{P}(A\cap B)$ is the same as $\text{P}(A)\text{P}(B)$.  
+
+
+
+
+## Conditioning is "slicing and renormalizing"
+
+
+- The process of conditioning can be thought of as **"slicing and renormalizing".**
+    - Extract the "slice" corresponding to the event being conditioned on (and discard the rest).  For example, a slice might correspond to a particular row or column of a two-way table.  
+    - "Renormalize" the values in the slice so that corresponding probabilities add up to 1.
+- Slicing determines the *shape*; renormalizing determines the *scale*.
+- Slicing determines relative probabilities; renormalizing just makes sure they add up to 1.
+
+::: {#exm-impeach-slicing}
+
+Recall Example @exm-impeach.  Remember we are given $\text{P}(A) = 0.49$, $\text{P}(B) = 0.31$, and $\text{P}(A\cap B) = 0.26$ where $A$ is the event that the selected person supports impeachment and $B$ is the event that the selected person is a Democrat.
+
+:::
+
+1. How many times more likely is it for an *American* to be a Democrat who supports impeachment than to be a Democrat who does not support impeachment?
+\
+\
+\
+\
+\
+1. How many times more likely is it for a *Democrat* to support impeachment than to not support impeachment?
+\
+\
+\
+\
+\
+1. What do you notice about the answers to the two previous parts?
+\
+\
+\
+\
+\
+
+## Independence {#independence}
+
+
+
+
+::: {#exm-puppy}
+Consider the following hypothetical data.
+
+|                               | Democrat ($D$) | Not Democrat ($D^c$) | Total |
+|-------------------------------|---------------:|---------------------:|------:|
+| Loves puppies ($L$)           |            180 |                  270 |   450 |
+| Does not love puppies ($L^c$) |             20 |                   30 |    50 |
+| Total                         |            200 |                  300 |   500 |
+
+Suppose a person is randomly selected from this group.  Consider the events
+\begin{align*}
+L & = \{\text{person loves puppies}\}\\
+D & = \{\text{person is a Democrat}\}
+\end{align*}
+
+:::
+
+1. Compute and interpret $\text{P}(L)$.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(L|D)$.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(L|D^c)$.
+\
+\
+\
+\
+\
+1. What do you notice about $\text{P}(L)$, $\text{P}(L|D)$, and $\text{P}(L|D^c)$?
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(D)$.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(D|L)$.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(D|L^c)$.
+\
+\
+\
+\
+\
+1. What do you notice about $\text{P}(D)$, $\text{P}(D|L)$, and $\text{P}(D|L^c)$?
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(D \cap L)$.
+\
+\
+\
+\
+\
+1. What is the relationship between $\text{P}(D \cap L$) and $\text{P}(D)$ and $\text{P}(L)$?
+\
+\
+\
+\
+\
+1. When randomly selecting a person from this particular group, would you say that events $D$ and $L$ are independent?  Why?
+\
+\
+\
+\
+\
+
+- Events $A$ and $B$ are **independent** if the knowing whether or not one occurs does not change the probability of the other.
+- For events $A$ and $B$ (with $0<\text{P}(A)<1$ and $0<\text{P}(B)<1$) the following are equivalent.
+That is, if one is true then they all are true; if one is false, then they all are false.
+
+\begin{align*}
+\text{$A$ and $B$} & \text{ are independent}\\
+\text{P}(A \cap B) & = \text{P}(A)\text{P}(B)\\
+\text{P}(A^c \cap B) & = \text{P}(A^c)\text{P}(B)\\
+\text{P}(A \cap B^c) & = \text{P}(A)\text{P}(B^c)\\
+\text{P}(A^c \cap B^c) & = \text{P}(A^c)\text{P}(B^c)\\
+\text{P}(A|B) & = \text{P}(A)\\
+\text{P}(A|B) & = \text{P}(A|B^c)\\
+\text{P}(B|A) & = \text{P}(B)\\
+\text{P}(B|A) & = \text{P}(B|A^c)
+\end{align*}
+
+

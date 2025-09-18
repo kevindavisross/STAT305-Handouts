@@ -1,0 +1,192 @@
+# Averages and Standard Deviation
+
+{{< include _r_setup.qmd >}}
+
+{{< include _python_setup.qmd >}}
+
+
+## Averages {#LRA}
+
+- One summary characteristic of a distribution is the **long run average value** of the random variable.
+- We can approximate the long run average value by simulating many values of the random variable and computing the average (mean) in the usual way.
+
+::: {#exm-dice-sim-tactile-ev}
+Let $X$ be the sum of two rolls of a fair four-sided die, and let $Y$ be the larger of the two rolls (or the common value if a tie).
+Recall your tactile simulation from Example @exm-dice-sim-tactile. Based only on the results of your simulation, approximate the long run average value of each of the following.
+(Don't worry if the approximations are any good yet.)
+:::
+
+1. $X$
+1. $Y$
+1. $X^2$
+1. $XY$
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+::: {#exm-dd-lra}
+Donny Don't says: "Why bother creating columns for $X^2$ and $XY$? If I want to find the average value of $X^2$ I can just square the average value of $X$. For the average value of $XY$ I can just multiply the average value of $X$ and the average value of $Y$." Do you agree?  (Check to see if this works for your simulation results.) If not, explain why not.
+:::
+\
+\
+\
+\
+\
+
+
+- In general the order of transforming and averaging is not interchangeable.
+- Whether in the short run or the long run, in general
+\begin{align*}
+\text{Average of $g(X)$} & \neq g(\text{Average of $X$})\\
+\text{Average of $g(X, Y)$} & \neq g(\text{Average of $X$}, \text{Average of $Y$})
+\end{align*}
+
+
+
+
+
+::: {#exm-dice-sim-tactile-ev-linearity}
+
+Recall your tactile simulation from Example @exm-dice-sim-tactile.
+Let $U_1$ be the result of the first roll, and $U_2$ the result of the second, so the sum is $X = U_1 + U_2$.
+:::
+
+1. Donny Don't says: "$X=U_1+U_2$, so I can find the average value of $X$ by finding the average value of $U_1$, the average value of $U_2$, and adding the two averages".  Do you agree? Explain.
+\
+\
+\
+\
+\
+1. Donny Don't says: "$U_1$ and $U_2$ have the same distribution, so they have the same average value, so I can find the average value of $X$ by multiplying the average value of $U_1$ by 2". Do you agree? Explain.
+\
+\
+\
+\
+\
+1. Donny Don't says: "$U_1$ and $U_2$ have the same distribution, so $X=U_1+U_2$ has the same distribution as $2U_1 = U_1 + U_1$". Do you agree?  Explain.
+\
+\
+\
+\
+\
+
+- In general the order of transforming and averaging is not interchangeable.
+- However, the order is interchangeable for *linear* transformations.
+- **Linearity of averages.**: If $X$ and $Y$ are random variables and $a$ and $b$ are non-random constants,
+whether in the short run or the long run,
+\begin{align*}
+\text{Average of $a+bX$} & = a+b(\text{Average of $X$})\\
+\text{Average of $X+Y$} & = \text{Average of $X$} +\text{Average of $Y$}
+\end{align*}
+- The average of the sum of $X$ and $Y$ is the sum of the average of $X$ and the average of $Y$ *regardless of the relationship between $X$ and $Y$.*
+
+
+
+## Standard deviation {#sd}
+
+
+- The long run average value is just one feature of a distribution.
+- Random variables vary, and the distribution describes the entire pattern of variability.
+- We can summarize this degree of variability by listing some percentiles (10th, 25th, 50th, 75th, 90th, etc); the more percentiles we provide the clearer the picture, but the less of a summary.
+- Roughly, standard deviation measures overall degree of variability in ai single number, as the average distance from the mean.
+- Technically, the **variance** is the long run average squared distance from the mean, and the **standard deviation** is the square root of the variance.
+
+
+\begin{align*}
+\text{Variance of } X & = \text{Average of } ((X - \text{Average of } X)^2)\\
+\text{Standard deviation of } X & = \sqrt{\text{Variance of } X}
+\end{align*}
+
+
+::: {#exm-normal-uniform-sd-compare}
+We'll compare long run average and standard deviation for the Uniform(0, 60) distribution and the Normal(30, 10) distribution.
+A Normal(30, 10) distribution mean (long run average) 30 and standard deviation 10.
+
+:::
+
+1. Make an educated guess for the long run average value of a Uniform(0, 60) distribution. Explain.
+\
+\
+\
+\
+\
+1. Will the standard deviation for a Uniform(0, 60) distribution be greater than, less than, or equal to 10, the standard deviation for a Normal(30, 10) distribution? Explain without doing any calculations.
+\
+\
+\
+\
+\
+1. Make an educated guess for the standard deviation of a Uniform(0, 60) distribution.
+\
+\
+\
+\
+\
+
+- Standard deviation provides a "ruler" by which we can judge a particular realized value of a random variable relative to the distribution of values.
+- Standardization measures values in terms of "standard deviations away from the mean"
+- This idea is particularly useful when comparing random variables with different measurement units but whose distributions have similar shapes.
+$$
+\text{Standardized value} = \frac{\text{Value - Mean}}{\text{Standard deviation}}
+$$
+
+::: {#exm-sat-z-score}
+SAT scores have, approximately, a Normal distribution with a mean of 1050 and a standard deviation of 200.
+ACT scores have, approximately, a Normal distribution with a mean of 21 and a standard deviation of 5.5.
+Darius's score on the SAT is 1500.  Alfred's score on the ACT is 31.
+Who scored relatively better on their test?
+
+:::
+
+1. Compute the deviation from the mean for Darius's SAT score.  How does this compare to the average deviation from the mean for SAT scores?
+\
+\
+\
+\
+\
+1. Compute the deviation from the mean for Alfred's ACT score.  How does this compare to the average deviation from the mean for ACT scores?
+\
+\
+\
+\
+\
+1. Who scored relatively better on their test?
+\
+\
+\
+\
+\
+
+
+- Any Normal distribution follows the "empirical rule" which determines the percentiles that give a Normal distribution its particular bell shape.
+- For a Normal distribution:
+    - 68% of values are within 1 standard deviation of the mean
+    - 95% of values are within 2 standard deviations of the mean
+    - 99.7% of values are within 3 standard deviations of the mean
+- The table below lists some percentiles of a Normal distribution.
+- The "standard" Normal distribution is a Normal(0, 1) distribution, with a mean 0 and a standard deviation of 1.
+
+```{r}
+#| echo: false
+
+p = c(0.001, 0.005, 0.01, 0.025, 0.10, pnorm(-1), 0.25, pnorm(-0.5), 0.5, pnorm(0.5), 0.75, pnorm(1), 0.90, 0.975, 0.99, 0.995, 0.999)
+
+z = round(qnorm(p), 2)
+
+data.frame(p = paste(round(100 * p, 1), "%", sep = ""),
+           z = paste(abs(z), "SDs", if_else(z<0, "below", "above"), "the mean")) %>%
+  kbl(col.names = c("Percentile", "SDs away from the mean"),
+      caption = "Empirical rule for Normal distributions",
+      align = c('r', 'l')) %>%
+  kable_styling(fixed_thead = TRUE)
+
+```
+
+

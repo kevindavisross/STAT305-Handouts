@@ -1,0 +1,256 @@
+# Expected Values of Linear Combinations of Random Variables
+
+
+
+## Linear rescaling
+
+
+If $X$ is a random variable and $a, b$ are non-random constants then
+
+\begin{align*}
+\text{E}(aX + b) & = a\text{E}(X) + b\\
+\text{SD}(aX + b) & = |a|\text{SD}(X)\\
+\text{Var}(aX + b) & = a^2\text{Var}(X)
+\end{align*}
+
+
+
+## Linearity of expected value
+
+
+
+::: {#exm-sat-compare-ev}
+Refer to the tables and plots in [Example 5.29](https://bookdown.org/kevin_davisross/probsim-book/expected-values-of-linear-combinations-of-random-variables.html#exm:sat-compare-ev) in the textbook.
+Each scenario contains SAT Math ($X$) and Reading ($Y$) scores for 10 hypothetical students, along with the total score ($T  =  X + Y$) and the difference between the Math and Reading scores ($D = X - Y$, negative values indicate lower Math than Reading scores).
+Note that the 10 $X$ values are the same in each scenario, and the 10 $Y$ values are the same in each scenario, but the $(X, Y)$ values are paired in different ways: the correlation is 0.78 in scenario 1, -0.02 in scenario 2, and -0.94 in scenario 3.
+
+:::
+
+1. What is the mean of $T = X + Y$ in each scenario? How does it relate to the means of $X$ and $Y$?
+Does the correlation affect the mean of $T = X + Y$?
+\
+\
+\
+1. What is the mean of $D = X - Y$ in each scenario? How does it relate to the means of $X$ and $Y$?
+Does the correlation affect the mean of $D = X - Y$?
+\
+\
+\
+
+- **Linearity of expected value.** For *any* two random variables $X$ and $Y$,
+\begin{align*}
+\text{E}(X + Y) & = \text{E}(X) + \text{E}(Y)
+\end{align*}
+- That is, the expected value of the sum is the sum of expected values, regardless of how the random variables are related.
+- Therefore, you only need to know the marginal distributions of $X$ and $Y$ to find the expected value of their sum.  (But keep in mind that the *distribution* of $X+Y$ will depend on the joint distribution of $X$ and $Y$.)
+- Whether in the short run or the long run,
+\begin{align*}
+\text{Average of $X + Y$ } & = \text{Average of $X$} + \text{Average of $Y$}
+\end{align*}
+regardless of the joint distribution of $X$ and $Y$.
+- A **linear combination** of two random variables $X$ and $Y$ is of the form $aX + bY$ where $a$ and $b$ are non-random constants.  Combining properties of linear rescaling with linearity of expected value yields the expected value of a linear combination.
+    $$
+    \text{E}(aX + bY) = a\text{E}(X)+b\text{E}(Y)
+    $$
+- Linearity of expected value extends naturally to more than two random variables.
+
+::: {#exm-matching-ev-n}
+Recall the matching problem in @exm-matching-ev. We showed that the expected value of the number of matches $X$ is $\text{E}(X)=1$ when $n=4$.  Now consider a general $n$: there are $n$ objects that are shuffled and placed uniformly at random in $n$ spots with one object per spot.  Let $X$ be the number of matches.  Can you find a general formula for $\text{E}(X)$? 
+
+:::
+
+1. Before proceeding take a minute to consider: how do you think $\text{E}(X)$ depends on $n$? Will $\text{E}(X)$ increase as $n$ increases? Decrease? Stay the same?
+\
+\
+\
+\
+\
+1. When $n=4$ we derived the distribution of $X$ and used it to find $\text{E}(X)=1$. Now we'll see how to find $\text{E}(X)$ without first finding the distribution of $X$. The key is to use the indicator random variables from Example \@ref(exm:matching-indicator).  Let $\text{I}_1$ be the indicator that object 1 is placed correctly in spot 1.  Find $\text{E}(\text{I}_1)$.
+\
+\
+\
+\
+\
+1. When $n=4$, find $\text{E}(\text{I}_j)$ for $j=1,2,3, 4$.
+\
+\
+\
+\
+\
+1. What is the relationship between the random variables $X$ and $\text{I}_1, \text{I}_2,\text{I}_3, \text{I}_4$?
+\
+\
+\
+\
+\
+1. Use the previous parts to find $\text{E}(X)$.
+\
+\
+\
+\
+\
+1. Now consider a general $n$. Let $\text{I}_i$ be the indicator that object $j$ is placed correctly in spot $j$, $j=1, \ldots, n$.  Find $\text{E}(\text{I}_j)$.
+\
+\
+\
+\
+\
+1. What is the relationship between $X$ and $\text{I}_1, \ldots, \text{I}_n$?
+\
+\
+\
+\
+\
+1. Find $\text{E}(X)$.  Be amazed.
+\
+\
+\
+\
+\
+1. Interpret $\text{E}(X)$ is context.
+\
+\
+\
+\
+\
+
+## Variance of linear combinations of random variables
+
+::: {#exm-var-2X}
+Consider a random variable $X$ with $\text{Var}(X)=1$.  What is $\text{Var}(2X)$?
+
+- Walt says: $\text{SD}(2X) = 2\text{SD}(X)$ so $\text{Var}(2X) = 2^2\text{Var}(X) = 4(1) = 4$.
+- Jesse says: Variance of a sum is a sum of variances, so $\text{Var}(2X) = \text{Var}(X+X)$ which is equal to $\text{Var}(X)+\text{Var}(X) = 1+1=2$.
+
+Who is correct?  Why is the other wrong?
+  
+:::
+\
+\
+\
+\
+\
+
+::: {#exm-sat-compare-var}
+Recall Example @exm-sat-compare-ev.
+:::
+
+1. In which of the three scenarios is $\text{Var}(X + Y)$ the largest?
+Can you explain why?
+\
+\
+\
+1. In which of the three scenarios is $\text{Var}(X + Y)$ the smallest?
+Can you explain why?
+\
+\
+\
+1. In which scenario is $\text{Var}(X + Y)$ roughly equal to the sum of $\text{Var}(X)$ and $\text{Var}(Y)$?
+\
+\
+\
+1. In which of the three scenarios is $\text{Var}(X - Y)$ the largest?
+Can you explain why?
+\
+\
+\
+1. In which of the three scenarios is $\text{Var}(X - Y)$ the smallest?
+Can you explain why?
+\
+\
+\
+1. In which scenario is $\text{Var}(X - Y)$ roughly equal to the *sum* of $\text{Var}(X)$ and $\text{Var}(Y)$?
+\
+\
+\
+
+- **Variance of sums and differences of random variables.**
+\begin{align*}
+\text{Var}(X + Y) & = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X, Y)\\
+\text{Var}(X - Y) & = \text{Var}(X) + \text{Var}(Y) - 2\text{Cov}(X, Y)
+\end{align*}
+
+::: {#exm-sat-var-calc-sum}
+
+Assume that SAT Math ($X$) and Reading ($Y$) scores follow a Bivariate Normal distribution, Math  scores have mean 527 and standard deviation 107, and Reading scores have mean 533 and standard deviation 100.  Compute $\text{Var}(X + Y)$ and $\text{SD}(X+Y)$ for each of the following correlations.
+
+:::
+
+1. $\text{Corr}(X, Y) = 0.77$
+\
+\
+\
+\
+\
+1. $\text{Corr}(X, Y) = 0.40$
+\
+\
+\
+\
+\
+1. $\text{Corr}(X, Y) = 0$
+\
+\
+\
+\
+\
+1. $\text{Corr}(X, Y) = -0.77$
+\
+\
+\
+\
+\
+
+
+::: {#exm-sat-var-calc-diff}
+Continuing the previous example. Compute $\text{Var}(X - Y)$ and $\text{SD}(X-Y)$ for each of the following correlations.
+
+:::
+
+1. $\text{Corr}(X, Y) = 0.77$
+\
+\
+\
+\
+\
+1. $\text{Corr}(X, Y) = 0.40$
+\
+\
+\
+\
+\
+1. $\text{Corr}(X, Y) = 0$
+\
+\
+\
+\
+\
+1. $\text{Corr}(X, Y) = -0.77$
+\
+\
+\
+\
+\
+
+- The variance of the sum is the sum of the variances if and only if $X$ and $Y$ are uncorrelated.
+\begin{align*}
+\text{Var}(X+Y)  & = \text{Var}(X) + \text{Var}(Y)\qquad \text{if $X, Y$ are uncorrelated}\\
+\text{Var}(X-Y)  & = \text{Var}(X) + \text{Var}(Y)\qquad \text{if $X, Y$ are uncorrelated}
+\end{align*}
+- The variance of the difference of uncorrelated random variables is the *sum* of the variances
+- If $a, b, c$ are non-random constants and $X$ and $Y$ are random variables then
+$$
+\text{Var}(aX + bY + c) = a^2\text{Var}(X) + b^2\text{Var}(Y) + 2ab\text{Cov}(X, Y)
+$$
+
+## Bilinearity of covariance
+
+
+\begin{align*}
+\text{Cov}(X, X) &= \text{Var}(X)\qquad\qquad\\
+\text{Cov}(X, Y) & = \text{Cov}(Y, X)\\
+\text{Cov}(X, c) & = 0 \\
+\text{Cov}(aX+b, cY+d) & = ac\text{Cov}(X,Y)\\
+\text{Cov}(X+Y,\; U+V) & = \text{Cov}(X, U)+\text{Cov}(X, V) + \text{Cov}(Y, U) + \text{Cov}(Y, V)
+\end{align*}
+

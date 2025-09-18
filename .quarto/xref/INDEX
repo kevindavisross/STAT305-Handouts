@@ -1,0 +1,29 @@
+{
+  "index.qmd": {
+    "index.html": "d2379296"
+  },
+  "intro.qmd": {
+    "intro.html": "49ef6065"
+  },
+  "summary.qmd": {
+    "summary.html": "0816d67b"
+  },
+  "references.qmd": {
+    "references.html": "17147efc"
+  },
+  "randomness-and-probability.qmd": {
+    "randomness-and-probability.html": "429103b3"
+  },
+  "working-with-probabilities.qmd": {
+    "working-with-probabilities.html": "efbf57a3"
+  },
+  "interpreting-probabilities.qmd": {
+    "interpreting-probabilities.html": "3f55ba92"
+  },
+  "problem-solving-strategies.qmd": {
+    "problem-solving-strategies.html": "e94cd296"
+  },
+  "distribution-summary.qmd": {
+    "distribution-summary.html": "b6931cc4"
+  }
+}

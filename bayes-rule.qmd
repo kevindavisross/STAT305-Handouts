@@ -1,0 +1,263 @@
+# Bayes Rule
+
+
+
+
+- *Bayes' rule*  describes how to update uncertainty in light of new information, evidence, or data.  
+
+
+::: {#exm-bayes-rule1}
+
+A [recent survey](https://www.pewresearch.org/science/2019/03/28/what-americans-know-about-science/) of American adults asked:
+"Based on what you have heard or read, which of the following two statements best describes
+the scientific method?"
+
+- 70% selected "The scientific method produces findings meant to be continually tested
+and updated over time". (We'll call this the "iterative" opinion.)
+- 14% selected "The scientific method identifies unchanging core principles and truths". (We'll call this the "unchanging" opinion).
+- 16% were not sure which of the two statements was best.
+
+How does the response to this question change based on education level?  Suppose education level is classified as: high school or less (HS), some college but no Bachelor's degree (college), Bachelor's degree (Bachelor's), or postgraduate degree (postgraduate).  The education breakdown is
+
+- Among those who agree with "iterative": 31.3% HS, 27.6% college, 22.9% Bachelor's, and 18.2% postgraduate.
+- Among those who agree with "unchanging": 38.6% HS, 31.4% college, 19.7% Bachelor's, and 10.3% postgraduate.
+- Among those "not sure": 57.3% HS, 27.2% college, 9.7% Bachelor's, and 5.8% postgraduate
+
+:::
+
+
+
+1. Use the information to construct an appropriate two-way table.
+\
+\
+\
+\
+\
+1. Overall, what percentage of adults have a postgraduate degree?  How is this related to the values 18.2%, 10.3%, and 5.8%?
+\
+\
+\
+\
+\
+1. What percent of those with a postgraduate degree agree that the scientific method is "iterative"?  How is this related to the values provided?
+\
+\
+\
+\
+\
+
+- **Bayes' rule for events** specifies how a prior probability $P(H)$ of event $H$ is updated in response to the evidence $E$ to obtain the posterior probability $P(H|E)$.
+$$
+\text{P}(H|E) = \frac{\text{P}(E|H)\text{P}(H)}{\text{P}(E)}
+$$
+- Event $H$ represents a particular hypothesis (or model or case)
+- Event $E$ represents observed evidence (or data or information)
+- $\text{P}(H)$ is the unconditional or **prior probability** of $H$ (prior to observing evidence $E$)
+- $\text{P}(H|E)$ is the conditional or **posterior probability** of $H$ after observing evidence $E$.
+- $\text{P}(E|H)$ is the **likelihood** of evidence $E$ given hypothesis (or model or case) $H$
+
+
+::: {#exm-bayes-rule2}
+
+Continuing the previous example.  Randomly select an American adult.
+
+:::
+
+1. Consider the conditional probability that a randomly selected American adult agrees that the scientific method is "iterative" given that they have a postgraduate degree. Identify the prior probability, hypothesis, evidence, likelihood, and posterior probability, and use Bayes' rule to compute the posterior probability. 
+\
+\
+\
+\
+\
+1. Find the conditional probability that a randomly selected American adult with a postgraduate degree agrees that the scientific method is "unchanging".
+\
+\
+\
+\
+\
+1. Find the conditional probability that a randomly selected American adult with a postgraduate degree is not sure about which statement is best.
+\
+\
+\
+\
+\
+1. How many times more likely is it for an *American adult* to have a postgraduate degree and agree with the "iterative" statement than to have a postgraduate degree and agree with the "unchanging" statement?
+\
+\
+\
+\
+\
+1. How many times more likely is it for an *American adult with a postgraduate degree* to agree with the "iterative" statement than to agree with the "unchanging" statement?
+\
+\
+\
+\
+\
+1. What do you notice about the answers to the two previous parts?
+\
+\
+\
+\
+\
+1. How many times more likely is it for an *American adult* to agree with the "iterative" statement than to agree with the "unchanging" statement?
+\
+\
+\
+\
+\
+1. How many times more likely is it for an American adult to have a postgraduate degree when the adult agrees with the iterative statement than when the adult agree with the unchanging statement?
+\
+\
+\
+\
+\
+1. How many times more likely is it for an *American adult with a postgraduate degree* to agree with the "iterative" statement than to agree with the "unchanging" statement?
+\
+\
+\
+\
+\
+1. How are the values in the three previous parts related?
+\
+\
+\
+\
+\
+
+- Bayes rule is often used when there are multiple hypotheses or cases. Suppose $H_1,\ldots, H_k$ is a series of distinct hypotheses which together account for all possibilities, and $E$ is any event (evidence).
+- Combining Bayes' rule with the law of total probability,
+\begin{align*}
+P(H_j |E) & = \frac{P(E|H_j)P(H_j)}{P(E)}\\
+& = \frac{P(E|H_j)P(H_j)}{\sum_{i=1}^k P(E|H_i) P(H_i)}\\
+& \\
+P(H_j |E) & \propto P(E|H_j)P(H_j)
+\end{align*}
+- The symbol $\propto$ is read "is proportional to". The relative *ratios* of the posterior probabilities of different hypotheses are determined by the product of the prior probabilities and the likelihoods, $P(E|H_j)P(H_j)$.  The marginal probability of the evidence, $P(E)$, in the denominator simply normalizes the numerators to ensure that the updated probabilities sum to 1 over all the distinct hypotheses.
+- **In short, Bayes' rule says**
+$$
+\textbf{posterior} \propto \textbf{likelihood} \times \textbf{prior}
+$$
+
+
+::: {#exm-bayes-rule3}
+Now suppose we want to compute the posterior probabilities  for an American adult's perception of the scientific method given that the randomly selected American adult has some college but no Bachelor’s degree ("college").
+:::
+
+1. Before computing, make an educated guess for the posterior probabilities.
+In particular, will the changes from prior to posterior be more or less extreme given the American has some college but no Bachelor's degree than when given the American has a postgraduate degree?
+Why?
+\
+\
+\
+\
+\
+1. Construct a Bayes table and compute the posterior probabilities.
+Compare to the posterior probabilities given postgraduate degree from the previous examples.
+\
+\
+\
+\
+\
+
+
+::: {#exm-bayes-marbles}
+
+Suppose that you are presented with six boxes, labeled 0, 1, 2, $\ldots$, 5, each containing five marbles.
+Box 0 contains 0 green and 5 gold marbles, box 1 contains 1 green and 4 gold, and so on with box $i$ containing $i$ green and $5-i$ gold.
+One of the boxes is chosen uniformly at random (perhaps by rolling a fair six-sided die and subracting 1 from the result), and then you will randomly select marbles from that box, *without* replacement.
+Based on the colors of the marbles selected, you will update the probabilities of which box had been chosen.
+
+:::
+
+1. Suppose that a single marble is selected and it is green.  Which box do you think is the most likely to have been chosen?  Make a guess for the posterior probabilities for each box. Then construct a Bayes table to compute the posterior probabilities.
+\
+\
+\
+\
+\
+1. Now suppose a second marble is selected from the same box, without replacement, and its color is gold.  Which box do you think is the most likely to have been chosen given these two marbles?  Make a guess for the posterior probabilities for each box. Then construct a Bayes table to compute the posterior probabilities, *using the posterior probabilities after the selection of the green marble as the new prior probabilities before seeing the gold marble.*
+\
+\
+\
+\
+\
+1. Now construct a Bayes table corresponding to the original prior probabilities (1/6 each) and the evidence that the first ball selected was green and the second was gold.  (That is, you only update your probabilities after the second marble is drawn, not after the first.) How do the posterior probabilities compare to the previous part?
+\
+\
+\
+\
+\
+\
+1. In the previous part, the first ball selected was green and the second was gold.  Suppose you only knew that in a sample of two marbles, 1 was green and 1 was gold.  That is, you didn't know which was first or second.  How would the previous part change?  Should knowing the order matter?  Does it?
+\
+\
+\
+\
+\
+
+
+- Bayesian analysis is often an iterative process.
+- Posterior probabilities are updated after observing some information or data.
+These probabilities can then be used as prior probabilities before observing new data.
+- Posterior probabilities can be sequentially updated as new data becomes available, with the posterior probabilities after the previous stage serving as the prior probabilities for the next stage.
+- The final posterior probabilities only depend upon the cumulative data.  It doesn't matter if we sequentially update the posterior after each new piece of data or only once after all the data is available; the final posterior probabilities will be the same either way.
+Also, the final posterior probabilities are not impacted by the order in which the data are observed.
+
+
+
+
+
+
+
+
+::: {#exm-harry-second}
+
+Consider a group of 5 people: Harry, Bella, Frodo, Anakin, Katniss.  Suppose each of their names is written on a slip of paper and the 5 slips of paper are placed into a hat.  The papers are mixed up and 2 are pulled out, one after the other *without* replacement.
+
+:::
+
+1. What is the probability that Harry is the first name selected?
+\
+\
+\
+\
+\
+1. What is the probability that Harry is the second name selected?
+\
+\
+\
+\
+\
+1. If you were asked question (2) before question (1), would your answer change?  Should it?
+\
+\
+\
+\
+\
+1. If Bella is the first name selected, what is the probability that Harry is the second name selected?
+\
+\
+\
+\
+\
+1. If Harry is the first name selected, what is the probability that Harry is the second name selected?
+\
+\
+\
+\
+\
+1. How is the probability that Harry is the second name selected related to the probabilities in the two previous parts?
+\
+\
+\
+\
+\
+1. If Bella is the second name selected, what is the probability that Harry was the first name selected?
+\
+\
+\
+\
+\
+
+- **Be careful to distinguish between conditional and unconditional probabilities.**
+- A conditional probability reflects "new" information about the outcome of the random phenomenon.  In the absence of such information, we must continue to account for all the possibilities. When computing probabilities, be sure to only reflect information that is known.  

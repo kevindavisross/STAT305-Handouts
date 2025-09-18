@@ -1,0 +1,480 @@
+# Probability Models: Outcomes, Events, Random Variables, and Probability Measures
+
+::: {.hidden}
+$$
+ \def\IP{{\bf P}}
+$$
+
+:::
+
+Probability models can be applied to any situation in which there are multiple potential
+outcomes and there is uncertainty about which outcome will occur.
+
+
+## Outcomes
+
+- Due to the wide variety of types of random phenomena, an **outcome** can be virtually anything
+- In particular, an outcome does *not* have to be a number.
+- The **sample space**, denoted $\Omega$ (the uppercase Greek letter "omega"), is the set of all possible
+outcomes of a random phenomenon. An **outcome**, denoted $\omega$ (the lowercase Greek letter "omega"), is an element of the sample space: $\omega\in\Omega$.
+- Mathematically, the sample space $\Omega$ is a *set* containing all possible outcomes, while an individual outcome $\omega$ is a *point* or *element* in $\Omega$.
+- A random phenomenon is modeled by a *single* sample space, with respect to which all objects (events, random variables) are defined.  Whenever possible, a sample space outcome should be defined to provide the maximum amount of information about the outcome of random phenomenon.
+- In practice we rarely enumerate the sample space as we'll for some of the examples in this class.  Nonetheless, there is always some underlying sample space corresponding to all possible outcomes of the random phenomenon.
+
+
+
+
+::: {#exm-dice-outcome}
+Roll a four-sided die twice, and record the result of each roll in sequence as an ordered pair.  For example, the outcome $(3, 1)$ represents a 3 on the first roll and a 1 on the second; this is not the same outcome as $(1, 3)$.
+:::
+
+1. Identify the sample space.
+\
+\
+\
+\
+\
+1. We might be interested in the sum of the two dice.  Explain why it is still advantageous to define the sample space as in the previous part, rather than as $\Omega=\{2, \ldots, 8\}$.
+\
+\
+\
+\
+\
+
+::: {#exm-matching-outcome}
+The "matching problem" is one well known probability problem.
+The general setup involves $n$ distincts objects labeled $1, \ldots, n$ which are placed in $n$ distinct boxes labeled $1, \ldots, n$, with exactly one object placed in each box.
+
+Consider the matching problem with $n=4$.
+Label the objects 1, 2, 3, 4, and the spots 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc. 
+Identify an appropriate sample space.
+\
+\
+\
+\
+\
+:::
+
+::: {#exm-meeting-outcome}
+Regina and Cady plan to meet for lunch
+They will definitely arrive between noon and 1, but their exact arrival times are uncertain.
+Rather than dealing with clock time, it is helpful to represent noon as time 0 and measure time as minutes after noon, so that arrival times take values in the continuous interval [0, 60].
+
+Describe an appropriate sample space.
+Hint: it might be easiest to draw a picture.
+\
+\
+\
+\
+\
+:::
+
+
+## Events
+
+
+- An event is something that could happen.
+- An *event* is a collection of outcomes that satisfy some criteria.
+- Mathematically, an **event** $A$ is a *subset* of the sample space: $A\subseteq \Omega$.
+- Events are typically denoted with capital letters near the start of the alphabet, with or without subscripts (e.g. $A$, $B$, $C$, $A_1$, $A_2$). Events can be composed from others using [basic set operations](https://en.wikipedia.org/wiki/Set_(mathematics)#Basic_operations) like unions ($A\cup B$), intersections ($A \cap B$), and complements ($A^c$).
+    - Read $A^c$ as "not $A$".
+    - Read $A\cap B$ as "$A$ and $B$"
+    - Read $A \cup B$ as "$A$ or $B$".  Note that unions ($\cup$, "or") are always inclusive.  $A\cup B$ occurs if $A$ occurs but $B$ does not, $B$ occurs but $A$ does not, or both $A$ and $B$ occur.
+- A collection of events $A_1, A_2, \ldots$ are **disjoint** (a.k.a. mutually exclusive) if $A_i \cap A_j = \emptyset$ for all $i \neq j$. That is, multiple events are disjoint if none of the events have any outcomes in common.
+- If the sample space outcomes are represented by rows in a spreadsheet, then an event is a subset of rows that satisfies some criteria
+
+
+::: {#exm-dice-event}
+Roll a four-sided die twice, and record the result of each roll in sequence.
+Using the sample space from @exm-dice-outcome, identify the following events.
+:::
+
+1. $A$, the event that the sum of the two dice is 4.
+\
+\
+\
+\
+1. $B$, the event that the sum of the two dice is at most 3.
+\
+\
+\
+\
+\
+1. $C$, the event that the larger of the two rolls (or the common roll if a tie) is 3.
+\
+\
+\
+\
+\
+1. $A\cap C$ (identify and interpret).
+\
+\
+\
+\
+\
+1. $D$, the event that the first roll is a 3.
+\
+\
+\
+\
+\
+1. $E$, the event that the second roll is a 3.
+\
+\
+\
+\
+\
+1. $D \cap E$ (identify and interpret).
+\
+\
+\
+\
+\
+1. $D \cup E$ (identify and interpret).
+\
+\
+\
+\
+\
+1. If the outcome is $(1, 3)$, which of the events above occurred?
+\
+\
+\
+\
+\
+
+::: {#exm-matching-event}
+Objects labeled 1, 2, 3, 4, are placed at random in spots labeled 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc.
+Using the sample space from @exm-matching-outcome, identify the following events.
+:::
+
+1. $A$, the event that all objects are put in the correct spot.
+\
+\
+\
+\
+\
+1. $B$, the event that no objects are put in the correct spot.
+\
+\
+\
+\
+\
+1. $C$, the event that exactly 3 objects are put in the correct spot.
+\
+\
+\
+\
+\
+1. $A_3$, the event that object 3 is put (correctly) in spot 3.
+\
+\
+\
+\
+\
+
+::: {#exm-meeting-event}
+
+Using the sample space from Example @exm-meeting-outcome, identify the following events using pictures.
+:::
+
+1. Identify $A$, the event that Regina arrives after Cady.
+\
+\
+\
+\
+\
+1. Identify $B$, the event that either Regina or Cady arrives before 12:30.
+\
+\
+\
+\
+\
+1. Identify $C$, the event that Cady arrives first and Regina arrives at most 15 minutes after Cady.
+\
+\
+\
+\
+\
+1. Identify $D$, the event that Regina arrives before 12:24.
+\
+\
+\
+\
+\
+
+## Random variables
+
+- Roughly, a *random variable* assigns a number measuring some quantity of interest to each outcome of a random phenomenon.
+- Mathematically, a **random variable (RV)** $X$ is a *function* that takes an outcome in the sample space as input and returns a real number as output
+- The random variable itself is typically denoted with a capital letter ($X$); possible values of that
+random variable are denoted with lower case letters ($x$).
+    - Think of the capital letter $X$ as a label standing in for a formula like "the number of heads in 4 flips of a coin" and
+    - $x$ as a dummy variable
+standing in for a particular value like 3.
+- **Discrete random variables** take at most countably many possible values (e.g., $0, 1, 2, \ldots$).  They are often counting variables (e.g., the number of Heads in 10 coin flips).
+- **Continuous random variables** can take any real value in some interval (e.g., $[0, 1]$, $[0,\infty)$, $(-\infty, \infty)$.).  That is, continuous random variables can take uncountably many different values.  Continuous random variables are often measurement variables (e.g., height, weight, income).
+- A function of a random variable is also a random variable: if $X$ is a RV then so is $g(X)$
+- Sums and products, etc., of random variables *defined on the same sample space* are random variables. If$X$ and $Y$ are RVs defined on the same sample space then so are $X+Y$, $X-Y$, $XY$
+- If the sample space outcomes are represented by rows in a spreadsheet, then random variables correspond to columns.
+- Expressions like $X=x$ or $\{X=x\}$ represent events: for which outcomes is the value of the random variable $X$ equal to the value $x$
+
+
+::: {#exm-dice-rv}
+Roll a four-sided die twice, and record the result of each roll in sequence.
+Recall the sample space from @exm-dice-outcome.
+Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (or the common value if both rolls are the same).  
+
+:::
+
+1. Construct a table identifying the values of $X$ and $Y$ for each outcome in the sample space.
+\
+\
+\
+\
+\
+1. Identify the possible values of $X$.
+\
+\
+\
+\
+\
+1. Identify the possible values of $Y$.
+\
+\
+\
+\
+\
+1. Identify the possible values of the pair $(X, Y)$.
+\
+\
+\
+\
+\
+
+
+::: {#exm-matching-indicator}
+Objects labeled 1, 2, 3, 4, are placed at random in spots labeled 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc.
+Recall the sample space from @exm-matching-outcome.
+Let the random variable $X$ count the number of objects that are put back in the correct spot.
+Let $I_1$ be equal to 1 if object 1 is placed (correctly) in spot 1, and define $I_2, I_3, I_4$ similarly.
+:::
+
+1. Construct a table identifying the value of $X, I_1, \ldots, I_4$  for each outcome in the sample space.
+\
+\
+\
+\
+\
+1. Identify the possible values of $X$.
+\
+\
+\
+\
+\
+1. What is the relationship between $I_3$ and event $A_3$ from @exm-matching-event?
+\
+\
+\
+\
+\
+1. How can you express $X$ is terms of $I_1, \ldots, I_4$?
+\
+\
+\
+\
+\
+
+::: {#exm-meeting-rv}
+
+Regina and Cady will definitely arrive between noon and 1, but their exact arrival times are uncertain.
+Recall the sample space from @exm-meeting-outcome.
+Let $R$ be the random variable representing Regina's arrival time (minutes after noon), and $Y$ for Cady.
+
+:::
+ 
+
+1. What does the random variable $T = \min(R, Y)$ represent?
+What are the possible values of $T$?
+\
+\
+\
+\
+\
+1. What does the random variable $W = |R - Y|$ represent?
+What are the possible values of $W$?
+\
+\
+\
+\
+\
+1. Let $N$ be the number of people who arrive before 12:30.
+How can you represent $N$ in terms of $R$ and $Y$. 
+(Hint: use indicators.)
+\
+\
+\
+\
+\
+1. Identify each of the random variables in this problem as discrete or continuous.
+\
+\
+\
+\
+\
+
+::: {#exm-dice-rv-event}
+Roll a four-sided die twice, and record the result of each roll in sequence.
+Recall the sample space from @exm-dice-outcome.
+Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (or the common value if both rolls are the same).
+Identify and interpret each of the following.
+:::
+
+
+1. $\{X = 4\}$.
+\
+\
+\
+\
+\
+1. $\{X = 3\}$.
+\
+\
+\
+\
+\
+1. $\{X \le 3\}$.
+\
+\
+\
+\
+\
+1. $\{Y = 4\}$.
+\
+\
+\
+\
+\
+1. $\{Y = 3\}$.
+\
+\
+\
+\
+\
+1. $\{Y \le 3\}$.
+\
+\
+\
+\
+\
+1. $\{X = 4, Y = 3\}$ (that is, $\{X = 4\}\cap \{Y = 3\}$).
+\
+\
+\
+\
+\
+1. $\{X = 4, Y \le 3\}$.
+\
+\
+\
+\
+\
+1. $\{X = 3, Y = 3\}$.
+\
+\
+\
+\
+\
+
+::: {#exm-meeting-rv-event}
+
+Regina and Cady plan to meet for lunch between noon and 1 but they are not sure of their arrival times.
+Recall the sample space from @exm-meeting-outcome.
+Let $R$ be the random variable representing Regina's arrival time (minutes after noon), and $Y$ for Cady.
+Interpret each of the following in words and draw a picture representing it.
+:::
+
+
+1. $\{R > Y\}$.
+\
+\
+\
+\
+\
+1. $\{\min(R, Y) < 0.5\}$.
+\
+\
+\
+\
+\
+1. $\{Y<R<Y+0.25\}$.
+\
+\
+\
+\
+\
+1. $\{R < 0.4\}$.
+\
+\
+\
+\
+\
+
+
+## Probability measures
+
+- A **probability measure**, typically denoted $\text{P}$, assigns probabilities to *events* to quantify their relative likelihoods according to the assumptions of the model of the random phenomenon.
+- The probability of event $A$, computed according to probability measure $\text{P}(A)$, is denoted $\text{P}(A)$.
+- A valid probability measure $\text{P}$ must satisfy the following three logical consistency "axioms".
+    - For any event $A$, $0 \le \text{P}(A) \le 1$.
+    - If $\Omega$ represents the sample space then $\text{P}(\Omega) = 1$.
+    - (*Countable additivity.*) If $A_1, A_2, A_3, \ldots$ are disjoint then
+    $$
+    \text{P}(A_1 \cup A_2 \cup A_2 \cup \cdots) = \text{P}(A_1) + \text{P}(A_2) +\text{P}(A_3) + \cdots
+    $$
+- Additional properties of a probability measure follow from the axioms
+    - *Complement rule*. For any event $A$, $\text{P}(A^c)  = 1 - \text{P}(A)$.
+    - *Subset rule*. If $A \subseteq B$ then $\text{P}(A) \le \text{P}(B)$.
+    - *Addition rule for two events*. If $A$ and $B$ are any two events
+    $$
+    \text{P}(A\cup B) = \text{P}(A) + \text{P}(B) - \text{P}(A \cap B)
+    $$
+    - *Law of total probability*.  If $C_1, C_2, C_3\ldots$ are disjoint events with $C_1\cup C_2 \cup C_3\cup \cdots =\Omega$, then 
+    $$
+    \text{P}(A)  = \text{P}(A \cap C_1) + \text{P}(A \cap C_2) + \text{P}(A \cap C_3) + \cdots
+    $$
+- A **probability model** (or **probability space**) is the collection of all outcomes, events, and random variables associated with a random phenomenon along with the probabilities of all events of interest under the assumptions of the model.
+- The axioms of a probability measure are minimal logical consistent requirements that ensure that probabilities of different events fit together in a valid, coherent way.
+- A single probability measure corresponds to a particular set of assumptions about the random phenomenon.
+- There can be many probability measures defined on a single sample space, each one corresponding to a different probability model for the random phenomenon.
+- Probabilities of events can change if the probability measure changes.
+
+::: {#exm-linda}
+Consider a Cal Poly student who frequently has blurry, bloodshot eyes, generally exhibits slow reaction time, always seems to have the munchies, and disappears at 4:20 each day. Which of the following events, $A$ or $B$, has a *higher* probability? (Assume the two probabilities are not equal.)
+
+- $A$: The student has a GPA above 3.0.
+- $B$: The student has a GPA above 3.0 and smokes marijuana regularly.
+
+:::
+
+
+::: {#exm-die-weighted}
+Consider a single roll of a four-sided die, but suppose the die is weighted so that the outcomes are no longer equally likely. Suppose that the probability of event $\{2, 3\}$ is 0.5, of event $\{3, 4\}$ is 0.7, and of event $\{1, 2, 3\}$ is 0.6.  In what particular way is the die weighted?  That is, what is the probability of each the four possible outcomes?
+\
+\
+\
+\
+\
+:::
+
+
+::: {#exm-dice-normalize}
+Consider again a single roll of a weighted four-sided die. Suppose that
+
+- Rolling a 1 is twice as likely as rolling a 4
+- Rolling a 2 is three times as likely as rolling a 4
+- Rolling a 3 is 1.5 times as likely as rolling a 4
+  
+In what particular way is the die weighted?  That is, what is the probability of each the four possible outcomes?
+
+:::

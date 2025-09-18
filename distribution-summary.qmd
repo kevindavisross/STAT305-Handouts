@@ -1,0 +1,19 @@
+# Summary of Some Common Distributions {.unnumbered}
+
+
+
+
+| Name and parameters                                               | Possible values                 | pmf/pdf                                                                                       | cdf                | Mean                | SD                                           |
+|-------------------------------------------------------------------|---------------------------------|-----------------------------------------------------------------------------------------------|--------------------|---------------------|----------------------------------------------|
+| **Discrete**                                                      |                                 |                                                                                               |                    |                     |                                              |
+| Poisson($\mu$)                                                    | $x = 0, 1, 2, \ldots$           | $e^{-\mu}\frac{\mu^x}{x!}$                                                                    | No closed form     | $\mu$               | $\sqrt{\mu}$                                 |
+| Binomial($n$, $p$)                                                | $x = 0, 1, 2, \ldots, n$        | $\binom{n}{x}p^x(1-p)^{n-x}$                                                                  | No closed form     | $np$                | $\sqrt{np(1-p)}$                             |
+| Geometric($p$)                                                    | $x = 1, 2, 3, \ldots$           | $p(1-p)^{x-1}$                                                                                | $1-(1-p)^x$        | $\frac{1}{p}$       | $\sqrt{\frac{1-p}{p^2}}$                     |
+| Negative Binomial($r$, $p$)                                       | $x = r, r+1, r+2, \ldots$       | $\binom{x-1}{x-r}p^r(1-p)^{x-r}$                                                              | No closed form     | $\frac{r}{p}$       | $\sqrt{\frac{r(1-p)}{p^2}}$                  |
+| Hypergeometric($n$, $N_1$, $N_0$); $N = N_1+N_0, p=\frac{N_1}{N}$ | $x = 0, 1, \ldots, n$ (usually) | $\frac{\binom{N_1}{x}\binom{N_0}{n-x}}{\binom{N_1 + N_0}{n}}$                                 | No closed form     | $np$                | $\sqrt{np(1-p)\left(\frac{N-n}{N-1}\right)}$ |
+| **Continuous**                                                    |                                 |                                                                                               |                    |                     |                                              |
+| Uniform($a$, $b$)                                                 | $a<x<b$                         | $\frac{1}{b-a}$                                                                               | $\frac{x-a}{b-a}$  | $\frac{a+b}{2}$     | $\frac{b-a}{\sqrt{12}}$                      |
+| Exponential($\lambda$)                                            | $x>0$                           | $\lambda e^{-\lambda x}$                                                                      | $1-e^{-\lambda x}$ | $\frac{1}{\lambda}$ | $\frac{1}{\lambda}$                          |
+| Normal($\mu$, $\sigma$)                                           | $-\infty < x< \infty$           | $\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right)$ | No closed form     | $\mu$               | $\sigma$                                     |
+|                                                                   |                                 |                                                                                               |                    |                     |                                              |
+

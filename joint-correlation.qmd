@@ -1,0 +1,175 @@
+# Joint Distributions and Correlation
+
+
+## Joint distributions
+
+- The *joint distribution* of random variables $X$ and $Y$ is a probability distribution on $(x, y)$ *pairs*.
+
+
+
+
+::: {#exm-dice-joint-dist}
+Roll a fair four-sided die twice.  Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (or the common value if both rolls are the same).
+:::
+
+
+
+
+1. Construct a "flat" table displaying the distribution of $(X, Y)$ pairs, with one pair in each row.
+\
+\
+\
+\
+\
+1. Construct a two-way displaying the joint distribution on $X$ and $Y$.
+\
+\
+\
+\
+\
+1. Sketch a plot depicting the joint distribution of $X$ and $Y$.
+\
+\
+\
+\
+\
+1. Starting with the two-way table, how could you obtain the marginal distribution of $X$? of $Y$?
+\
+\
+\
+\
+\
+1. Starting with the marginal distribution of $X$ and the marginal distribution of $Y$, could you necessarily construct the two-way table of the joint distribution? Explain.
+\
+\
+\
+\
+\
+
+
+- The joint distribution of two random variables summarizes the possible *pairs* of values and their relative likelihoods.
+- It is possible to obtain marginal distributions from a joint distribution.
+- **In general, marginal distributions alone are not enough to determine a joint distribution.**
+(The exception is when random variables are *independent.*)
+
+
+
+
+::: {#exm-dice-spinners-ex22}
+Continuing the dice rolling example, construct a spinner representing The joint distribution of $X$ and $Y$.
+:::
+\
+\
+\
+\
+\
+
+::: {#exm-dd-dice-joint-sim}
+Donny Don't says "Now I see why we need the spinner from the previous example to simulate $(X, Y)$ pairs.
+So then forget the marginal spinners for $X$ and $Y$.
+If I want to simulate $X$ values, I could just spin the joint distribution spinner and ignore the $Y$ values."
+Is Donny's method correct?
+If not, can you help him see why not?
+:::
+\
+\
+\
+\
+\
+
+- The joint distribution of two continuous random variables can be described by a probability density function, for which volumes under the surface determine probabilities.
+The "density" height is whatever it needs to be so that volumes under the surface represent appropriate probabilities.
+- Marginal distributions can be obtained from a joint distribution by "stacking"/"collapsing"/"aggregating" out the other variable.
+
+## Correlation
+
+- Quantities like long run average, variance, and standard deviation summarize characteristics of the *marginal* distribution of a single random variable.
+- Covariance and correlation summarize in a single number a characteristic of the joint distribution of two random variables, namely, the degree to which they "co-deviate from the their respective means".
+- The **covariance** of random values $X$ and $Y$ is defined as the long run average of the product of the paired deviations from the respective means
+$$
+\text{Covariance($X$, $Y$)} = \text{Average of} ((X - \text{Average of }X)Y - \text{Average of }Y)
+$$
+- A positive covariance indicate an overall *positive association*: above average values of $X$ tend to be associated with above average values of $Y$
+- A negative covariance indicates am overall *negative association*: above average values of $X$ tend to be associated with below average values of $Y$
+- A covariance of zero indicates that the random variables are  **uncorrelated**: there is no overall positive or negative association. But be careful: if $X$ and $Y$ are  uncorrelated there can still be a relationship between $X$ and $Y$. We will see examples later that demonstrate that being uncorrelated does not necessarily imply that random variables are independent.
+
+
+
+::: {#exm-dice-covariance}
+Consider the probability space corresponding to two rolls of a fair four-sided die.  Let $X$ be the sum of the two rolls, $Y$ the larger of the two rolls, $W$ the number of rolls equal to 4, and $Z$ the number of rolls equal to 1.
+Without doing any calculations, determine if the covariance between each of the following pairs of variables is positive, negative, or zero.
+Explain your reasoning conceptually.
+::: 
+
+
+1. $X$ and $Y$
+\
+\
+\
+\
+\
+1. $X$ and $W$
+\
+\
+\
+\
+\
+1. $X$ and $Z$
+\
+\
+\
+\
+\
+1. $X$ and $V$
+\
+\
+\
+\
+\
+1. $W$ and $Z$
+\
+\
+\
+\
+\
+
+- The numerical value of the covariance depends on the measurement units of both variables, so interpreting it can be difficult.
+- Covariance is a measure of joint association between two
+random variables that has many nice theoretical properties, but the *correlation
+(coefficient)* is often a more practical measure.
+- The correlation for two random variables is the covariance between the corresponding standardized random variables.
+$$
+\text{Correlation}(X, Y) = \text{Covariance}\left(\frac{X- \text{Average of }X}{\text{Standard Deviation of }X}, \frac{Y- \text{Average of }Y}{\text{Standard Deviation of }Y}\right)
+$$
+- When standardizing, subtracting the means doesn't change the scale of the possible pairs of values; it merely shifts the center of the joint distribution. Therefore, correlation is the covariance divided by the product of the standard deviations.
+$$
+\text{Correlation}(X, Y) = \frac{\text{Covariance}(X, Y)}{(\text{Standard Deviation of }X)(\text{Standard Deviation of }Y)}
+$$
+- A correlation coefficient has no units and is measured on a universal scale. Regardless of the original measurement units of the random variables $X$ and $Y$
+$$
+-1\le \textrm{Correlation}(X,Y)\le 1
+$$
+- $\textrm{Correlation}(X,Y) = 1$ if and only if $Y=aX+b$ for some $a>0$
+- $\textrm{Correlation}(X,Y) = -1$ if and only if $Y=aX+b$ for some $a<0$
+- Therefore, correlation is a standardized measure of the strength of the *linear* association between two random variables.
+- The closer the correlation is to 1 or $-1$, the closer the joint distribution of $(X, Y)$ pairs hugs a straight line, with positive or negative slope.
+- Because correlation is computed between standardized random variables,  correlation is not affected by a linear rescaling of either variable (e.g., a change in measurement units from minutes to seconds)
+
+
+
+
+::: {#exm-dd-bvn-spinner}
+
+Donny Don't has just completed a problem where it was assumed that SAT Math scores follow a Normal(500, 100) distribution. Now a follow up problem asks Donny how he could simulate a single (Math, Reading) pair of scores. Donny says: "That's easy; just spin the Normal(500, 100) twice, once for Math and once for Reading."
+Do you agree?
+Explain your reasoning.
+:::
+\
+\
+\
+\
+\
+
+- Just as Normal distributions are commonly assumed for marginal distributions of individual random variables, joint Normal distributions are often assumed for joint distributions of several random variables.
+- A "Bivariate Normal" distribution is a joint distribution for two random variables which has five parameters: the two means, the two standard deviations, and the correlation
+- A marginal Normal distribution is a "bell-shaped curve"; a Bivariate Normal distribution is a "mound-shaped" curve --- imagine a pile of sand.

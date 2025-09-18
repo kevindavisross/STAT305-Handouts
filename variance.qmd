@@ -1,0 +1,350 @@
+# Variance and standard deviation
+
+{{< include _r_setup.qmd >}}
+
+{{< include _python_setup.qmd >}}
+
+
+The values of a random variable vary.  The distribution of a random variable describes its pattern of variability. The expected value of a random variable summarizes the distribution in just a single number, the long run average value.  But the expected value does not tell us much about the degree of variability of the random variable.  Do the values of the random variable tend to be close to the expected value, or are they spread out?  Variance and standard deviation are numbers that address these questions.
+
+
+::: {#exm-roulette-black}
+A roulette wheel has 18 black spaces, 18 red spaces, and 2 green spaces, all the same size and each with a different number on it.  Guillermo bets \$1 on black.  If the wheel lands on black, Guillermo wins his bet back plus an additional \$1; otherwise he loses the money he bet.  Let $W$ be Guillermo's net winnings (net of the initial bet of \$1.)
+
+:::
+
+1. Find the distribution of $W$.
+\
+\
+\
+\
+\
+1. Compute $\text{E}(W)$.
+\
+\
+\
+\
+\
+1. Interpret $\text{E}(W)$ in context.
+\
+\
+\
+\
+\
+1. An expected profit *for the casino* of 5 cents per \$1 bet seems small.  Explain how casinos can turn such a small profit into billions of dollars.
+\
+\
+\
+\
+\
+1. Recall that variance is the long run average squared distance from the mean.  Describe how you could use simulation to approximate the variance of $W$.  What would you expect the simulation results to look like?
+\
+\
+\
+\
+\
+1. Without doing any further calculations, provide a ballpark estimate of the variance.  Explain.  What are the measurement units for the variance?
+\
+\
+\
+\
+\
+1. The random variable $(W-\text{E}(W))^2$ represents the squared deviation from the mean.  Find the distribution of this random variable and its expected value.
+\
+\
+\
+\
+\
+1. Recall that standard deviation is the square root of the variance.  Why would we want to take the square root of the variance?  Compute and interpret the standard deviation of $W$.
+\
+\
+\
+\
+\
+1. Compute $\text{E}(W^2)$. (For this $W$ you should be able to compute $\text{E}(W^2)$ without any calculations; why?) Then compute $\text{E}(W^2) - (\text{E}(W))^2$; what do you notice?
+\
+\
+\
+\
+\
+- The **variance** of a random variable $X$ is
+\begin{align*}
+  \text{Var}(X) & = \text{E}\left(\left(X-\text{E}(X)\right)^2\right)\\
+& = \text{E}\left(X^2\right) - \left(\text{E}(X)\right)^2
+\end{align*}
+- The **standard deviation** of a random variable is
+\begin{equation*}
+  \text{SD}(X) = \sqrt{\text{Var}(X)}
+\end{equation*}
+- Variance is, roughly, the long run average squared deviation from the mean. 
+- Standard deviation measures, roughly, the long run average distance from the mean.  The measurement units of the standard deviation are the same as for the random variable itself.
+- The definition $\text{E}((X-\text{E}(X))^2)$ represents the concept of variance. However, variance is usually computed using the following equivalent but slightly simpler formula.
+$$
+\text{Var}(X) = \text{E}\left(X^2\right) - \left(\text{E}\left(X\right)\right)^2
+$$
+- That is, variance is the expected value of the square of $X$ minus the square of the expected value of $X$.  
+- In some cases, we have the expected value and variance and we want to compute $\text{E}(X^2)$. Rearranging the above formula yields
+$$
+\text{E}\left(X^2\right)  = \text{Var}(X) + \left(\text{E}\left(X\right)\right)^2
+$$
+- Variance has many nice theoretical properties.  Whenever you  need to compute a standard deviation, first find the variance and then take the square root at the end.
+
+
+::: {#exm-roulette-number}
+
+Continuing with roulette, Nadja bets \$1 on number 7.  If the wheel lands on 7, Nadja wins her bet back plus an additional \$35; otherwise she loses the money she bet.  Let $X$ be Nadja's net winnings (net of the initial bet of \$1.)
+
+:::
+
+1. Find the distribution of $X$.
+\
+\
+\
+\
+\
+1. Compute $\text{E}(X)$.
+\
+\
+\
+\
+\
+1. How do the expected values of the two \$1 bets --- bet on black versus bet on 7 --- compare?  Explain what this means.
+\
+\
+\
+\
+\
+1. Are the two \$1 bets --- bet on black versus bet on 7 --- identical?  If not, explain why not.
+\
+\
+\
+\
+\
+1. Before doing any calculations, determine if $\text{SD}(X)$ is greater than, less than, or equal to $\text{SD}(W)$. Explain.
+\
+\
+\
+\
+\
+1. Compute $\text{Var}(W)$ and $\text{SD}(W)$.
+\
+\
+\
+\
+\
+1. Which \$1 bet --- betting on black or betting on 7 --- is "riskier"?  How is this reflected in the standard deviations?
+\
+\
+\
+\
+\
+
+::: {#exm-uniform-sd}
+
+Let $X$ be a Uniform($a$, $b$) distribution.
+
+
+:::
+
+1. First, suppose $X$ has a Uniform(0, 1) distribution.  Make a ballpark estimate of the standard deviation.
+\
+\
+\
+\
+\
+1. Compute $\text{SD}(X)$ if $X$ has a Uniform(0, 1) distribution.
+\
+\
+\
+\
+\
+1. Now suggest a rough formula for the standard deviation for the general Uniform($a$, $b$) case.
+\
+\
+\
+\
+\
+1. Compute $\text{SD}(X)$ if $X$ has a Uniform($a$, $b$) distribution.
+\
+\
+\
+\
+\
+
+::: {#exm-sd-matching}
+
+The plots below summarize hypothetical distributions of quiz scores in six classes. All plots are on the same scale.  Each quiz score is a whole number between 0 and 10 inclusive.
+
+:::
+
+
+
+```{r, sd-matching-plot, echo = FALSE}
+
+x1 = 0:10
+p1 = c(1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1)
+p1 = p1/sum(p1)
+
+x2 = 0:10
+p2 = c(6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6)
+p2 = p2/sum(p2)
+
+x3 = 0:10
+p3 = rep(1/11, 11)
+
+x4 = c(0, 10)
+p4 = c(0.5, 0.5)
+
+x5 = 3:7
+p5 = c(1, 2, 3, 2, 1)
+p5 = p5/sum(p5)
+
+x6 = c(6, 7, 8)
+p6 = c(0.1, 0.8, 0.1)
+
+xlimits = c(0, 10)
+xs = 0:10
+par(mfrow=c(2,3), mar=c(4, 4, 1, 1) + 0.1)
+plot(x1, p1, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="A", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x2, p2, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="B", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x3, p3, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="C", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x4, p4, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="D", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x5, p5, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="E", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x6, p6, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="F", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+
+# sqrt(sum(x1^2*p1)-sum(x1*p1)^2)
+# sqrt(sum(x2^2*p2)-sum(x2*p2)^2)
+# sqrt(sum(x3^2*p3)-sum(x3*p3)^2)
+# sqrt(sum(x4^2*p4)-sum(x4*p4)^2)
+# sqrt(sum(x5^2*p5)-sum(x5*p5)^2)
+# sqrt(sum(x6^2*p6)-sum(x6*p6)^2)
+
+```
+
+
+1. Donny Dont says that C represents the smallest SD, since there is no variability in the heights of the bars. Do you agree that C represents "no variability? Explain.
+\
+\
+\
+\
+\
+1. What is the smallest *possible* value the SD of quiz scores could be?  What would need to be true about the distribution for this to happen? (This scenario might not be represented by one the plots.)
+\
+\
+\
+\
+\
+1. Without doing any calculations, arrange the classes in order based on their SDs from smallest to largest.  
+\
+\
+\
+\
+\
+1. In one of the classes, the SD of quiz scores is 5.  Which one?  Why?
+\
+\
+\
+\
+\
+1. Is the SD in F greater than, less than, or equal to 1?  Why?
+\
+\
+\
+\
+\
+1. Provide a ballpark estimate of SD in each case.
+\
+\
+\
+\
+\
+
+::: {#exm-exponential-sd}
+Let $X$ have an Exponential(1) distribution.  Make a ballpark estimate for $\text{SD}(X)$, and then compute it.
+
+:::
+\
+\
+\
+\
+\
+
+
+## Standardization
+
+- Standard deviation provides a "ruler" by which we can judge a particular realized value of a random variable relative to the distribution of values.
+- If $X$ is a random variable with expected value $\text{E}(X)$ and standard deviation $\text{SD}(X)$, then the **standardized random variable** is
+$$
+Z = \frac{X - \text{E}(X)}{\text{SD}(X)}
+$$
+- However, keep in mind that comparing standardized values is most appropriate for distributions that have *similar shapes*.
+
+::: {#exm-dd-z-score}
+
+For which distribution --- Uniform(0, 1) or Exponential(1) --- is it more unsual to see a value smaller than 0.15?
+
+:::
+
+1. Standardize the value 0.15 relative to the Uniform(0, 1) distribution.
+\
+\
+\
+\
+\
+1. Standardize the value 0.15 relative to the Exponential(1) distribution.
+\
+\
+\
+\
+\
+1. Donny Dont says: "For the Uniform(0, 1) distribution, a value of 0.15 is 1.2 standard deviations below the mean.  For the Exponential(1) distribution, a value of 0.15 is 0.85 standard deviations below the mean.  So a value smaller than 0.15 is more unusual for a Uniform(0, 1) distribution, since there it's more standard deviations below the mean."  Do you agree with his conclusion?  Explain.
+\
+\
+\
+\
+\
+1. How can you answer the original question in the setup?
+\
+\
+\
+\
+\
+1. The value 0.15 is what percentile for a Uniform(0, 1) distribution?
+\
+\
+\
+\
+\
+1. The value 0.15 is what percentile for an Exponential(1) distribution?
+\
+\
+\
+\
+\
+1. For which distribution --- Uniform(0, 1) or Exponential(1) --- is it more unsual to see a value smaller than 0.15?
+\
+\
+\
+\
+\
+
+## Chebyshev's inequality
+
+
+- Chebyshev's inequality says that for *any* distribution, the probability that the random variable takes a value more than $z$ SDs away from its mean is at least $1 - 1 / z^2$.  For *any* distribution,
+    - ($z = 2$.) *At most* 25% of values fall more than 2 standard deviations away from the mean.
+    - ($z = 3$.) *At most* 11.1% of values fall more than 3 standard deviations away from the mean.
+    - ($z = 4$.) *At most* 6.25% of values fall more than 4 standard deviations away from the mean.
+    - ($z = 5$.) *At most* 4% of values fall more than 5 standard deviations away from the mean.
+    - ($z = 6$.) *At most* 2.8% of values fall more than 6 standard deviations away from the mean.
+    - and so on, for different values of $z$.
+- This universal "empirical rule" works for any distribution, but will tend to be very conservative when applied to any particular distribution.
+- In short, Chebyshev's inequality says that if a value is more than a few standard deviations away from the mean then it is a fairly extreme value, regardless of the shape of the distribution.
+
+

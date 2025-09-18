@@ -1,0 +1,268 @@
+# Binomial and Negative Binomial Distributions
+
+
+## Binomial distributions {#binomial}
+
+
+
+
+::: {#exm-binomial-stock}
+Consider an extremely simplified model for the daily closing price of a certain stock.
+Every day the price either goes up or goes down, and the movements are independent from day-to-day.
+Assume that the probability that the stock price goes up on any single day is 0.25.
+Let $X$ be the *number* of days in which the price goes up in the next 5 days.
+:::
+
+1. Compute and interpret $\text{P}(X=5)$.
+\
+\
+\
+1. Compute the probability that the price goes up on the next three days and then down on the following two days.
+\
+\
+\
+1. Compute and interpret $\text{P}(X=3)$.  Why is $\text{P}(X=3)$ different from the probability in the previous part?
+\
+\
+\
+1. Suggest a general formula for the probability mass function of $X$.
+\
+\
+\
+1. Use the pmf of $X$ to construct a table, plot, and spinner of the distribution of $X$.
+\
+\
+\
+1. Suggest a "shortcut" formula for $\text{E}(X)$.  Then use the table from the previous part to compute $\text{E}(X)$.  Did the shortcut formula work? Interpret $\text{E}(X)$.
+\
+\
+\
+1. Is the random variable $X$ in this problem the same random variable as the random variable $X$ in @exm-binomial-capture?
+\
+\
+\
+1. Does the random variable $X$ in this problem have the same distribution the random variable $X$ in @exm-binomial-capture?
+\
+\
+\
+
+- A discrete random variable $X$ has a **Binomial distribution** with parameters
+$n$, a nonnegative integer, and $p\in[0, 1]$ if its probability mass function is
+\begin{align*}
+p_{X}(x) & = \binom{n}{x} p^x (1-p)^{n-x}, & x=0, 1, 2, \ldots, n
+\end{align*}
+If $X$ has a Binomial($n$, $p$) distribution
+\begin{align*}
+\text{E}(X) & = np\\
+\text{Var}(X) & = np(1-p)
+\end{align*}
+- Imagine a box containing tickets with $p$ representing the proportion of tickets in the box labeled 1 ("success"); the rest are labeled 0 ("failure").  Randomly select $n$ tickets from the box *with replacement* and let $X$ be the number of tickets in the sample that are labeled 1. Then $X$ has a Binomial($n$, $p$) distribution.  Since the tickets are labeled 1 and 0, the random variable $X$ which counts the number of successes is equal to the sum of the 1/0 values on the tickets. If the selections are made with replacement, the draws are independent, so it is enough to just specify the population proportion $p$ without knowing the population size $N$.
+- The situation in the previous paragraph and example involves a sequence of **Bernoulli trials**.
+    - There are only two possible outcomes, "success" (1) and "failure" (0), on each trial.
+    - The unconditional/marginal probability of success is the same on every trial, and equal to $p$
+   - The trials are independent.
+- If $X$ counts the number of successes in a *fixed number*, $n$, of Bernoulli($p$) trials then $X$ has a Binomial($n, p$) distribution.  
+
+
+::: {#exm-binomial-stock2}
+Continuing Example @exm-binomial-stock2.
+:::
+
+1. What does the random variable $5-X$ represent?  What is its distribution?
+\
+\
+\
+1. Suppose that the price is currently $100 and each it either moves up $2 or down $2.  Let $S$ be the stock price after 5 days.  How does $S$ relate to $X$?  Does $S$ have a Binomial distribution?
+\
+\
+\
+1.  Recall that $X$ is the number of days on which the price goes up in the next five days. Suppose that $Y$ is the number of days on which the price goes up in the ten days after that (days 6-15).  What is the distribution of $X+Y$? (Continue to assume independence between days, with probability 0.25 of an up movement on any day.)
+\
+\
+\
+
+::: {#exm-binomial-situation}
+In each of the following situations determine whether or not $X$ has a Binomial distribution.  If so, specify $n$ and $p$.  If not, explain why not.
+
+:::
+
+1. Roll a die 20 times; $X$ is the number of times the die lands on an even number.
+\
+\
+\
+1. Roll a die 20 times; $X$ is the number of times the die lands on 6.
+\
+\
+\
+1. Roll a die until it lands on 6; $X$ is the total number of rolls.
+\
+\
+\
+1. Roll a die until it lands on 6 three times; $X$ is the total number of rolls.
+\
+\
+\
+1. Roll a die 20 times; $X$ is the sum of the numbers rolled.
+\
+\
+\
+1. Shuffle a standard deck of 52 cards (13 hearts, 39 other cards) and deal 5 *without replacement*; $X$ is the number of hearts dealt.  (Hint: be careful about why.)
+\
+\
+\
+1. Roll a fair six-sided die 10 times and a fair four-sided die 10 times; $X$ is the number of 3s rolled (out of 20). 
+\
+\
+\
+
+
+
+## Geometric distributions
+
+::: {#exm-geometric-bball}
+Maya is a basketball player who makes 40% of her three point field goal attempts.  Suppose that she attempts three pointers until she makes one and then stops.  Let $X$ be the total number of shots she attempts.  Assume shot attempts are independent.
+
+::: 
+
+1. Does $X$ have a Binomial distribution?  Why or why not?
+\
+\
+\
+1. What are the possible values that $X$ can take?  Is $X$ discrete or continuous?
+\
+\
+\
+1. Compute $\text{P}(X=3)$.
+\
+\
+\
+1. Find the probability mass function of $X$.
+\
+\
+\
+1. Construct a table, plot, and spinner representing the distribution of $X$.
+\
+\
+\
+1. Compute $\text{P}(X>5)$ without summing.
+\
+\
+\
+1. Find the cdf of $X$ without summing.
+\
+\
+\
+1. What seems like a reasonable general formula for $\text{E}(X)$?  Make a guess, and then compute and interpret $\text{E}(X)$ for this example.
+\
+\
+\
+1. Would $\text{Var}(X)$ be bigger or smaller if $p=0.9$?  If $p=0.1$?
+\
+\
+\
+- A discrete random variable $X$ has a **Geometric distribution** with parameter $p\in[0, 1]$ if its probability mass function is
+\begin{align*}
+p_{X}(x) & = p (1-p)^{x-1}, & x=1, 2, 3, \ldots
+\end{align*}
+If $X$ has a Geometric($p$) distribution
+\begin{align*}
+\text{E}(X) & = \frac{1}{p}\\
+\text{Var}(X) & = \frac{1-p}{p^2}
+\end{align*}
+- Suppose you perform Bernoulli($p$) trials until a single success occurs and then stop.  Let $X$ be the total number of *trials* performed, including the success.  Then $X$ has a Geometric($p$) distribution. In this situation, exactly $x$ trials are performed if and only if
+    - the first $x-1$ trials are failures, and 
+    - the $x$th (last) trial results in success.
+
+::: {#exm-lookaway-geometric}
+Recall Example @exm-lookaway.
+You and your friend are playing the ["lookaway challenge"](https://fivethirtyeight.com/features/what-are-your-chances-of-winning-the-u-s-open/).
+The game consists of possibly multiple rounds. In the first round, you point in one of four directions: up, down, left or right. At the exact same time, your friend also looks in one of those four directions. If your friend looks in the same direction you're pointing, you win! Otherwise, you switch roles and the game continues to the next round — now your friend points in a direction and you try to look away. (So the player who starts as the pointer is the pointer in the odd-numbered rounds, and the player who starts as the looker is the pointer in the even-numbered rounds, until the game ends.) As long as no one wins, you keep switching off who points and who looks.
+The game ends, and the current "pointer" wins, whenever the  "looker" looks in the same direction as the pointer.
+Let $X$ be the number of rounds played in a game.
+:::
+
+
+1. Explain why $X$ has a Geometric distribution, and specify the value of $p$.
+\
+\
+\
+1. Use the Geometric pmf (use software) to compute the probability that the player who starts as the pointer wins the game.
+\
+\
+\
+
+
+## Negative Binomial Distributions
+
+
+
+::: {#exm-nb-bball}
+Maya is a basketball player who makes 86% of her free throw attempts.  Suppose that she attempts free throws until she makes 5 and then stops.  Let $X$ be the total number of free throws she attempts.  Assume shot attempts are independent.
+
+::: 
+
+1. Does $X$ have a Binomial distribution?  Why or why not?
+\
+\
+\
+1. What are the possible values of $X$? Is $X$ discrete or continuous?
+\
+\
+\
+1. Compute $\text{P}(X=5)$
+\
+\
+\
+1. Compute $\text{P}(X=6)$
+\
+\
+\
+1. Compute $\text{P}(X=7)$
+\
+\
+\
+1. Compute $\text{P}(Y=8)$
+\
+\
+\
+1. Find the probability mass function of $X$.
+\
+\
+\
+1. What seems like a reasonable general formula for $\text{E}(X)$?  Interpret $\text{E}(X)$ for this example.
+\
+\
+\1. Would the variance be larger or smaller if attempted free throws until she made 10 instead of 5?
+\
+\
+\
+- A discrete random variable $X$ has a **Negative Binomial distribution** with parameters $r$, a positive integer, and  $p\in[0, 1]$ if its probability mass function is
+\begin{align*}
+p_{X}(x) & = \binom{x-1}{r-1}p^r(1-p)^{x-r}, & x=r, r+1, r+2, \ldots
+\end{align*}
+If $X$ has a NegativeBinomial($r$, $p$) distribution
+\begin{align*}
+\text{E}(X) & = \frac{r}{p}\\
+\text{Var}(X) & = \frac{r(1-p)}{p^2}
+\end{align*}
+- Suppose you perform a sequence of Bernoulli($p$) trials until $r$ successes occur and then stop.  Let $X$ be the total number of *trials* performed, including the trials on which the successes occur.  Then $X$ has a NegativeBinomial($r$,$p$) distribution. In this situation, exactly $x$ trials are performed if and only if
+    - there are exactly $r-1$ successes among the first $x-1$ trials, and 
+    - the $x$th (last) trial results in success.
+- There are $\binom{x-1}{r-1}$ possible sequences that satisfy the above, and each of these sequences --- with $r$ successes and $x-r$ failures --- has probability $p^r(1-p)^{x-r}$.
+
+
+::: {#exm-nb-geom}
+What is another name for a NegativeBinomial(1,$p$) distribution?
+
+:::
+\
+\
+\
+
+::: {#exm-nb-geom-sum}
+Suppose $X_1, \ldots, X_r$ are independent each with a Geometric($p$) distribution.  What is the distribution of $X_1+\cdots + X_r$?  Find the expected value and variance of this distribution.
+
+:::
+\
+\
+\

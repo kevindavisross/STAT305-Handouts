@@ -1,0 +1,250 @@
+# Multiplication Rule and Law of Total Probability
+
+
+
+
+
+- Recall the **multiplication rule:**
+\begin{align*}
+\text{P}(A \cap B) & = \text{P}(A|B)\text{P}(B)\\
+& = \text{P}(B|A)\text{P}(A)
+\end{align*}
+- The multiplication rule says that you should think "multiply" when you see "and".  However, be careful about *what* you are multiplying: to find a joint probability you need an marginal (i.e., unconditional) probability and an appropriate conditional probability. 
+- The multiplication rule is useful in situations where conditional probabilities are easier to obtain directly than joint probabilities.
+
+::: {#exm-card-multiplication-rule}
+A standard deck of playing cards has 52 cards, 13 cards (2 through 10, jack, king, queen, ace) in each of 4 suits (hearts, diamonds, clubs, spades).
+Shuffle a deck and deals cards one at a time without replacement.
+:::
+
+
+1. Find the probability that the first card dealt is a heart.
+\
+\
+\
+\
+\
+1. If the first card dealt is a heart, determine the conditional probability that the second card is a heart.
+\
+\
+\
+\
+\
+1. Find the probability that the first two cards dealt are hearts.
+\
+\
+\
+\
+\
+1. Find the probability that the first two cards dealt are hearts and the third card dealt is a diamond.
+\
+\
+\
+\
+\
+1. Shuffle the deck and deal cards one at a time until an ace is dealt, and then stop. Find the probability that more than 4 cards are dealt. (Hint: consider the first 4 cards dealt.)
+\
+\
+\
+\
+\
+
+- The multiplication rule extends naturally to more than two events (though the notation gets messy). For three events, we have
+$$
+\text{P}(A_1 \cap A_2 \cap A_3) = \text{P}(A_1)\text{P}(A_2|A_1)\text{P}(A_3|A_1\cap A_2)
+$$
+- And in general,
+$$
+\text{P}(A_1\cap A_2 \cap A_3 \cap A_4 \cap \cdots) = \text{P}(A_1)\text{P}(A_2|A_1)\text{P}(A_3|A_1\cap A_2)\text{P}(A_4|A_1\cap A_2 \cap A_4)\cdots
+$$
+- The multiplication rule is useful for computing probabilities of events that can be broken down into component “stages” where conditional probabilities at each stage are readily available.
+At each stage, condition on the information about all previous stages. 
+
+
+::: {#exm-birthday}
+
+The [birthday problem](https://pudding.cool/2018/04/birthday-paradox/) concerns the probability that at least two people in a group of $n$ people have the same birthday^[You should really click on [this birthday problem link](https://pudding.cool/2018/04/birthday-paradox/).].  Ignore multiple births and February 29 and assume that the other 365 days are all equally likely^[Which isn't [quite](https://visme.co/blog/most-common-birthday/) [true](http://thedailyviz.com/2016/09/17/how-common-is-your-birthday-dailyviz/). However, a non-uniform distribution of birthdays only increases the probability that at least two people have the same birthday.  To see that, think of an extreme case like if everyone were born in September.].
+
+:::
+
+1. If $n=30$, what do you think the probability that at least two people share a birthday is: 0-20%, 20-40%, 40-60%, 60-80%, 80-100%? How large do you think $n$ needs to be in order for the probability that at least two people share a birthday to be larger than 0.5? Just make guesses before proceeding to calculations.
+\
+\
+\
+\
+\
+1. Explain how, in principle, you could perform a tactile simulation to estimate the probability that at least two people have the same birthday when $n=30$.
+\
+\
+\
+\
+\
+1. Now consider $n=3$ people, labeled 1, 2, and 3. What is the probability that persons 1 and 2 have different birthdays?
+\
+\
+\
+\
+\
+1. What is the probability that persons 1, 2, and 3 all have different birthdays *given* that persons 1 and 2 have different birthdays?
+\
+\
+\
+\
+\
+1. What is the probability that persons 1, 2, and 3 all have different birthdays?
+\
+\
+\
+\
+\
+1. When $n = 3$. What is the probability that at least two people share a birthday?
+\
+\
+\
+\
+\
+1. For $n=30$, find the probability that none of the people have the same birthday.
+\
+\
+\
+\
+\
+1. For $n=30$, find the probability that at least two people have the same birthday.
+\
+\
+\
+\
+\
+1. Write a clearly worded sentence interpreting the probability in the previous part as a long run relative frequency.
+\
+\
+\
+\
+\
+1. When $n=30$, how much more likely than not is it for at least two people to have the same birthday?
+\
+\
+\
+\
+\
+1. Provide an expression of the probability for a general $n$ and find  the smallest value of $n$ for which the probability is over 0.5. (You can just try different values of $n$.)
+\
+\
+\
+\
+\
+1. When $n=100$ the probability is about 0.9999997.  If you are in a group of 100 people and no one shares your birthday, should you be surprised?
+\
+\
+\
+\
+\
+
+
+
+
+::: {#exm-ltp-multiple-choice}
+Each question on a multiple choice test has four options.
+You know with certainty the correct answers to 70% of the questions.
+For 20% of the questions, you can eliminate two of the incorrect choices with certainty, but you guess at random among the remaining two options.
+For the remaining 10% of questions, you have no idea and guess one of the four options at random.
+
+Randomly select a question from this test. What is the probability that you answer the question correctly?
+:::
+
+1. Construct an appropriate twoway table and use it to find the probability of interest.
+\
+\
+\
+\
+\
+1. For any given question on the exam, your probability of answering it correctly is either 1, 0.5, or 0.25, depending on if you know it, can eliminate two choices, or are just guessing.
+How does your probability of correcting answering a randomly selected question relate to these three values? Which value --- 1, 0.5, or 0.25 ---is the overall probability closest to, and why?
+\
+\
+\
+\
+\
+
+
+
+
+- **Law of total probability.**  If $C_1,\ldots, C_k$ are disjoint with $C_1\cup \cdots \cup C_k=\Omega$, then 
+\begin{align*}
+\text{P}(A) & = \sum_{i=1}^k \text{P}(A \cap C_i)\\
+& = \sum_{i=1}^k \text{P}(A|C_i) \text{P}(C_i)
+\end{align*}
+- The events $C_1, \ldots, C_k$, which represent the "cases", form a *partition* of the sample space; each outcome $\omega\in\Omega$ lies in exactly one of the $C_i$.
+- The law of total probability says that we can interpret the unconditional probability $\text{P}(A)$ as a probability-weighted average of the case-by-case conditional probabilities $\text{P}(A|C_i)$ where the weights $\text{P}(C_i)$ represent the probability of encountering each case.
+
+
+::: {#exm-ltp-rats}
+Imagine a light that flashes every few seconds^[Thanks to Allan Rossman for this example.].
+The light randomly flashes green with probability 0.75 and red with probability 0.25, independently from flash to flash.
+:::
+
+1. Write down a sequence of G’s (for green) and R’s (for red) to predict the colors for the next 40 flashes of this light.  Before you read on, please take a minute to think about how you would generate such a sequence yourself.
+\
+\
+\
+\
+\
+1. Most people produce a sequence that has 30 G’s and 10 R’s, or close to those proportions, because they are trying to generate a sequence for which each outcome has a 75% chance for G and a 25% chance for R.
+That is, they use a strategy in which they predict G with probability 0.75, and R with probability 0.25. How well does this strategy do?
+Compute the probability of correctly predicting any single item in the sequence using this strategy.
+\
+\
+\
+\
+\
+1. Describe a better strategy. (Hint: can you find a strategy for which the probability of correctly predicting any single flash is 0.75?)
+\
+\
+\
+\
+\
+
+
+- Conditioning and using the law of probability is an effective strategy in solving many problems, even when the problem doesn't seem to involve conditioning.
+- For example, when a problem involves iterations or steps it is often useful to *condition on the result of the first step*.
+
+::: {#exm-lookaway}
+
+You and your friend are playing the ["lookaway challenge"](https://fivethirtyeight.com/features/what-are-your-chances-of-winning-the-u-s-open/).
+
+The game consists of possibly multiple rounds. In the first round, you point in one of four directions: up, down, left or right. At the exact same time, your friend also looks in one of those four directions. If your friend looks in the same direction you're pointing, you win! Otherwise, you switch roles and the game continues to the next round — now your friend points in a direction and you try to look away. As long as no one wins, you keep switching off who points and who looks.
+The game ends, and the current "pointer" wins, whenever the  "looker" looks in the same direction as the pointer.
+
+Suppose that each player is equally likely to point/look in each of the four directions, independently from round to round.  What is the probability that you win the game?
+:::
+
+1. Why might you expect the probability to not be equal to 0.5?
+\
+\
+\
+\
+\
+1. If you start as the pointer, what is the probability that you win in the first round?
+\
+\
+\
+\
+\
+1. If $p$ denotes the probability that the player who starts as the pointer wins the game, what is the probability that the player who starts as the looker wins the game? (Note: $p$ is the probability that the person who starts as pointer wins the whole game, not just the first round.)
+\
+\
+\
+\
+\
+1. Condition on the result of the first round and set up an equation to solve for $p$.
+\
+\
+\
+\
+\
+1. How much more likely is the player who starts as the pointer to win than the player who starts as the looker?
+\
+\
+\
+\
+\

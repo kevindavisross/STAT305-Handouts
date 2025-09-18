@@ -1,0 +1,59 @@
+project:
+  type: book
+
+book:
+  title: "STAT 305 Handouts"
+  author: "Kevin Ross"
+  date: today
+  date-format: "MMM D, YYYY"
+  search: true
+  chapters:
+    - index.qmd
+    - randomness-and-probability.qmd
+    # - working-with-probabilities.qmd
+    # - interpreting-probabilities.qmd
+    # - probability-models.qmd
+    # - intro-simulation.qmd
+    # - conditioning.qmd
+    # - marginal-distributions.qmd
+    # - averages.qmd
+    # - joint-correlation.qmd
+    # - conditional-distributions.qmd
+    # - law-of-total-probability.qmd
+    # - bayes-rule.qmd
+    # - independence.qmd
+    # - counting-and-uniform.qmd
+    # - discrete-pmf.qmd
+    # - continuous-pdf.qmd
+    # - cdf-and-quantile.qmd
+    # - transformations.qmd
+    # - joint-pmf-and-pdf.qmd
+    # - conditional-pmf-and-pdf.qmd
+    # - expected-value.qmd
+    # - variance.qmd
+    # - covariance.qmd
+    # - linear-combinations.qmd
+    # - conditional-expectation.qmd
+    # - binomial-and-negative-binomial.qmd
+    # - poisson.qmd
+    # - exponential.qmd
+    # - normal.qmd
+    # - joint-normal.qmd
+    # - CLT.qmd
+    - references.qmd
+  # appendices: 
+  #   - problem-solving-strategies.qmd
+  #   - distribution-summary.qmd
+
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+    toc: false
+  pdf:
+    documentclass: scrreprt
+
+
+

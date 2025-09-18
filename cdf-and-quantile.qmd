@@ -1,0 +1,275 @@
+# Cumulative Distribution Functions and Quantile Functions
+
+
+
+
+## Cumulative distribution functions
+
+
+
+
+
+
+::: {#exm-height-percentile}
+
+Maggie and Seamus are babies who have just turned one.
+At their one-year visits to their pediatrician:
+
+- Maggie is 76cm tall and in the [75th percentile of height for girls](https://www.cdc.gov/growthcharts/data/set1clinical/cj41l018.pdf).
+- Seamus is 72cm tall and in the [10th percentile of height for boys](https://www.cdc.gov/growthcharts/data/set1clinical/cj41l017.pdf).
+
+Explain what these percentiles mean.
+
+:::
+\
+\
+\
+\
+\
+
+- Roughly, the value $x$ is the $p$th percentile of a distribution of a random variable $X$ if $p$ percent of values of the variable are less than or equal to $x$: $\text{P}(X\le x) = p$.
+- The *cumulative distribution function (cdf)* of a random variable fills in the blank
+for any given $x$: $x$ is the (blank) percentile. That is, for an input $x$, the cdf outputs $\text{P}(X\le x)$.
+- The **cumulative distribution function (cdf)** (of a random variable $X$ defined on a probability space with probability measure $\text{P}$)
+is the function, $F_X: \mathbb{R}\mapsto[0,1]$, defined by
+$F_X(x) = \text{P}(X\le x)$. A cdf is defined for all real numbers $x$
+regardless of whether $x$ is a possible value of $X$.
+
+
+
+::: {#exm-sat-percentile2}
+
+According to [data on students who took the SAT in 2018-2019](https://collegereadiness.collegeboard.org/pdf/understanding-sat-scores.pdf), 1400 was the 94th percentile of SAT scores, while 1000 was the 40th percentile.
+Let $X$ be the SAT score of a randomly selected
+student (from this cohort), and let $F_X$ be the cdf of $X$.
+Evaluate the cdf for each of the following.
+For the purposes of this exercise, interpret these quantities in terms of actual SAT scores, which take values in 400, 410, 420, $\ldots$, 1590, 1600. 
+
+:::
+
+1. $F_X(1400)$
+\
+\
+1. $F_X(1405)$
+\
+\
+1. $F_X(1000)$
+\
+\
+1. $F_X(1003.7)$
+\
+\
+1. $F_X(-3.1)$
+\
+\
+1. $F_X(390)$
+\
+\
+1. $F_X(399.5)$
+\
+\
+1. $F_X(1600)$
+\
+\
+1. $F_X(1610)$
+\
+\
+1. $F_X(2307.4)$
+\
+\
+1. $F_X(1400)-F_X(1000)$
+\
+\
+
+
+::: {#exm-exponential-cdf-calcs}
+
+Let $X$ be a random variable with the Exponential(1) distribution.  Then the pdf of $f_X$ is
+
+$$
+f_X(x) =
+\begin{cases}
+e^{-x}, & x>0,\\
+0, & \text{otherwise.}
+\end{cases}
+$$
+:::
+
+1. Find the cdf of $X$, and sketch a plot of it.
+\
+\
+\
+\
+\
+1. Evaluate and interpret $F_X(1)$, and draw a picture depicting it.
+\
+\
+\
+\
+\
+1. Evaluate and interpret $F_X(2)-F_X(1)$, and draw a picture depicting it.
+\
+\
+\
+\
+\
+1. Evaluate and interpret $F_X(2)$, and draw a picture depicting it.
+\
+\
+\
+\
+\
+1. Find $\text{P}(1 < X < 2.5)$ without integrating again.
+\
+\
+\
+\
+\
+1. Suppose we had been given the cdf instead of the pdf.  How could we find the pdf?
+\
+\
+\
+\
+\
+
+::: {#exm-binomial-cdf}
+
+Let $X$ be the number of heads in 3 flips of a fair coin.  
+
+:::
+
+1. Find the cdf of $X$ and sketch a plot of it.
+\
+\
+\
+\
+\
+1. Let $Y$ be the number of tails in 3 flips of a fair coin.  Find the cdf of $Y$.
+\
+\
+\
+\
+\
+
+- A cdf is defined for all values of $x$, regardless if $x$ is a possible value of the RV.
+- A cdf is a non-decreasing function: if $x_1 \le x_2$ then $F_X(x_1)\le F_X(x_2)$.
+- A cdf approaches 0 as the input approaches $-\infty$: $\lim_{x\to-\infty}F_X(x) = 0$
+- A cdf approaches 1 as the input approaches $\infty$: $\lim_{x\to\infty}F_X(x) = 1$
+- The cdf of a *discrete* random variable is a step function.
+    - The steps occur at the possible values of the random variable.
+    - The height of a particular step corresponds to the probability of that value, given by the pmf.
+- The cdf of a *continuous* random variable is a continuous function.
+    - The cdf of a *continuous* random variable is obtained by integrating the pdf, so
+    - The pdf of a *continuous* random variable is obtained by differentiating the cdf
+    $$
+    F_X' = f_X \qquad \text{if $X$ is continuous}
+    $$
+- For any random variable $X$ with cdf $F_X$
+$$
+F_X(b) - F_X(a) = \text{P}(a<X \le b)
+$$
+Whether the inequalities in the above event are strict ($<$) or not ($\le$) matters for discrete random variables, but not for continuous.
+- Random variables $X$ and $Y$ **have the same distribution** if their cdfs are the same, that is, if $F_X(u) = F_Y(u)$ for all $u$.
+- That is, two random variables have the same distribution if all the percentiles are the same.  
+
+
+
+
+## Quantile functions
+
+- The *quantile function* (essentially the inverse cdf) fills in the
+following blank for a given $p\in[0, 1]$: the $100p$th percentile is (blank).
+- For example, evaluating the quantile function at $p=0.25$ outputs the 25th percentile.
+
+::: {#exm-meeting-normal-percentile2}
+In the meeting problem, suppose arrival times (minutes) follow a Normal(30, 10) distribution.
+Let $Q$ be the quantile function.
+
+In addition to finding the values below, identify how they are represented in the standard Normal spinner.
+:::
+
+1. Find $Q(0.16)$.
+\
+\
+1. Find $Q(0.25)$.
+\
+\
+1. Find $Q(0.5)$.
+\
+\
+1. Find $Q(0.25)$.
+\
+\
+1. Find $Q(0.975)$.
+\
+\
+
+- For a *continuous* random variable with cdf $F$, the **quantile function** $Q:[0,1]\mapsto\mathbb{R}$ is the inverse of the cdf, $Q(p) = F^{-1}(p)$.
+
+::: {#exm-exponential-quantile}
+
+Let $X$ have an Exponential(1) distribution.  Recall that the cdf is $F_X(x) = 1-e^{-x}, x>0$.
+
+:::
+
+1. Find the 25th percentile.
+\
+\
+\
+\
+\
+1. Find the quantile function $Q_X$.
+\
+\
+\
+\
+\
+1. Remember that if $U$ has a Uniform(0, 1) distribution then $X = -\log(1-U)$ has an Exponential(1) distribution.
+How does the transformation of $U$ relate to the quantile function?
+What insight does this give you into constructing spinners?
+\
+\
+\
+\
+\
+- The quantile function can be used to create a spinner for a distribution.
+Basically, the values on the outside boundary of the spinner are scaled based on the quantile function (which is determined by the cdf).
+Intervals corresponding to regions of higher density ("more likely") values are stretched out on the spinner boundary; intervals corresponding regions of lower density ("less likely" values) are shrunk.
+- **The foundation of all spinners is the Uniform(0, 1) spinner**.
+
+::: {#exm-meeting-nonuniform-pdf1-spinner}
+Recall @exm-meeting-nonuniform-pdf1 where Regina's arrival time $X$ (in hours) had pdf
+$$
+f_X(x) = 2x, \qquad 0<x<1.
+$$
+:::
+
+
+1. Find the cdf of $X$.
+\
+\
+\
+\
+\
+1. Find the quantile function of $X$.
+\
+\
+\
+\
+\
+1. Construct a spinner for simulating values of $X$ (hours) according to its distribution.
+\
+\
+\
+\
+\
+1. If we measure $X$ in minutes, how would the spinner change?
+\
+\
+\
+\
+\
+
+- **Universality of the Uniform (or "one spinner to rule them all").** Let $F$ be a cdf and $Q$ its corresponding quantile function.  Let $U$ have a Uniform(0, 1) distribution and define the random variable $X=Q(U)$.  Then the cdf of $X$ is $F$.
+- Universality of the uniform might look complicated but all it basically says is that you can construct a spinner by putting the 25th percentile 25% of the way around, the 75th percentile 75% of the way around, etc.
+- Actually, universality of the uniform says we don't have to create a new spinner. We can just spin the Uniform(0, 1) spinner and transform each resulting value by plugging it into the quantile function.

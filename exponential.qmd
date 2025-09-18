@@ -1,0 +1,286 @@
+# Exponential Distributions
+
+
+
+
+- Exponential distributions are often used to model the *waiting times* between events in a random process that occurs continuously over time.
+
+
+
+
+
+::: {#exm-exponential-quakes2}
+Suppose that we model the time, measured continuously in hours, from now until the next earthquake (of any magnitude) occurs in southern CA  as a continuous random variable $X$ with pdf
+$$
+f_X(x) = 2 e^{-2x}, \; x \ge0
+$$
+
+:::
+
+1. Sketch the pdf of $X$.  What does this tell you about waiting times?
+\
+\
+\
+1. Without doing any integration, approximate the probability that $X$ rounded to the nearest minute is 0.5 hours.
+\
+\
+\
+1. Compute and interpret $\text{P}(X \le 3)$.
+\
+\
+\
+1. Find the cdf of $X$.
+\
+\
+\
+1. Find the median time between earthquakes.
+\
+\
+\
+1. Set up the integral you would solve to find $\text{E}(X)$.  Interpret $\text{E}(X)=1/2$.  How does the median compare to the mean?  Why?
+\
+\
+\
+1. Set up the integral you would solve to find $\text{E}(X^2)$.
+\
+\
+\
+1. Find $\text{Var}(X)$ and $\text{SD}(X)$.
+\
+\
+\
+
+- A continuous random variable $X$ has an **Exponential distribution** with *rate* parameter $\lambda>0$ if its pdf is
+$$
+f_X(x) =
+\begin{cases}\lambda e^{-\lambda x}, & x \ge 0,\\
+0, & \text{otherwise}
+\end{cases}
+$$
+- If $X$ has an Exponential($\lambda$) distribution then
+\begin{align*}
+\text{cdf:} \quad F_X(x) & = 1-e^{-\lambda x}, \quad x\ge 0\\
+ \text{P}(X>x)  & = e^{-\lambda x}, \quad x\ge 0\\
+\text{E}(X) & = \frac{1}{\lambda}\\
+\text{Var}(X) & = \frac{1}{\lambda^2}\\
+\text{SD}(X) & = \frac{1}{\lambda}
+\end{align*}
+- Exponential distributions are often used to model the *waiting time* in a random process until some event occurs.
+    - $\lambda$ is the average *rate* at which events occur over time (e.g., 2 per hour)
+    - $1/\lambda$ is the mean time between events (e.g., 1/2 hour)
+- If $X$ has an Exponential($\lambda)$ distribution and $a>0$ is a constant, then $aX$  has an Exponential($\lambda/a$) distribution.
+    - If $X$ is measured in hours with rate $\lambda = 2$ per hour and mean 1/2 hour
+    - Then $60X$ is measured in minutes with rate $2/60$ per minute and mean $60(1/2)=30$ minutes.
+- If $X$ has an Exponential(1) distribution and $\lambda>0$ is a constant then $X/\lambda$ has an Exponential($\lambda$) distribution.
+- If $U$ has a Uniform(0, 1) distribution then $-\log(U)$ has Exponential(1) distribution.  ($-\log(1-U)$ also has an Exponential(1) distribution.)
+
+
+
+
+::: {#exm-exponential-joint}
+$X$ and $Y$ are continuous random variables with joint pdf
+$$
+f_{X, Y}(x, y) = \frac{1}{3x^2}\exp\left(-\left(\frac{y}{x^2} + \frac{x}{3}\right)\right), \qquad x > 0, y>0
+$$
+
+:::
+
+1. Identify by name the marginal distribution and one-way conditional distributions that you can obtain from the joint pdf without doing any calculus.
+\
+\
+\
+\
+\
+1. How could you use an an Exponential(1) spinner to simulate $(X, Y)$ pairs with this joint distribution?
+\
+\
+\
+\
+\
+1. Sketch a plot of the joint pdf.
+\
+\
+\
+\
+\
+1. Find $\text{E}(Y)$ without doing any calculus.
+\
+\
+\
+\
+\
+1. Find $\text{Cov}(X, Y)$ without doing any calculus. (Well, without doing any multivariable calculus.)
+\
+\
+\
+\
+\
+1. Use simulation to approximate the distribution of $Y$.  Does $Y$ have an Exponential distribution?
+\
+\
+\
+\
+\
+
+
+
+## Memoryless property
+
+::: {#exm-exponential-quakes-memoryless}
+
+Let $X$ be the waiting time (hours) until the next earthquake and assume $X$ has an Exponential(2) distribution.
+
+:::
+
+1. Find the probability that the waiting time is greater than 1 hour.
+\
+\
+\
+\
+\
+1. Suppose that no earthquakes occur in the next 3 hours.  Find the conditional  probability that the waiting time (from now) is greater than 4 hours.  Be sure to write a valid probability statement involving $X$ before computing. What do you notice?
+\
+\
+\
+\
+\
+- **Memoryless property.**  If $W$ has an Exponential($\lambda$) distribution then for any $w,h>0$
+$$
+\text{P}(W>w+h\,\vert\, W>w) = \text{P}(W>h)
+$$
+- Given that we have already waited $w$ units of time, the conditional probability that we wait at least an additional $h$ units of time is the same as the unconditional probability that we wait at least  $h$ units of time.
+- A continuous random variable $W$ has the memoryless property if and only if $W$ has an Exponential distribution.  That is, Exponential distributions are the *only* continuous^[Geometric distributions are the only discrete distributions with the discrete analog of the memoryless property.] distributions with the memoryless property.
+- If $W$ has an Exponential($\lambda$) distribution then the conditional distribution of the *excess* waiting time, $W - w$, given $\{W>w\}$ is Exponential($\lambda$).
+
+
+## Exponential race
+
+::: {#exm-exponential-race-example}
+Xiomara and Rogelio each leave work at noon to meet the other for lunch.  The amount of time, $X$, that it takes Xiomara to arrive is a random variable with an Exponential distribution with mean 10 minutes. The amount of time, $Y$, that it takes Rogelio to arrive is a random variable with an Exponential distribution with mean 20 minutes.  Assume that $X$ and $Y$ are independent.  Let $W$ be the time, in minutes after noon, at which the first person arrives.
+
+:::
+
+1. What is the relationship between $W$ and $X, Y$?
+\
+\
+\
+\
+\
+1. Find and interpret $\text{P}(W>40)$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(W > w)$ and identify by name the distribution of $W$.
+\
+\
+\
+\
+\
+1. Find $\text{E}(W)$. Is it equal to $\min(\text{E}(X), \text{E}(Y))$?
+\
+\
+\
+\
+\
+1. Is $\text{P}(Y>X)$ greater than or less than 0.5? Make an educated guess for $\text{P}(Y > X)$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(Y>X|X=10)$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(Y>X|X=x)$ for general $x$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(Y > X)$. Hint: Use a continuous version of the law of total probability.
+\
+\
+\
+\
+\
+1. Find $\text{P}(W>40, Y>X)$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(W>w, Y>X)$ for general $w$.
+\
+\
+\
+\
+\
+1. Let $\text{I}_{\{Y > X\}}$ be the indicator that Xiomara arrives first. What can you say about $W$ and $\text{I}_{\{Y > X\}}$?
+\
+\
+\
+\
+\
+
+
+- **Exponential race** (a.k.a., competing risks.) Let $W_1, W_2, \ldots, W_n$ be independent random variables.  Suppose $W_i$ has an Exponential distribution with rate parameter $\lambda_i$. Let $W = \min(W_1, \ldots, W_n)$ and let $I$ be the discrete random variable which takes value $i$ when $W=W_i$, for $i=1, \ldots, n$.  Then
+    - $W$ has an Exponential distribution with rate $\lambda = \lambda_1 + \cdots+\lambda_n$
+    - $\text{P}(I=i) = \text{P}(W=W_i) = \frac{\lambda_i}{\lambda_1+\cdots+\lambda_n}, i = 1, \ldots, n$
+    - $W$ and $I$ are independent
+- Imagine there are $n$ contestants in a race, labeled $1, \ldots, n$, racing independently, and $W_i$ is the time it takes for the $i$th contestant to finish the race. Then $W = \min(W_1, \ldots, W_n)$ is the winning time of the race, and $W$ has an Exponential distribution with rate parameter equal to sum of the individual contestant rate parameters.
+- The discrete random variable $I$ is the label of which contestant is the winner. The probability that a particular contestant is the winner is the contestant's rate divided by the total rate. That is, the probability that contestant $i$ is the winner is proportional to the contestant's rate $\lambda_i$. 
+- Furthermore, $W$ and $I$ are independent.  Information about the winning time does not influence the probability that a particular contestant won. Information about which contestant won does not influence the distribution of the winning time.
+
+## Gamma distributions
+
+::: {#exm-exponential-sum}
+Suppose that elapsed times (hours) between successive earthquakes are independent, each having an Exponential(2) distribution.  Let $T$ be the time elapsed from now until the third earthquake occurs.
+
+:::
+
+1. Compute $\text{E}(T)$.
+\
+\
+\
+\
+\
+1. Compute $\text{SD}(T)$.
+\
+\
+\
+\
+\
+1. Does $T$ have an Exponential distribution? Explain.
+\
+\
+\
+\
+\
+1. Use simulation to approximate the distribution of $T$.
+\
+\
+\
+\
+\
+
+
+- A continuous random variable $X$ has a **Gamma distribution** with *shape* parameter $\alpha$, a positive integer^[There is a more general expression of the pdf which replaces $(\alpha-1)!$ with the *Gamma function* $\Gamma(\alpha)=\int_0^\infty u^{\alpha-1}e^{-u} du$, that can be used to define a Gamma pdf for any $\alpha>0$.  When $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$.], and *rate* parameter^[Like Exponential distributions, Gamma distributions are sometimes parametrized directly by their mean $1/\lambda$, instead of the rate parameter $\lambda$.  The mean $1/\lambda$ is called the scale parameter.] $\lambda>0$ if its pdf is
+\begin{align*}
+f_X(x) & = \frac{\lambda^\alpha}{(\alpha-1)!} x^{\alpha-1}e^{-\lambda x} , & x \ge 0,\\
+& \propto x^{\alpha-1}e^{-\lambda x} , & x \ge 0
+\end{align*}
+If $X$ has a Gamma($\alpha$, $\lambda$) distribution then
+\begin{align*}
+\text{E}(X) & = \frac{\alpha}{\lambda}\\
+\text{Var}(X) & = \frac{\alpha}{\lambda^2}\\
+\text{SD}(X) & = \frac{\sqrt{\alpha}}{\lambda}
+\end{align*}
+- If $W_1, \ldots, W_n$ are independent and each $W_i$ has an Exponential($\lambda$) distribution then $(W_1+\cdots+W_n)$ has a Gamma($n$,$\lambda$) distribution.
+- Each $W_i$ represents the waiting time *between* two occurrences of some event, so  $W_1 + \cdots+ W_n$ represents the total waiting time until a total of $n$ occurrences.
+- Exponential distributions are continuous analogs of Geometric distributions, and Gamma distributions are continuous analogs of Negative Binomial distributions.
+- For a positive integer $d$, the Gamma($d/2, 1/2$) distribution is also known as the **chi-square distribution with $d$ degrees of freedom**.

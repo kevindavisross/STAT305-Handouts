@@ -1,0 +1,197 @@
+# Normal Distributions
+
+{{< include _r_setup.qmd >}}
+
+{{< include _python_setup.qmd >}}
+
+- Normal distributions are probably the most important distributions in probability and statistics.
+- Any Normal distribution follows the "empirical rule" which determines the percentiles that give a Normal distribution its particular bell shape. For example,
+    - 38% of values are within 0.5 standard deviations of the mean
+    - 68% of values are within 1 standard deviation of the mean
+    - 87% of values are within 0.5 standard deviations of the mean
+    - 95% of values are within 2 standard deviations of the mean
+    - 99% of values are within 2.6 standard deviations of the mean
+    - 99.7% of values are within 3 standard deviations of the mean
+
+
+```{r}
+#| echo: false
+
+p = c(0.001, 0.005, 0.01, 0.025, 0.10, pnorm(-1), 0.25, pnorm(-0.5), 0.5, pnorm(0.5), 0.75, pnorm(1), 0.90, 0.975, 0.99, 0.995, 0.999)
+
+z = round(qnorm(p), 2)
+
+data.frame(p = paste(round(100 * p, 1), "%", sep = ""),
+           z = paste(abs(z), "SDs", if_else(z<0, "below", "above"), "the mean")) %>%
+  kbl(col.names = c("Percentile", "SDs away from the mean"),
+      caption = "Empirical rule for Normal distributions",
+      align = c('r', 'l')) %>%
+  kable_styling(fixed_thead = TRUE)
+
+```
+
+
+
+
+- A continuous random variable $Z$ has a **Standard Normal** distribution if its pdf is
+\begin{align*}
+\phi(z) & = \frac{1}{\sqrt{2\pi}}\,e^{-z^2/2}, \quad -\infty<z<\infty,\\
+& \propto e^{-z^2/2}, \quad -\infty<z<\infty.
+\end{align*}
+- If $Z$ has a Standard Normal distribution then
+\begin{align*}
+\text{E}(Z) & = 0\\
+\text{SD}(Z) & = 1 
+\end{align*}
+- The Standard Normal pdf is symmetric about its mean of 0, and the peak of the density occurs at 0.
+- The standard deviation is 1, and 1 also indicates the distance from the mean to where the concavity of the density changes.  That is, there are inflection points at $\pm1$.
+- A continuous random variable $X$ has a **Normal** (a.k.a., Gaussian) distribution with mean $\mu\in (-\infty,\infty)$ and standard deviation $\sigma>0$ if its pdf is
+\begin{align*}
+f_X(x) & = \frac{1}{\sigma\sqrt{2\pi}}\,\exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right), \quad -\infty<x<\infty,\\
+& \propto \exp\left(-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right), \quad -\infty<x<\infty.
+\end{align*}
+- If $X$ has a Normal($\mu$, $\sigma$) distribution then
+\begin{align*}
+\text{E}(X) & = \mu\\
+\text{SD}(X) & = \sigma
+\end{align*}
+- A Normal density is a particular "bell-shaped" curve which is symmetric about its mean $\mu$. The mean $\mu$ is a *location* parameter: $\mu$ indicates where the center and peak of the distribution is.
+- The standard deviation $\sigma$ is a *scale* parameter: $\sigma$ indicates the distance from the mean to where the concavity of the density changes.  That is, there are inflection points at $\mu\pm \sigma$.
+
+
+::: {#exm-normal-pdf-matching}
+The pdfs in the plot below represent the distribution of hypothetical test scores in three classes. The test scores in each class follow a Normal distribution.  Identify the mean and standard deviation for each class.
+
+:::
+
+```{python}
+#| echo: false
+
+plt.figure()
+Normal(60, 10).plot()
+Normal(70, 10).plot()
+Normal(70, 5).plot()
+plt.show()
+
+```
+
+
+
+
+::: {#exm-normal-weight}
+The wrapper of a package of candy lists a weight of 47.9 grams. Naturally, the
+weights of individual packages vary somewhat. Suppose package weights have an approximate Normal distribution with a mean of 49.8 grams and a standard deviation of 1.3 grams.
+:::
+
+
+
+1. Sketch the distribution of package weights.  Carefully label the variable axis. It is helpful to draw two axes: one in the measurement units of the variable, and one in standardized units.
+\
+\
+\
+\
+\
+1. Why wouldn't the company print the mean weight of 49.8 grams as the weight on the package?
+\
+\
+\
+\
+\
+1. Estimate the probability that a package weighs less than the printed weight of 47.9 grams.
+\
+\
+\
+\
+\
+1. Estimate the probability that a package weighs between 47.9 and 53.0 grams.
+\
+\
+\
+\
+\
+1. Suppose that the company only wants 1% of packages to be underweight.  Find the weight that must be printed on the packages.
+\
+\
+\
+\
+\
+1. Find the 25th percentile (a.k.a., first (lower) quartile) of package weights.
+\
+\
+\
+\
+\
+1. Find the 75th percentile (a.k.a., third (upper) quartile) of package weights.  How can you use the work you did in the previous part?
+\
+\
+\
+\
+\
+
+
+::: {#exm-normal-temp}
+Daily high temperatures (degrees Fahrenheit) in San Luis Obispo in August follow (approximately) A Normal distribution with a mean of 76.9 degrees F.
+The temperature exceeds 100 degrees Fahrenheit on about 1.5% of August days.
+
+:::
+
+1. What is the standard deviation?
+\
+\
+\
+\
+\
+1. Suppose the mean increases by 2 degrees Fahrenheit. On what percentage of August days will the daily high temperature exceed 100 degrees Fahrenheit?
+(Assume the standard deviation does not change.)
+\
+\
+\
+\
+\
+1. A mean of 78.9 is 1.02 times greater than a mean of 76.9.
+By what (multiplicative) factor has the percentage of 100-degree days increased?
+What do you notice?
+\
+\
+\
+\
+\
+
+
+::: {#exm-effect-size}
+In a large class, scores on midterm 1 follow (approximately) a Normal$(\mu_1, \sigma)$ distribution and scores on midterm 2 follow (approximately) a Normal$(\mu_2, \sigma)$ distribution.  Note that the SD $\sigma$ is the same on both exams. The 40th percentile of midterm 1 scores is equal to the 70th percentile of midterm 2 scores.  Compute
+$$
+\frac{\mu_1-\mu_2}{\sigma}
+$$
+(This is one statistical measure of *effect size*.)
+
+:::
+\
+\
+\
+\
+\
+
+- If $X$ and $Y$ are independent, each with a marginal Normal distribution, and $a, b$ are non-random constants then $aX + bY$ has a Normal distribution.
+
+
+
+::: {#exm-normal-meeting-linear-combo}
+
+Two people are meeting. (Who? You decide!)
+Arrival time are measured in minutes after noon, with negative times representing arrivals before noon.
+Each arrival time follows a Normal distribution with mean 30 and SD 17 minutes, independently of each other. 
+:::
+
+1. Compute the probability that the first person to arrive has to wait more than 15 minutes for the second person to arrive.
+\
+\
+\
+\
+\
+1. Compute the probability that the first person to arrive arrives before 12:15.
+\
+\
+\
+\
+\

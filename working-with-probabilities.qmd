@@ -1,0 +1,216 @@
+# Working with Probabilities
+
+
+
+
+
+- It is often helpful to think of probabilities as percentages or proportions.
+- Furthermore, when working with multiple percentages, it is also helpful to construct hypothetical **two-way tables** (a.k.a., contingency tables)  of counts.
+- For the purposes of constructing the table and computing related probabilities, any value can be used for the hypothetical total count.
+- When dealing with percentages (or proportions or probabilities) be sure to ask "percent *of what*?" Thinking in fraction terms, be careful to identify the correct reference group which corresponds to the denominator.
+
+
+
+::: {#exm-free-college-two-way}
+
+Are Americans in favor of free tuition at public colleges and universities? According to a [study conducted by the Pew Research Center in January 2020](https://www.pewresearch.org/fact-tank/2020/02/21/democrats-overwhelmingly-favor-free-college-tuition-while-republicans-are-divided-by-age-education/)
+
+- 83% of Democrats are in favor of free tuition
+- 60% of Independents are in favor of free tuition
+- 39% of Republicans are in favor of free tuition
+
+Also suppose that^[These values are based on surveys by [Gallup](https://news.gallup.com/poll/15370/party-affiliation.aspx), but the values change somewhat over time.]
+
+- 32% of Americans are Democrats
+- 42% of Americans are Independents
+- 26% of Americans are Republicans
+
+
+We'll use this information to investigate the following questions, as well as a few others.
+  
+- What percentage of Americans are in favor of free college tuition?
+- What percentage of Americans who are in favor of free college tuition are Democrats?
+
+:::
+  
+
+
+
+1. Donny Don't says the answer to the question "what percentage of Americans who are in favor of free college tuition are Democrats" is 83%.  Explain why Donny is wrong without doing any calculations.
+\
+\
+\
+\
+\
+1. For the remaining parts, consider a hypothetical group of 10000 Americans and assume the percentages provided apply to this group. How many people in the group are Democrats?
+\
+\
+\
+\
+\
+1. How many Americans in the group are Democrats who are in favor of free college tuition?
+\
+\
+\
+\
+\
+1. Fill in the counts in each of the cells of the following table.
+
+    |                              | Democrat | Independent | Republican | Total |
+    |------------------------------|---------:|------------:|-----------:|------:|
+    | In favor of free tuition     |          |             |            |       |
+    | Not in favor of free tuition |          |             |            |       |
+    | Total                        |          |             |            | 10000 |
+    
+1. What percentage of Americans in this group who are in favor of free college tuition are Democrats?  (Answer with both an unreduced fraction and a percent.)
+\
+\
+\
+\
+\
+1. Now answer the original question: What percentage of Americans who are in favor of free college tuition are Democrats? (Hint: did it matter that we used a total of 10000?)
+\
+\
+\
+\
+\
+1. What percentage of Americans who are Democrats are in favor of free college tuition?  (Answer with both an unreduced fraction and a percent.)
+\
+\
+\
+\
+\
+1. What percentage of Americans are Democrats in favor of free college tuition? (Answer with both an unreduced fraction and a percent.)
+\
+\
+\
+\
+\
+1. Compare the unreduced fractions for the previous three parts.  What is the same?  What is different?
+\
+\
+\
+\
+\
+1. What percentage of Americans are in favor of free college tuition? 
+\
+\
+\
+\
+\
+
+- **Warning!** In general, knowing probabilities of individual events alone is not enough to determine probabilities of combinations of them.
+
+::: {#exm-cats-dogs}
+
+Suppose that 47% of American adults^[These values are based on the 2018 [General Social Survey](https://gss.norc.org/).] have a pet dog and 25% have a pet cat.
+:::
+
+1. Donny Don't says that 72% (which is 47% + 25%) of American adults have a pet dog or a pet cat.
+Is that necessarily true?
+If not, is it even possible (in principle anyway) for this to be true?
+Under what circumstance (however unrealistic) would this be true?
+Construct a corresponding two-way table.
+\
+\
+\
+\
+\
+1. Given only the information provided, what is the smallest possible percentage of American who adults have a pet dog or a pet cat?
+Under what circumstance (however unrealistic) would this be true?
+Construct a corresponding two-way table.
+\
+\
+\
+\
+\
+1. Donny Don't says that 11.75% (which is 47% $\times$ 25%) of Americans have both a pet dog *and* a pet cat.
+Explain to Donny why that's not necessarily true.
+Without further information, what can you say about the percent of American adults who have both a pet dog and a pet cat?
+\
+\
+\
+\
+\
+1. Suppose that 14% of American adults have both a pet dog *and* a pet cat.
+What is the percentage of American adults who have a pet dog *or* a pet cat?
+Construct a corresponding two-way table.
+Use your table to show Donny how to correct his error from part 1.
+\
+\
+\
+\
+\
+1. What percentage of American adults who have a pet dog also have a pet cat? Is it 25%?
+\
+\
+\
+\
+\
+1. What percentage of American adults who do not have a pet dog have a pet cat?  Is this the same value as in the previous part?
+\
+\
+\
+\
+\
+
+
+
+
+::: {#exm-bayes-false-positive}
+
+A woman's chances of giving birth to a child with Down syndrome increase
+with age.
+The CDC estimates^[Source: <http://www.cdc.gov/ncbddd/birthdefects/downsyndrome/data.html>] that a woman in her mid-to-late 30s has a risk of conceiving a child with Down syndrome of about 1 in 250.
+A [nuchal translucency (NT) scan](https://www.webmd.com/baby/first-trimester-screening-nuchal-translucency-blood-test#1), which involves a blood draw from the mother and an ultrasound, is often performed around the 13th week of pregnancy to test for the presence of Down syndrome (among other things).
+If the baby has Down syndrome, the probability that the test is positive is about 0.9.
+However, when the baby does not have Down syndrome, there is still a probability that the test returns a (false) positive of about^[Estimates of these probabilities vary between different sources.
+The values in the exercise were based on <https://www.ncbi.nlm.nih.gov/pubmed/17350315>] 0.05.
+Suppose that the NT test for a pregnant woman in her mid-to-late 30s comes back positive for Down syndrome.
+What is the probability that the baby actually has Down syndrome?
+
+:::
+
+1. Before proceeding, make a guess for the probability in question.
+$$
+\text{0-20\%} \qquad \text{20-40\%} \qquad \text{40-60\%} \qquad \text{60-80\%} \qquad \text{80-100\%}
+$$
+1. Donny Don't says: 0.90 and 0.05 should add up to 1, so there must be a typo in the problem.
+Do you agree?
+\
+\
+\
+\
+\
+1. Construct a hypothetical two-way table of counts to represent the given information.
+\
+\
+\
+\
+\
+1. Use the table to find the probability in question: If NT test for a pregnant woman in her mid-to-late 30s is positive, what is the probability that the baby actually has Down syndrome?
+\
+\
+\
+\
+\
+1. The probability in the previous part might seem very low to you.  Explain why the probability is so low.
+\
+\
+\
+\
+\
+1. Compare the probability of having Down Syndrome before and after the positive test.
+How much more likely is a baby who tests positive to have Down Syndrome than a baby for whom no information about the test is available?
+\
+\
+\
+\
+\
+\
+
+- Remember to ask "percentage *of what*"?
+For example, the percentage of *babies who have Down syndrome* that test positive is a very different quantity than the percentage of *babies who test positive* that have Down syndrome.
+- Probabilities are often conditional on information.
+- Conditional probabilities (e.g., probability of Down Syndrome *given a positive test*) can be highly influenced by the original unconditional probabilities (e.g. probability of Down Syndrome), sometimes called the **base rates**.  Don't neglect the base rates when evaluating probabilities.
+- The example illustrates that when the base rate for a condition is very low and the test for the condition is less than perfect there will be a relatively high probability that a positive test is a *false positive.*

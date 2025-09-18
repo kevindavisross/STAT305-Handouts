@@ -1,0 +1,237 @@
+# Central Limit Theorem
+
+{{< include _r_setup.qmd >}}
+
+{{< include _python_setup.qmd >}}
+
+
+- Many statistical applications involve *random sampling* from a population.
+- And one of the most basic operations in statistics is to average the values in a sample.
+- If a sample is selected at random, then the sample mean is a random variable that has a distribution. How does this distribution behave?
+
+::: {#exm-sample-mean-dist-table}
+
+A random sample of $n$ customers at a snack bar is selected, independently.  Let $S_n$ by the total dollar amount spent by the $n$ customers in the sample, and let $\bar{X_n}=S_n/n$ represent the sample mean dollar amount spent by the $n$ customers in the sample.
+
+Assume that
+
+- 40% of customers spend 5 dollars
+- 40% of customers spend 6 dollars
+- 20% of customers spend 7 dollars
+
+Let $X$ denote the amount spent by a single randomly selected customer.
+:::
+
+
+1. Find $\text{E}(X)$.   We'll call this value the population mean $\mu$; explain what this means.
+\
+\
+\
+\
+\
+1. Find $\text{SD}(X)$. We'll call this value the population standard deviation $\sigma$; explain what this means.
+\
+\
+\
+\
+\
+1. Randomly select two customers, independently, and let $X_1$ and $X_2$ denote the amounts spent by the two people selected.   Make a table of all possible $(X_1, X_2)$ pairs and their probabilities.
+\
+\
+\
+\
+\
+1. Use the table from the previous part to find the distribution of $\bar{X}_2$. Interpret in words in context what this distribution represents.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(\bar{X}_{2} > 6)$.
+\
+\
+\
+\
+\
+1. Compute $\text{E}(\bar{X}_2)$.  How does it relate to $\mu$?
+\
+\
+\
+\
+\
+1. There are 3 "means" in the previous part.  What do they all mean?
+\
+\
+\
+\
+\
+1. Compute $\text{Var}(\bar{X}_2)$ and $\text{SD}(\bar{X}_2)$.  How do these values relate to the population variance $\sigma^2$ and the population standard deviation $\sigma$?
+\
+\
+\
+\
+\
+1. Describe in words in context what $\text{SD}(\bar{X}_2)$ measures variability of.
+\
+\
+\
+\
+\
+
+
+- The **population distribution** describes the distribution of values of a variable over all *individuals* in the population.
+    - The **population mean**, denoted $\mu$, is the average of the values of the variable over all individuals in the population.  
+    - The **population standard deviation**, denoted $\sigma$, is the standard deviation of all the individual values in the population.  
+- A **(simple) random sample** of size $n$ is a collection of  random variables $X_1,\ldots,X_n$ that are *independent* and *identically distributed* (*i.i.d.*)
+- The **sample mean** is
+    $$
+    \bar{X}_n = \frac{X_1 + \cdots + X_n}{n} = \frac{S_n}{n},
+    $$
+- Because the sample is randomly selected, the sample mean $\bar{X}_n$ is a random variable that has a distribution.
+This distribution describes how sample means vary from sample-to-sample over many random samples of size $n$.
+- Over many random samples, sample means do not systematically overestimate or underestimate the population mean.
+    $$
+    \text{E}(\bar{X}_n) = \mu
+    $$
+- Variability of sample means depends on the variability of individual values of the variable; the more the values of the variable vary from individual-to-individual in the population, the more the sample means will vary from sample-to-sample.
+However, sample means are less variable than individual values of the variable. Furthermore, the sample-to-sample variability of sample means decreases as the sample size increases
+    \begin{align*}
+    \text{Var}(\bar{X}_n) & = \frac{\sigma^2}{n}\\
+    \text{SD}(\bar{X}_n) & = \frac{\sigma}{\sqrt{n}}
+    \end{align*}
+
+::: {#exm-sample-mean-dist-clt}
+Continuing @exm-sample-mean-dist-table.
+Now suppose we take a random sample of 30 customers; consider $n=30$ and $\bar{X}_{30}$. 
+:::
+
+1. Find $\text{E}(\bar{X}_{30})$, $\text{Var}(\bar{X}_{30})$, and $\text{SD}(\bar{X}_{30})$.
+\
+\
+\
+\
+\
+1. What does $\text{SD}(\bar{X}_{30})$ measure the variability of?
+\
+\
+\
+\
+\
+1. Use simulation to determine the approximate shape of the distribution of $\bar{X}_{30}$.
+\
+\
+\
+\
+\
+1. Simulation shows that $\bar{X}_{30}$ has an approximate Normal distribution. Use this Normal distribution to approximate $\text{P}(\bar{X}_{30} > 6)$, and interpret the probability.
+
+- The **(Standard) Central Limit Theorem**. Let $X_1,X_2,\ldots$ be independent and identically distributed (i.i.d.) random variables with finite mean $\mu$ and finite standard deviation $\sigma$. Then
+    $$
+    \text{$\bar{X}_n$ has an approximate $N\left(\mu,\frac{\sigma}{\sqrt{n}}\right)$ distribution, if $n$ is large enough.}
+    $$
+    $$
+    \text{$S_n$ has an approximate $N(n\mu,\sigma\sqrt{n})$ distribution, if $n$ is large enough}
+    $$
+- The CLT says that if the sample size is large enough, the sample-to-sample distribution of sample means (or sums) is approximately Normal, *regardless of the shape of the population distribution.*
+
+::: {#exm-sample-mean-dist-outlier}
+Continuing @exm-sample-mean-dist-table.
+Now suppose that each customer spends 5 dollars with probability 0.4, 6 with probability 0.4, 7 with probability 0.19, and 30 with probability 0.01 (maybe they treat a few friends).
+:::
+
+
+1. Use simulation to approximate the distribution of $\bar{X}_{30}$; is it approximately Normal?
+\
+\
+\
+\
+\
+1. Use simulation to approximate the distribution of $\bar{X}_{100}$; is it approximately Normal?
+\
+\
+\
+\
+\
+1. Use simulation to approximate the distribution of $\bar{X}_{300}$; is it approximately Normal?
+\
+\
+\
+\
+\
+
+- The CLT says that if the sample size is large enough, the sample-to-sample distribution of sample means is approximately Normal, *regardless of the shape of the population distribution.*
+- However, the shape of the population distribution --- which describes the distribution of individual values of the variable --- does matter in determining *how large* is large enough.
+    - If the population distribution is Normal, then the sample-to-sample distribution of sample means is Normal for any sample size. 
+    - If the population distribution is "close to Normal" --- e.g., symmetric, light tails, single peak --- then smaller samples sizes are sufficient for the sample-to-sample distribution of sample means to be approximately Normal.
+    - If the population distribution is "far from Normal" --- e.g., severe skewness, heavy tails, extreme outliers, multiple peaks --- then larger sample sizes are required for the sample-to-sample distribution of sample means to be approximately Normal.
+
+
+::: {#exm-clt-poisson}
+The number of free throws that a particular basketball player attempts in a game has a Poisson distribution with parameter 2.7.  Approximate the probability that the player attempts more than 60 free throws in the next 20 games.
+:::
+\
+\
+\
+\
+\
+
+
+
+::: {#exm-clt-uniform}
+
+Ten independent resistors are connected in series.
+Each has a resistance Uniformly distributed between 215 and 225 ohms, independently.
+Compute the probability that the mean resistance of this series system is between 219 and 221 ohms.
+
+:::
+\
+\
+\
+\
+\
+
+
+::: {#exm-clt-dice-sum}
+A fair six-sided die is rolled until the total sum of all rolls exceeds 300.  Approximate the probability that at least 80 rolls are necessary.
+:::
+\
+\
+\
+\
+\
+
+
+
+::: {#exm-clt-income}
+
+Suppose that average annual income for U.S. households is about $100,000, and that the standard deviation of income is about $230,000.
+
+:::
+
+1. What can you say about the probability that a single randomly selected household has an income above $120,000?
+\
+\
+\
+\
+\
+1. Donny Don't says: "Since a sample size of one million is extremely large, the CLT says that the incomes in a sample of one million households should follow a Normal distribution". Do you agree? If not, explain to Donny what the CLT does say.
+\
+\
+\
+\
+\
+1. Use the CLT to approximate the probability that in a sample of 1000 households the sample mean income is above $120,000.
+\
+\
+\
+\
+\
+1. Donny says: "Wait, the distribution of household income is highly skewed to the right. Wouldn't it be more appropriate to use the sample median than the sample mean"? Do you agree? Explain.
+\
+\
+\
+\
+\
+
+
+

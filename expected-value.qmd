@@ -1,0 +1,344 @@
+# Expected Value
+
+{{< include _r_setup.qmd >}}
+
+{{< include _python_setup.qmd >}}
+
+
+- The distribution of a random variable specifies the possible values and the probability of any event that involves the random variable.
+- Characteristics of distributions based on long run averages can be defined as "expected" values.
+
+
+
+
+
+
+
+::: {#exm-matching-ev}
+
+Recall the matching problem with $n=4$: objects labeled 1, 2, 3, 4, are placed at random in spots labeled 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc.
+Let the random variable $X$ count the number of objects that are put back in the correct spot.
+Let $\text{P}$ denote the probability measure corresponding to the assumption that the objects are equally likely to be placed in any spot, so that the 24 possible placements are equally.
+
+The distribution of $X$ is displayed below.
+
+:::
+
+
+
+```{r}
+#| label: matching-distribution-table
+#| echo: false
+
+kbl(
+  data.frame(c(0, 1, 2, 4), round(c(9, 8, 6, 1) / 24, 4)),
+  booktabs = TRUE,
+  col.names = c("x", "P(X=x)")
+) %>%
+  kable_styling(fixed_thead = TRUE)
+```
+
+
+
+
+1. Describe two ways for simulating values of $X$.
+\
+\
+\
+\
+\
+1. The table below displays 10 simulated values of $X$.  How could you use the results of this simulation to approximate the long run average value of $X$? How could you get a better approximation of the long run average?
+```{r}
+#| label: matching-sim-10-ev
+#| echo: false
+
+kbl(
+  data.frame(1:10, c(0, 1, 0, 0, 2, 0, 1, 1, 4, 2)),
+  booktabs = TRUE,
+  col.names = c("Repetition", "Y")
+) %>%
+  kable_styling(fixed_thead = TRUE)
+```
+3. Rather than adding the 10 values and dividing by 10, how could you simplify the calculation in the previous part?
+\
+\
+\
+\
+\
+4. The table below summarizes 24000 simulated values of $X$.  Approximate the long run average value of $X$.
+```{r}
+#| label: matching-sim-ev
+#| echo: false
+
+kbl(
+  data.frame(c(0, 1, 2, 4), c(8979, 7993, 6068, 960)),
+  booktabs = TRUE,
+  col.names = c("Value of X", "Number of repetitions")
+) %>%
+  kable_styling(fixed_thead = TRUE)
+```
+5. Recall the distribution of $X$. What would be the corresponding mathematical formula for the theoretical long run average value of $X$?  This number is called the "expected value" of $X$.
+\
+\
+\
+\
+\
+6. Is the expected value the most likely value of $X$?
+\
+\
+\
+\
+\
+7. Is the expected value of $X$ the "value that we would expect" on a *single* repetition of the phenomenon?
+\
+\
+\
+\
+\
+8. Explain in what sense the expected value is "expected".
+\
+\
+\
+\
+\
+
+
+
+
+
+::: {#exm-exponential-discrete-ev}
+
+Let $X$ be a random variable which has the Exponential(1) distribution. To motivate the computation of the expected value of a continuous random variable,  we'll first consider a discrete version of $X$.
+
+:::
+
+
+1. How could you use simulation to approximate the long run average value of $X$?
+\
+\
+\
+\
+\
+1. Suppose the values of $X$ are truncated^[We could also round to the nearest integer.  Whether we truncate or round won't matter as we consider what happens in the limit.] to integers.  That is, 0.73 is recorded as 0, 1.15 is recorded as 1, 2.999 is recorded as 2, 3.001 is recorded as 3, etc.  The following table summarizes 10000 simulated values of $X$, truncated.  Using just these values, how would you approximate the long run average value of $X$?
+```{r}
+#| label: exponential-discrete-sim
+#| echo: false
+ 
+ff = c(6302, 2327, 915, 287, 94, 43, 22, 5, 4, 1)
+
+kbl(
+  data.frame(0:9, ff),
+  booktabs = TRUE,
+  col.names = c("Truncated value of X", "Number of repetitions")
+) %>%
+  kable_styling(fixed_thead = TRUE)
+```
+3. How could you *approximate* the probability that the truncated value of $X$ is 0? 1? 2? Suggest a formula for the (approximate) long run average value of $X$.  (Don't worry if the approximation isn't great; we'll see how to improve it.)
+\
+\
+\
+\
+\
+1. Truncating to the nearest integer turns out not to yield a great approximation of the long run average value of $X$.  How could we get a better approximation?
+\
+\
+\
+\
+\
+1. Suppose instead of truncating to an integer, we truncate to the first decimal.  For example 0.73 is recorded as 0.7, 1.15 is recorded as 1.1, 2.999 is recorded as 2.9, 3.001 is recorded as 3.0, etc.  Suggest a formula for the (approximate) long run average value of $X$.
+\
+\
+\
+\
+\
+1. We can continue in this way, truncating to the second decimal place, then the third, and so on. Considering what happens in the limit, suggest a formula for the theoretical long run average value of $X$.
+\
+\
+\
+\
+\
+
+- The **expected value** (a.k.a. *expectation* a.k.a. *mean*), of a random variable $X$ defined on a probability space with measure $\text{P}$, is a number denoted $\text{E}(X)$ representing the probability-weighted average value of $X$. Expected value is defined as
+\begin{align*}
+	& \text{Discrete $X$ with pmf $p_X$:} & \text{E}(X) & = \sum_x x p_X(x)\\
+	& \text{Continuous $X$ with pdf $f_X$:} & \text{E}(X) & =\int_{-\infty}^\infty x f_X(x) dx
+\end{align*}
+- Note well that $\text{E}(X)$ represents *a single number*.
+- The expected value is the "balance point" (center of gravity) of a
+distribution.
+- The expected value of a random variable $X$ is defined by the probability-weighted average according to the underlying probability measure.  But the expected value can also be interpreted as the **long-run average value**, and so can be approximated via simulation.
+- Read the symbol $\text{E}(\cdot)$ as
+    - Simulate lots of values of what's inside $(\cdot)$
+    - Compute the average.  This is a "usual" average; just sum all the simulated values and divide by the number of simulated values.
+
+
+
+::: {#exm-exponential-ev}
+
+Let $X$ be a random variable which has the Exponential(1) distribution.
+
+:::
+
+
+
+
+
+1. Donny Dont says $\text{E}(X) = \int_0^\infty e^{-x}dx = 1$.  Do you agree?
+\
+\
+\
+\
+\
+1. Compute $\text{E}(X)$.
+\
+\
+\
+\
+\
+1. Compute $\text{P}(X = \text{E}(X))$.
+\
+\
+\
+\
+\
+1. Compute $\text{P}(X \le \text{E}(X))$.
+\
+\
+\
+\
+\
+1. Find the median value (50th percentile) of $X$.  Is the median less than, greater than, or equal to the mean?  Why does this make sense?
+\
+\
+\
+\
+\
+
+
+
+
+::: {#exm-homerun-poisson-ev}
+
+Recall @exm-homerun-poisson in which we assume that $X$, the number of home runs hit (in total by both teams) in a randomly selected Major League Baseball game, has a Poisson(2.3) distribution with pmf
+$$
+p_X(x) =
+e^{-2.3} \frac{2.3^x}{x!}, \qquad  x = 0, 1, 2, \ldots
+$$
+:::
+
+
+1. Recall from @exm-homerun-poisson that $\text{P}(X \le 13) =0.9999998$. Evaluate the pmf for $x=0, 1, \ldots, 13$ and use arithmetic to compute $\text{E}(X)$. (This will technically only give an approximation, since there is non-zero probability that $X>13$, but the calculation will give you a concrete example before jumping to the next part.)
+\
+\
+\
+\
+\
+1. Use the pmf and infinite series to compute $\text{E}(X)$.
+\
+\
+\
+\
+\
+1. Interpret $\text{E}(X)$ in context.
+\
+\
+\
+\
+\
+
+## "Law of the unconscious statistician" (LOTUS)
+
+::: {#exm-rw-lotus}
+
+Flip a coin 3 times and let $X$ be the number of flips that result in H, and let $Y=(X-1.5)^2$. (We will see later why we might be interested in such a transformation.)
+
+:::
+
+1. Find the distribution of $Y$.
+\
+\
+\
+\
+\
+1. Compute $\text{E}(Y)$.
+\
+\
+\
+\
+\
+1. How could we have computed $\text{E}(Y)$ without first finding the distribution of $Y$?
+\
+\
+\
+\
+\
+1. Is $\text{E}((X-1.5)^2)$ equal to $(\text{E}(X)-1.5)^2$?
+\
+\
+\
+\
+\
+
+
+- The **"law of the unconscious statistician" (LOTUS)** says that the expected value of a transformed random variable can be found without finding the distribution of the transformed random variable, simply by applying the probability weights of the original random variable to the transformed values.
+\begin{align*}
+	& \text{Discrete $X$ with pmf $p_X$:} & \text{E}[g(X)] & = \sum_x g(x) p_X(x)\\
+	& \text{Continuous $X$ with pdf $f_X$:} & \text{E}[g(X)] & =\int_{-\infty}^\infty g(x) f_X(x) dx
+\end{align*}
+- LOTUS says we don't have to first find the distribution of $Y=g(X)$ to find $\text{E}[g(X)]$; rather, we just simply apply the transformation $g$ to each possible value $x$ of $X$ and then apply the corresponding weight for $x$ to $g(x)$.
+- Whether in the short run or the long run, in general
+\begin{align*}
+\text{Average of $g(X)$} & \neq g(\text{Average of $X$})
+\end{align*}
+- In terms of expected values, in general
+\begin{align*}
+\text{E}(g(X)) & \neq g(\text{E}(X))
+\end{align*}
+The left side $\text{E}(g(X))$ represents first transforming the $X$ values and then averaging the transformed values. The right side $g(\text{E}(X))$ represents first averaging the $X$ values and then plugging the average (a single number) into the transformation formula. 
+
+
+::: {#exm-uniform-lotus}
+
+Let $X$ be a random variable with a Uniform(-1, 1) distribution and let $Y=X^2$.
+Recall  that in @exm-uniform-square-cdf-method we found the pdf of $Y$: $f_Y(y) = \frac{1}{2\sqrt{y}}, 0<y<1$.
+
+:::
+
+1. Find $\text{E}(X^2)$ using the distribution of $Y$ and the definition of expected value.  Remember: if we did not have the distribution of $Y$, we would first have to derive it as in @exm-uniform-square-cdf-method.
+\
+\
+\
+\
+\
+1. Describe how to use simulation to approximate $\text{E}(Y)$, in a way that is analogous to the method in the previous part.
+\
+\
+\
+\
+\
+1. Find $\text{E}(X^2)$ using LOTUS.
+\
+\
+\
+\
+\
+1. Describe how to use simulation to approximate $\text{E}(X^2)$, in a way that is analogous to the method in the previous part.
+\
+\
+\
+\
+\
+1. Is $\text{E}(X^2)$ equal to $(\text{E}(X))^2$?
+\
+\
+\
+\
+\
+
+
+ 
+::: {#exm-exponential-lotus}
+
+We want to find $\text{E}(X^2)$ if $X$ has an Exponential(1) distribution.  Donny Dont says: "I can just use LOTUS and replace $x$ with $x^2$, so $\text{E}(X^2)$ is $\int_{-\infty}^{\infty} x^2 e^{-x^2} dx$".  Do you agree?
+
+:::

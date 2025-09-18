@@ -1,0 +1,265 @@
+# Independence
+
+
+
+
+- Recall that events $A$ and $B$ are **independent** if the knowing whether or not one occurs does not change the probability of the other.
+- For events $A$ and $B$ (with $0<\text{P}(A)<1$ and $0<\text{P}(B)<1$) the following are equivalent.
+That is, if one is true then they all are true; if one is false, then they all are false.
+
+\begin{align*}
+\text{$A$ and $B$} & \text{ are independent}\\
+\text{P}(A \cap B) & = \text{P}(A)\text{P}(B)\\
+\text{P}(A^c \cap B) & = \text{P}(A^c)\text{P}(B)\\
+\text{P}(A \cap B^c) & = \text{P}(A)\text{P}(B^c)\\
+\text{P}(A^c \cap B^c) & = \text{P}(A^c)\text{P}(B^c)\\
+\text{P}(A|B) & = \text{P}(A)\\
+\text{P}(A|B) & = \text{P}(A|B^c)\\
+\text{P}(B|A) & = \text{P}(B)\\
+\text{P}(B|A) & = \text{P}(B|A^c)
+\end{align*}
+
+
+
+::: {#exm-venn-independent2}
+
+Each of the three Venn diagrams below represents a sample space with 16 equally likely outcomes.  Let $A$ be the yellow `/`  event, $B$ the blue `\` event, and their intersection $A\cap B$ the green $\times$ event. Suppose that areas represent probabilities, so that for example $\text{P}(A) = 4/16$.
+
+In which of the scenarios are events $A$ and $B$ independent?
+:::
+
+
+
+```{r}
+#| label: venn-independent-plot2
+#| echo: false
+
+knitr::include_graphics(c("_graphics/venn-conditional.png"))
+
+```
+
+\
+\
+\
+\
+\
+
+- Do not confuse "disjoint" with "independent".
+- Disjoint means two events do not "overlap". Independence means two events *"overlap in just the right way"*.
+- You can pretty much forget "disjoint" exists; you will naturally apply the addition rule for disjoint events correctly without even thinking about it.
+- Independence is much more important and useful, but also requires more care.
+
+
+::: {#exm-dice-independent}
+Roll two fair six-sided dice, one green and one gold.  There are 36 total possible outcomes (roll on green, roll on gold), all equally likely.  Consider the event $E=\{\text{the green die lands on 1}\}$.
+Answer the following questions by computing and comparing appropriate probabilities.
+:::
+
+
+1. Consider $A=\{\text{the gold die lands on 6}\}$.  Are $A$ and $E$ independent?
+\
+\
+\
+\
+\
+1. Consider $B=\{\text{the sum of the dice is 2}\}$.  Are $B$ and $E$ independent?
+\
+\
+\
+\
+\
+1. Consider $C=\{\text{the sum of the dice is 7}\}$.  Are $C$ and $E$ independent?
+\
+\
+\
+\
+\
+- Independence concerns whether or not the occurrence of one event affects the *probability* of the other.
+- Given two events it is not always obvious whether or not they are independent.  
+- Independence depends on the underlying probability measure.
+Events that are independent under one probability measure might not be independent under another.
+- Independence is often assumed.
+Whether or not independence is a valid assumption depends on the underlying random phenomenon.
+
+
+::: {#exm-independent-probmeasure}
+You have just been elected president (congratulations!) and you need to choose one of four people to sing the national anthem at your inauguration: Alicia, Ariana, Beyonce, or Billie.
+You write their names on some cards --- *each name on possibly a different number of cards*  --- shuffle the cards, and draw one.
+Let $A$ be the event that either Alicia or Ariana is selected, and $B$ be the event that either Alicia or Beyonce is selected.
+
+The following questions ask you to specify probability models satisfying different conditions.
+You can specify the model by identifying how many cards each person's name is written on.
+For each model, find the probabilities of $A$, $B$, and $A\cap B$, and verify whether or not events $A$ and $B$ are independent according to the model.
+:::
+
+1. Specify a probability model according to which the events $A$ and $B$ are independent.
+\
+\
+\
+\
+\
+1. Specify a different probability model according to which the events $A$ and $B$ are independent.
+\
+\
+\
+\
+\
+1. Specify a probability model according to which the events $A$ and $B$ are not independent.
+\
+\
+\
+\
+\
+
+
+
+
+
+::: {#exm-coin-multiple-events-independent}
+Flip a fair coin twice. Let
+
+- $A$ be the event that the first flip lands on heads
+- $B$ be the event that the second flip lands on heads,
+- $C$ be the event that both flips land on the same side.
+  
+:::
+
+1. Are the two events $A$ and $B$ independent?
+\
+\
+\
+\
+\
+\
+1. Are the two events $A$ and $C$ independent?
+\
+\
+\
+\
+\
+\
+1. Are the two events $B$ and $C$ independent?
+\
+\
+\
+\
+\
+\
+1. Are the three events $A$, $B$, and $C$ independent?
+\
+\
+\
+\
+\
+\
+
+
+- Events $A_1, A_2, A_3, \ldots$ are **independent** if:
+    - any pair of events $A_i, A_j, (i \neq j)$ satisfies $\text{P}(A_i\cap A_j)=\text{P}(A_i)\text{P}(A_j)$,
+    - and any triple of events $A_i, A_j, A_k$ (distinct $i,j,k$) satisfies $\text{P}(A_i\cap A_j\cap A_k)=\text{P}(A_i)\text{P}(A_j)\text{P}(A_k)$,
+    - and any quadruple of events satisfies $\text{P}(A_i\cap A_j\cap A_k \cap A_m)=\text{P}(A_i)\text{P}(A_j)\text{P}(A_k)\text{P}(A_m)$,
+    - and so on.
+- Intuitively, a collection of events is independent if knowing whether or not any combination of the events in the collection occur does not change the probability of any other event in the collection.
+
+
+::: {#exm-system-fail}
+A certain system consists of four identical components.  Suppose that the probability that any particular component fails is 0.1, and failures of the components occur independently of each other.  Find the probability that the system fails if:
+:::
+
+1. The components are connected in *parallel*: the system fails only if *all* of the components fail.
+\
+\
+\
+\
+\
+1. The components are connected in *series*: the system fails whenever *at least one* of the components fails.
+\
+\
+\
+\
+\
+1. Donny Don't says the answer to the previous part is $0.1 + 0.1 + 0.1 + 0.1 = 0.4$. Explain the error in Donny's reasoning.
+\
+\
+\
+\
+\
+
+
+- When events are independent, the multiplication rule simplifies greatly.
+$$
+\text{P}(A_1 \cap A_2 \cap A_3 \cap \cdots \cap A_n) = \text{P}(A_1)\text{P}(A_2)\text{P}(A_3)\cdots\text{P}(A_n) \quad \text{if $A_1, A_2, A_3, \ldots, A_n$ are independent}
+$$
+- When a problem involves independence, you will want to take advantage of it. Work with "and" events whenever possible in order to use the multiplication rule.
+For example, for problems involving "at least one" (an "or" event) take the complement to obtain "none" (an "and" event).
+
+
+
+::: {#exm-counting-lottery}
+
+In the Powerball lottery, a player picks five different whole numbers between 1 and 69, and another whole number between 1 and 26 that is called the Powerball.  In the drawing, the 5 numbers are drawn without replacement from a "hopper" with balls labeled 1 through 69, but the Powerball is drawn from a separate hopper with balls labeled 1 through 26. The player wins the jackpot if both the first 5 numbers match those drawn, in any order, and the Powerball is a match.
+Under this set up, there are 292,201,338 possible winning numbers.
+:::
+
+
+1. What is the probability the next winning number is 6-7-16-23-26, plus the Powerball number, 4.
+\
+\
+\
+\
+\
+1. What is the probability the next winning number is 1-2-3-4-5, plus the Powerball number, 6.
+\
+\
+\
+\
+\
+1. The Powerball drawing happens twice a week. Suppose you play the same Powerball number, twice a week, every week for over 50 years.  Let's say you purchase a ticket for 6000 drawings in total.  What is the probability that you win at least once?
+\
+\
+\
+\
+\
+1. Instead of playing for 50 years, you decide only to play one lottery, but you buy 6000 tickets, each with a different Powerball number.  What is the probability that at least one of your tickets wins?  How does this compare to the previous part?  Why?
+\
+\
+\
+\
+\
+1. Each ticket costs 2 dollars, but the jackpot changes from drawing to drawing.  Suppose you buy 6000 tickets for a single drawing. How large does the jackpot need to be for your "expected" profit to be positive?  To be \$100,000? (We're ignoring inflation, taxes, transaction costs, and any changes in the rules.)
+\
+\
+\
+\
+\
+
+
+
+::: {#exm-meeting-first-time}
+In the meeting problem, assume Regina's arrival time $R$ follows a Uniform(0, 60) distribution and Cady's arrival time $Y$ follows a Normal(30, 10) distribution, independently of each other.
+(Remember, arrival times are measured in minutes after 12:00.)
+Let $T=\min(R, Y)$. 
+Compute and interpret $\text{P}(T < 10)$.
+:::
+\
+\
+\
+\
+\
+
+::: {#exm-branching-extinction}
+A very large petri dish starts with a single microorganism.
+After one minute, the microorganism either splits into two with probability $s$, or dies.
+All subsequent microorganisms behave in the same way --- splitting into two or dying after each minute --- independently of each other. 
+:::
+
+1. If $s=3/4$, what is the probability that the population eventually goes extinct? (Hint: condition on the first step.)
+\
+\
+\
+\
+\
+1. Find the probability that the population eventually goes extinct as a function of $s$. For what values of $s$ is the extinction probability 1?
+
+
+

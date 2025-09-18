@@ -1,0 +1,502 @@
+# Joint Distributions
+
+
+- The *joint distribution* of random variables $X$ and $Y$ (defined on the same probability space) is a probability distribution on $(x, y)$ *pairs*. In this context, the distribution of one of the variables alone is called a *marginal distribution*.
+
+
+## Joint probability mass functions
+
+
+::: {#exm-mscoin-joint}
+Flip a fair coin four times and record the results in order, e.g. HHTT means two heads followed by two tails.
+We're interested in the  *proportion of the flips which immediately follow a H that result in H*.
+We cannot measure this proportion if no flips follow a H, i.e. the outcome is either TTTT or TTTH; in these cases, we would discard the outcome and try again.
+
+Let:
+- $Z$  be the number of flips immediately following H.
+- $Y$  be the number of flips immediately following H that result in H.
+- $X = Y/Z$  be the proportion of flips immediately following H that result in H.
+:::
+
+1.  Make a table of all possible outcomes and the corresponding values of $Z, Y, X$.
+\
+\
+\
+\
+\
+2.  Make a two-way table representing the joint probability mass function of $Y$ and $Z$.
+\
+\
+\
+\
+\
+3.  Construct a spinner for simulating $(Y, Z)$ pairs.
+\
+\
+\
+\
+\
+4.  Make a table specifying the pmf of $X$.
+\
+\
+\
+\
+\
+
+- The **joint probability mass function (pmf)** of two *discrete* random variables $(X,Y)$ defined on a probability space with probability measure $\text{P}$ is the function $p_{X,Y}:\mathbb{R}^2\mapsto[0,1]$ defined by
+$$
+p_{X,Y}(x,y) = \text{P}(X= x, Y= y) \qquad \text{ for all } x,y
+$$
+- Remember to specify the possible $(x, y)$ pairs when defining a joint pmf.
+
+::: {#exm-poisson-hr-joint}
+
+Let $X$ be the number of home runs hit by the home team, and $Y$ the number of home runs hit by the away team in a randomly selected Major League Baseball game.
+Suppose that $X$ and $Y$ have joint pmf
+:::
+
+$$
+p_{X, Y}(x, y)
+=
+\begin{cases}
+e^{-2.3}\frac{1.2^{x}1.1^{y}}{x!y!}, & x = 0, 1, 2, \ldots; y = 0, 1, 2, \ldots,\\
+0, & \text{otherwise.}
+\end{cases}
+$$
+
+1.  Compute and interpret the probability that the home teams hits 2 home runs and the away team hits 1 home run.
+\
+\
+\
+\
+\
+2.  Construct a two-way table representation of the joint pmf.
+\
+\
+\
+\
+\
+3.  Compute and interpret the probability that each team hits at most 4 home runs.
+\
+\
+\
+\
+\
+4.  Compute and interpret the probability that both teams combine to hit a total of 3 home runs.
+\
+\
+\
+\
+\
+5.  Compute and interpret the probability that the home team and the away team hit the same number of home runs.
+\
+\
+\
+\
+\
+
+- Recall that we can obtain marginal distributions from a joint distribution.
+- *Marginal pmfs* are determined by the joint pmf via the law of total probability.
+- If we imagine a plot with blocks whose heights represent the joint probabilities, the marginal probability of a particular value of one variable can be obtained by "stacking" all the blocks corresponding to that value.
+
+\begin{align*}
+p_X(x) & = \sum_y p_{X,Y}(x,y) & & \text{a function of $x$ only}
+\\
+p_Y(y) & = \sum_x p_{X,Y}(x,y) & & \text{a function of $y$ only}
+\\
+\end{align*}
+
+::: {#exm-poisson-hr-joint-marginal}
+Continuing @exm-poisson-hr-joint.
+Let $X$ be the number of home runs hit by the home team, and $Y$ the number of home runs hit by the away team in a randomly selected Major League Baseball game.
+Suppose that $X$ and $Y$ have joint pmf
+:::
+
+$$
+p_{X, Y}(x, y)
+=
+\begin{cases}
+e^{-2.3}\frac{1.2^{x}1.1^{y}}{x!y!}, & x = 0, 1, 2, \ldots; y = 0, 1, 2, \ldots,\\
+0, & \text{otherwise.}
+\end{cases}
+$$
+
+1.  Compute and interpret the probability that the home team hits 2 home runs.
+\
+\
+\
+\
+\
+2.  Find the marginal pmf of $X$, and identify the marginal distribution by name.
+\
+\
+\
+\
+\
+3.  Compute and interpret the probability that the away team hits 1 home run.
+\
+\
+\
+\
+\
+4.  Find the marginal pmf of $Y$, and identify the marginal by name.
+\
+\
+\
+\
+\
+5.  Use the joint pmf to compute the probability that the home team hits 2 home runs and the away team hits 1 home run. How does it relate to the marginal probabilities from the previous parts? What does this imply about the events $\{X = 2\}$ and $\{Y = 1\}$?
+\
+\
+\
+\
+\
+6.  How does the joint pmf relate to the marginal probabilities from the previous parts? What do you think this implies about $X$ and $Y$?
+\
+\
+\
+\
+\
+7.  In light of the previous part, how you could use spinners to simulate and $(X, Y)$ pair?
+\
+\
+\
+\
+\
+
+::: {#exm-chicken-egg}
+(Blitzstein's chicken and egg story.) Suppose $N$, the number of eggs a chicken lays in a randomly selected week, has a Poisson($6.5$) distribution.
+Each egg hatches with probability $0.8$, independently of all other eggs.
+Let $X$ be the number of eggs that hatch.
+Let $p_{N, X}$ denote the joint pmf of $N$ and $X$.
+:::
+
+1.  Identify the possible $(N, X)$ pairs.
+\
+\
+\
+\
+\
+2.  Identify the conditional distribution of $X$ given $N=7$.
+\
+\
+\
+\
+\
+3.  Compute and interpret $p_{N, X}(7, 7)$. Hint: compute $\text{P}(X = 7|N = 7)$ and use the multiplication rule.
+\
+\
+\
+\
+\
+4.  Compute and interpret $p_{N, X}(7, 5)$.
+\
+\
+\
+\
+\
+5.  Identify the conditional distribution of $X$ given $N=n$ for a generic $n=0, 1, 2, \ldots$.
+\
+\
+\
+\
+\
+6.  Find an expression for the joint pmf $p_{N, X}$. Be sure to specify the possible values.
+\
+\
+\
+\
+\
+7.  Are $N$ and $X$ independent?
+\
+\
+\
+\
+\
+8.  Make a table of the joint pmf.
+\
+\
+\
+\
+\
+
+## Joint probability density fuctions
+
+
+
+
+- The joint distribution of two continuous random variables can be specified by a joint pdf, a *surface* specifying the density of $(x, y)$ pairs.
+- The probability that the $(X,Y)$ pair of random variables lies is some region is the *volume* under the joint pdf surface over the region.
+
+
+::: {#exm-sketch-joint}
+
+Suppose that
+
+- $X$ has a Normal(0, 1) distribution
+- $U$ has a Uniform(-2, 2) distribution
+- $X$ and $U$ are generated independently
+- $Y = UX$.
+
+Sketch a plot representing the joint pdf of $X$ and $Y$.
+Be sure to label  axes with appropriate values.
+:::
+\
+\
+\
+\
+\
+
+- The **joint probability density function (pdf)** of two *continuous* random variables $(X,Y)$ defined on a probability space with probability measure $\text{P}$ is the function $f_{X,Y}$ which satisfies, for any region $S$
+$$
+ \text{P}[(X,Y)\in S] = \iint\limits_{S}  f_{X,Y}(x,y)\, dx dy 
+$$
+- A joint pdf is a surface with height $f_{X,Y}(x,y)$ at $(x, y)$.
+- The probability that the $(X,Y)$ pair of random variables lies in the region $A$ is the *volume* under the pdf surface over the region $A$
+- The height of the density surface at a particular $(x,y)$ pair is related to the probability that $(X, Y)$ takes a value "close to" $(x, y)$:
+$$
+\text{P}(x-\epsilon/2<X <  x+\epsilon/2,\; y-\epsilon/2<Y < y+\epsilon/2) = \epsilon^2 f_{X, Y}(x, y) \qquad \text{for small $\epsilon$}
+$$
+
+
+::: {#exm-uniform-sum-max-pdf}
+Spin the Uniform(1, 4) spinner twice, and let $X$ be the sum of the two spins, and $Y$ the larger spin (or the common value if there is a tie).
+:::
+
+1.  Identify the possible values of $X$, the possible values of $Y$, and the possible $(X, Y)$ pairs. (Hint: think about the possible values of the spins and how $X$ and $Y$ are defined.)
+\
+\
+\
+\
+\
+2.  If $U_1$ and $U_2$ are the results of the two spins, explain why $\text{P}(U_1 = U_2) = 0$.
+\
+\
+\
+\
+\
+3.  Explain intuitively why the joint density is constant over the region of possible $(X, Y)$ pairs. (Hint: compare to the discrete four-sided die case. There the probability of $(x, y)$ pairs was 2/16 for most possible pairs, because there were two pairs of rolls associated with each $(x, y)$ pair, e.g., rolls of (3, 2) or (2, 3) yield (5, 4) for $(X, Y)$. The exception was the $(x, y)$ pairs with probability 1/16 which correspond to rolling doubles, e.g. roll of (2, 2) yield (4, 2) for $(X, Y)$. Explain why we don't need to worry about treating doubles as a separate case with the Uniform(1, 4) spinner.)
+\
+\
+\
+\
+\
+4.  Sketch a plot of the joint pdf.
+\
+\
+\
+\
+\
+5.  Find the joint pdf of $(X, Y)$.
+\
+\
+\
+\
+\
+6.  Use geometry to find $\text{P}(X <4, Y > 2.5)$.
+\
+\
+\
+\
+\
+
+- Marginal pdfs can be obtained from the joint pdf by the law of total probability.
+\begin{align*}
+f_X(x) & = \int_{-\infty}^\infty f_{X,Y}(x,y) dy & & \text{a function of $x$ only}
+\\
+f_Y(y) & = \int_{-\infty}^\infty f_{X,Y}(x,y) dx & & \text{a function of $y$ only}
+\end{align*}
+- The marginal distribution of $X$ is a distribution on $x$ values only.
+For example, the pdf of $X$ is a function of $x$ only (and not $y$).
+(Similarly the pdf of $Y$ is a function of $y$ only and not $x$.)
+
+
+::: {#exm-uniform-sum-max-pdf-marginal}
+Continuing @exm-uniform-sum-max-pdf. Spin the Uniform(1, 4) spinner twice, and let $X$ be the sum of the two spins, and $Y$ the larger spin.
+:::
+
+1.  Sketch a plot of the marginal distribution of $Y$. Be sure to specify the possible values.
+\
+\
+\
+\
+\
+1.  Suggest an expression for the marginal pdf of $Y$.
+\
+\
+\
+\
+\
+1.  Use calculus to derive $f_Y(2.5)$, the marginal pdf of $Y$ evaluated at $y=2.5$.
+\
+\
+\
+\
+\
+1.  Use calculus to derive $f_Y$, the marginal pdf of $Y$.
+\
+\
+\
+\
+\
+1.  Find $\text{P}(Y > 2.5)$.
+\
+\
+\
+\
+\
+1.  Sketch a plot of the marginal distribution of $X$. Be sure to specify the possible values. (Hint: think "collapsing/stacking" the joint distribution; compare with the dice rolling example.)
+\
+\
+\
+\
+\
+1.  Suggest an expression for the marginal pdf of $X$.
+\
+\
+\
+\
+\
+1.  Use calculus to derive $f_X(4)$, the marginal pdf of $X$ evaluated at $x=4$.
+\
+\
+\
+\
+\
+1.  Use calculus to derive $f_X(6.5)$, the marginal pdf of $X$ evaluated at $x=6.5$.
+\
+\
+\
+\
+\
+1. Use calculus to derive $f_X$, the marginal pdf of $X$. Hint: consider $x<5$ and $x>5$ separately.
+\
+\
+\
+\
+\
+1. Find $\text{P}(X < 4)$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(X < 6.5)$.
+\
+\
+\
+\
+\
+
+
+::: {#exm-joint-quakes}
+Let $X$ be the time (hours), starting now, until the next earthquake (of any magnitude) occurs in SoCal, and let $Y$ be the time (hours), starting now, until the second earthquake from now occurs (so that $Y-X$ is the time between the first and second earthquake).
+Suppose that $X$ and $Y$ are continuous RVs with joint pdf
+:::
+$$
+f_{X, Y}(x, y) = 
+\begin{cases}
+4e^{-2y}, & 0 < x< y < \infty,\\
+0, & \text{otherwise}
+\end{cases}
+$$
+
+1. Is the joint pdf a function of both $x$ and $y$?  How?
+\
+\
+\
+1. Why is $f_{X, Y}(x, y)$ equal to 0 if $y < x$?
+\
+\
+\
+1. Sketch a plot of the joint pdf. What does its shape say about the distribution of $X$ and $Y$ in this context?
+\
+\
+\
+\
+\
+1. Set up the integral to find $\text{P}(X > 0.5, Y < 1)$.
+\
+\
+\
+\
+\
+
+
+::: {#exm-joint-quakes-marginal}
+Continuing @exm-joint-quakes.
+Let $X$ be the time (hours), starting now, until the next earthquake (of any magnitude) occurs in SoCal, and let $Y$ be the time (hours), starting now, until the second earthquake from now occurs (so that $Y-X$ is the time between the first and second earthquake).
+Suppose that $X$ and $Y$ are continuous RVs with joint pdf
+
+:::
+$$
+f_{X, Y}(x, y) = 
+\begin{cases}
+4e^{-2y}, & 0 < x< y < \infty,\\
+0, & \text{otherwise}
+\end{cases}
+$$
+
+
+
+
+1. Sketch a plot of the marginal pdf of $X$. Be sure to specify possible values.
+\
+\
+\
+\
+\
+1. Find the marginal pdf of $X$ at $x=0.5$.
+\
+\
+\
+\
+\
+1. Find the marginal pdf of $X$.  Be sure to specify possible values.
+Identify the marginal distribution of $X$ be name.
+\
+\
+\
+\
+\
+1. Compute and interpret $\text{P}(X > 0.5)$.
+\
+\
+\
+\
+\
+1. Sketch the marginal pdf of $Y$. Be sure to specify possible values.
+\
+\
+\
+\
+\
+1. Find the marginal pdf of $Y$ at $y=1.5$.
+\
+\
+\
+\
+\
+1. Find the marginal pdf of $Y$.  Be sure to specify possible values of $Y$.
+\
+\
+\
+\
+\
+1. Compute and interpret find $\text{P}(Y < 1)$.
+\
+\
+\
+\
+\
+1. Is $\text{P}(X > 0.5, Y < 1)$ equal to the product of $\text{P}(X > 0.5)$ and $\text{P}(Y < 1)$? Why? 
+\
+\
+\
+\
+\
+
+-   The joint distribution is a distribution on $(X, Y)$ pairs. A mathematical expression of a joint distribution is a function of both values of $X$ and values of $Y$. Pay special attention to the possible values; the possible values of one variable might be restricted by the value of the other.
+-   The marginal distribution of $Y$ is a distribution on $Y$ values only, regardless of the value of $X$. A mathematical expression of a marginal distribution will have only values of the single variable in it; for example, an expression for the marginal distribution of $Y$ will only have $y$ in it (no $x$, not even in the possible values).
+
+

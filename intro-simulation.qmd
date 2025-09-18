@@ -1,0 +1,173 @@
+# Introduction to Simulation
+
+
+
+- **Simulation** involves using a probability model to artificially recreate a random phenomenon, many times, usually using a computer.
+- Given a probability model, we can simulate outcomes, occurrences of events, and values of random variables, according to the specifications of the probability measure which reflects the model assumptions.
+- In general, a simulation involves the following steps.
+    1.  **Set up.** Define a probability space, and related random variables and events.
+    2.  **Simulate.** Simulate --- according to the assumptions reflected in the probability measure --- outcomes, occurrences of events, and values of random variables.
+    3.  **Summarize.** Summarize simulation output in plots and summary statistics (relative frequencies, averages, standard deviations, correlations, etc) to describe and approximate probabilities, distributions, and related characteristics.
+    4.  **Sensitivity analysis.** Investigate how results respond to changes in the assumptions or parameters of the simulation.
+- Many random phenomena can be concretely represented in terms of "box models" and "spinners".
+
+
+::: {#exm-dice-sim}
+Let $X$ be the sum of two rolls of a fair four-sided die, and let $Y$ be the larger of the two rolls (or the common value if a tie).
+Set up a "box model" and explain how you would use it to simulate a single realization of $(X, Y)$.
+Could you use a spinner instead?
+\
+\
+\
+\
+\
+:::
+
+
+::: {#exm-matching-box-sim}
+Consider the matching problem with $n=4$.
+Label the objects 1, 2, 3, 4, and the spots 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc. Let $X$ be the number of rocks that are placed in the correct spot,
+and let $C$ be the event that at least one rock is placed in the correct spot.
+Describe how you would use a box model to simulate a single realization of $Y$ and of $C$.
+Could you use a spinner instead?
+\
+\
+\
+\
+\
+:::
+
+
+::: {#exm-meeting-box-sim}
+Consider a version of the meeting problem where Regina and Cady will definitely arrive between noon and 1, but their exact arrival times are uncertain.
+Rather than dealing with clock time, it is helpful to represent noon as time 0 and measure time as minutes after noon, so that arrival times take values in the continuous interval [0, 60].
+
+Explain how you would construct a spinner and use it to simulate an outcome.
+Why could we not simulate this situation with a box model?
+\
+\
+\
+\
+\
+:::
+
+::: {#exm-meeting-box-sim2}
+In the meeting problem, how could you construct a circular spinner to represent that they are more likely to arrive near 12:30 and less likely to arrive near 12:00 or 1:00?
+Imagine the spinner needle is still equally likely to point at any value on the circular axis.
+\
+\
+\
+\
+\
+:::
+
+-  The probability of event $A$ can be approximated by simulating, according to the assumptions corresponding to the probability measure $\text{P}$, the random phenomenon a large number of times and computing the relative frequency of $A$.
+
+$$
+{\small
+\text{P}(A) \approx \frac{\text{number of repetitions on which $A$ occurs}}{\text{number of repetitions}}, \quad \text{for a large number of $\text{P}$-repetitions}
+}
+$$
+
+
+::: {#exm-dice-sim-tactile}
+
+Use a four-sided die (or a box or a spinner) and perform by hand 10 repetitions of the simulation in Example @exm-dice-sim.
+(Yes, really do it.)
+For each repetition, record the results of the first and second rolls (or draws or spins) and the values of $X$ and $Y$.
+Based only on the results of your simulation, how would you approximate the following?
+(Don't worry if the approximations are any good yet.)
+
+:::
+
+1.  $\text{P}(A)$, where $A$ is the event that the first roll is 3.
+\
+\
+\
+\
+\
+2.  $\text{P}(X=6)$
+\
+\
+\
+\
+\
+3.  $\text{P}(X \ge 6)$
+\
+\
+\
+\
+\
+4.  $\text{P}(Y = 3)$
+\
+\
+\
+\
+\
+5.  $\text{P}(Y \ge 3)$
+\
+\
+\
+\
+\
+6.  $\text{P}(X=6, Y=3)$
+\
+\
+\
+\
+\
+7.  $\text{P}(X\ge6, Y \ge 3)$
+\
+\
+\
+\
+\
+8. Construct a table of the simulated relative frequencies of each possible value $x$ of $X$.
+\
+\
+\
+\
+\
+1. Construct a table of the simulated relative frequencies of each possible value $(x, y)$ pair of $(X, y)$.
+\
+\
+\
+\
+\
+1. Will the results above tend to produce good estimates of the corresponding theoretical values? Why? If not, how could we improve the estimates?
+\
+\
+\
+\
+\
+
+- In practice, many repetitions of a simulation are performed on a computer to approximate what happens in the "long run".
+- However, we often start by carrying out a few repetitions, (1) by hand to help make the process more concrete, or (2) by computer to check that our code is working correctly
+
+::: {#exm-meeting-sim-intro}
+
+Recall the meeting problem.
+Describe in detail how, in principle, you could conduct by hand a simulation and use the results to approximate the probability that Regina and Cady arrive with 15 minutes of each other for the
+following two models.
+(See Sections 2.4.2 and 2.5.1 of the textbook.)
+:::
+
+1.  Uniform(0, 60), independent arrivals model
+\
+\
+\
+\
+\
+1.  Normal(30, 10), independent arrivals model
+\
+\
+\
+\
+\
+
+- A probability is a theoretical long run relative frequency.
+- A probability can be approximated by a relative frequency from a large number of simulated repetitions, but there is some simulation margin of error, due to natural variability in the simulation.
+- The margin of error when approximating a single probability based on a simulated relative frequency is roughly on the order $1/\sqrt{N}$, where $N$ is the *number of independently simulated values used to calculate the relative frequency.*
+- Use a margin of error of
+$2/\sqrt{N}$ when approximating many probabilities based on a single simulation.
+

@@ -1,0 +1,510 @@
+# Conditional Distributions
+
+
+
+
+- The **conditional distribution of $Y$ given $X=x$** is the distribution of $Y$  values over only those outcomes for which $X=x$.   It is a distribution on values of $Y$ only; treat $x$ as a fixed constant when conditioning on the event $\{X=x\}$.
+- Conditional distributions can be obtained from a joint distribution by *slicing and renormalizing*.
+- Conditioning on the value of a random variable involves treating that random variable as a constant.
+- It is sometimes possible to identify one-way conditional distributions ($Y$ given $X$, or $X$ given $Y$) simply by inspecting the joint distribution, without doing any calculations.
+- 
+Be sure to distinguish between joint, conditional, and marginal distributions.
+    - The joint distribution is a distribution on $(X, Y)$ pairs. A mathematical expression of a joint distribution is a function of both values of $X$ and values of $Y$.  Pay special attention to the possible values; the possible values of one variable might be restricted by the value of the other.
+    - The conditional distribution of $Y$ given $X=x$ is a distribution on $Y$ values (among $(X, Y)$ pairs with a fixed value of $X=x$). A mathematical expression of a conditional distribution will involve both $x$ and $y$, but $x$ is treated like a fixed constant and $y$ is treated as the variable.  Note: the possible values of $Y$ might depend on the value of $x$, but $x$ is treated like a constant.
+    - The marginal distribution of $Y$ is a distribution on $Y$ values only, regardless of the value of $X$. A mathematical expression of a marginal distribution will have only values of the single variable in it; for example, an expression for the marginal distribution of $Y$ will only have $y$ in it (no $x$, not even in the possible values).
+
+
+
+## Discrete random variables: Conditional probability mass functions
+
+
+::: {#exm-dice-coin-pmf}
+
+Roll a fair four-sided die once and let $X$ be the number rolled.  Then flip a fair coin $X$ times and let $Y$ be the number of heads.
+
+:::
+
+1. Identify the possible values of $X$.
+\
+\
+\
+\
+\
+1. Identify the possible values of $Y$.
+\
+\
+\
+\
+\
+1. Find the conditional distribution of $Y$ given $X=4$.
+\
+\
+\
+\
+\
+1. Find the conditional distribution of $Y$ given $X=3$.
+\
+\
+\
+\
+\
+1. Find the probability that $X=3$ and $Y=2$.
+\
+\
+\
+\
+\
+1. Find the probability that $X=3$ and $Y=y$ for $y = 0, 1, 2, 3, 4$.
+\
+\
+\
+\
+\
+1. Find the joint distribution of $X$ and $Y$.
+\
+\
+\
+\
+\
+1. Find the marginal distribution of $Y$.
+\
+\
+\
+\
+\
+1. Find the conditional distribution of $X$ given $Y=2$.
+\
+\
+\
+\
+\
+
+- Let $X$ and $Y$ be two *discrete* random variables defined on a probability space with probability measure $\text{P}$.  For any fixed $x$ with $\text{P}(X=x)>0$, the **conditional probability mass function (pmf)** of $Y$ given $X=x$ is a function $p_{Y|X}$ defined by $p_{Y|X}(y|x)=\text{P}(Y=y|X=x)$.
+\begin{align*}
+p_{Y|X}(y|x) = \text{P}(Y=y|X=x) & = \frac{\text{P}(X=x,Y=y)}{\text{P}(X=x)}  = \frac{p_{X,Y}(x,y)}{p_X(x)}& &  \text{a function of $y$ for fixed $x$}
+\end{align*}
+- To emphasize, the notation $p_{Y|X}(\cdot|x)$ represents the distribution of the random variable $Y$ given a fixed value $x$ of the random variable $X$.
+In the expression $p_{Y|X}(y|x)$, $y$ is treated as the variable and $x$ is treated like a fixed constant.
+- Notice that the pmfs satisfy
+$$
+\text{conditional} = \frac{\text{joint}}{\text{marginal}}
+$$
+- Conditional distributions can be obtained from a joint distribution by *slicing and renormalizing*. The conditional pmf of $Y$ given $X=x$ can be thought of as:
+    - the slice of the joint pmf $p_{X, Y}(x, y)$ of $(X, Y)$ corresponding to $X=x$, a function of $y$ alone,
+    - renormalized --- by dividing by $p_X(x)$ --- so that the probabilitiess, corresponding to different $y$ values, for the slice sum to 1. 
+- For a fixed $x$, the shape of the conditional pmf of $Y$ given $X=x$ is determined by the shape of the $x$-slice of the joint pmf, $p_{X, Y}(x, y)$.  That is,
+$$
+\text{As a function of values of $Y$}, \quad p_{Y|X}(y|x) \propto p_{X, Y}(x, y)
+$$
+- For each fixed $x$, the conditional pmf $p_{Y|X}(\cdot |x)$ is a different distribution on values of the random variable $Y$.  There is not one "conditional distribution of $Y$ given $X$", but rather a family of conditional distributions of $Y$ given different values of $X$.
+- Rearranging the definition of a conditional pmf yields the **multiplication rule for pmfs of discrete random variables**
+\begin{align*}
+p_{X,Y}(x,y) & = p_{Y|X}(y|x)p_X(x)\\
+& = p_{X|Y}(x|y)p_Y(y)\\
+\text{joint} & = \text{conditional}\times\text{marginal} 
+\end{align*}
+- Marginal distributions can be obtained from the joint distribution by collapsing/stacking using the law of total probability. The **law of total probability for pmfs** is
+\begin{align*}
+p_{Y}(y) & =  \sum_x p_{X,Y}(x, y)\\
+& =\sum_x p_{Y|X}(y|x)p_X(x)
+\end{align*}
+
+
+::: {#exm-conditional-uniform-joint-pmf}
+
+$X$ and $Y$ are discrete random variables with joint pmf
+
+$$
+p_{X, Y} (x, y) = \frac{1}{4x}, \qquad x = 1, 2, 3, 4; y = 1, \ldots, x  
+$$
+
+:::
+
+1. Donny Dont says: "Wait, the joint pmf is supposed to be a function of both $x$ and $y$ but $\frac{1}{4x}$ is only a function of $x$." Explain to Donny how $p_{X, Y}$ here is, in fact, a function of both $x$ and $y$.
+\
+\
+\
+\
+\
+1. In which direction will it be easier to find the conditional distributions by inspection - $Y$ given $X$ or $X$ given $Y$?
+\
+\
+\
+\
+\
+1. Without doing any calculations, find the conditional distribution of $Y$ given $X = 3$.
+\
+\
+\
+\
+\
+1. Without summing over the joint pmf, find the marginal probability that $X = 3$.
+\
+\
+\
+\
+\
+1. Without doing any calculations, find a general expression for the conditional distribution of $Y$ given $X = x$.
+\
+\
+\
+\
+\
+1. Without summing over the joint pmf, find the marginal pmf of $X$.
+\
+\
+\
+\
+\
+1. Describe a dice rolling scenario in which ($X$, $Y$) pairs would follow this joint distribution. (Hint: you might need multiple kinds of dice.)
+\
+\
+\
+\
+\
+1. Construct a two-way table representing the joint pmf, and use it to verify your answers to the previous parts.
+\
+\
+\
+\
+\
+1. Find the marginal pmf of $Y$.  Be sure to identify the possible values.
+\
+\
+\
+\
+\
+1. Find the conditional pmf of $X$ given $Y=2$. Be sure to identify the possible values.
+\
+\
+\
+\
+\
+
+
+## Continuous random variables: Conditional probability density functions
+
+- Let $X$ and $Y$ be two *continuous* random variables with joint pdf $f_{X,Y}$ and marginal pdfs $f_X, f_Y$.  For any fixed $x$ with $f_X(x)>0$, the **conditional probability density function (pdf)** of $Y$ given $X=x$ is a function $f_{Y|X}$ defined by
+\begin{align*}
+f_{Y|X}(y|x) &= \frac{f_{X,Y}(x,y)}{f_X(x)}& &  \text{a function of $y$ for fixed $x$}
+\end{align*}
+- To emphasize, the notation $f_{Y|X}(y|x)$ represents a conditional distribution of the random variable $Y$ for a fixed value $x$ of the random variable $X$.  In the expression $f_{Y|X}(y|x)$, $x$ is treated like a constant and $y$ is treated as the variable.
+- Notice that the pdfs satisfy
+$$
+\text{conditional} = \frac{\text{joint}}{\text{marginal}}
+$$
+- Conditional distributions can be obtained from a joint distribution by *slicing and renormalizing*.
+The conditional pdf of $Y$ given $X=x$ can be thought of as:
+    - the slice of the joint pdf $f_{X, Y}(x, y)$ of $(X, Y)$ corresponding to $X=x$, a function of $y$ alone,
+    - renormalized --- by dividing by $f_X(x)$ --- so that the density heights, corresponding to different $y$ values, for the slice are such that the total area under the density slice is 1. 
+- For a fixed $x$, the shape of the conditional pdf of $Y$ given $X=x$ is determined by the shape of the $x$-slice of the joint pdf, $f_{X, Y}(x, y)$.  That is,
+$$
+\text{As a function of values of $Y$}, \quad f_{Y|X}(y|x) \propto f_{X, Y}(x, y)
+$$
+- For each fixed $x$, the conditional pdf $f_{Y|X}(\cdot |x)$ is a different distribution on values of the random variable $Y$.  There is not one "conditional distribution of $Y$ given $X$", but rather a family of conditional distributions of $Y$ given different values of $X$.
+- Rearranging the definition of a conditional pdf yields the **multiplication rule for pdfs of continuous random variables**
+\begin{align*}
+f_{X,Y}(x,y) & = f_{Y|X}(y|x)f_X(x)\\
+& = f_{X|Y}(x|y)f_Y(y)\\
+\text{joint} & = \text{conditional}\times\text{marginal} 
+\end{align*}
+- Marginal distributions can be obtained from the joint distribution by collapsing/stacking using the law of total probability. The **law of total probability for pmfs** is
+\begin{align*}
+f_{Y}(y) & =  \int_{-\infty}^\infty f_{X,Y}(x, y)\, dx\\
+& =\int_{-\infty}^\infty f_{Y|X}(y|x)f_X(x)\, dx
+\end{align*}
+- Remember that the probability that a continuous random variable is equal to a particular value is 0; that is, for continuous $X$, $\text{P}(X=x)=0$. When we condition on $\{X=x\}$ we are really conditioning on $\{|X-x|<\epsilon\}$ and seeing what happens in the idealized limit when $\epsilon\to0$.
+- When simulating, *never* condition on $\{X=x\}$; rather, condition on $\{|X-x|<\epsilon\}$ where $\epsilon$ represents some suitable degree of precision (e.g. $\epsilon=0.005$ if rounding to two decimal places).
+- Remember pdfs do not return probabilities directly; $f_{Y|X}(y|x)$ is not a probability of anything. But $f_{Y|X}(y|x)$ is related to the probability that $Y$ is "close to" $y$ given that $X$ is "close to" $x$:
+$$
+\text{P}(y-\epsilon/2<Y < y+\epsilon/2\; \vert\; x-\epsilon/2<X <  x+\epsilon/2) \approx \epsilon f_{Y|X}(y|x)
+$$
+
+
+
+::: {#exm-uniform-sum-max-conditional}
+
+Spin the Uniform(1, 4) spinner twice and let $X$ be the sum of the two spins and $Y$ the larger to the two spins (or the common value if a tie). Recall that the joint pdf is
+:::
+$$
+f_{X, Y}(x, y) =
+      \begin{cases}
+    2/9, & 2<x<8,\; 1<y<4,\; x/2<y<x-1,\\
+    0, & \text{otherwise,}
+    \end{cases}
+$$
+the marginal pdf of $Y$ is
+$$
+      f_Y(y) =
+      \begin{cases}
+      (2/9)(y-1), &   1<y<4,\\
+      0, & \text{otherwise,}
+      \end{cases}
+$$
+and the marginal pdf of $X$ is
+$$
+     f_X(x) = 
+       \begin{cases}
+       (1/9)(x-2), & 2 < x< 5,\\
+       (1/9)(8-x), & 5<x<8,\\
+       0, & \text{otherwise.}
+       \end{cases}
+$$
+
+
+
+
+1. Find $f_{X|Y}(\cdot|3)$, the conditional pdf of $X$ given $Y=3$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(X > 5.5 | Y = 3)$.
+\
+\
+\
+\
+\
+1. Find $f_{X|Y}(\cdot|4)$, the conditional pdf of $X$ given $Y=4$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(X > 5.5 | Y = 4)$.
+\
+\
+\
+\
+\
+1. Find $f_{X|Y}(\cdot|y)$, the conditional pdf of $X$ given $Y=y$, for $1<y<4$.
+\
+\
+\
+\
+\
+1. Find $f_{Y|X}(\cdot|3.5)$, the conditional pdf of $Y$ given $x=3.5$.
+\
+\
+\
+\
+\
+1. Find $f_{Y|X}(\cdot|6)$, the conditional pdf of $Y$ given $x=6$.
+\
+\
+\
+\
+\
+1. Find $f_{Y|X}(\cdot|x)$, the conditional pdf of $Y$ given $x$.
+\
+\
+\
+\
+\
+
+
+::: {#exm-exponential-uniform-joint}
+
+Suppose $X$ and $Y$ are continuous RVs with joint pdf
+:::
+$$
+f_{X, Y}(x, y) = \frac{1}{x}e^{-x}, \qquad x > 0,\quad 0<y<x.
+$$
+
+
+1. Donny Dont says: "Wait, the joint pdf is supposed to be a function of both $x$ and $y$ but $\frac{1}{x}e^{-x}$ is only a function of $x$." Explain to Donny how $f_{X, Y}$ here is, in fact, a function of both $x$ and $y$.
+\
+\
+\
+\
+\
+1. Identify by name the one-way conditional distributions that you can obtain from the joint pdf (without doing any calculus or computation).
+\
+\
+\
+\
+\
+1. Identify by name the marginal distribution you can obtain without doing any calculus or computation.
+\
+\
+\
+\
+\
+1. Describe how could you use the Exponential(1) spinner and the Uniform(0, 1) spinner to generate an $(X, Y)$ pair.
+\
+\
+\
+\
+\
+1. Sketch a plot of the joint pdf.
+\
+\
+\
+\
+\
+1. Sketch a plot of the marginal pdf of $Y$.
+\
+\
+\
+\
+\
+1. Set up the calculation you would perform to find the marginal pdf of $Y$.
+\
+\
+\
+\
+\
+\
+
+## Independence of random variables
+
+
+::: {#exm-independent-rv-event}
+
+Suppose $X$ and $Y$ are random variables whose joint pmf is represented by the following table.
+
+|             | $p_{X, Y}(x, y)$ |      |      |      |          |
+|------------:|-----------------:|-----:|-----:|-----:|---------:|
+|  $x$ \\ $y$ |                  |    1 |    2 |    3 | $p_X(x)$ |
+|           0 |                  | 0.20 | 0.50 | 0.10 |     0.80 |
+|           1 |                  | 0.05 | 0.10 | 0.05 |     0.20 |
+|    $p_Y(y)$ |                  | 0.25 | 0.60 | 0.15 |          |
+
+:::
+
+1. Are the events $\{X=0\}$ and $\{Y=1\}$ independent?
+\
+\
+\
+1. Are the random variables $X$ and $Y$ are independent?  Why?
+\
+\
+\
+1. What would the joint pmf need to be in order for random variables with these marginal pmfs to be independent?
+\
+\
+\
+
+- Two random variables $X$ and $Y$ defined on a probability space with probability measure $\text{P}$ are **independent** if $\text{P}(X\le x, Y\le y) = \text{P}(X\le x)\text{P}(Y\le y)$ for all $x, y$.  That is, two random variables are independent if their joint cdf is the product of their marginal cdfs.
+- Random variables $X$ and $Y$ are independent if and only if the joint distribution factors into the product of the marginal distributions. The definition is in terms of cdfs, but analogous statements are true for pmfs and pdfs. Intuitively, random variables $X$ and $Y$ are independent if and only if the conditional distribution of one variable is equal to its marginal distribution  regardless of the value of the other.
+\begin{align*}
+\text{Discrete RVs $X$ and $Y$} & \text{ are independent}\\
+\Longleftrightarrow p_{X,Y}(x,y) & = p_X(x)p_Y(y) & & \text{for all $x,y$}\\
+\Longleftrightarrow p_{X|Y}(x|y) & = p_X(x)  & &  \text{for all $x,y$}
+\\
+\Longleftrightarrow p_{Y|X}(y|x)  & = p_Y(y)  & &  \text{for all $x,y$}
+\end{align*}
+\begin{align*}
+\text{Continuous RVs $X$ and $Y$} & \text{ are independent}\\
+\Longleftrightarrow f_{X,Y}(x,y) & = f_X(x)f_Y(y) & & \text{for all $x,y$}\\
+\Longleftrightarrow f_{X|Y}(x|y) & = f_X(x)  & &  \text{for all $x,y$}
+\\
+\Longleftrightarrow f_{Y|X}(y|x)  & = f_Y(y)  & &  \text{for all $x,y$}
+\end{align*}
+- If $X$ and $Y$ are independent, then the (renormalized) distributions of $Y$ values along each $X$-slice have the same shape as each other, and the same shape as the marginal distribution of $Y$.
+
+
+::: {#exm-poisson-hr-conditional}
+
+Recall @exm-poisson-hr-joint. Let $X$ be the number of home runs hit by the home team, and $Y$ the number of home runs hit by the away team in a randomly selected MLB game.  Suppose that $X$ and $Y$ have joint pmf
+:::
+
+$$
+p_{X, Y}(x, y)
+=
+\begin{cases}
+e^{-2.3}\frac{x^{1.2}y^{1.1}}{x!y!}, & x = 0, 1, 2, \ldots; y = 0, 1, 2, \ldots,\\
+0, & \text{otherwise.}
+\end{cases}
+$$
+The marginal pmf of $X$ is
+$$
+p_{X}(x) = e^{-1.2}\frac{x^{1.2}}{x!},\quad  x = 0, 1, 2, \ldots
+$$
+The marginal pmf of $Y$ is
+$$
+p_{Y}(y) = e^{-1.1}\frac{y^{1.1}}{y!},\quad  y = 0, 1, 2, \ldots
+$$
+
+
+1. Find the probability that the home teams hits 2 home runs.
+\
+\
+\
+\
+\
+1. Are $X$ and $Y$ independent?  (Note: we're asking about independence in terms of the assumed probability model, not for your opinion based on your knowledge of baseball.)
+\
+\
+\
+\
+\
+1. Find the probability that the home teams hits 2 home runs and the away team hits 1 home run.
+\
+\
+\
+\
+\
+1. Find the probability that the home teams hits 2 home runs given the away team hits 1 home run.
+\
+\
+\
+\
+\
+1. Find the probability that the home teams hits 2 home runs given the away team hits at least 1 home run.
+\
+\
+\
+\
+\
+
+
+::: {#exm-exponential-uniform-independent}
+Let $X$ and $Y$ be continuous random variables with joint pdf
+:::
+$$
+f_{X, Y}(x, y) = e^{-x}, \qquad x>0,\; 0<y<1. 
+$$
+
+
+1. Without doing any calculations, find the conditional distributions and marginal distributions.
+\
+\
+\
+\
+\
+1. Are $X$ and $Y$ independent?
+\
+\
+\
+\
+\
+1. Sketch a plot of the joint pdf of $X$ and $Y$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(X<0.2, Y<0.4)$.
+\
+\
+\
+\
+\
+1. Find $\text{P}(X<0.2| Y<0.4)$.
+\
+\
+\
+\
+\
+
+
+
+- Continuous random variables $X$ and $Y$ are independent if and only if their joint pdf can be factored into the product of a function of values of $X$ alone and a function of values of $Y$ alone.
+- That is, $X$ and $Y$ are independent if and only if there exist functions $g$ and $h$ for which
+$$
+f_{X,Y}(x,y) \propto g(x)h(y) \qquad \text{ for all $x$, $y$}
+$$
+- $X$ and $Y$ are independent if and only if the joint pdf factors into a product of the marginal pdfs.
+- The above result says that you can determine if that's true without first finding their marginal distributions.

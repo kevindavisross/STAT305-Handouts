@@ -1,0 +1,78 @@
+# Some Problem-Solving Strategies {.unnumbered}
+
+
+## Drawing plots - 1 variable
+
+- Determine the type of plot
+     - 1 variable: sketch a pdf plot, height represents density
+     - 2 variables: sketch a joint pdf/scatter plot, shading represents density
+- Determine possible values of RVs and label the variable axis
+- Consider a few possible values and sketch a few points
+- Think about where density will be higher/lower and sketch the plot
+- Know specific shapes corresponding to named distributions (e.g., Exponetial)
+- Know the difference between discrete and continuous RVs.
+- If continuous, it often helps to consider a discrete analog first. But make sure you don't stop at just the discrete analog.
+  
+## Drawing plots - 2 variables
+
+- Determine possible values of RVs and label the variable axes
+- Even if values of one RV conditionally depend on the other, identify overall possible values of each RV
+- If values of one RV conditionally depend on the other, draw the "boundaries" of possible pairs
+- Consider a few possible values and sketch a few points
+- Think about where density will be higher/lower and shade the plot
+- If set up provides conditional distribution of one variable given the other (say $Y$ given $X$), sketch the plot in two stages
+    - First, plot the $X$ values according to marginal of $X$ (to determine the X "stacks")
+    - Then, for each $x$ stack distribute the $Y$ values along each vertical slice according to the conditional distribution of $Y$ given $X=x$
+    - When doing the previous step, consider a few specific numerical values for $x$ ($x = 1$, etc)
+- For conditional or marginal plots, start by sketching a good joint pdf
+- For conditional of $X$ given $Y=y$: slice the joint pdf by fixing $y$ values
+    - Identify the possible values of $X$ along the $Y=y$ slice
+    - Conditional distribution of $X$ given $Y=y$ is a distribution on $x$ values only.  If $y$ shows up, it's treated like a constant. So this becomes a 1 variable situation
+- For marginal of $Y$: for each $y$ collapse/stack the joint pdf over the $X$ values.
+    - Remember: marginal distribution of $Y$ is a distribution on $y$ values only. Even if the values of $Y$ conditionally depend on $X$, the marginal distribution of $Y$ should only include the overall possible values of $Y$, and no $x$s.
+    - What values of $y$ correspond to longer intervals of possible $x$ values? Stacking over a longer interval (i.e., more stacks) will yield higher density at $y$
+    - For what values of $y$ is the density along the slice higher? Stacking higher stacks will yield higher density at $y$
+    
+## Expected values
+
+- Find "expected number of" try indicators; often an $np$ formula works
+- Linearity of expected value $E(X) + E(Y)$ always works regardless of it $X$ and $Y$ are related
+- Use LTE $E(Y)=E(E(Y|X))$, especially if the set up tells how you $Y$ depends on $X$
+- If it seems like there are different cases, consider each case separately and use LTE
+- If a problem involves the expected number of stages or rounds or iterations, try conditioning on the first stage/round/iteration and set up an equation to solve for the expected value
+- Know expected values and variance/SD formulas for all the named distributions
+- $E(X^2) = Var(X) + (E(X^2))$
+- Know what the answer should look like.
+    - $E(Y)$ is a *number*.
+    - $E(Y|X = 2)$ is a *number*.
+    - $E(Y|X)$ is a *random variable*, and a *function of $X$*.
+- LOTUS for expected values of functions: $E(g(X)) = \int_{\infty}^\infty g(x)f_X(x)dx$. (Be sure to replace bounds with possible values of $X$ and don't mess with the pdf $f_X(x)$.)
+- If you can't think of anything else, try the definition of expected value: you'll need to list possible values and find the pmf/pdf.
+    - But this should generally not be your first strategy, unless the pmf/pdf is provided 
+
+##  Covariance
+
+- If a problem involves $E(XY)$ think $Cov(X, Y)$ and vice verse
+- Use LTE and TOWIK to find $E(XY) = E(XE(Y|X))$ especially if the set up tells how you $Y$ depends on $X$
+- If $X$ and $Y$ are independent then the covariance is 0 (but the converse is not true)
+  
+## Conditioning
+
+- If a problem involves two variables/events, use two-way tables of counts
+- For a joint pdf, fix one of the variables to find conditional distributions.
+    - Fix a value of $x$ to find the conditional distribution of $Y$ given $X=x$.
+    - Plug in specific numbers for $x$ first, then find the general pattern
+- If a problem seems to involve multiple cases, consider each case separately and use the law of total probability
+- See also the LTE strategies in the expected value section
+  
+## General strategies
+
+- Always identify possible values of RVs
+- Know what it means for an RV to have a particular named distribution.  Know the formulas, but also know what would simulated data look like?
+- Draw pictures, even if the problem doesn't ask you to.  You can often find probabilities via geometry
+- Identify if a problem involves discrete or continuous RVs, and know the difference, e.g., pmf and sums for discrete, pdf and integrals for continuous
+    - If continuous, it often helps to consider a discrete analog first. But make sure you don't stop at just the discrete analog.
+- If you can't think of anything else, try listing possible outcomes.  Considering a few possible outcomes often helps make the problem more concrete
+    - But trying to list all possible outcomes should not be your first strategy
+- Look for independence.  If the problem says "independent" take advantage.  Given a joint pdf/pmf, see if it factors - but don't forget the possibel values.
+- Look for named distributions.  If you can recognize the "meat" of distributions like Exponential, Poisson, etc, you can use the shortcut formulas for probabilities, EV, variance

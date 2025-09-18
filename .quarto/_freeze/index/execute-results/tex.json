@@ -1,0 +1,21 @@
+{
+  "hash": "42a37e4f3da629cda0c84065a41c8546",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Preface {.unnumbered}\n\n\n\n\n\n\nA selection of Handouts for STAT 305.\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

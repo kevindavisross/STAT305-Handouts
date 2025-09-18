@@ -1,0 +1,258 @@
+# Distributions of Transformations of Random Variables
+
+- A function of a random variable is a random variable: if $X$ is a random variable and $g$ is a function then $Y=g(X)$ is a random variable.
+- Since $g(X)$ is a random variable it has a distribution.
+In general, the distribution of $g(X)$ will have a different shape than the distribution of $X$.
+
+## Linear rescaling
+
+::: {#exm-uniform-linear}
+
+Let $U$ have a Uniform(0, 1) distribution.  Define $V=1-U$.
+
+:::
+
+1. Does $V$ result from a linear rescaling of $U$?
+\
+\
+\
+1. What are the possible values of $V$?
+\
+\
+\
+1. Is $V$ the same random variable as $U$?
+\
+\
+\
+1. Find $\text{P}(U \le 0.1)$ and $\text{P}(V \le 0.1)$.
+\
+\
+\
+1. Sketch a plot of what the histogram of many simulated values of $V$ would look like.
+\
+\
+\
+1. Does $V$ have the same distribution as $U$?
+\
+\
+\
+
+
+::: {#exm-normal-sat-linear}
+
+Suppose that $X$, the SAT Math score of a randomly selected student, follows a Normal(500, 100) distribution.  Randomly select a student and let $X$ be the student's SAT Math score.  Now have the selected student spin the Normal(0, 1) spinner.  Let $Z$ be the result of the spin and let $Y=500 + 100 Z$.
+
+:::
+
+1. Is $Y$ the same random variable as $X$?
+\
+\
+\
+1. Does $Y$ have the same distribution as $X$?
+\
+\
+\
+
+
+::: {#exm-dd-normal-negative}
+
+Let $Z$ be a random variable with a Normal(0, 1) distribution. Consider $-Z$.
+
+:::
+
+1. Donny Don't says that the distribution of $-Z$ will look like an "upside-down bell".
+Is Donny correct?
+If not, explain why not and describe the distribution of $-Z$.
+\
+\
+\
+1. Donny Don't says that the standard deviation of $-Z$ is -1.
+Is Donny correct?
+If not, explain why not and determine the standard deviation of $-Z$.
+\
+\
+\
+
+
+- A linear rescaling is a transformation of the form $g(u) = a + bu$.
+- A linear rescaling of a random variable does not change the basic shape of its distribution, just the range of possible values.
+    - However, remember that the possible values are part of the distribution. So a linear rescaling does technically change the distribution, even if the basic shape is the same.  (For example, Normal(500, 100) and Normal(0, 1) are two different distributions.)
+- A linear rescaling transforms the mean in the same way the individual values are transformed.
+- Adding a constant to a random variable does not affect its standard deviation.
+- Multiplying a random variable by a constant multiplies its standard deviation by the *absolute value* of the constant. 
+- Whether in the short run or the long run,
+\begin{align*}
+\text{Average of $a+bX$} & = a+b(\text{Average of $X$})\\
+\text{SD of $a+bX$} & = |b|(\text{SD of $X$})\\
+\text{Variance of $a+bX$} & = b^2(\text{Variance of $X$})
+\end{align*}
+- If $U$ has a Uniform(0, 1) distribution then $X = a + (b-a)U$ has a Uniform($a$, $b$) distribution.
+- If $Z$ has a Normal(0, 1) distribution then $X = \mu + \sigma Z$ has a Normal($\mu$, $\sigma$) distribution.
+- Remember, do NOT confuse a random variable with its distribution.
+  - The random variable is the numerical quantity being measured
+  - The distribution is the long run pattern of variation of many observed values of the random variable
+
+## Nonlinear transformations of random variables
+
+- In general the shape of the distribution $g(X)$ will be different than that of $X$.
+- In general: whether in the short run or the long run
+$$
+\text{Average of } g(X) \neq g(\text{Average of }X).
+$$
+
+::: {#exm-uniform-log-transform-calcs}
+
+Let $U$ have a Uniform(0, 1) distribution, and let $X = -\log(1-U)$.
+For each of the intervals in the table below find the probability that $U$ lies in the interval, and identify the corresponding values of $X$.  (You should at least compute a few by hand to see what's happening, but you can use software to fill in the rest.)
+After completing the table, sketch a histogram representing the distribution of $X$.
+:::
+
+```{r, echo = FALSE}
+
+u1 = seq(0, 0.9, 0.1)
+u2 = seq(0.1, 1, 0.1)
+
+x1 = -log(1-u1)
+x2 = -log(1-u2)
+
+knitr::kable(
+  data.frame(paste("(", u1, ", ", u2, ")", sep=""), rep("", 10), rep("", 10), rep("", 10), rep("", 10)),
+  col.names = c('Interval of U', 'Length of U interval', 'Probability', 'Interval of X', 'Length of X interval'),
+  digits = c(1,  1, 1, 3, 3)
+)
+
+
+
+```
+
+\
+\
+\
+\
+\
+
+::: {#exm-uniform-log-transform-calcs2}
+
+For each of the intervals of $X$ values in the table below identify the corresponding values of $U$, and then find the probability that $X$ lies in the interval.   (You should at least compute a few by hand to see what's happening, but you can use software to fill in the rest.)
+After completing the table, sketch a histogram representing the distribution of $X$.
+Hint: if $X = -\log(1-U)$ then $U = 1-e^{-X}$.
+
+:::
+
+```{r, echo = FALSE}
+
+x1 = seq(0, 4.5, 0.5)
+x2 = seq(0.5, 5, 0.5)
+
+u1 = 1 - exp(-x1)
+u2 = 1 - exp(-x2)
+
+knitr::kable(
+  data.frame(paste("(", x1, ", ", x2, ")", sep=""), rep("", 10), rep("", 10), rep("", 10), rep("", 10)),
+  col.names = c('Interval of X', 'Length of X interval', 'Probability', 'Interval of U', 'Length of U interval'),
+  digits = c(1,  1, 3, 3, 3)
+)
+
+
+
+```
+
+\
+\
+\
+\
+\
+
+
+::: {#exm-log-uniform-cdf-method}
+
+We have now seen a few reasons why if $U$ has a Uniform(0, 1) distribution then $X=-\log(1-U)$ has an Exponential(1) distribution.
+The purpose of the example is derive the pdf of $X$, starting from just the setup in the previous sentence.
+
+:::
+
+1. Identify the possible values of $X$.  (We have done this already, but this should always be your first step.)
+\
+\
+\
+\
+\
+1. Let $F_X$ denote the cdf of $X$. Find $F_X(1)$.
+\
+\
+\
+\
+\
+1. Find $F_X(2)$.
+\
+\
+\
+\
+\
+1. Find the cdf $F_X(x)$.
+\
+\
+\
+\
+\
+1. Find the pdf $f_X(x)$.
+\
+\
+\
+\
+\
+1. Why should we not be surprised that $X=-\log(1-U)$ has cdf $F_X(x) = 1 - e^{-x}$?  Hint: what is the function $u\mapsto -\log(1-u)$ in this case?
+\
+\
+\
+\
+\
+
+- If $X$ is a continuous random variable whose distribution is known, the **cdf method** can be used to find the pdf of $Y=g(X)$
+- Determine the possible values of $Y$. Let $y$ represent a generic possible value of $Y$.
+- The cdf of $Y$ is $F_Y(y) = \text{P}(Y\le y) = \text{P}(g(X) \le y)$.
+- Rearrange $\{g(X) \le y\}$ to get an event involving $X$. Warning: it is not always $\{X \le g^{-1}(y)\}$.  Sketching a picture of the function $g$ helps.
+- Obtain an expression for the cdf of $Y$ which involves $F_X$ and some transformation of the value $y$. 
+- Differentiate the expression for $F_Y(y)$ with respect to $y$, and use what is known about $F'_X = f_X$, to obtain the pdf of $Y$.  You will typically need to apply the chain rule when differentiating.
+- You will need to use information about $X$ at some point in the last step above.  You can either:
+    - Plug in the *cdf* of $X$ and then differentiate with respect to $y$.
+    - Differentiate with respect to $y$ and then plug in the *pdf* of $X$.
+    - Either way gets you to the correct answer, but depending on the problem one way might be easier than the other.
+
+::: {#exm-uniform-square-cdf-method}
+
+Let $X$ be a random variable with a Uniform(-1, 1) distribution and Let $Y=X^2$. 
+
+:::
+
+1. Identify the possible values of $Y$.
+\
+\
+\
+\
+\
+1. Sketch the pdf of $Y$. Hint: consider a few equally spaced intervals of $Y$ values and see what $X$ values they correspond to.
+\
+\
+\
+\
+\
+1. Run a simulation to approximate the pdf of $Y$.
+\
+\
+\
+\
+\
+1. Find $F_Y(0.49)$.
+\
+\
+\
+\
+\
+1. Use the cdf method to find the pdf of $Y$.  Is the pdf consistent with your simulation results?
+\
+\
+\
+\
+\
+
