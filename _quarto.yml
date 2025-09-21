@@ -10,8 +10,8 @@ book:
   chapters:
     - index.qmd
     - randomness-and-probability.qmd
-    # - working-with-probabilities.qmd
-    # - interpreting-probabilities.qmd
+    - working-with-probabilities.qmd
+    - interpreting-probabilities.qmd
     # - probability-models.qmd
     # - intro-simulation.qmd
     # - conditioning.qmd

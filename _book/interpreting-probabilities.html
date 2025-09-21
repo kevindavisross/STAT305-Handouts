@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>3&nbsp; Interpreting Probabilities and “Expected” Values – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./interpreting-probabilities.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./working-with-probabilities.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -100,7 +82,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./interpreting-probabilities.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Interpreting Probabilities and “Expected” Values</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,13 +127,13 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./interpreting-probabilities.html" class="sidebar-item-text sidebar-link">
+  <a href="./interpreting-probabilities.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Interpreting Probabilities and “Expected” Values</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -166,7 +148,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Interpreting Probabilities and “Expected” Values</span></h1>
 </div>
 
 
@@ -183,9 +165,296 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<ul>
+<li>A probability takes a value in the sliding scale from 0 to 100%.</li>
+<li>Don’t just focus on computation; always remember to properly interpret probabilities.</li>
+</ul>
+<div id="exm-probability-interpret1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.1</strong></span> In each of the following parts, which of the two probabilities, a or b, is larger, or are they equal? You should answer conceptually without attempting any calculations. Explain your reasoning.</p>
 </div>
+<ol type="1">
+<li><p>Randomly select a man.</p>
+<ol type="a">
+<li>The probability that a randomly selected man who is greater than six feet tall plays in the NBA.</li>
+<li>The probability that a randomly selected man who plays in the NBA is greater than six feet tall.</li>
+</ol></li>
+<li><p>Randomly select a baby girl who was born in 1950.</p>
+<ol type="a">
+<li>The probability that a randomly selected baby girl born in 1950 is alive today.</li>
+<li>The probability that a randomly selected baby girl born in 1950, who was alive at the end of 2020, is alive today. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</li>
+</ol></li>
+</ol>
+<ul>
+<li>A probability is a measure of the likelihood or degree of uncertainty or plausibility of an event.</li>
+<li>A “conditional” probability revises this measure to reflect any additional information about the outcome of the underlying random phenomenon.</li>
+<li>In a sense, all probabilities are conditional upon some information, even if that information is vague (“well, it has to be one of these possibilities”). Be careful to clearly identify what information is reflected in probabilities</li>
+<li>When interpreting probabilities, consider the conditions under which the probabilities were computed, in the proper direction</li>
+</ul>
+<div id="exm-probability-interpret2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.2</strong></span> In each of the following parts, which of the two probabilities, a or b, is larger, or are they equal? You should answer conceptually without attempting any calculations. Explain your reasoning.</p>
+</div>
+<ol type="1">
+<li><p>Flip a coin <em>which is known to be fair</em> 10 times.</p>
+<ol type="a">
+<li>The probability that the results are, in order, HHHHHHHHHH.</li>
+<li>The probability that the results are, in order, HHTHTTTHHT.</li>
+</ol></li>
+<li><p>Flip a coin which is known to be fair 10 times.</p>
+<ol type="a">
+<li>The probability that all 10 flips land on H.</li>
+<li>The probability that exactly 5 flips land on H.</li>
+</ol></li>
+<li><p>In the <a href="https://www.powerball.com/">Powerball lottery</a> there are roughly 300 million possible winning number combinations, all equally likely.</p>
+<ol type="a">
+<li>The probability you win the next Powerball lottery if you purchase a single ticket, 4-8-15-16-42, plus the Powerball number, 23</li>
+<li>The probability you win the next Powerball lottery if you purchase a single ticket, 1-2-3-4-5, plus the Powerball number, 6.</li>
+</ol></li>
+<li><p>Continuing with the Powerball</p>
+<ol type="a">
+<li>The probability that the numbers in the winning number are not in sequence (e.g., 4-8-15-16-42-23)</li>
+<li>The probability that the numbers in the winning number are in sequence (e.g., 1-2-3-4-5-6)</li>
+</ol></li>
+<li><p>Continuing with the Powerball</p>
+<ol type="a">
+<li>The probability that you win the next Powerball lottery if you purchase a single ticket.</li>
+<li>The probability that someone wins the next Powerball lottery. (FYI: especially when the jackpot is large, there are hundreds of millions of tickets sold.) &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</li>
+</ol></li>
+</ol>
+<ul>
+<li>When interpreting probabilities, be careful not to confuse “the particular” with “the general”.
+<ul>
+<li><strong>“The particular:”</strong> A very specific event, surprising or not, often has low probability.</li>
+<li><strong>“The general:”</strong> While a very specific event often has low probability, if there are many like events their combined probability can be high.</li>
+</ul></li>
+<li>Even if an event has extremely small probability, given enough repetitions of the random phenomenon, the probability that the event occurs on <em>at least one</em> of the repetitions is often high.</li>
+<li>In general, even though the probability that something very specific happens to you today is often extremely small, the probability that something similar happens to someone some time is often quite high.</li>
+<li>When assessing a numerical probability, always ask “probability of what”? Does the probability represent “the particular” or “the general”? Is it the probability that the event happens in a single occurrence of the random phenomenon, or the probability that the event happens at least once in many occurrences?</li>
+<li>Also distinguish between assumption and observation. For example, if you assume that a coin is fair and the flips are independent, then all possible H/T sequences are equally likely. However, if you observe the coin landing on heads on 20 flips in a row, then that might cast doubt on your assumption that the coin is fair.</li>
+</ul>
+<div id="exm-base-rate-neglect" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.3</strong></span> Within both the colleges of Agriculture and Architecture at Cal Poly, about 49% of admitted students are female, about 84% of admitted students went to high school in CA, and the median GPA of admitted students is about 4.1.</p>
+<p>An orientation group of 100 newly admitted Cal Poly students includes 75 students in Agriculture and 25 students in Architecture. A student is randomly selected from this group. The selected student is Maddie, who is female, went to high school in CA, and had a high school GPA of 4.1.</p>
+</div>
+<ol type="1">
+<li>If you are trying to decide which college Maddie is in, is the information that she is female, went to high school in CA, and had a high school GPA of 4.1 helpful? Why?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Donny Don’t says, “The information about Maddie applies equally well to Agriculture or Architecture and doesn’t help us decide which college she’s in, so it’s just 50/50. Given the information about Maddie, the conditional probability that she is in Agriculture is 0.5.” Do you agree? If not, what is the conditional probability that Maddie is in the college of Agriculture given the information about her? Hint: what was the last sentence before this example!<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-card-second-conditional" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.4</strong></span> Shuffle a standard deck of 52 playing cards (13 face values in each of 4 suits) and deal two cards without replacement.</p>
+</div>
+<ol type="1">
+<li>What is the probability that the first card dealt is a heart?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability that the second card dealt is a heart?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability that the second card dealt is a heart if the first card dealt is a heart?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability that the second card dealt is a heart if the first card dealt is not a heart?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Revisit part 2. What is the probability that the second card dealt is a heart? Create a two-way table to answer this question.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>Be careful to distinguish between conditional and unconditional probabilities.</li>
+<li>A conditional probability reflects additional information about the outcome of the random phenomenon.</li>
+<li>In the absence of such information, we must continue to account for all the possibilities.</li>
+<li>When computing probabilities, be sure to only reflect information that is known. Especially when considering a phenomenon that happens in stages, don’t assume that when considering what happens second that you know what happened first.</li>
+</ul>
+<div id="exm-base-rate-neglect" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.5</strong></span> Within both the colleges of Agriculture and Architecture at Cal Poly, about 49% of admitted students are female, about 84% of admitted students went to high school in CA, and the median GPA of admitted students is about 4.1.</p>
+<p>An orientation group of 100 newly admitted Cal Poly students includes 75 students in Agriculture and 25 students in Architecture. A student is randomly selected from this group. The selected student is Maddie, who is female, went to high school in CA, and had a high school GPA of 4.1.</p>
+</div>
+<p>Donny Don’t says, “The information about Maddie applies equally well to Agriculture or Architecture and doesn’t help us decide which college she’s in, so it’s just 50/50. Given the information about Maddie, the conditional probability that she is in Agriculture is 0.5.” Do you agree? If not, what is the conditional probability that Maddie is in the college of Agriculture given the information about her?<br>
+<br>
+<br>
+<br>
+<br>
+</p>
+<div id="exm-ev-insurance" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.6</strong></span> This is a very simplified example illustrating the basic idea of how insurance works. Every year an insurance company sells many thousands of car insurance policies to drivers within a particular risk class. Each policyholder pays a “premium” of $1000 at the start of the year, and the insurance company agrees to pay for the cost of all damages that occur during the year. Suppose that each policy incurs damage of either $0, $5000, $20000, or $50000 with the following probabilities.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Amount of damage ($)</th>
+<th style="text-align: right;">Profit ($)</th>
+<th style="text-align: right;">Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1000</td>
+<td style="text-align: right;">0.910</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5000</td>
+<td style="text-align: right;">-4000</td>
+<td style="text-align: right;">0.070</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">20000</td>
+<td style="text-align: right;">-19000</td>
+<td style="text-align: right;">0.019</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">50000</td>
+<td style="text-align: right;">-49000</td>
+<td style="text-align: right;">0.001</td>
+</tr>
+</tbody>
+</table>
+<p>The insurance company’s profit on a policy at the end of the year is the difference between the premium of $1000 and any damage paid out. For example, a policy that incurs no damage results in a profit of $1000; a policy that incurs $5000 in damage results in a profit of -$4000 (that is, a loss of $4000) for the insurance company.</p>
+</div>
+<ol type="1">
+<li>Interpret the probabilities 0.91, 0.07, 0.019, and 0.001 as long run relative frequencies in this context.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that a policy results in a positive profit for the insurance company.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Imagine 100,000 hypothetical policies. How many of these policies would you expect to result in a profit of $1000? -$4000? -$19000? -$49000?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What do you expect the total profit for these 100,000 policies to be?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What do you expect the average profit per policy for these 100,000 policies to be?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that a policy has a profit equal to the value from part 5.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that a policy has a profit greater than the value from part 5.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Is the value from part 5 the most likely value of profit for a single policy?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Is the value from part 5 the profit you would expect for a single policy?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Explain in what sense the value from part 5 is “expected”.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>The long run average value of a random quantity is called its “expected value”.</li>
+<li>Be careful: the term “expected value” is somewhat of a misnomer.</li>
+<li>The expected value is <em>not</em> necessarily the value we expect on a single repetition of the random phenomenon, nor the most likely value (or even a possible value).</li>
+<li>Rather, the expected is the value we expect to see on average in the long run over many repetitions.</li>
+<li>A probability can be interpreted as a long run relative frequency; an expected value can be interpreted as a long run average value.</li>
+</ul>
+<div id="exm-ev-insurance-2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 3.7</strong></span> Continuing <a href="#exm-ev-insurance" class="quarto-xref">Example&nbsp;<span>3.6</span></a>. We considered what we would expect for 100000 hypothetical policies, but what about an unspecified large number of policies?</p>
+</div>
+<ol type="1">
+<li><p>Imagine that we have recorded the profit for each of a large number of policies (not necessarily 100000). Explain in words the process by which you would compute the average profit per policy. (In other, more general, words: how do you compute an average of a list of numbers?)<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Given that the profit of any policy is either 1000, -4000, -19000, or -49000, how could we simplify the calculation of the sum in the previous part? Write a general expression for the average profit per policy in this scenario.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>What do you think the expression in the previous part converges to in the long run?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Explain how the value in the previous part is a “probability-weighted average value”.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compute the expected value of damage (not profit) as a probability-weighted average value.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Interpret the value from the previous part as a long run average value in this context.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>How is the expected value of profit related to the expected value of damage? Does this make sense? Why?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+</ol>
+<ul>
+<li>An expected value can be computed as a “probability-weighted average value”</li>
+<li>But this is just a more compact way of computing an average in the usual way: add up all the values and divide by the number of values.</li>
+</ul>
 
 
 
@@ -591,11 +860,14 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./interpreting-probabilities.html" class="pagination-link" aria-label="Interpreting Probabilities and &quot;Expected&quot; Values">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Interpreting Probabilities and “Expected” Values</span></span>
+      <a href="./working-with-probabilities.html" class="pagination-link" aria-label="Working with Probabilities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with Probabilities</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

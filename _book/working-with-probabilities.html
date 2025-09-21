@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>2&nbsp; Working with Probabilities – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,7 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./interpreting-probabilities.html" rel="prev">
+<link href="./interpreting-probabilities.html" rel="next">
+<link href="./randomness-and-probability.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -88,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -100,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./working-with-probabilities.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with Probabilities</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -139,7 +150,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./working-with-probabilities.html" class="sidebar-item-text sidebar-link">
+  <a href="./working-with-probabilities.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with Probabilities</span></span></a>
   </div>
 </li>
@@ -151,7 +162,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -166,7 +177,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with Probabilities</span></h1>
 </div>
 
 
@@ -183,11 +194,223 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<ul>
+<li>It is often helpful to think of probabilities as percentages or proportions.</li>
+<li>Furthermore, when working with multiple percentages, it is also helpful to construct hypothetical <strong>two-way tables</strong> (a.k.a., contingency tables) of counts.</li>
+<li>For the purposes of constructing the table and computing related probabilities, any value can be used for the hypothetical total count.</li>
+<li>When dealing with percentages (or proportions or probabilities) be sure to ask “percent <em>of what</em>?” Thinking in fraction terms, be careful to identify the correct reference group which corresponds to the denominator.</li>
+</ul>
+<div id="exm-free-college-two-way" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.1</strong></span> Do American adults (18+) think it’s acceptable to curse out loud in public? Assume<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> that</p>
+<ul>
+<li>62% of American adults age 18-29 think it is acceptable</li>
+<li>45% of American adults age 30-49 think it is acceptable</li>
+<li>24% of American adults age 50-64 think it is acceptable</li>
+<li>11% of American adults age 65+ think it is acceptable</li>
+</ul>
+<p>Also assume that among American adults (18+)</p>
+<ul>
+<li>20% of American adults are age 18-29</li>
+<li>33% of American adults are age 30-49</li>
+<li>25% of American adults are age 50-64</li>
+<li>22% of American adults are age 65+</li>
+</ul>
 </div>
+<ol type="1">
+<li><p>Consider a hypothetical group of 10000 American adults and assume the percentages provided apply to this group. Fill in the counts in each of the cells of the following table.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">18-29</th>
+<th style="text-align: right;">30-49</th>
+<th style="text-align: right;">50-64</th>
+<th style="text-align: right;">65+</th>
+<th style="text-align: right;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Acceptable</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>Not acceptable</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;">10000</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>Randomly select an American adult <em>from this group of 10000</em>. Compute the probability that they think cursing out loud in public is acceptable.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Randomly select an <em>American adult</em>. Compute the probability that they think cursing out loud in public is acceptable. (Hint: did the 10000 matter?)<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compute the probability that an American adult who thinks cursing out loud in public is acceptable is age 18-29. (Answer with both an unreduced fraction and a demical/percent.)<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compute the probability that an American adult who is age 18-29 thinks cursing out loud in public is acceptable. (Answer with both an unreduced fraction and a demical/percent.)<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compute the probability that an American adult is age 18-29 and thinks cursing out loud in public is acceptable. (Answer with both an unreduced fraction and a demical/percent.)<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compare the unreduced fractions for the previous three parts. What is the same? What is different?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Suppose that we were only told that 35.67% of American adults overall think cursing out loud in public is acceptable, and that we not given the values 62%, 45%, 24%, 11%. Would we be able to complete the two-way table?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+</ol>
+<ul>
+<li><strong>Warning!</strong> In general, knowing probabilities of individual events alone is not enough to determine probabilities of combinations of them.</li>
+</ul>
+<div id="exm-cats-dogs" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.2</strong></span> Suppose that 47% of American adults<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> have a pet dog and 25% have a pet cat.</p>
+</div>
+<ol type="1">
+<li>Donny Don’t says that 72% (which is 47% + 25%) of American adults have a pet dog or a pet cat. Is that necessarily true? If not, is it even possible (in principle anyway) for this to be true? Under what circumstance (however unrealistic) would this be true? Construct a corresponding two-way table.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Given only the information provided, what is the smallest possible percentage of American who adults have a pet dog or a pet cat? Under what circumstance (however unrealistic) would this be true? Construct a corresponding two-way table.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Donny Don’t says that 11.75% (which is 47% <span class="math inline">\(\times\)</span> 25%) of Americans have both a pet dog <em>and</em> a pet cat. Explain to Donny why that’s not necessarily true. Without further information, what can you say about the percent of American adults who have both a pet dog and a pet cat?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Suppose that 14% of American adults have both a pet dog <em>and</em> a pet cat. What is the percentage of American adults who have a pet dog <em>or</em> a pet cat? Construct a corresponding two-way table. Use your table to show Donny how to correct his error from part 1.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What percentage of American adults who have a pet dog also have a pet cat? Is it 25%?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What percentage of American adults who do not have a pet dog have a pet cat? Is this the same value as in the previous part?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What percentage of American adults who have a pet cat also have a pet dog? Is it 47%?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Describe in words the percentage that results from subtracting the answer to the previous part from 100%.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-bayes-false-positive" class="theorem example">
+<p><span class="theorem-title"><strong>Example 2.3</strong></span> A woman’s chances of giving birth to a child with Down syndrome increase with age. The CDC estimates<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> that a woman in her mid-to-late 30s has a risk of conceiving a child with Down syndrome of about 1 in 250. A <a href="https://www.webmd.com/baby/first-trimester-screening-nuchal-translucency-blood-test#1">nuchal translucency (NT) scan</a>, which involves a blood draw from the mother and an ultrasound, is often performed around the 13th week of pregnancy to test for the presence of Down syndrome (among other things). If the baby has Down syndrome, the probability that the test is positive is about 0.9. However, when the baby does not have Down syndrome, there is still a probability that the test returns a (false) positive of about<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> 0.05. Suppose that the NT test for a pregnant woman in her mid-to-late 30s comes back positive for Down syndrome. What is the probability that the baby actually has Down syndrome?</p>
+</div>
+<ol type="1">
+<li>Before proceeding, make a guess for the probability in question. <span class="math display">\[
+\text{0-20\%} \qquad \text{20-40\%} \qquad \text{40-60\%} \qquad \text{60-80\%} \qquad \text{80-100\%}
+\]</span></li>
+<li>Donny Don’t says: 0.90 and 0.05 should add up to 1, so there must be a typo in the problem. Do you agree?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Construct a hypothetical two-way table of counts to represent the given information.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Use the table to find the probability in question: If NT test for a pregnant woman in her mid-to-late 30s is positive, what is the probability that the baby actually has Down syndrome?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>The probability in the previous part might seem very low to you. Explain why the probability is so low.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compare the probability of having Down Syndrome before and after the positive test. How much more likely is a baby who tests positive to have Down Syndrome than a baby for whom no information about the test is available?<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>Remember to ask “percentage <em>of what</em>”? For example, the percentage of <em>babies who have Down syndrome</em> that test positive is a very different quantity than the percentage of <em>babies who test positive</em> that have Down syndrome.</li>
+<li>Probabilities are often conditional on information.</li>
+<li>Conditional probabilities (e.g., probability of Down Syndrome <em>given a positive test</em>) can be highly influenced by the original unconditional probabilities (e.g.&nbsp;probability of Down Syndrome), sometimes called the <strong>base rates</strong>. Don’t neglect the base rates when evaluating probabilities.</li>
+<li>The example illustrates that when the base rate for a condition is very low and the test for the condition is less than perfect there will be a relatively high probability that a positive test is a <em>false positive.</em></li>
+</ul>
 
 
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>The values in this problem are based on a <a href="https://www.pewresearch.org/short-reads/2025/03/12/almost-half-of-americans-say-people-have-gotten-ruder-since-the-covid-19-pandemic/">March 12, 2025 article by the Pew Research Center</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>These values are based on the 2018 <a href="https://gss.norc.org/">General Social Survey</a>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Source: <a href="http://www.cdc.gov/ncbddd/birthdefects/downsyndrome/data.html" class="uri">http://www.cdc.gov/ncbddd/birthdefects/downsyndrome/data.html</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Estimates of these probabilities vary between different sources. The values in the exercise were based on <a href="https://www.ncbi.nlm.nih.gov/pubmed/17350315" class="uri">https://www.ncbi.nlm.nih.gov/pubmed/17350315</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -591,11 +814,14 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./interpreting-probabilities.html" class="pagination-link" aria-label="Interpreting Probabilities and &quot;Expected&quot; Values">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Interpreting Probabilities and “Expected” Values</span></span>
+      <a href="./randomness-and-probability.html" class="pagination-link" aria-label="Randomness and Probability">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Randomness and Probability</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./interpreting-probabilities.html" class="pagination-link" aria-label="Interpreting Probabilities and &quot;Expected&quot; Values">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Interpreting Probabilities and “Expected” Values</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
