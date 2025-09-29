@@ -85,31 +85,6 @@ on *at least one* of the repetitions is often high.
 For example, if you assume that a coin is fair and the flips are independent, then all possible H/T sequences are equally likely.
 However, if you observe the coin landing on heads on 20 flips in a row, then that might cast doubt on your assumption that the coin is fair.
 
-::: {#exm-base-rate-neglect}
-Within both the colleges of Agriculture and Architecture at Cal Poly, about 49% of admitted students are female, about 84% of admitted students went to high school in CA, and the median GPA of admitted students is about 4.1.
-
-An orientation group of 100 newly admitted Cal Poly students includes 75 students in Agriculture and 25 students in Architecture.
-A student is randomly selected from this group.
-The selected student is Maddie, who is female, went to high school in CA, and had a high school GPA of 4.1.
-:::
-
-1.  If you are trying to decide which college Maddie is in, is the information that she is female, went to high school in CA, and had a high school GPA of 4.1 helpful?
-Why? 
-\
-\
-\
-\
-\
-1.  Donny Don't says, "The information about Maddie applies equally well to Agriculture or Architecture and doesn't help us decide which college she's in, so it's just 50/50. Given the information about Maddie, the conditional probability that she is in Agriculture is 0.5."
-Do you agree?
-If not, what is the conditional probability that Maddie is in the college of Agriculture given the information about her?
-Hint: what was the last sentence before this example! 
-\
-\
-\
-\
-\
-
 
 
 ::: {#exm-card-second-conditional}

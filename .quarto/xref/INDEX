@@ -25,5 +25,23 @@
   },
   "distribution-summary.qmd": {
     "distribution-summary.html": "b6931cc4"
+  },
+  "outcomes-events-rvs.qmd": {
+    "outcomes-events-rvs.html": "77bb54ea"
+  },
+  "probability-models.qmd": {
+    "probability-models.html": "33265804"
+  },
+  "conditioning.qmd": {
+    "conditioning.html": "bf50af07"
+  },
+  "intro-to-distributions.qmd": {
+    "intro-to-distributions.html": "05bef0b8"
+  },
+  "probability-rules.qmd": {
+    "probability-rules.html": "962c791a"
+  },
+  "independence.qmd": {
+    "independence.html": "1b919cf7"
   }
 }

@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./references.html" rel="next">
+<link href="./outcomes-events-rvs.html" rel="next">
 <link href="./working-with-probabilities.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -133,6 +133,42 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./outcomes-events-rvs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Outcomes, Events, and Random Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro-to-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Distributions of Random Variables (A Brief Introduction)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditioning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability-rules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability Rules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
@@ -231,26 +267,8 @@ ul.task-list li input[type="checkbox"] {
 <li>When assessing a numerical probability, always ask “probability of what”? Does the probability represent “the particular” or “the general”? Is it the probability that the event happens in a single occurrence of the random phenomenon, or the probability that the event happens at least once in many occurrences?</li>
 <li>Also distinguish between assumption and observation. For example, if you assume that a coin is fair and the flips are independent, then all possible H/T sequences are equally likely. However, if you observe the coin landing on heads on 20 flips in a row, then that might cast doubt on your assumption that the coin is fair.</li>
 </ul>
-<div id="exm-base-rate-neglect" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.3</strong></span> Within both the colleges of Agriculture and Architecture at Cal Poly, about 49% of admitted students are female, about 84% of admitted students went to high school in CA, and the median GPA of admitted students is about 4.1.</p>
-<p>An orientation group of 100 newly admitted Cal Poly students includes 75 students in Agriculture and 25 students in Architecture. A student is randomly selected from this group. The selected student is Maddie, who is female, went to high school in CA, and had a high school GPA of 4.1.</p>
-</div>
-<ol type="1">
-<li>If you are trying to decide which college Maddie is in, is the information that she is female, went to high school in CA, and had a high school GPA of 4.1 helpful? Why?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Donny Don’t says, “The information about Maddie applies equally well to Agriculture or Architecture and doesn’t help us decide which college she’s in, so it’s just 50/50. Given the information about Maddie, the conditional probability that she is in Agriculture is 0.5.” Do you agree? If not, what is the conditional probability that Maddie is in the college of Agriculture given the information about her? Hint: what was the last sentence before this example!<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-</ol>
 <div id="exm-card-second-conditional" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.4</strong></span> Shuffle a standard deck of 52 playing cards (13 face values in each of 4 suits) and deal two cards without replacement.</p>
+<p><span class="theorem-title"><strong>Example 3.3</strong></span> Shuffle a standard deck of 52 playing cards (13 face values in each of 4 suits) and deal two cards without replacement.</p>
 </div>
 <ol type="1">
 <li>What is the probability that the first card dealt is a heart?<br>
@@ -291,7 +309,7 @@ ul.task-list li input[type="checkbox"] {
 <li>When computing probabilities, be sure to only reflect information that is known. Especially when considering a phenomenon that happens in stages, don’t assume that when considering what happens second that you know what happened first.</li>
 </ul>
 <div id="exm-base-rate-neglect" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.5</strong></span> Within both the colleges of Agriculture and Architecture at Cal Poly, about 49% of admitted students are female, about 84% of admitted students went to high school in CA, and the median GPA of admitted students is about 4.1.</p>
+<p><span class="theorem-title"><strong>Example 3.4</strong></span> Within both the colleges of Agriculture and Architecture at Cal Poly, about 49% of admitted students are female, about 84% of admitted students went to high school in CA, and the median GPA of admitted students is about 4.1.</p>
 <p>An orientation group of 100 newly admitted Cal Poly students includes 75 students in Agriculture and 25 students in Architecture. A student is randomly selected from this group. The selected student is Maddie, who is female, went to high school in CA, and had a high school GPA of 4.1.</p>
 </div>
 <p>Donny Don’t says, “The information about Maddie applies equally well to Agriculture or Architecture and doesn’t help us decide which college she’s in, so it’s just 50/50. Given the information about Maddie, the conditional probability that she is in Agriculture is 0.5.” Do you agree? If not, what is the conditional probability that Maddie is in the college of Agriculture given the information about her?<br>
@@ -301,7 +319,7 @@ ul.task-list li input[type="checkbox"] {
 <br>
 </p>
 <div id="exm-ev-insurance" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.6</strong></span> This is a very simplified example illustrating the basic idea of how insurance works. Every year an insurance company sells many thousands of car insurance policies to drivers within a particular risk class. Each policyholder pays a “premium” of $1000 at the start of the year, and the insurance company agrees to pay for the cost of all damages that occur during the year. Suppose that each policy incurs damage of either $0, $5000, $20000, or $50000 with the following probabilities.</p>
+<p><span class="theorem-title"><strong>Example 3.5</strong></span> This is a very simplified example illustrating the basic idea of how insurance works. Every year an insurance company sells many thousands of car insurance policies to drivers within a particular risk class. Each policyholder pays a “premium” of $1000 at the start of the year, and the insurance company agrees to pay for the cost of all damages that occur during the year. Suppose that each policy incurs damage of either $0, $5000, $20000, or $50000 with the following probabilities.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -405,7 +423,7 @@ ul.task-list li input[type="checkbox"] {
 <li>A probability can be interpreted as a long run relative frequency; an expected value can be interpreted as a long run average value.</li>
 </ul>
 <div id="exm-ev-insurance-2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 3.7</strong></span> Continuing <a href="#exm-ev-insurance" class="quarto-xref">Example&nbsp;<span>3.6</span></a>. We considered what we would expect for 100000 hypothetical policies, but what about an unspecified large number of policies?</p>
+<p><span class="theorem-title"><strong>Example 3.6</strong></span> Continuing <a href="#exm-ev-insurance" class="quarto-xref">Example&nbsp;<span>3.5</span></a>. We considered what we would expect for 100000 hypothetical policies, but what about an unspecified large number of policies?</p>
 </div>
 <ol type="1">
 <li><p>Imagine that we have recorded the profit for each of a large number of policies (not necessarily 100000). Explain in words the process by which you would compute the average profit per policy. (In other, more general, words: how do you compute an average of a list of numbers?)<br>
@@ -865,8 +883,8 @@ ul.task-list li input[type="checkbox"] {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./outcomes-events-rvs.html" class="pagination-link" aria-label="Outcomes, Events, and Random Variables">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Outcomes, Events, and Random Variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

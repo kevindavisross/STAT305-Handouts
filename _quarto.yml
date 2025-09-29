@@ -12,9 +12,13 @@ book:
     - randomness-and-probability.qmd
     - working-with-probabilities.qmd
     - interpreting-probabilities.qmd
-    # - probability-models.qmd
+    - outcomes-events-rvs.qmd
+    - probability-models.qmd
+    - intro-to-distributions.qmd
+    - conditioning.qmd
+    - probability-rules.qmd
+    - independence.qmd
     # - intro-simulation.qmd
-    # - conditioning.qmd
     # - marginal-distributions.qmd
     # - averages.qmd
     # - joint-correlation.qmd

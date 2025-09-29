@@ -1,0 +1,91 @@
+# Distributions of Random Variables (A Brief Introduction)
+
+
+
+-   The **joint (probability) distribution** of a collection of random variables identifies the possible values that the random variables can take and their relative likelihoods.
+-   We will see many ways of describing a distribution, depending on how many random variables are involved and their types (discrete or continuous).
+-   In the context of multiple random variables, the distribution of any one of the random variables is called a **marginal distribution**.
+
+::: {#exm-dice-probspace2}
+Roll a fair four-sided die twice.
+Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (or the common value if both rolls are the same).
+:::
+
+1.  Construct a table and plot displaying the marginal distribution of $Y$.
+\
+\
+\
+\
+\
+1.  Describe the distribution of $Y$ in terms of long run relative frequency.
+\
+\
+\
+\
+\
+1.  Describe the distribution of $Y$ in terms of relative degree of likelihood.
+\
+\
+\
+\
+\
+1.  Construct a table and plot displaying the joint distribution of $X$ and $Y$.
+\
+\
+\
+\
+\
+1.  Construct a table and plot displaying the marginal distribution of $X$.
+\
+\
+\
+\
+\
+
+
+-   The expected value $\text{E}(X)$ of a discrete random variable $X$ is defined by the probability-weighted average according to the underlying probability measure.
+-   The expected value of a random variable can be interpreted as the long-run average value of the random variable
+
+
+::: {#exr-matching-rv-distribution}
+
+Consider the matching problem with $n=4$: objects labeled 1, 2, 3, 4, are placed at random in spots labeled 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc.
+Let the random variable $X$ count the number of objects that are put back in the correct spot.
+Let $\text{P}$ denote the probability measure corresponding to the assumption that the objects are equally likely to be placed in any spot, so that the 24 possible placements are equally.
+  
+:::
+
+
+1.  Find the distribution of $X$ by creating an appropriate table and plot.
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X)$.
+\
+\
+\
+\
+\
+1.  Is the value from part 2 the most likely value of $X$?
+Explain.
+\
+\
+\
+\
+\
+1.  Is the value from part 2 the value that we would "expect" to see for $X$ in a single repetition of the phenomenon?
+Explain.
+\
+\
+\
+\
+\
+1.  Explain in what sense the value from part 2 is "expected".
+\
+\
+\
+\
+\
+
