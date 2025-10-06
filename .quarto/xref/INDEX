@@ -43,5 +43,11 @@
   },
   "independence.qmd": {
     "independence.html": "1b919cf7"
+  },
+  "intro-simulation.qmd": {
+    "intro-simulation.html": "4988462c"
+  },
+  "approximating-probabilities.qmd": {
+    "approximating-probabilities.html": "27da764a"
   }
 }

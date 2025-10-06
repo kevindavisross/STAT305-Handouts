@@ -1,35 +1,52 @@
 # Introduction to Simulation
 
 
+A probability model of a random phenomenon consists of a sample space of possible outcomes, associated events and random variables, and a probability measure which encapsulates the model assumptions and determines probabilities of events and distributions of random variables. We will study strategies for computing probabilities, distributions, expected values, and more, but in many situations explicit computation is difficult. Simulation provides a powerful tool for working with probability models and solving complex problems.
 
-- **Simulation** involves using a probability model to artificially recreate a random phenomenon, many times, usually using a computer.
-- Given a probability model, we can simulate outcomes, occurrences of events, and values of random variables, according to the specifications of the probability measure which reflects the model assumptions.
-- In general, a simulation involves the following steps.
+-   **Simulation** involves using a probability model to artificially recreate a random phenomenon, many times, usually using a computer.
+-   Given a probability model, we can simulate outcomes, occurrences of events, and values of random variables, according to the specifications of the probability measure which reflects the model assumptions.
+-   In general, a simulation involves the following steps.
     1.  **Set up.** Define a probability space, and related random variables and events.
     2.  **Simulate.** Simulate --- according to the assumptions reflected in the probability measure --- outcomes, occurrences of events, and values of random variables.
     3.  **Summarize.** Summarize simulation output in plots and summary statistics (relative frequencies, averages, standard deviations, correlations, etc) to describe and approximate probabilities, distributions, and related characteristics.
     4.  **Sensitivity analysis.** Investigate how results respond to changes in the assumptions or parameters of the simulation.
-- Many random phenomena can be concretely represented in terms of "box models" and "spinners".
+-   Many random phenomena can be concretely represented in terms of "box models" and "spinners".
 
 
 ::: {#exm-dice-sim}
-Let $X$ be the sum of two rolls of a fair four-sided die, and let $Y$ be the larger of the two rolls (or the common value if a tie).
-Set up a "box model" and explain how you would use it to simulate a single realization of $(X, Y)$.
-Could you use a spinner instead?
-\
-\
-\
-\
-\
-:::
+Consider a box model for rolling a four-sided die.
 
-
-::: {#exm-matching-box-sim}
-Consider the matching problem with $n=4$.
-Label the objects 1, 2, 3, 4, and the spots 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc. Let $X$ be the number of rocks that are placed in the correct spot,
-and let $C$ be the event that at least one rock is placed in the correct spot.
-Describe how you would use a box model to simulate a single realization of $Y$ and of $C$.
-Could you use a spinner instead?
+1.  Set up a box model for simulating a roll of each of the following dice.
+    a.  a fair four-sided die
+    a.  a die that lands on 1, 2, 3, 4, with respective probability 0.1, 0.2, 0.3, 0.4
+    \
+    \
+    \
+    \
+    \
+1.  Roll a die from the previous part twice and let $X$ be the sum of two rolls and let $Y$ be the larger of the two rolls (or the common value if a tie).
+Explain how you would use the box models from the previous part to simulate a realization of $(X, Y)$.
+\
+\
+\
+\
+\
+1.  Let $A$ be the event that the sum is 3, and let $I_A$ be the indicator random variable.
+Explain how you would use the box models to simulate a realization of $A$ and $I_A$.
+\
+\
+\
+\
+\
+1.  In the previous parts, could you use spinners instead?
+\
+\
+\
+\
+\
+1.  Use a *fair* four-sided die (or a box or a spinner) to simulate a few repetitions.
+(Yes, really do it.)
+For each repetition, record the results of the first and second rolls (or draws or spins) and the simulated values of $X$, $Y$, $A$, and $I_A$.
 \
 \
 \
@@ -39,11 +56,26 @@ Could you use a spinner instead?
 
 
 ::: {#exm-meeting-box-sim}
-Consider a version of the meeting problem where Regina and Cady will definitely arrive between noon and 1, but their exact arrival times are uncertain.
-Rather than dealing with clock time, it is helpful to represent noon as time 0 and measure time as minutes after noon, so that arrival times take values in the continuous interval [0, 60].
+Assume that Regina and Cady each arrive at a time uniformly at random in the continuous time interval between noon and 1:00, independently of each other.
+Let $R$ be Regina's arrival time (minutes after noon), $Y$ Cady's, $T=\min(R, Y)$, $W = |R-Y|$.
 
-Explain how you would construct a spinner and use it to simulate an outcome.
-Why could we not simulate this situation with a box model?
+
+
+1.  Explain how you could construct a circular spinner to simulate Regina's arrival time.
+In particular, what values go at the "3 o'clock", "6 o'clock", and "9 o'clock" points on the spinner's axis?
+(Here "3 o'clock" refers to the direction on the "clock" (spinner), and not arrival time.)
+\
+\
+\
+\
+\
+1.  Explain how you could use the spinner from the previous part to simulate an outcome, that is, a pair of arrival times for Regina and Cady, and the values of $R$, $Y$, $T$, $W$.
+\
+\
+\
+\
+\
+1.  Why could we not simulate this situation with a box model?
 \
 \
 \
@@ -51,9 +83,35 @@ Why could we not simulate this situation with a box model?
 \
 :::
 
-::: {#exm-meeting-box-sim2}
-In the meeting problem, how could you construct a circular spinner to represent that they are more likely to arrive near 12:30 and less likely to arrive near 12:00 or 1:00?
-Imagine the spinner needle is still equally likely to point at any value on the circular axis.
+::: {#exm-meeting-tactile-sim-normal}
+Imagine we have an unlabeled circular spinner with an infinitely fine needle that after being spun well lands on a point on the spinner's axis uniformly at random.
+But now suppose that Regina's arrival time is not uniformly distributed.
+How should we label the spinner's circular axis to reflect assumptions about Regina's arrival time?
+
+
+1.  In particular, suppose that Regina has a probability of 0.25 of arriving in each of the intervals $[0, 23]$, $[23, 30]$, $[30, 37]$, $[37, 60]$.
+Start to label the spinner for simulating Regina's arrival time; what values should go at the "3 o'clock", "6 o'clock", and "9 o'clock" positions on the spinner's circular axis?
+\
+\
+\
+\
+\
+1.  Also assume that Regina has a probability of (roughly):
+
+    -   0.025 of arriving in the interval $[0, 10]$
+    -   0.135 of arriving in the interval $[10, 20]$
+    -   0.135 of arriving in the interval $[40, 50]$
+    -   0.025 of arriving in the interval $[50, 60]$
+
+    At what points on the spinner's circular axis should the values 10, 20, 40, and 50 go?
+    What is the probability that Regina arrives in the interval $[20, 30]$?
+    $[30, 40]$?
+    \
+\
+\
+\
+\
+1.  What does this spinner say about Regina's arrival time: is she most likely to arrive near noon, near 12:30, or near 1:00?
 \
 \
 \
@@ -61,113 +119,54 @@ Imagine the spinner needle is still equally likely to point at any value on the 
 \
 :::
 
--  The probability of event $A$ can be approximated by simulating, according to the assumptions corresponding to the probability measure $\text{P}$, the random phenomenon a large number of times and computing the relative frequency of $A$.
-
-$$
-{\small
-\text{P}(A) \approx \frac{\text{number of repetitions on which $A$ occurs}}{\text{number of repetitions}}, \quad \text{for a large number of $\text{P}$-repetitions}
-}
-$$
+::: {#exm-impeach-sim}
+Consider simulating a randomly selected U.S. adult and determining whether or not the person is age 18-29 and whether or not they use Snapchat.
+Let $A$ be the event that the selected adult is age 18-29, $C$ be the event that the selected adult uses Snapchat, and $\text{P}$ correspond to randomly selecting an American adult.
+Suppose that $\text{P}(A) = 0.20$, $\text{P}(C) = 0.24$, and $\text{P}(A\cap C) = 0.13$.
 
 
-::: {#exm-dice-sim-tactile}
-
-Use a four-sided die (or a box or a spinner) and perform by hand 10 repetitions of the simulation in Example @exm-dice-sim.
-(Yes, really do it.)
-For each repetition, record the results of the first and second rolls (or draws or spins) and the values of $X$ and $Y$.
-Based only on the results of your simulation, how would you approximate the following?
-(Don't worry if the approximations are any good yet.)
-
+1.  Donny Don't says, "we need two spinners to simulate this situation: One spinner with areas of 0.20 and 0.80 for age 18-29 or not, and another spinner with areas of 0.24 and 0.76 to represent uses Snapchat or not.
+Then spin each spinner once to simulate one repetition."
+Do you agree? Explain.
+\
+\
+\
+\
+\
+1.  How could you perform one repetition of the simulation using just a single spinner?
+(Hint: it needs 4 sectors.)
+\
+\
+\
+\
+\
 :::
 
-1.  $\text{P}(A)$, where $A$ is the event that the first roll is 3.
-\
-\
-\
-\
-\
-2.  $\text{P}(X=6)$
-\
-\
-\
-\
-\
-3.  $\text{P}(X \ge 6)$
-\
-\
-\
-\
-\
-4.  $\text{P}(Y = 3)$
-\
-\
-\
-\
-\
-5.  $\text{P}(Y \ge 3)$
-\
-\
-\
-\
-\
-6.  $\text{P}(X=6, Y=3)$
-\
-\
-\
-\
-\
-7.  $\text{P}(X\ge6, Y \ge 3)$
-\
-\
-\
-\
-\
-8. Construct a table of the simulated relative frequencies of each possible value $x$ of $X$.
-\
-\
-\
-\
-\
-1. Construct a table of the simulated relative frequencies of each possible value $(x, y)$ pair of $(X, y)$.
-\
-\
-\
-\
-\
-1. Will the results above tend to produce good estimates of the corresponding theoretical values? Why? If not, how could we improve the estimates?
+
+::: {#exm-impeach2-sim}
+
+Suppose that 
+
+
+-   65% of American adults age 18-29 use Snapchat
+-   24% of American adults age 30-49 use Snapchat
+-   12% of American adults age 50-64 use Snapchat
+-   2% of American adults age 65+ use Snapchat
+
+Also suppose that
+
+-   20% of American adults are age 18-29
+-   33% of American adults are age 30-49
+-   25% of American adults are age 50-64
+-   22% of American adults are age 65+
+
+Consider simulating a randomly selected U.S. adult and determining the person's age group and whether or not they use Snapchat.
+How could you perform one repetition of the simulation using spinners based solely on the percentages provided above, without first constructing a two-way table or finding $\text{P}(A_1\cap C)$, etc?
+(Hint: you'll need a few spinners, but you might not spin them all in a single repetition.)
 \
 \
 \
 \
 \
 
-- In practice, many repetitions of a simulation are performed on a computer to approximate what happens in the "long run".
-- However, we often start by carrying out a few repetitions, (1) by hand to help make the process more concrete, or (2) by computer to check that our code is working correctly
-
-::: {#exm-meeting-sim-intro}
-
-Recall the meeting problem.
-Describe in detail how, in principle, you could conduct by hand a simulation and use the results to approximate the probability that Regina and Cady arrive with 15 minutes of each other for the
-following two models.
-(See Sections 2.4.2 and 2.5.1 of the textbook.)
 :::
-
-1.  Uniform(0, 60), independent arrivals model
-\
-\
-\
-\
-\
-1.  Normal(30, 10), independent arrivals model
-\
-\
-\
-\
-\
-
-- A probability is a theoretical long run relative frequency.
-- A probability can be approximated by a relative frequency from a large number of simulated repetitions, but there is some simulation margin of error, due to natural variability in the simulation.
-- The margin of error when approximating a single probability based on a simulated relative frequency is roughly on the order $1/\sqrt{N}$, where $N$ is the *number of independently simulated values used to calculate the relative frequency.*
-- Use a margin of error of
-$2/\sqrt{N}$ when approximating many probabilities based on a single simulation.
-

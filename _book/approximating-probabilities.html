@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>8&nbsp; Probability Rules – STAT 305 Handouts</title>
+<title>11&nbsp; Approximating Probabilities – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./independence.html" rel="next">
-<link href="./conditioning.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./intro-simulation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -111,7 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability-rules.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability Rules</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./approximating-probabilities.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,7 +186,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./probability-rules.html" class="sidebar-item-text sidebar-link active">
+  <a href="./probability-rules.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability Rules</span></span></a>
   </div>
 </li>
@@ -204,7 +204,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./approximating-probabilities.html" class="sidebar-item-text sidebar-link">
+  <a href="./approximating-probabilities.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></span></a>
   </div>
 </li>
@@ -225,7 +225,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability Rules</span></h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></h1>
 </div>
 
 
@@ -242,331 +242,107 @@ window.Quarto = {
 </header>
 
 
-<section id="multiplication-rule" class="level2" data-number="8.1">
-<h2 data-number="8.1" class="anchored" data-anchor-id="multiplication-rule"><span class="header-section-number">8.1</span> Multiplication rule</h2>
 <ul>
-<li>Rearranging the definition of conditional probability we get the <strong>Multiplication rule:</strong> the probability that two events both occur is <span class="math display">\[
-\begin{aligned}
-\text{P}(A \cap B) &amp; = \text{P}(A|B)\text{P}(B)\\
-&amp; = \text{P}(B|A)\text{P}(A)
-\end{aligned}
+<li>A probability is a theoretical long run relative frequency.</li>
+<li>The probability of event <span class="math inline">\(A\)</span> can be approximated by simulating, according to the assumptions corresponding to the probability measure <span class="math inline">\(\text{P}\)</span>, the random phenomenon a large number of times and computing the relative frequency of <span class="math inline">\(A\)</span>. <span class="math display">\[
+{\small
+\text{P}(A) \approx \frac{\text{number of repetitions on which $A$ occurs}}{\text{number of repetitions}}, \quad \text{for a large number of $\text{P}$-repetitions}
+}
 \]</span></li>
-<li>The multiplication rule says that you should think “multiply” when you see “and”.</li>
-<li>However, be careful about <em>what</em> you are multiplying: to find a joint probability you need an unconditional and an appropriate conditional probability.</li>
-<li>You can condition either on <span class="math inline">\(A\)</span> or on <span class="math inline">\(B\)</span>, provided you have the appropriate marginal probability; often, conditioning one way is easier than the other.</li>
-<li>Be careful: the multiplication rule does <em>not</em> say that <span class="math inline">\(\text{P}(A\cap B)\)</span> is the same as <span class="math inline">\(\text{P}(A)\text{P}(B)\)</span>.<br>
-</li>
-<li>The multiplication rule is useful in situations where conditional probabilities are easier to obtain directly than joint probabilities.</li>
+<li>In practice, many repetitions of a simulation are performed on a computer to approximate what happens in the “long run”. However, we often start by carrying out a few repetitions, (1) by hand to help make the process more concrete, or (2) by computer to check that our code is working correctly</li>
+<li>A probability can be approximated by a relative frequency from a large number of simulated repetitions, but there is some simulation margin of error, due to natural variability in the simulation.</li>
+<li>The margin of error when approximating a single probability based on a simulated relative frequency is roughly on the order <span class="math inline">\(1/\sqrt{N}\)</span>, where <span class="math inline">\(N\)</span> is the <em>number of independently simulated values used to calculate the relative frequency.</em></li>
+<li>Use a margin of error of <span class="math inline">\(2/\sqrt{N}\)</span> when approximating many probabilities based on a single simulation.</li>
+<li>Be careful when conditioning, especially when conditioning on values of continuous random variables.</li>
 </ul>
-<div id="exm-card-multiplication-rule" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.1</strong></span> A standard deck of playing cards has 52 cards, 13 cards (2 through 10, jack, king, queen, ace) in each of 4 suits (hearts, diamonds, clubs, spades). Shuffle a deck and deals cards one at a time without replacement.</p>
+<div id="exm-dice-sim-tactile" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.1</strong></span> Roll a fair four-sided die twice and let <span class="math inline">\(X\)</span> be the sum and <span class="math inline">\(Y\)</span> the larger of the two rolls.</p>
 </div>
 <ol type="1">
-<li>Find the probability that the first card dealt is a heart.<br>
+<li>Explain how you would use simulation to approximate
+<ol type="a">
+<li><span class="math inline">\(\text{P}(X=6)\)</span><br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>If the first card dealt is a heart, determine the conditional probability that the second card is a heart.<br>
+<li><span class="math inline">\(\text{P}(X=6, Y = 4)\)</span><br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Find the probability that the first two cards dealt are hearts.<br>
+</ol></li>
+<li>In 10000 repetitions of the simulation, <span class="math inline">\(X=6\)</span> on 1915 repetitions. Approximate <span class="math inline">\(\text{P}(X=6)\)</span>, including a margin of error.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Find the probability that the first two cards dealt are hearts and the third card dealt is a diamond.<br>
+<li>Explain how you would use simulation to approximate the distribution of <span class="math inline">\(X\)</span>. What would the margin of error be?<br>
 <br>
 <br>
 <br>
 <br>
 </li>
 </ol>
-<ul>
-<li>The multiplication rule extends naturally to more than two events (though the notation gets messy). For three events, we have <span class="math display">\[
-\text{P}(A_1 \cap A_2 \cap A_3) = \text{P}(A_1)\text{P}(A_2|A_1)\text{P}(A_3|A_1\cap A_2)
-\]</span></li>
-<li>And in general, <span class="math display">\[
-\text{P}(A_1\cap A_2 \cap A_3 \cap A_4 \cap \cdots) = \text{P}(A_1)\text{P}(A_2|A_1)\text{P}(A_3|A_1\cap A_2)\text{P}(A_4|A_1\cap A_2 \cap A_4)\cdots
-\]</span></li>
-<li>The multiplication rule is useful for computing probabilities of events that can be broken down into component “stages” where conditional probabilities at each stage are readily available. At each stage, condition on the information about all previous stages.</li>
-</ul>
-<div id="exm-birthday" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.2</strong></span> The <a href="https://pudding.cool/2018/04/birthday-paradox/">birthday problem</a> concerns the probability that at least two people in a group of <span class="math inline">\(n\)</span> people have the same birthday<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Ignore multiple births and February 29 and assume that the other 365 days are all equally likely<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<div id="exm-meeting-sim-intro" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.2</strong></span> Suppose that Regina and Cady’s arrival times (minutes after noon) are independent, with Regina’s arrival time <span class="math inline">\(R\)</span> uniformly distributed between 0 and 60, and Cady’s <span class="math inline">\(Y\)</span> arrival time following a Normal(30, 10) distribution. Let <span class="math inline">\(W = |R-Y|\)</span>.</p>
 </div>
 <ol type="1">
-<li>If <span class="math inline">\(n=30\)</span>, what do you think the probability that at least two people share a birthday is: 0-20%, 20-40%, 40-60%, 60-80%, 80-100%? How large do you think <span class="math inline">\(n\)</span> needs to be in order for the probability that at least two people share a birthday to be larger than 0.5? Just make guesses before proceeding to calculations.<br>
+<li>Explain in full detail how you could conduct an appropriate simulation using spinners and use the results to approximate the probability <span class="math inline">\(\text{P}(W &lt; 15)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Now consider <span class="math inline">\(n=3\)</span> people, labeled 1, 2, and 3. What is the probability that persons 1 and 2 have different birthdays?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>What is the probability that persons 1, 2, and 3 all have different birthdays <em>given</em> that persons 1 and 2 have different birthdays?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>What is the probability that persons 1, 2, and 3 all have different birthdays?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>When <span class="math inline">\(n = 3\)</span>. What is the probability that at least two people share a birthday?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>For <span class="math inline">\(n=30\)</span>, find the probability that none of the people have the same birthday.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>For <span class="math inline">\(n=30\)</span>, find the probability that at least two people have the same birthday.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Write a clearly worded sentence interpreting the probability in the previous part as a long run relative frequency.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>When <span class="math inline">\(n=100\)</span> the probability is about 0.9999997.<br>
-If you are in a group of 100 people and no one shares your birthday, should you be surprised? Discuss.<br>
+<li>In 10000 simulated repetitions, <span class="math inline">\(W&lt;15\)</span> in 4975. Approximate and interpret <span class="math inline">\(\text{P}(W &lt; 15)\)</span>; include a margin of error.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
 </ol>
-</section>
-<section id="law-of-total-probability" class="level2" data-number="8.2">
-<h2 data-number="8.2" class="anchored" data-anchor-id="law-of-total-probability"><span class="header-section-number">8.2</span> Law of total probability</h2>
-<div id="exm-impeach-ltp" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.3</strong></span> Suppose that</p>
-<ul>
-<li>67% of Democrats believe in human-driven climate</li>
-<li>46% of Independents believe in human-driven climate</li>
-<li>34% of Republicans believe in human-driven climate</li>
-</ul>
-<p>Also suppose that</p>
-<ul>
-<li>28% of American adults are Democrats</li>
-<li>42% of American adults are Independents</li>
-<li>30% of American adults are Republicans</li>
-</ul>
-<p>Randomly select an American adult. Compute the probability that the selected person believes in human-driven climate change.</p>
-<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
-</div>
-<ul>
-<li><strong>Law of total probability.</strong> If <span class="math inline">\(C_1,\ldots, C_k\)</span> are disjoint with <span class="math inline">\(C_1\cup \cdots \cup C_k=\Omega\)</span>, then <span class="math display">\[\begin{align*}
-\text{P}(A) &amp; = \sum_{i=1}^k \text{P}(A \cap C_i)\\
-&amp; = \sum_{i=1}^k \text{P}(A|C_i) \text{P}(C_i)
-\end{align*}\]</span></li>
-<li>The events <span class="math inline">\(C_1, \ldots, C_k\)</span>, which represent the “cases”, form a <em>partition</em> of the sample space; each outcome <span class="math inline">\(\omega\in\Omega\)</span> lies in exactly one of the <span class="math inline">\(C_i\)</span>.</li>
-<li>The law of total probability says that we can interpret the unconditional probability <span class="math inline">\(\text{P}(A)\)</span> as a probability-weighted average of the case-by-case conditional probabilities <span class="math inline">\(\text{P}(A|C_i)\)</span> where the weights <span class="math inline">\(\text{P}(C_i)\)</span> represent the probability of encountering each case.</li>
-<li>Conditioning and using the law of probability is an effective strategy in solving many problems, even when the problem doesn’t seem to involve conditioning.</li>
-<li>For example, when a problem involves iterations or steps it is often useful to <em>condition on the result of the first step</em>.</li>
-</ul>
-<div id="exm-lookaway" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.4</strong></span> You and your friend are playing the <a href="https://fivethirtyeight.com/features/what-are-your-chances-of-winning-the-u-s-open/">“lookaway challenge”</a>.</p>
-<p>The game consists of possibly multiple rounds. In the first round, you point in one of four directions: up, down, left or right. At the exact same time, your friend also looks in one of those four directions. If your friend looks in the same direction you’re pointing, you win! Otherwise, you switch roles and the game continues to the next round — now your friend points in a direction and you try to look away. As long as no one wins, you keep switching off who points and who looks. The game ends, and the current “pointer” wins, whenever the “looker” looks in the same direction as the pointer.</p>
-<p>Suppose that each player is equally likely to point/look in each of the four directions, independently from round to round. What is the probability that you win the game?</p>
-</div>
+<div id="exm-impeach-sim" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.3</strong></span> Consider simulating a randomly selected U.S. adult and determining whether or not the person is age 18-29 and whether or not they use Snapchat. Let <span class="math inline">\(A\)</span> be the event that the selected adult is age 18-29, <span class="math inline">\(C\)</span> be the event that the selected adult uses Snapchat, and <span class="math inline">\(\text{P}\)</span> correspond to randomly selecting an American adult. Suppose that <span class="math inline">\(\text{P}(A) = 0.20\)</span>, <span class="math inline">\(\text{P}(C) = 0.24\)</span>, and <span class="math inline">\(\text{P}(A\cap C) = 0.13\)</span>.</p>
 <ol type="1">
-<li>Why might you expect the probability to not be equal to 0.5?<br>
+<li><p>In 10000 repetitions of an appropriate simulation</p>
+<ul>
+<li><span class="math inline">\(A\)</span> occurs on 1989 repetitions</li>
+<li><span class="math inline">\(C\)</span> occurs on 2432 repetitions</li>
+<li>Both <span class="math inline">\(A\)</span> and <span class="math inline">\(C\)</span> occur on 1309 repetitions.</li>
+</ul>
+<p>Use the simulation results to approximate <span class="math inline">\(\text{P}(C | A)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
-</li>
-<li>If you start as the pointer, what is the probability that you win in the first round?<br>
+</p></li>
+<li><p>What is the margin of error for your estimate in the previous part?<br>
 <br>
 <br>
 <br>
 <br>
-</li>
-<li>If <span class="math inline">\(p\)</span> denotes the probability that the player who starts as the pointer wins the game, what is the probability that the player who starts as the looker wins the game? (Note: <span class="math inline">\(p\)</span> is the probability that the person who starts as pointer wins the whole game, not just the first round.)<br>
+</p></li>
+<li><p>What is another method for performing the simulation and estimating <span class="math inline">\(\text{P}(C |A)\)</span> that has a margin of error of 0.01? What is the disadvantage of this method?<br>
 <br>
 <br>
 <br>
 <br>
-</li>
-<li>Let <span class="math inline">\(A\)</span> be the event that the person who starts as the pointer wins the game, and <span class="math inline">\(B\)</span> be the event that the person who starts as the pointer wins in the first round. What is <span class="math inline">\(\text{P}(A|B)\)</span>?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Find a simple expression for <span class="math inline">\(\text{P}(A | B^c)\)</span> in terms of <span class="math inline">\(p\)</span>. The key is to consider this question: if the player who starts as the pointer does not win in the first round, how does the game behave from that point forward?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Condition on the result of the first round and set up an equation to solve for <span class="math inline">\(p\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Interpret the probability from the previous part.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
+</p></li>
 </ol>
-</section>
-<section id="bayes-rule" class="level2" data-number="8.3">
-<h2 data-number="8.3" class="anchored" data-anchor-id="bayes-rule"><span class="header-section-number">8.3</span> Bayes Rule</h2>
-<div id="exm-impeach2-bayes" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.5</strong></span> Suppose that</p>
-<ul>
-<li>67% of Democrats believe in human-driven climate</li>
-<li>46% of Independents believe in human-driven climate</li>
-<li>34% of Republicans believe in human-driven climate</li>
-</ul>
-<p>Also suppose that</p>
-<ul>
-<li>28% of American adults are Democrats</li>
-<li>42% of American adults are Independents</li>
-<li>30% of American adults are Republicans</li>
-</ul>
-<p>Randomly select an American adult. Compute the conditional probability that the selected adult is a Democrat given that they believe in human-driven climate change.<br>
-<br>
-<br>
-<br>
-<br>
-</p>
 </div>
-<ul>
-<li><strong>Bayes’ rule for events</strong> specifies how a prior probability <span class="math inline">\(P(H)\)</span> of event <span class="math inline">\(H\)</span> is updated in response to the evidence <span class="math inline">\(E\)</span> to obtain the posterior probability <span class="math inline">\(P(H|E)\)</span>. <span class="math display">\[
-\text{P}(H|E) = \frac{\text{P}(E|H)\text{P}(H)}{\text{P}(E)}
-\]</span></li>
-<li>Event <span class="math inline">\(H\)</span> represents a particular hypothesis (or model or case)</li>
-<li>Event <span class="math inline">\(E\)</span> represents observed evidence (or data or information)</li>
-<li><span class="math inline">\(\text{P}(H)\)</span> is the unconditional or <strong>prior probability</strong> of <span class="math inline">\(H\)</span> (prior to observing evidence <span class="math inline">\(E\)</span>)</li>
-<li><span class="math inline">\(\text{P}(H|E)\)</span> is the conditional or <strong>posterior probability</strong> of <span class="math inline">\(H\)</span> after observing evidence <span class="math inline">\(E\)</span>.</li>
-<li><span class="math inline">\(\text{P}(E|H)\)</span> is the <strong>likelihood</strong> of evidence <span class="math inline">\(E\)</span> given hypothesis (or model or case) <span class="math inline">\(H\)</span></li>
-</ul>
-<div id="exm-bayes-rule2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.6</strong></span> Continuing the previous example. Randomly select an American adult.</p>
-</div>
+<div id="exm-dice-tactile-conditional-prob" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.4</strong></span> We’ll continue with the dice rolling example: roll two fair four-sided dice and let <span class="math inline">\(X\)</span> be the sum and <span class="math inline">\(Y\)</span> the larger of the rolls. For each of the following, describe how to approximate the probability with a margin of error of 0.01.</p>
 <ol type="1">
-<li>Consider the conditional probability that the selected adult is a Democrat given that they believe in human-driven climate change. Identify the prior probability, hypothesis, evidence, likelihood, and posterior probability.<br>
+<li><span class="math inline">\(\text{P}(X = 6 | Y = 4)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Compute the conditional probability that the selected adult is a Republican given that they believe in human-driven climate change.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>How many times more likely is it for an American adult to be a Democrat than be be a Republican?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>How many times more likely is it for an American adult to believe in human-driven climate change given that they are a Democrat than given that they are a Republican?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>How many times more likely is it for an American adult who believes in human-driven climate change to be a Democrat than to be a Republican?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>How are the values in the three previous parts related?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute the conditional probability that the selected adult is an Independent given that they believe in human-driven climate change.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>How many times more likely is it for an American adult to be an Independent than be be a Republican?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>How many times more likely is it for an American adult to believe in human-driven climate change given that they are an Independent than given that they are a Republican?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>How many times more likely is it for an American adult who believes in human-driven climate change to be an Independent than to be a Republican?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>How are the values in the three previous parts related?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-</ol>
-<ul>
-<li>Bayes rule is often used when there are multiple hypotheses or cases. Suppose <span class="math inline">\(H_1,\ldots, H_k\)</span> is a series of distinct hypotheses which together account for all possibilities, and <span class="math inline">\(E\)</span> is any event (evidence).</li>
-<li>Combining Bayes’ rule with the law of total probability, <span class="math display">\[\begin{align*}
-P(H_j |E) &amp; = \frac{P(E|H_j)P(H_j)}{P(E)}\\
-&amp; = \frac{P(E|H_j)P(H_j)}{\sum_{i=1}^k P(E|H_i) P(H_i)}\\
-&amp; \\
-P(H_j |E) &amp; \propto P(E|H_j)P(H_j)
-\end{align*}\]</span></li>
-<li>The symbol <span class="math inline">\(\propto\)</span> is read “is proportional to”. The relative <em>ratios</em> of the posterior probabilities of different hypotheses are determined by the product of the prior probabilities and the likelihoods, <span class="math inline">\(P(E|H_j)P(H_j)\)</span>. The marginal probability of the evidence, <span class="math inline">\(P(E)\)</span>, in the denominator simply normalizes the numerators to ensure that the updated conditional probabilities given the evidence sum to 1 over all the distinct hypotheses.</li>
-<li><strong>In short, Bayes’ rule says</strong> <span class="math display">\[
-\textbf{posterior} \propto \textbf{likelihood} \times \textbf{prior}
-\]</span></li>
-</ul>
-<div id="exm-bayes-marbles" class="theorem example">
-<p><span class="theorem-title"><strong>Example 8.7</strong></span> Suppose that you are presented with six boxes, labeled 0, 1, 2, <span class="math inline">\(\ldots\)</span>, 5, each containing five marbles. Box 0 contains 0 green and 5 gold marbles, box 1 contains 1 green and 4 gold, and so on with box <span class="math inline">\(i\)</span> containing <span class="math inline">\(i\)</span> green and <span class="math inline">\(5-i\)</span> gold. One of the boxes is chosen uniformly at random (perhaps by rolling a fair six-sided die), and then you will randomly select marbles from that box, without replacement. Imagine the boxes appear identical and you can’t see inside; all you observe is the color of the marbles you select. Based on the colors of the marbles selected, you will update the probabilities of which box had been chosen.</p>
-<ol type="1">
-<li>Suppose that a single marble is selected and it is green. Which box do you think is the most likely to have been chosen? Make a guess for the posterior probabilities for each box. Then construct a Bayes table to compute the posterior probabilities. How do they compare to the prior probabilities?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Now suppose a second marble is selected from the same box, without replacement, and its color is gold. Which box do you think is the most likely to have been chosen given these two marbles? Make a guess for the posterior probabilities for each box. Then construct a Bayes table to compute the posterior probabilities, <em>using the posterior probabilities from the previous part after the selection of the green marble as the new prior probabilities before seeing the gold marble.</em><br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Now construct a Bayes table corresponding to the original prior probabilities (1/6 each) and the combined evidence that the first ball selected was green and the second was gold. How do the posterior probabilities compare to the previous part?<br>
+<li><span class="math inline">\(\text{P}(Y = 4 | X = 6)\)</span>.<br>
 <br>
 <br>
 <br>
@@ -574,22 +350,11 @@ P(H_j |E) &amp; \propto P(E|H_j)P(H_j)
 </li>
 </ol>
 </div>
-<ul>
-<li>Bayesian analysis is often an iterative process.</li>
-<li>Posterior probabilities are updated after observing some information or data. These probabilities can then be used as prior probabilities before observing new data.</li>
-<li>Posterior probabilities can be sequentially updated as new data becomes available, with the posterior probabilities after the previous stage serving as the prior probabilities for the next stage.</li>
-<li>The final posterior probabilities only depend upon the cumulative data. It doesn’t matter if we sequentially update the posterior after each new piece of data or only once after all the data is available; the final posterior probabilities will be the same either way. Also, the final posterior probabilities are not impacted by the order in which the data are observed.</li>
-</ul>
+<div id="exm-meeting-sim-intro" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.5</strong></span> Suppose that Regina and Cady’s arrival times (minutes after noon) are independent, with Regina’s arrival time <span class="math inline">\(R\)</span> uniformly distributed between 0 and 60, and Cady’s <span class="math inline">\(Y\)</span> arrival time following a Normal(30, 10) distribution. We want to approximate the probability that they arrive within 15 minutes of each given that Regina arrives at 12:40. Explain in detail how you would conduct a simulation to approximate this probability. (Be careful!)</p>
+</div>
 
 
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>You should really click on <a href="https://pudding.cool/2018/04/birthday-paradox/">this birthday problem link</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Which isn’t <a href="https://visme.co/blog/most-common-birthday/">quite</a> <a href="http://thedailyviz.com/2016/09/17/how-common-is-your-birthday-dailyviz/">true</a>. However, a non-uniform distribution of birthdays only increases the probability that at least two people have the same birthday. To see that, think of an extreme case like if everyone were born in September.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -993,13 +758,13 @@ P(H_j |E) &amp; \propto P(E|H_j)P(H_j)
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./conditioning.html" class="pagination-link" aria-label="Conditioning">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning</span></span>
+      <a href="./intro-simulation.html" class="pagination-link" aria-label="Introduction to Simulation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Simulation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./independence.html" class="pagination-link" aria-label="Independence">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Independence</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -18,7 +18,8 @@ book:
     - conditioning.qmd
     - probability-rules.qmd
     - independence.qmd
-    # - intro-simulation.qmd
+    - intro-simulation.qmd
+    - approximating-probabilities.qmd
     # - marginal-distributions.qmd
     # - averages.qmd
     # - joint-correlation.qmd
