@@ -1,0 +1,292 @@
+# Variance and Standard Deviation
+
+{{< include _r_setup.qmd >}}
+
+{{< include _python_setup.qmd >}}
+
+
+The values of a random variable vary. 
+The distribution of a random variable describes its pattern of variability. 
+The expected value of a random variable summarizes the distribution in just a single number, the long run average value. 
+But the expected value does not tell us much about the degree of variability of the random variable. 
+Do the values of the random variable tend to be close to the expected value, or are they spread out?  Variance and standard deviation are numbers that address these questions.
+
+
+::: {#exm-uniform-variance}
+Let $X$ be a random variable with a Uniform(0, 60) distribution (like we have seen in the meeting problem).
+:::
+
+1.  Sketch a histogram of many simulated values of $X$.
+\
+\
+\
+\
+\
+1.  Explain how you could use simulation to approximate $\text{E}(X)$.
+What do you think the value of $\text{E}(X)$ is for this $X$?
+\
+\
+\
+\
+\
+1.  Explain how we could use simulation to approximate $\text{E}(|X - \text{E}(X)|)$.
+Why might we consider this quantity as a measure of variability?
+What do you think the value of $\text{E}(|X - \text{E}(X)|)$ is for this $X$?
+\
+\
+\
+\
+\
+1.  The variance of $X$ is defined as $\text{Var}(X) = \text{E}(|X - \text{E}(X)|^2)$.
+Explain how you could use simulation to approximate $\text{E}(|X - \text{E}(X)|^2)$.
+Why might we consider variance as a measure of variability?
+\
+\
+\
+\
+\
+1.  The standard deviation of $X$ is defined as $\text{SD}(X) = \sqrt{\text{Var}(X)}$.
+Explain why we take the square root.
+Hint: consider measurement units, e.g., if $X$ is measured in minutes what are the measurement units of variance and standard deviation?
+Why might we consider standard deviation as a measure of variability?
+\
+\
+\
+\
+\
+1.  Is $\text{SD}(X)$ equal to $\text{E}(|X - \text{E}(X)|)$?
+Why or why not?
+\
+\
+\
+\
+\
+1.  Explain how we can use simulation to approximate $\text{E}(X^2)$.
+Is it equal to $\text{E}(X)^2$?
+\
+\
+\
+\
+\
+1.  Use simulation to approximate $\text{E}(X^2) - \text{E}(X)^2$.
+What do you notice?
+\
+\
+\
+\
+\
+
+-   The **variance** of a random variable $X$ is
+\begin{align*}
+  \text{Var}(X) & = \text{E}\left(\left(X-\text{E}(X)\right)^2\right)\\
+& = \text{E}\left(X^2\right) - \left(\text{E}(X)\right)^2
+\end{align*}
+-   The **standard deviation** of a random variable is
+$$
+\text{SD}(X) = \sqrt{\text{Var}(X)}
+$$
+-   Variance is the long run average squared deviation from the mean. 
+-   Standard deviation measures, roughly, the long run average distance from the mean.
+The measurement units of the standard deviation are the same as for the random variable itself.
+-   The definition $\text{E}((X-\text{E}(X))^2)$ represents the concept of variance.
+However, variance is usually computed using the following equivalent but slightly simpler formula.
+$$
+\text{Var}(X) = \text{E}\left(X^2\right) - \left(\text{E}\left(X\right)\right)^2
+$$
+-   That is, variance is the expected value of the square of $X$ minus the square of the expected value of $X$.  
+-   In some cases, we have the expected value and variance and we want to compute $\text{E}(X^2)$. Rearranging the above formula yields
+$$
+\text{E}\left(X^2\right)  = \text{Var}(X) + \left(\text{E}\left(X\right)\right)^2
+$$
+-   Variance has many nice theoretical properties (which we'll see later).
+Whenever you  need to compute a standard deviation, first find the variance and then take the square root at the end.
+
+
+::: {#exm-sd-matching}
+
+The plots below summarize hypothetical distributions of quiz scores in six classes. All plots are on the same scale.  Each quiz score is a whole number between 0 and 10 inclusive.
+
+:::
+
+
+
+```{r, sd-matching-plot, echo = FALSE}
+
+x1 = 0:10
+p1 = c(1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1)
+p1 = p1/sum(p1)
+
+x2 = 0:10
+p2 = c(6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6)
+p2 = p2/sum(p2)
+
+x3 = 0:10
+p3 = rep(1/11, 11)
+
+x4 = c(0, 10)
+p4 = c(0.5, 0.5)
+
+x5 = 3:7
+p5 = c(1, 2, 3, 2, 1)
+p5 = p5/sum(p5)
+
+x6 = c(6, 7, 8)
+p6 = c(0.1, 0.8, 0.1)
+
+xlimits = c(0, 10)
+xs = 0:10
+par(mfrow=c(2,3), mar=c(4, 4, 1, 1) + 0.1)
+plot(x1, p1, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="A", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x2, p2, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="B", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x3, p3, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="C", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x4, p4, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="D", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x5, p5, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="E", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+plot(x6, p6, xlim=xlimits, ylim=c(0,1), xlab="", ylab="Probability", main="F", type="h", lwd=2, xaxt="n")
+axis(1, xs)
+
+# sqrt(sum(x1^2*p1)-sum(x1*p1)^2)
+# sqrt(sum(x2^2*p2)-sum(x2*p2)^2)
+# sqrt(sum(x3^2*p3)-sum(x3*p3)^2)
+# sqrt(sum(x4^2*p4)-sum(x4*p4)^2)
+# sqrt(sum(x5^2*p5)-sum(x5*p5)^2)
+# sqrt(sum(x6^2*p6)-sum(x6*p6)^2)
+
+```
+
+
+1. Donny Dont says that C represents the smallest SD, since there is no variability in the heights of the bars. Do you agree that C represents "no variability? Explain.
+\
+\
+\
+\
+\
+1. What is the smallest *possible* value the SD of quiz scores could be?  What would need to be true about the distribution for this to happen? (This scenario might not be represented by one the plots.)
+\
+\
+\
+\
+\
+1. Without doing any calculations, arrange the classes in order based on their SDs from smallest to largest.  
+\
+\
+\
+\
+\
+1. In one of the classes, the SD of quiz scores is 5.  Which one?  Why?
+\
+\
+\
+\
+\
+1. Is the SD in F greater than, less than, or equal to 1?  Why?
+\
+\
+\
+\
+\
+1. Provide a ballpark estimate of SD in each case.
+\
+\
+\
+\
+\
+
+::: {#exm-crash-variance}
+Continuing @exm-dice-sim-tactile-ev.
+Let $X$ be the number of vehicles crashes involving fatalities that occur in San Luis Obispo County in a randomly selected week.
+Suppose that $X$ has distribution
+
+| $x$ | $\text{P}(X=x)$ |
+|-----|----------------:|
+| 0   |           0.589 |
+| 1   |           0.312 |
+| 2   |           0.083 |
+| 3   |           0.014 |
+| 4   |           0.002 |
+
+:::
+
+1.  Explain how you could use simulation to approximate $\text{Var}(X)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{Var}(X)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{SD}(X)$ and interpret the value in context.
+\
+\
+\
+\
+\
+
+
+
+
+
+::: {#exm-sat-z-score}
+SAT scores have a mean of 1050 and a standard deviation of 200.
+ACT scores have a mean of 21 and a standard deviation of 5.5.
+The shape of the distributions of scores is similar for the two tests.
+
+Darius's score on the SAT is 1500.  Alfred's score on the ACT is 31.
+We'll investigate who scored relatively better on their test.
+
+:::
+
+1.  Compute the deviation from the mean for Darius's SAT score.
+How large is this value relative to the standard deviation for SAT scores (which measures, roughly, the average deviation from the mean)?
+\
+\
+\
+\
+\
+1.  Compute the deviation from the mean for Alfred's ACT score.
+How large is this value relative to the standard deviation for ACT scores?
+\
+\
+\
+\
+\
+1.  Who scored relatively better on their test?
+Explain.
+\
+\
+\
+\
+\
+1.  Could we answer the previous question if we did not know that the shapes were similar?
+\
+\
+\
+\
+\
+
+-   Standard deviation provides a "ruler" by which we can judge a particular realized value of a random variable relative to the distribution of values.
+-   If $X$ is a random variable with expected value $\text{E}(X)$ and standard deviation $\text{SD}(X)$, then the **standardized random variable** is
+$$
+Z = \frac{X - \text{E}(X)}{\text{SD}(X)}
+$$
+-   However, keep in mind that comparing standardized values is most appropriate for distributions that have *similar shapes*.
+-   Standardization is most natural for random variables that follow a Normal distribution.
+-   A Normal distribution has two parameters: its mean (typically denoted $\mu$) and its standard deviation (typically denoted $\sigma$).
+-   For Normal distributions the probability that a value is within (or beyond) a given number of standard deviations from the mean follows a specific pattern called the "empirical rule". For example:
+    -   68% of values are within 1 standard deviation of the mean
+    -   95% of values are within 2 standard deviations of the mean
+    -   99.7% of values are within 3 standard deviations of the mean
+-   We will study Normal distributions in much more detail later
+
+::: {#exm-meeting-tactile-sim-normal-empirical-rule}
+The spinner in @exm-meeting-tactile-sim-normal represents the Normal(30, 10) distribution.
+Explain how this spinner reflects the empirical rule
+:::

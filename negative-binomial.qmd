@@ -1,0 +1,246 @@
+# Negative Binomial Distributions
+
+
+::: {#exm-nb-bball-math}
+Suppose that 86% of Cal Poly students are CA residents.
+Randomly select Cal Poly students one at a time, independently, until you select 5 CA residents, then stop.
+Let $X$ be the total number of students selected.
+:::
+
+1.  Does $X$ have a Binomial distribution? 
+A Geometric distribution?
+Why or why not?
+\
+\
+\
+\
+\
+1.  What are the possible values of $X$? 
+Is $X$ discrete or continuous?
+\
+\
+\
+\
+\
+1.  Describe how you could use a tactile simulation to simulate a single value of $X$.
+\
+\
+\
+\
+\
+1.  Describe in words how you could use simulation to approximate $\text{P}(X=5)$.
+\
+\
+\
+\
+\
+1.  Describe in words how you could use simulation to approximate the distribution of $X$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X=5)$.
+\
+\
+\
+\
+\
+1.  Compute the probability that the first student is not a CA resident but the next 5 are.
+\
+\
+\
+\
+\
+1.  Why is $\text{P}(X=6)$ different from the probability in the previous part?
+\
+\
+\
+\
+\
+1.  How many outcomes satisfy the event $\{X=6\}$?
+Answer without listing all the possibilities.
+Hint: careful, it's not $\binom{6}{5}$; why not?
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X=6)$
+\
+\
+\
+\
+\
+1.  Compute the probability that the first two students are not CA residents but the next 5 are.
+\
+\
+\
+\
+\
+1.  Why is $\text{P}(X=7)$ different from the probability in the previous part?
+\
+\
+\
+\
+\
+1.  How many outcomes satisfy the event $\{X=7\}$?
+Answer without listing all the possibilities.
+Hint: careful, it's not $\binom{7}{5}$; why not?
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X=7)$
+\
+\
+\
+\
+\
+1.  Suggest a formula for the probability mass function of $X$.
+Then use the pmf to create a table representing the distribution of $X$.
+\
+\
+\
+\
+\
+1.  What seems like a reasonable shortcut formula for $\text{E}(X)$?
+\
+\
+\
+\
+\
+1.  Use the theoretical pmf to compute $\text{E}(X)$.
+Did the shortcut formula work?
+\
+\
+\
+\
+\
+1.  Interpret $\text{E}(X)$ for this example.
+\
+\
+\
+\
+\
+1.  Compute $\text{Var}(X)$.
+\
+\
+\
+\
+\
+1.  Would the variance be larger or smaller if we kept selecting until we obtain 10 CA residents instead of 5?
+\
+\
+\
+\
+\
+
+
+
+
+
+
+
+
+-   Perform Bernoulli($p$) trials until a fixed number, $r$, of successes and then stop.
+Let $X$ count the total number of trials, including the $r$ successes.
+The distribution of $X$ is defined to be the **Negative Binomial($r$, $p$) distribution**.
+-   A Negative Binomial distribution is specified by two parameters:
+    -   $r$ (an integer): the fixed number of successes
+    -   $p$ (in $[0, 1]$): the fixed marginal probability of success on each Bernoulli trial, or the population proportion of success
+-   A discrete random variable $X$ has a **Negative Binomial distribution** with parameters $r$, a positive integer, and  $p\in[0, 1]$ if and only if its probability mass function is
+\begin{align*}
+p_{X}(x) & = \binom{x-1}{r-1}p^r(1-p)^{x-r}, & x=r, r+1, r+2, \ldots
+\end{align*}
+-   If $X$ has a NegativeBinomial($r$, $p$) distribution
+\begin{align*}
+\text{E}(X) & = \frac{r}{p}\\
+\text{Var}(X) & = \frac{r(1-p)}{p^2}
+\end{align*}
+
+
+
+
+
+::: {#exm-nb-geom}
+What is another name for a NegativeBinomial(1, $p$) distribution?
+\
+\
+\
+\
+\
+:::
+
+
+::: {#exm-negative-binomial-sum}
+Xavier bets on red on roulette until he wins 3 bets and then he leaves.
+After Xavier leaves, Zander arrives and bets on black until he wins 2 bets and then he leaves.
+Let $X$ be the number of bets that Xavier makes and let $Z$ be the number of bets that Zander makes.
+:::
+
+1.  Identify the distribution of $X$ and the distribution of $Z$.
+\
+\
+\
+\
+\
+1.  Are $X$ and $Z$ independent?
+Explain.
+\
+\
+\
+\
+\
+1.  What does $X+Z$ represent in this context?
+Identify the distribution of $X+Z$ without doing any calculations.
+\
+\
+\
+\
+\
+1.  Suppose that Yolanda starts making bets on the same game as Xavier, and she bets on black until she wins 5 bets. 
+Does $X + Y$ have a Negative Binomial distribution?
+Explain. 
+\
+\
+\
+\
+\
+1.  Suppose instead that Zavier bets on the number 7 until he wins 5 bets.
+Does $X + Z$ have a Negative Binomial distribution in this case?
+Explain.
+\
+\
+\
+\
+\
+
+
+
+
+-   If $X$ and $Y$ are independent, $X$ has a NegativeBinomial($r_X$, $p$) distribution, and $Y$ has a NegativeBinomial($r_Y$, $p$) distribution then $X+Y$ has a NegativeBinomial($r_X+r_Y$, $p$) 
+-   A NegativeBinomial(1, $p$) distribution is a Geometric($p$) distribution.
+-   If $X_1, X_2, \ldots, X_r$ are independent each with a Geometric($p$) distribution, then $X_1+\cdots+X_r$ has a NegativeBinomial($r, p$) distribution.
+
+
+In a Negative Binomial situation, the number of successes is fixed so what's random is the number of failures and hence the number of trials.
+Unfortunately, there is not a standard definition of Negative Binomial in terms of what is counted: failures or trials.
+It's a good idea to always check the documentation of a software package to see what definition is used.
+
+
+
+-   Perform Bernoulli($p$) trials until a fixed number, $r$, of successes and then stop.
+Let $X$ count the total number of *failures* (excluding the $r$ successes).
+The distribution of $X$ is defined to be the **Pascal($r$, $p$) distribution**.
+    -   The possible values of a NegativeBinomial($r$, $p$) distribution are $r, r+1, r+2,\ldots$
+    -   The possible values of a Pascal($r$, $p$) distribution are $0, 1, 2,\ldots$
+-   If $X$ has a NegativeBinomial($r$, $p$) distribution then $(X-r)$ has a Pascal($r$, $p$) distribution.
+-   Similarly, if $Y$ has a Pascal($r$, $p$) distribution then $(Y+r)$ has a NegativeBinomial($r$, $p$) distribution.
+-   Some software packages call "Negative Binomial" what we are calling "Pascal".
+
+
+
+
+

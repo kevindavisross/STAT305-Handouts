@@ -49,5 +49,32 @@
   },
   "approximating-probabilities.qmd": {
     "approximating-probabilities.html": "27da764a"
+  },
+  "approximating-expected-values.qmd": {
+    "approximating-expected-values.html": "0699f53d"
+  },
+  "variance-and-standard-deviation.qmd": {
+    "variance-and-standard-deviation.html": "adefef2e"
+  },
+  "counting-and-uniform.qmd": {
+    "counting-and-uniform.html": "4fb24339"
+  },
+  "covariance-and-correlation.qmd": {
+    "covariance-and-correlation.html": "1f7d53a7"
+  },
+  "discrete-pmf.qmd": {
+    "discrete-pmf.html": "13bafb36"
+  },
+  "binomial.qmd": {
+    "binomial.html": "a6c666e8"
+  },
+  "negative-binomial.qmd": {
+    "negative-binomial.html": "5324bcaf"
+  },
+  "poisson.qmd": {
+    "poisson.html": "7c171293"
+  },
+  "continuous-rv.qmd": {
+    "continuous-rv.html": "0227f222"
   }
 }

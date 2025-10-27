@@ -1,0 +1,445 @@
+# Continuous Random Variables
+
+-   **The probability that a continuous random variable $X$ equals any particular value is 0.** That is, if $X$ is continuous then $\text{P}(X=x)=0$ for all $x$.  
+-   For continuous random variables, it doesn't really make sense to talk about the probability that the random value is *equal to* a particular value.
+-   Even though any specific value of a continuous random variable has probability 0, *intervals* can have positive probability.
+In particular, the probability that a continuous random variable  is "close to" a specific value can be positive.
+-   For continuous random variables, finding frequencies of individual values and impulse plots (like we used for discrete RVs) don't make any sense since each simulated value will only occur once in the simulation. 
+-   Instead, we summarize simulated values of continuous random variables in a *histogram*.
+A **histogram** groups the observed values into "close-to bins" and plots frequencies or *densities* for each bin.
+-   Typically, in a histogram *areas* of bars represent relative frequencies; in which case the axis which represents the height of the bars is called "density".
+-   The continuous analog of a probability mass function (pmf) is a *probability density function (pdf)*.
+However, while pmfs and pdfs play analogous roles, they are different in one fundamental way; namely, a pmf outputs probabilities directly, while a pdf does not.
+-   A probability density function only provides the density height; the *area under the density curve determines probabilities*. 
+-   For a continuous random variable $X$ with pdf $f_X$, the probability that $X$ takes a value in the interval $[a, b]$ is the *area under the pdf over the region* $[a,b]$.
+
+
+::: {#exm-continuous-uniform}
+We'll start with the simplest case. 
+Many software programs have "random number generators" that simulate continuous values uniformly at random between 0 and 1. 
+Let $U$ have such a Uniform(0, 1) distribution.
+:::
+
+1.  Sketch a spinner for simulating values of $U$. 
+\
+\
+\
+\
+\
+1.  Sketch a histogram that would result after simulating many values of $U$. 
+\
+\
+\
+\
+\
+1.  Specify the probability density function of $U$. 
+\
+\
+\
+\
+\
+1.  Use the probability density function to compute $\text{P}(X > 0.8)$. 
+\
+\
+\
+\
+\
+1.  Compute $\text{P}(X = 0.8)$. 
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(|X -  0.8| < 0.005)$. 
+\
+\
+\
+\
+\
+1.  Let $X = 10 + 50 U$. 
+Determine the pdf of $X$.
+\
+\
+\
+\
+\
+
+
+
+
+-   A continuous random variable $X$ has a **Uniform distribution** with parameters $a$ and $b$, with $a<b$, if its probability density function $f_X$ satisfies
+\begin{align*}
+f_X(x) & \propto \text{constant}, \quad & & a<x<b\\
+& = \frac{1}{b-a}, \quad & &  a<x<b.
+\end{align*}
+-   If $X$ has a Uniform($a$, $b$) distribution then
+\begin{align*}
+\text{E}(X) & = \frac{a+b}{2}\\
+\text{Var}(X) & = \frac{|b-a|^2}{12}\\
+\text{SD}(X) & = \frac{|b-a|}{\sqrt{12}}\approx 0.289|b-a|
+\end{align*}
+-   The "standard" Uniform distribution is the Uniform(0, 1) distribution.
+-   If $U$ has a Uniform(0, 1) distribution then $X = a + (b-a)U$ has a Uniform($a$, $b$) distribution.
+
+
+
+
+
+
+
+::: {#exm-normal-spinner-percentogram}
+Recall @exm-meeting-tactile-sim-normal in which we assumed an arrival time (minutes after noon) followed a Normal(30, 10) distribution, represented by the spinners in @fig-meeting-normal-spinner.
+Pay close attention to the values on the spinner axis; they do not follow a linear scale.
+:::
+
+
+```{r}
+#| label: fig-meeting-normal-spinner
+#| echo: false
+#| warning: false
+#| fig-cap: "A continuous *Normal(30, 10)* spinner. The same spinner is displayed on both sides, with different features highlighted on the left and right. Only selected rounded values are displayed, but in the idealized model the spinner is infinitely precise so that any real number is a possible outcome. Notice that the values on the axis are *not* evenly spaced."
+#| fig-subcap: 
+#|   - "Values at 1 o'clock, 2 o'clock, etc"
+#|   - "Spinner axis marked at 10 minute intervals"
+#| layout-ncol: 2
+
+
+library(tidyverse)
+library(scales)
+library(geomtextpath)
+library(kableExtra)
+
+n = 12
+
+xp <- data.frame(
+  x = (0:(n-1))/n,
+  p = rep(1/n, n)
+  )
+
+cdf = c(0, cumsum(xp$p))
+
+plotp = (cdf[-1] + cdf[-length(cdf)]) / 2
+  
+spinner1 <- ggplot(xp, aes(x="", y=p, fill=x))+
+  geom_bar(width = 1, stat = "identity", color="black", fill="white") + 
+  coord_polar("y", start=0) +
+  theme_void() +
+  # plot the possible values on the outside
+  scale_y_continuous(breaks = xp$x, minor_breaks = (0:99)/100, labels=c("60|0", round(30 + 10 * qnorm(xp$x[-1]), 2))) +
+  theme(axis.text.x=element_text(size=12, face="bold"))
+
+spinner1
+
+
+x = c("","<-2",-1, 0, 1, ">2")
+p = c(pnorm(-2), pnorm(-1:2) - pnorm(-2:1), 1-pnorm(2))
+
+xp <- data.frame(x, p)
+
+cdf = c(0, cumsum(xp$p))
+
+
+
+plotp = (cdf[-1] + cdf[-length(cdf)]) / 2
+  
+spinner2 <- ggplot(xp, aes(x="", y=p, fill=x))+
+  geom_bar(width = 1, stat = "identity", color="black", fill="white", linetype=1) + 
+  # coord_polar("y", start=0) +
+  coord_curvedpolar("y", start = 0) +
+  theme_void() +
+  # plot the possible values on the outside
+  scale_y_continuous(breaks = cdf[-c(1, length(cdf))], labels=c(10, 20, 30, 40, 50)) +
+  # theme(axis.text.x=element_text(angle=c(90-180/50*(0:49), -90-180/50*(50:99)), size=8)) +
+  theme(axis.text.x=element_text(angle = 0, size=12)) +
+  # annotate(geom="segment", y=(0:19)/20+0.000, yend = (0:19)/20+0.000,
+  #          x=1.48, xend= 1.52) +
+  # plot the probabilities as percents inside
+    geom_text(aes(y = plotp,
+                label = percent(p, accuracy = 0.1)), size=4, color=c(NA, rep("black",4), rep(NA, 1)))
+
+spinner2
+```
+
+
+1.  Sketch a histogram corresponding to @fig-meeting-normal-spinner-2 with 6 bins of *equal* width.
+What should the area of each histogram bar be?
+What should the density heights of the bars be?
+\
+\
+\
+\
+\
+1.  Sketch a histogram corresponding to @fig-meeting-normal-spinner-1 with 12 bins of *unequal* width.
+What should the area of each histogram bar be?
+What should the density heights of the bars be?
+Be careful!
+The variable axis of the histogram should still be a number line with linear scale---e.g., the interval [0, 10] should be the same length as the interval [10, 20]---but the histogram bins will not have the same width. 
+\
+\
+\
+\
+\
+1.  Sketch a smooth curve that describes the shape of the Normal(30, 10) distribution.
+\
+\
+\
+\
+\
+
+
+
+
+::: {#exm-height-percentile}
+
+Maggie and Seamus are babies who have just turned one.
+At their one-year visits to their pediatrician:
+
+-   Maggie is 76cm tall and in the [75th percentile of height for females](https://www.cdc.gov/growthcharts/data/set1clinical/cj41l018.pdf).
+-   Seamus is 72cm tall and in the [10th percentile of height for males](https://www.cdc.gov/growthcharts/data/set1clinical/cj41l017.pdf).
+
+Explain what these percentiles mean.
+\
+\
+\
+\
+\
+:::
+
+
+-   A distribution is basically just a collection of *percentiles*.
+-   Roughly, the value $x$ is the $p$th percentile of a distribution of a random variable $X$ if $p$ percent of values of the variable are less than or equal to $x$: $\text{P}(X\le x) = p$.
+-   The *cumulative distribution function (cdf)* of a random variable fills in the blank
+for any given $x$: $x$ is the (blank) percentile. 
+That is, for an input $x$, the cdf outputs $\text{P}(X\le x)$.
+-   The **cumulative distribution function (cdf)** (of a random variable $X$ defined on a probability space with probability measure $\text{P}$)
+is the function, $F_X: \mathbb{R}\mapsto[0,1]$, defined by
+$F_X(x) = \text{P}(X\le x)$.
+-   A cdf is defined for all real numbers $x$ regardless of whether $x$ is a possible value of $X$. 
+-   A cdf defines a distribution by defining all of its percentiles. 
+Given all the percentiles we can determine the probability that the random variable lies in any interval.
+
+
+
+::: {#exm-meeting-normal-percentile}
+Recall @exm-normal-spinner-percentogram where $X$ has a Normal(30, 10) distribution. 
+Let $F$ be the cdf of $X$.
+:::
+
+1.  Compute and interpret $F(23.26)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $F(40)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $F(40) - F(23.26)$.
+\
+\
+\
+\
+\
+1.  Find $x$ such that $F(x) = 0.75$, and interpret.
+\
+\
+\
+\
+\
+
+
+
+
+
+
+::: {#exm-quake-percentile-table}
+In a certain region, times (minutes) between occurrences of earthquakes (of any magnitude) have a distribution with percentiles displayed in @tbl-quake-percentile-table.
+
+:::
+
+
+
+
+```{r}
+#| label: tbl-quake-percentile-table
+#| echo: false
+#| warning: false
+#| tbl-cap: "Percentiles for @exm-quake-percentile-table."
+
+
+exponential_spinner = data.frame(p = 0.1 * (1:9)) |>
+  mutate(x = round(qexp(p, rate = 1 / 120), 1))
+
+exponential_spinner |>
+  mutate(p = paste(100 * p, "th", sep = "")) |>
+  kbl(col.names = c("Percentile", "Value (minutes)")) |>
+  kable_styling()
+  
+```
+
+
+1.  Construct a spinner corresponding to this distribution.
+\
+\
+\
+\
+\
+1.  Sketch a histogram of this distribution with unequal bin widths.
+What might a smooth density look like?
+\
+\
+\
+\
+\
+1.  Sketch a histogram of this distribution with equal bin widths.
+\
+\
+\
+\
+\
+
+
+
+
+
+::: {#exm-meeting-nonuniform-cdf}
+Recall @exm-meeting-nonuniform-probspace1.
+Let $X$ be the random variable representing Han's arrival time and assume that the cdf of $X$ satisfies
+$$
+F(x) = (x/60)^2, \qquad 0\le x\le 60
+$$
+:::
+
+1.  Compute and interpret $\text{P}(X\le 30)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X \le 42.42)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X \le 51.96)$.
+\
+\
+\
+\
+\
+1.  What do the previous parts tell you about the percentiles of $X$?
+\
+\
+\
+\
+\
+1.  Use the answers to the previous parts to start to construct a spinner for simulating values of $X$.
+\
+\
+\
+\
+\
+1.  How could you fill in more of the spinner?
+For example, where should you place the values 10, 20, 30, 40, 50 on the spinner axis?
+\
+\
+\
+\
+\
+1.  Suppose you simulate many value of $X$. 
+Sketch a histogram and the pdf of $X$.
+\
+\
+\
+\
+\
+
+
+
+
+::: {#exm-meeting-nonuniform-quantile}
+Continuing @exm-meeting-nonuniform-cdf.
+:::
+
+1.  Compute and interpret the 10th percentile.
+\
+\
+\
+\
+\
+1.  Compute and interpret the 90th percentile.
+\
+\
+\
+\
+\
+1.  Find an expression for the $p$th percentile, where $0<p<1$, e.g., $p=0.1$ corresponds to the 10th percentile.
+\
+\
+\
+\
+\
+1.  Use the answers to the previous parts to start to construct a spinner for simulating values of $X$.
+How could you fill in more of the spinner?
+\
+\
+\
+\
+\
+
+
+-   The *quantile function* (essentially the inverse cdf) fills in the
+following blank for a given $p\in[0, 1]$: the $100p$th percentile is (blank).
+-   For example, evaluating the quantile function at $p=0.25$ outputs the 25th percentile.
+-   For a *continuous* random variable with cdf $F$, the **quantile function** $Q:[0,1]\mapsto\mathbb{R}$ is the inverse of the cdf, $Q(p) = F^{-1}(p)$.
+-   A quantile function basically gives you the same information as a cdf, just in the other direction. 
+Both a quantile function and a cdf define a distribution by specifying all the percentiles.
+
+
+::: {#exm-quake-percentile-table-quantile}
+Let $X$ be a continuous random variable whose distribution is partially summarized by @tbl-quake-percentile-table.
+
+1.  Let $F$ be the cdf of $X$.
+Evaluate and interpret $F(42.8)$.
+\
+\
+\
+\
+\
+1.  Let $Q$ be the quantile function of $X$.
+Evaluate and interpret $Q(0.9)$.
+\
+\
+\
+\
+\
+
+:::
+
+
+
+-   The quantile function can be used to create a spinner for a distribution.
+Basically, the values on the outside boundary of the spinner are scaled based on the quantile function (which is determined by the cdf).
+Intervals corresponding to regions of higher density ("more likely") values are stretched out on the spinner boundary; intervals corresponding regions of lower density ("less likely" values) are shrunk.
+-   **Universality of the Uniform (or "one spinner to rule them all").** 
+Let $F$ be a cdf and $Q$ its corresponding quantile function. 
+Let $U$ have a Uniform(0, 1) distribution and define the random variable $X=Q(U)$. 
+Then the cdf of $X$ is $F$.
+-   Universality of the uniform might look complicated but all it basically says is that you can construct a spinner by putting the 25th percentile 25% of the way around, the 75th percentile 75% of the way around, etc.
+-   Actually, universality of the uniform says we don't have to create a new spinner. 
+We can just spin the Uniform(0, 1) spinner and transform each resulting value by plugging it into the quantile function.
+
+
+
+
+
+
+
+
+
+
+

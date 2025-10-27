@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>20&nbsp; Continuous Random Variables – STAT 305 Handouts</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./poisson.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./continuous-rv.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Continuous Random Variables</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">STAT 305 Handouts</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./randomness-and-probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Randomness and Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./working-with-probabilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Working with Probabilities</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./interpreting-probabilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Interpreting Probabilities and “Expected” Values</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./outcomes-events-rvs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Outcomes, Events, and Random Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Models</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro-to-distributions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Distributions of Random Variables (A Brief Introduction)</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./conditioning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability-rules.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability Rules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./independence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Independence</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Simulation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./approximating-probabilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./approximating-expected-values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Approximating Expected Values</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./variance-and-standard-deviation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Variance and Standard Deviation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./covariance-and-correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Covariance and Correlation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./counting-and-uniform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Equally Likely Outcomes and Counting Rules</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./discrete-pmf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./binomial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Binomial Distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./negative-binomial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Negative Binomial Distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./poisson.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Poisson Distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./continuous-rv.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Continuous Random Variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Continuous Random Variables</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<ul>
+<li><strong>The probability that a continuous random variable <span class="math inline">\(X\)</span> equals any particular value is 0.</strong> That is, if <span class="math inline">\(X\)</span> is continuous then <span class="math inline">\(\text{P}(X=x)=0\)</span> for all <span class="math inline">\(x\)</span>.<br>
+</li>
+<li>For continuous random variables, it doesn’t really make sense to talk about the probability that the random value is <em>equal to</em> a particular value.</li>
+<li>Even though any specific value of a continuous random variable has probability 0, <em>intervals</em> can have positive probability. In particular, the probability that a continuous random variable is “close to” a specific value can be positive.</li>
+<li>For continuous random variables, finding frequencies of individual values and impulse plots (like we used for discrete RVs) don’t make any sense since each simulated value will only occur once in the simulation.</li>
+<li>Instead, we summarize simulated values of continuous random variables in a <em>histogram</em>. A <strong>histogram</strong> groups the observed values into “close-to bins” and plots frequencies or <em>densities</em> for each bin.</li>
+<li>Typically, in a histogram <em>areas</em> of bars represent relative frequencies; in which case the axis which represents the height of the bars is called “density”.</li>
+<li>The continuous analog of a probability mass function (pmf) is a <em>probability density function (pdf)</em>. However, while pmfs and pdfs play analogous roles, they are different in one fundamental way; namely, a pmf outputs probabilities directly, while a pdf does not.</li>
+<li>A probability density function only provides the density height; the <em>area under the density curve determines probabilities</em>.</li>
+<li>For a continuous random variable <span class="math inline">\(X\)</span> with pdf <span class="math inline">\(f_X\)</span>, the probability that <span class="math inline">\(X\)</span> takes a value in the interval <span class="math inline">\([a, b]\)</span> is the <em>area under the pdf over the region</em> <span class="math inline">\([a,b]\)</span>.</li>
+</ul>
+<div id="exm-continuous-uniform" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.1</strong></span> We’ll start with the simplest case. Many software programs have “random number generators” that simulate continuous values uniformly at random between 0 and 1. Let <span class="math inline">\(U\)</span> have such a Uniform(0, 1) distribution.</p>
+</div>
+<ol type="1">
+<li>Sketch a spinner for simulating values of <span class="math inline">\(U\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch a histogram that would result after simulating many values of <span class="math inline">\(U\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Specify the probability density function of <span class="math inline">\(U\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Use the probability density function to compute <span class="math inline">\(\text{P}(X &gt; 0.8)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{P}(X = 0.8)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(|X -  0.8| &lt; 0.005)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Let <span class="math inline">\(X = 10 + 50 U\)</span>. Determine the pdf of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>A continuous random variable <span class="math inline">\(X\)</span> has a <strong>Uniform distribution</strong> with parameters <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, with <span class="math inline">\(a&lt;b\)</span>, if its probability density function <span class="math inline">\(f_X\)</span> satisfies <span class="math display">\[\begin{align*}
+f_X(x) &amp; \propto \text{constant}, \quad &amp; &amp; a&lt;x&lt;b\\
+&amp; = \frac{1}{b-a}, \quad &amp; &amp;  a&lt;x&lt;b.
+\end{align*}\]</span></li>
+<li>If <span class="math inline">\(X\)</span> has a Uniform(<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>) distribution then <span class="math display">\[\begin{align*}
+\text{E}(X) &amp; = \frac{a+b}{2}\\
+\text{Var}(X) &amp; = \frac{|b-a|^2}{12}\\
+\text{SD}(X) &amp; = \frac{|b-a|}{\sqrt{12}}\approx 0.289|b-a|
+\end{align*}\]</span></li>
+<li>The “standard” Uniform distribution is the Uniform(0, 1) distribution.</li>
+<li>If <span class="math inline">\(U\)</span> has a Uniform(0, 1) distribution then <span class="math inline">\(X = a + (b-a)U\)</span> has a Uniform(<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>) distribution.</li>
+</ul>
+<div id="exm-normal-spinner-percentogram" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.2</strong></span> Recall <a href="intro-simulation.html#exm-meeting-tactile-sim-normal" class="quarto-xref">Example&nbsp;<span>10.3</span></a> in which we assumed an arrival time (minutes after noon) followed a Normal(30, 10) distribution, represented by the spinners in <a href="#fig-meeting-normal-spinner" class="quarto-xref">Figure&nbsp;<span>20.1</span></a>. Pay close attention to the values on the spinner axis; they do not follow a linear scale.</p>
+</div>
+<div id="fig-meeting-normal-spinner" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-meeting-normal-spinner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-meeting-normal-spinner" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-meeting-normal-spinner-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-meeting-normal-spinner-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="continuous-rv_files/figure-html/fig-meeting-normal-spinner-1.png" class="img-fluid figure-img" data-ref-parent="fig-meeting-normal-spinner" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-meeting-normal-spinner-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Values at 1 o’clock, 2 o’clock, etc
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-meeting-normal-spinner" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-meeting-normal-spinner-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-meeting-normal-spinner-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="continuous-rv_files/figure-html/fig-meeting-normal-spinner-2.png" class="img-fluid figure-img" data-ref-parent="fig-meeting-normal-spinner" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-meeting-normal-spinner-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Spinner axis marked at 10 minute intervals
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-meeting-normal-spinner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.1: A continuous <em>Normal(30, 10)</em> spinner. The same spinner is displayed on both sides, with different features highlighted on the left and right. Only selected rounded values are displayed, but in the idealized model the spinner is infinitely precise so that any real number is a possible outcome. Notice that the values on the axis are <em>not</em> evenly spaced.
+</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>Sketch a histogram corresponding to <a href="#fig-meeting-normal-spinner-2" class="quarto-xref">Figure&nbsp;<span>20.1 (b)</span></a> with 6 bins of <em>equal</em> width. What should the area of each histogram bar be? What should the density heights of the bars be?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch a histogram corresponding to <a href="#fig-meeting-normal-spinner-1" class="quarto-xref">Figure&nbsp;<span>20.1 (a)</span></a> with 12 bins of <em>unequal</em> width. What should the area of each histogram bar be? What should the density heights of the bars be? Be careful! The variable axis of the histogram should still be a number line with linear scale—e.g., the interval [0, 10] should be the same length as the interval [10, 20]—but the histogram bins will not have the same width.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch a smooth curve that describes the shape of the Normal(30, 10) distribution.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-height-percentile" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.3</strong></span> Maggie and Seamus are babies who have just turned one. At their one-year visits to their pediatrician:</p>
+<ul>
+<li>Maggie is 76cm tall and in the <a href="https://www.cdc.gov/growthcharts/data/set1clinical/cj41l018.pdf">75th percentile of height for females</a>.</li>
+<li>Seamus is 72cm tall and in the <a href="https://www.cdc.gov/growthcharts/data/set1clinical/cj41l017.pdf">10th percentile of height for males</a>.</li>
+</ul>
+<p>Explain what these percentiles mean.<br>
+<br>
+<br>
+<br>
+<br>
+</p>
+</div>
+<ul>
+<li>A distribution is basically just a collection of <em>percentiles</em>.</li>
+<li>Roughly, the value <span class="math inline">\(x\)</span> is the <span class="math inline">\(p\)</span>th percentile of a distribution of a random variable <span class="math inline">\(X\)</span> if <span class="math inline">\(p\)</span> percent of values of the variable are less than or equal to <span class="math inline">\(x\)</span>: <span class="math inline">\(\text{P}(X\le x) = p\)</span>.</li>
+<li>The <em>cumulative distribution function (cdf)</em> of a random variable fills in the blank for any given <span class="math inline">\(x\)</span>: <span class="math inline">\(x\)</span> is the (blank) percentile. That is, for an input <span class="math inline">\(x\)</span>, the cdf outputs <span class="math inline">\(\text{P}(X\le x)\)</span>.</li>
+<li>The <strong>cumulative distribution function (cdf)</strong> (of a random variable <span class="math inline">\(X\)</span> defined on a probability space with probability measure <span class="math inline">\(\text{P}\)</span>) is the function, <span class="math inline">\(F_X: \mathbb{R}\mapsto[0,1]\)</span>, defined by <span class="math inline">\(F_X(x) = \text{P}(X\le x)\)</span>.</li>
+<li>A cdf is defined for all real numbers <span class="math inline">\(x\)</span> regardless of whether <span class="math inline">\(x\)</span> is a possible value of <span class="math inline">\(X\)</span>.</li>
+<li>A cdf defines a distribution by defining all of its percentiles. Given all the percentiles we can determine the probability that the random variable lies in any interval.</li>
+</ul>
+<div id="exm-meeting-normal-percentile" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.4</strong></span> Recall <a href="#exm-normal-spinner-percentogram" class="quarto-xref">Example&nbsp;<span>20.2</span></a> where <span class="math inline">\(X\)</span> has a Normal(30, 10) distribution. Let <span class="math inline">\(F\)</span> be the cdf of <span class="math inline">\(X\)</span>.</p>
+</div>
+<ol type="1">
+<li>Compute and interpret <span class="math inline">\(F(23.26)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(F(40)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(F(40) - F(23.26)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find <span class="math inline">\(x\)</span> such that <span class="math inline">\(F(x) = 0.75\)</span>, and interpret.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-quake-percentile-table" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.5</strong></span> In a certain region, times (minutes) between occurrences of earthquakes (of any magnitude) have a distribution with percentiles displayed in <a href="#tbl-quake-percentile-table" class="quarto-xref">Table&nbsp;<span>20.1</span></a>.</p>
+</div>
+<div class="cell">
+<div id="tbl-quake-percentile-table" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-quake-percentile-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;20.1: Percentiles for <a href="#exm-quake-percentile-table" class="quarto-xref">Example&nbsp;<span>20.5</span></a>.
+</figcaption>
+<div aria-describedby="tbl-quake-percentile-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Percentile</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Value (minutes)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">10th</td>
+<td style="text-align: right;">12.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">20th</td>
+<td style="text-align: right;">26.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">30th</td>
+<td style="text-align: right;">42.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">40th</td>
+<td style="text-align: right;">61.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">50th</td>
+<td style="text-align: right;">83.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">60th</td>
+<td style="text-align: right;">110.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">70th</td>
+<td style="text-align: right;">144.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">80th</td>
+<td style="text-align: right;">193.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">90th</td>
+<td style="text-align: right;">276.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="1">
+<li>Construct a spinner corresponding to this distribution.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch a histogram of this distribution with unequal bin widths. What might a smooth density look like?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch a histogram of this distribution with equal bin widths.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-meeting-nonuniform-cdf" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.6</strong></span> Recall <a href="probability-models.html#exm-meeting-nonuniform-probspace1" class="quarto-xref">Example&nbsp;<span>5.5</span></a>. Let <span class="math inline">\(X\)</span> be the random variable representing Han’s arrival time and assume that the cdf of <span class="math inline">\(X\)</span> satisfies <span class="math display">\[
+F(x) = (x/60)^2, \qquad 0\le x\le 60
+\]</span></p>
+</div>
+<ol type="1">
+<li>Compute and interpret <span class="math inline">\(\text{P}(X\le 30)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X \le 42.42)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X \le 51.96)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What do the previous parts tell you about the percentiles of <span class="math inline">\(X\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Use the answers to the previous parts to start to construct a spinner for simulating values of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>How could you fill in more of the spinner? For example, where should you place the values 10, 20, 30, 40, 50 on the spinner axis?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Suppose you simulate many value of <span class="math inline">\(X\)</span>. Sketch a histogram and the pdf of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-meeting-nonuniform-quantile" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.7</strong></span> Continuing <a href="#exm-meeting-nonuniform-cdf" class="quarto-xref">Example&nbsp;<span>20.6</span></a>.</p>
+</div>
+<ol type="1">
+<li>Compute and interpret the 10th percentile.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret the 90th percentile.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find an expression for the <span class="math inline">\(p\)</span>th percentile, where <span class="math inline">\(0&lt;p&lt;1\)</span>, e.g., <span class="math inline">\(p=0.1\)</span> corresponds to the 10th percentile.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Use the answers to the previous parts to start to construct a spinner for simulating values of <span class="math inline">\(X\)</span>. How could you fill in more of the spinner?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>The <em>quantile function</em> (essentially the inverse cdf) fills in the following blank for a given <span class="math inline">\(p\in[0, 1]\)</span>: the <span class="math inline">\(100p\)</span>th percentile is (blank).</li>
+<li>For example, evaluating the quantile function at <span class="math inline">\(p=0.25\)</span> outputs the 25th percentile.</li>
+<li>For a <em>continuous</em> random variable with cdf <span class="math inline">\(F\)</span>, the <strong>quantile function</strong> <span class="math inline">\(Q:[0,1]\mapsto\mathbb{R}\)</span> is the inverse of the cdf, <span class="math inline">\(Q(p) = F^{-1}(p)\)</span>.</li>
+<li>A quantile function basically gives you the same information as a cdf, just in the other direction. Both a quantile function and a cdf define a distribution by specifying all the percentiles.</li>
+</ul>
+<div id="exm-quake-percentile-table-quantile" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.8</strong></span> Let <span class="math inline">\(X\)</span> be a continuous random variable whose distribution is partially summarized by <a href="#tbl-quake-percentile-table" class="quarto-xref">Table&nbsp;<span>20.1</span></a>.</p>
+<ol type="1">
+<li>Let <span class="math inline">\(F\)</span> be the cdf of <span class="math inline">\(X\)</span>. Evaluate and interpret <span class="math inline">\(F(42.8)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Let <span class="math inline">\(Q\)</span> be the quantile function of <span class="math inline">\(X\)</span>. Evaluate and interpret <span class="math inline">\(Q(0.9)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<ul>
+<li>The quantile function can be used to create a spinner for a distribution. Basically, the values on the outside boundary of the spinner are scaled based on the quantile function (which is determined by the cdf). Intervals corresponding to regions of higher density (“more likely”) values are stretched out on the spinner boundary; intervals corresponding regions of lower density (“less likely” values) are shrunk.</li>
+<li><strong>Universality of the Uniform (or “one spinner to rule them all”).</strong> Let <span class="math inline">\(F\)</span> be a cdf and <span class="math inline">\(Q\)</span> its corresponding quantile function. Let <span class="math inline">\(U\)</span> have a Uniform(0, 1) distribution and define the random variable <span class="math inline">\(X=Q(U)\)</span>. Then the cdf of <span class="math inline">\(X\)</span> is <span class="math inline">\(F\)</span>.</li>
+<li>Universality of the uniform might look complicated but all it basically says is that you can construct a spinner by putting the 25th percentile 25% of the way around, the 75th percentile 75% of the way around, etc.</li>
+<li>Actually, universality of the uniform says we don’t have to create a new spinner. We can just spin the Uniform(0, 1) spinner and transform each resulting value by plugging it into the quantile function.</li>
+</ul>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./poisson.html" class="pagination-link" aria-label="Poisson Distributions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Poisson Distributions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

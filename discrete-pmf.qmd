@@ -1,65 +1,37 @@
 # Discrete Random Variables: Probability Mass Functions
 
 
-- The **(probability) distribution** of a random variable specifies the possible values
+-   Roughly, a random variable assigns a number measuring some quantity of interest to each outcome of a random phenomenon.
+-   The **(probability) distribution** of a random variable specifies the possible values
 of the random variable and a way of determining corresponding probabilities.
-- A **discrete** random variable can take on only countably many isolated points on a
-number line. These are often counting type variables.  Note that "countably many" includes  the case of countably infinite, such as $\{0, 1, 2, \ldots\}$.
-- We often specify the distribution of a discrete with a *probability mass function*.
-- Certain common distributions have special names and properties.
+-   We will see many ways of describing a distribution, depending on how many random variables are involved and their types (discrete or continuous)
+-   A **discrete** random variable can take on only countably many isolated points on a
+number line. These are often counting type variables.
+    -   Note that "countably many" includes the case of countably infinite, such as $\{0, 1, 2, \ldots\}$.
+-   The **probability mass function (pmf)**  of a *discrete* RV $X$, defined on a probability space with probability measure $\text{P}$, is a function $p_X:\mathbb{R}\mapsto[0,1]$ which specifies each possible value of the RV and the probability that the RV takes that particular value: $p_X(x)=\text{P}(X=x)$ for each possible value of $x$.
+-   Certain common distributions have special names and properties. 
+We often specify a distribution by name along with values of relevant parameters.
 
 
-## Do not confuse a random variable with its distribution
 
-- A random variable measures a numerical quantity which depends on the outcome of a random phenomenon
-- The distribution of a random variable specifies the long run pattern of variation of values of the random variable over many repetitions of the underlying random phenomenon. 
-
-::: {#exm-dd-same-distribution}
-
-Donny Dont is thoroughly confused about the distinction between a random variable and its distribution.  Help him understand by by providing a simple concrete example of *two different random variables* $X$ and $Y$ that have the *same distribution*. Can you think of $X$ and $Y$ for which $\text{P}(X = Y) = 0$?  How about a discrete example and a continuous example?
-
+::: {#exm-dice-pmf}
+Roll a fair four-sided die twice and let $X$ be the sum and $Y$ the larger of the two rolls.
 :::
 
+1.  Verify that the pmf of $X$ is
+$$
+p_X(x) = \frac{4 - |x - 5|}{16}, \qquad x = 2, 3, \ldots, 8
+$$
 \
 \
 \
 \
 \
-
-
-::: {#exm-dd-same-joint-distribution}
-
-Suppose that $X$, $Y$, and $Z$ all have the same distribution.  Donny Dont says
-
-1. The pair $(X, Y)$ has the same joint distribution as the pair $(X, Z)$.
-1. $X+Y$ has the same distribution as $X+Z$.
-1. $X+Y$ has the same distribution as $X+X=2X$.
-
-Determine if each of Donny's statements is correct.  If not, explain why not using a simple example.
-
-:::
-\
-\
-\
-\
-\
-
-
-## Probability mass functions
-
-
-
-
-- The **probability mass function (pmf)** (a.k.a., density (pdf))  of a *discrete* RV $X$, defined on a probability space with probability measure $\text{P}$, is a function $p_X:\mathbb{R}\mapsto[0,1]$ which specifies each possible value of the RV and the probability that the RV takes that particular value: $p_X(x)=\text{P}(X=x)$ for each possible value of $x$.
-
-
-
-
-::: {#exm-pmf-dice-max}
-
-Let $Y$ be the larger of two rolls of a fair four-sided die.  Find the probability mass function of $Y$.
-
-:::
+2.  Is the following the pmf of $Y$? 
+Discuss.
+$$
+p_Y(u) = \frac{2u - 1}{16}
+$$
 \
 \
 \
@@ -69,8 +41,13 @@ Let $Y$ be the larger of two rolls of a fair four-sided die.  Find the probabili
 
 
 ::: {#exm-benford}
+Randomly select a county in the U.S. Let $X$ be the leading digit in the county's population. 
 
-Randomly select a county in the U.S. Let $X$ be the leading digit in the county's population.  [For example](https://en.wikipedia.org/wiki/List_of_counties_in_California), if the county's population is 10,040,000 (Los Angeles County) then $X=1$; if 3,170,000 (Orange County) then $X=3$; if 283,000 (SLO County) then $X=2$; if 30,600 (Lassen County) then $X=3$.  The possible values of $X$ are $1, 2, \ldots, 9$.  You might think that $X$ is equally likely  to be any of its possible values.  However, a more appropriate model is to assume that  $X$ has pmf
+[For example](https://en.wikipedia.org/wiki/List_of_counties_in_California), if the county's population is 10,040,000 (Los Angeles County) then $X=1$; if 3,170,000 (Orange County) then $X=3$; if 283,000 (SLO County) then $X=2$; if 30,600 (Lassen County) then $X=3$.
+The possible values of $X$ are $1, 2, \ldots, 9$.
+You might think that $X$ is equally likely  to be any of its possible values.
+However, a more appropriate model is to assume that  $X$ has pmf
+
 $$
 p_X(x) = 
 \begin{cases}
@@ -78,186 +55,219 @@ p_X(x) =
 0, & \text{otherwise}
 \end{cases}
 $$
-This distribution is known as [Benford's law](https://en.wikipedia.org/wiki/Benford's_law).
+
+This distribution^[You can find a nice explanation of Benford's law [here](https://towardsdatascience.com/benfords-law-a-simple-explanation-341e17abbe75).] is known as [Benford's law](https://en.wikipedia.org/wiki/Benford's_law).
 
 :::
 
-1. Construct a table specifying the distribution of $X$, and the corresponding spinner.
+1.  Compute and interpret $\text{P}(X = 1)$.
 \
 \
 \
 \
 \
-1. Find $\text{P}(X \ge 3)$
+1.  Compute and interpret $\text{P}(X = 2)$.
 \
 \
 \
 \
 \
-
-
-## Poisson distributions
-
-
-
-
-
-
-::: {#exm-homerun-poisson}
-
-Let $X$ be the number of home runs hit (in total by both teams) in a randomly selected Major League Baseball game.  Technically, there is no fixed upper bound on what $X$ can be, so mathematically it is convenient to consider $0, 1, 2, \ldots$ as the possible values of $X$. Assume that the pmf of $X$ is
-
-$$
-p_X(x) =
-\begin{cases}
-e^{-2.3} \frac{2.3^x}{x!}, & x = 0, 1, 2, \ldots\\
-0, & \text{otherwise.}
-\end{cases}
-$$
-
-This is known as the Poisson(2.3) distribution.  
-
-:::
-
+1.  Construct a table specifying the distribution of $X$, and the corresponding spinner.
+\
+\
+\
+\
+\
 1. Verify that $p_X$ is a valid pmf.
 \
 \
 \
 \
 \
-1. Compute $\text{P}(X = 3)$, and interpret the value as a long run relative frequency.
+1.  Find $\text{P}(X \ge 3)$
 \
 \
 \
 \
 \
-1. Construct a table and spinner corresponding to the distribution of $X$.
-\
-\
-\
-\
-\
-1. Find $\text{P}(X \le 13)$, and interpret the value as a long run relative frequency.  ([The most home runs ever hit in a baseball game is 13](https://www.mlb.com/news/d-backs-and-phillies-set-mlb-home-run-record).)
-\
-\
-\
-\
-\
-1. Find and interpret the ratio of $\text{P}(X = 5)$ to $\text{P}(X = 3)$.  Does the value $e^{-2.3}$ affect this ratio?
-\
-\
-\
-\
-\
-1. Use simulation to find the long run average value of $X$, and interpret this value.
-\
-\
-\
-\
-\
-1. Use simulation to find the variance and standard deviation of $X$.
-\
-\
-\
-\
-\
-- A discrete random variable $X$ has a **Poisson distribution** with parameter $\mu>0$ if its probability mass function $p_X$ satisfies
-$$
-p_X(x) = \frac{e^{-\mu}\mu^x}{x!}, \quad x=0,1,2,\ldots
-$$
-- The function $\mu^x / x!$ defines the shape of the pmf.  The constant $e^{-\mu}$ ensures that the probabilities sum to 1.
-- If $X$ has a Poisson($\mu$) distribution then
-\begin{align*}
-\text{Long run average value of $X$} & = \mu\\
-\text{Variance of $X$} & = \mu\\
-\text{SD of $X$} & = \sqrt{\mu}
-\end{align*}
-
-## Binomial distributions
 
 
-::: {#exm-binomial-capture}
-Capture-recapture sampling is a technique often used to estimate the size of a population.  Suppose you want to estimate $N$, the number of [monarch butterflies in Pismo Beach](https://www.parks.ca.gov/?page_id=30273).  (Assume that $N$ is a fixed but unknown number; the population size doesn't change over time.) You first capture a sample of $N_1$ butterflies, selected randomly, and tag them and release them.  At a later date, you then capture a second sample of $n$ butterflies, selected randomly *with replacement*.  Let $X$ be the number of butterflies in the second sample that have tags (because they were also caught in the first sample).  (Assume that the tagging has no effect on behavior, so that selection in the first sample is independent of selection in the second sample.)
+-   In a sequence of **Bernoulli($p$) trials**
+    -   There are only two possible outcomes, "success" (1) or not (0, "failure"), on each trial.
+    -   The unconditional/marginal probability of success is the same on every trial, and equal to $p$.
+    -   The trials are independent.
 
-In practice, $N$ is unknown and the point of capture-recapture sampling is to estimate $N$.  But let's start with a simpler, but unrealistic, example where there are $N=52$ butterflies, $N_1 = 13$ are tagged and $N_0=52-13 = 39$ are not, and $n=5$ is the size of the second sample.
 
+::: {#exm-geometric-bball}
+Maya is a basketball player who makes 40% of her three point field goal attempts.
+Suppose that she attempts three pointers until she makes one and then stops.
+Let $X$ be the total number of shots she attempts.
+Assume shot attempts are independent.
+
+1.  Can Maya's attempts be consider Bernoulli trials?
+\
+\
+\
+\
+\
+1.  What are the possible values that $X$ can take? 
+Is $X$ discrete or continuous?
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X=1)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X=2)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X=3)$.
+\
+\
+\
+\
+\
+1.  Find the probability mass function of $X$.
+\
+\
+\
+\
+\
+1.  Construct a table, plot, and spinner representing the distribution of $X$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X>3)$.
+Can you think of a way to do this without summing several terms?
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X>5|X > 2)$.
+Compare to the previous part. 
+What do you notice? 
+Does this make sense?
+\
+\
+\
+\
+\
+1.  What seems like a reasonable shortcut formula for $\text{E}(X)$ in terms of $p$? 
+Hint: it might help to consider the case $p=0.1$ first, then apply similar logic to $p=0.4$ and general $p$.
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X)$. 
+Did the shortcut work?
+\
+\
+\
+\
+\
+1.  Interpret $\text{E}(X)$ in context.
+\
+\
+\
+\
+\
+1.  Compute $\text{Var}(X)$.
+\
+\
+\
+\
+\
+1.  Would $\text{Var}(X)$ be bigger or smaller if $p=0.9$? 
+If $p=0.1$?
+\
+\
+\
+\
+\
 :::
 
-1. Explain why it is reasonable to assume that the results of the five individual selections are independent.
-\
-\
-\
-\
-\
-1. Compute $\text{P}(X=0)$.
-\
-\
-\
-\
-\
-1. Compute the probability that the first butterfly selected is tagged but the others are not.
-\
-\
-\
-\
-\
-1. Compute the probability that the last butterfly selected is tagged but the others are not.
-\
-\
-\
-\
-\
-1. Compute $\text{P}(X=1)$.
-\
-\
-\
-\
-\
-1. Compute $\text{P}(X=2)$.
-\
-\
-\
-\
-\
-1. Find the pmf of $X$.
-\
-\
-\
-\
-\
-1. Construct a table, plot, and spinner representing the distribution of $X$.
-\
-\
-\
-\
-\
-1. Make an educated guess for the long run average value of $X$.
-\
-\
-\
-\
-\
-1. How do the results depend on $N_1$ and $N_0$?
-\
-\
-\
-\
-\
-- A discrete random variable $X$ has a **Binomial distribution** with parameters
-$n$, a nonnegative integer, and $p\in[0, 1]$ if its probability mass function is
+
+
+-   Perform Bernoulli($p$) trials until a success occurs and then stop.
+Let $X$ count the total number of trials, including the single success.
+The distribution of $X$ is defined to be the **Geometric($p$) distribution**.
+-   The Geometric($p$) probability mass function follows from the fact that if $X$ has a  Geometric distribution, then $X = x$ if and only if
+    -   the first $x-1$ trials are failures, and 
+    -   the $x$th (last) trial results in success.
+-   A discrete random variable $X$ has a Geometric($p$) distribution if and only if its probability mass function is
 \begin{align*}
-p_{X}(x) & = \binom{n}{x} p^x (1-p)^{n-x}, & x=0, 1, 2, \ldots, n
+p_{X}(x) & = p (1-p)^{x-1}, & x=1, 2, 3, \ldots
 \end{align*}
-- If $X$ has a Binomial($n$, $p$) distribution then
+-   If $X$ has a Geometric($p$) distribution then
 \begin{align*}
-\text{Long run average value of $X$} & = np\\
-\text{Variance of $X$} & = np(1-p)\\
-\text{SD of $X$} & = \sqrt{np(1-p)}
+\text{P}(X > x) & = (1-p)^x, \qquad x = 1, 2, 3, \ldots\\
+\text{E}(X) & = \frac{1}{p}\\
+\text{Var}(X) & = \frac{1-p}{p^2}
 \end{align*}
-- Imagine a box containing tickets with $p$ representing the proportion of tickets in the box labeled 1 ("success"); the rest are labeled 0 ("failure").  Randomly select $n$ tickets from the box *with replacement* and let $X$ be the number of tickets in the sample that are labeled 1. Then $X$ has a Binomial($n$, $p$) distribution.  Since the tickets are labeled 1 and 0, the random variable $X$ which counts the number of successes is equal to the sum of the 1/0 values on the tickets. If the selections are made with replacement, the draws are independent, so it is enough to just specify the population proportion $p$ without knowing the population size $N$.
-- The situation in the previous paragraph and the butterfly example involves a sequence of **Bernoulli trials**.
-    - There are only two possible outcomes, "success" (1) and "failure" (0), on each trial.
-    - The unconditional/marginal probability of success is the same on every trial, and equal to $p$
-    - The trials are independent.
-- If $X$ counts the number of successes in a *fixed number*, $n$, of Bernoulli($p$) trials then $X$ has a Binomial($n, p$) distribution.  
+
+
+::: {#exm-geometric-bball-sim}
+Continuing the previous example.
+
+1.  Specify how you could simulate a value of $X$ using the "simulate from the probability space" method.
+\
+\
+\
+\
+\
+1.  Specify how you could simulate a value of $X$ using the "simulate from the distribution" method.
+\
+\
+\
+\
+\
+1.  Explain how you could use simulation to approximate the distribution of $X$ and its expected value.
+\
+\
+\
+\
+\
+:::
+
+
+-   There are two basic methods for simulating a value $x$ of a random variable $X$. 
+    -   **Simulate from the probability space.** 
+    Simulate an outcome $\omega$ from the underlying probability space and set $x = X(\omega)$. 
+    -   **Simulate from the distribution.** 
+    Simulate a value $x$ directly from the distribution of $X$. 
+-   The "simulate from the distribution" method corresponds to constructing a spinner representing the marginal distribution of $X$ and spinning it once to generate $x$. 
+This method does require that the distribution of $X$ is known. 
+However, as we will see in many examples, *it is common to specify the distribution of a random variable directly without defining the underlying probability space*.
+
+
+
+
+
+::: {#exm-dd-same-distribution-pmf}
+
+Donny Dont is thoroughly confused about the distinction between a random variable and its distribution.  Help him understand by by providing a simple concrete example of *two different random variables* $X$ and $Y$ that have the *same distribution*. 
+Can you think of $X$ and $Y$ for which $\text{P}(X = Y) = 0$?
+\
+\
+\
+\
+\
+:::
+
+
+-   Do not confuse a random variable with its distribution!
+-   A random variable measures a numerical quantity which depends on the outcome of a random phenomenon
+-   The distribution of a random variable specifies the long run pattern of variation of values of the random variable over many repetitions of the underlying random phenomenon. 
 

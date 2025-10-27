@@ -1,0 +1,216 @@
+# Binomial Distributions
+
+
+
+
+::: {#exm-binomial-capture}
+Capture-recapture sampling is a technique often used to estimate the size of a population. 
+Suppose you want to estimate $N$, the number of [monarch butterflies in Pismo Beach](https://www.parks.ca.gov/?page_id=30273). 
+(Assume that $N$ is a fixed but unknown number; the population size doesn't change over time.) 
+You first capture a sample of $N_1$ butterflies, selected randomly, and tag them and release them. 
+At a later date, you then capture a second sample of $n$ butterflies, selected randomly **_with replacement_**. 
+Let $X$ be the number of butterflies in the second sample that have tags (because they were also caught in the first sample). 
+(Assume that the tagging has no effect on behavior, so that selection in the first sample is independent of selection in the second sample.)
+
+In practice, $N$ is unknown and the point of capture-recapture sampling is to estimate $N$. 
+But let's start with a simpler, but unrealistic, example where there are $N=52$ butterflies, $N_1 = 13$ are tagged and $N_0=52-13 = 39$ are not, and $n=5$ is the size of the second sample.
+
+:::
+
+1.  Can the selections (for the second sample) be considered Bernoulli trials?
+\
+\
+\
+\
+\
+1.  What are the possible values of $X$?
+\
+\
+\
+\
+\
+1.  Describe in detail how you could use simulation to approximate the distribution of $X$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X = 0)$.
+\
+\
+\
+\
+\
+1.  Compute the probability that in the second sample the first butterfly selected is tagged but the rest are not.
+\
+\
+\
+\
+\
+1.  Explain why the previous part is not $\text{P}(X = 1)$.
+\
+\
+\
+\
+\
+1.  How many outcomes (S/F sequences of length 5) satisfy the event $\{X = 1\}$? 
+Answer without listing all the possibilities.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X = 1)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X = 2)$.
+\
+\
+\
+\
+\
+1.  Suggest a general formula for the probability mass function of $X$. 
+Then use the pmf to create a table and spinner representing the distribution of $X$.
+\
+\
+\
+\
+\
+1.  Suggest a simple shortcut formula for $\text{E}(X)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X)$. 
+Did the shortcut formula work?
+\
+\
+\
+\
+\
+1. Compute $\text{Var}(X)$.
+\
+\
+\
+\
+\
+
+
+-   Consider a *fixed number*, $n$, of Bernoulli($p$) trials and let $X$ count the number of successes.
+The distribution of $X$ is defined to be the **Binomial($n, p$) distribution**.
+-   A Binomial distribution is specified by two parameters:
+    -   $n$ (an integer): the fixed number of Bernoulli trials, or the sample size
+    -   $p$ (in $[0, 1]$): the fixed marginal probability of success on each Bernoulli trial, or the population proportion of success
+-   A discrete random variable $X$ has a **Binomial distribution** with parameters
+$n$, a nonnegative integer, and $p\in[0, 1]$ if and only if its probability mass function is
+\begin{align*}
+p_{X}(x) & = \binom{n}{x} p^x (1-p)^{n-x}, & x=0, 1, 2, \ldots, n
+\end{align*}
+-   If $X$ has a Binomial($n$, $p$) distribution then
+\begin{align*}
+\text{E}(X) & = np\\
+\text{Var}(X) & = np(1-p)
+\end{align*}
+
+
+::: {#exm-binomial-situation}
+In each of the following situations determine whether or not $X$ has a Binomial distribution. 
+If so, specify $n$ and $p$. 
+If not, explain why not.
+
+:::
+
+1.  Roll a die 20 times; $X$ is the number of times the die lands on an even number.
+\
+\
+\
+1.  Roll a die 20 times; $X$ is the number of times the die lands on 6.
+\
+\
+\
+1.  Roll a die until it lands on 6; $X$ is the total number of rolls.
+\
+\
+\
+1.  Roll a die until it lands on 6 three times; $X$ is the total number of rolls.
+\
+\
+\
+1.  Roll a die 20 times; $X$ is the sum of the numbers rolled.
+\
+\
+\
+1.  Shuffle a standard deck of 52 cards (13 hearts, 39 other cards) and deal 5 *without replacement*; $X$ is the number of hearts dealt.  (Hint: be careful about why.)
+\
+\
+\
+1.  Roll a fair six-sided die 10 times and a fair four-sided die 10 times; $X$ is the number of 3s rolled (out of 20). 
+\
+\
+\
+
+
+
+::: {#exm-binomial-sum}
+Xavier bets on red on each of 3 spins of a roulette wheel.
+After the third spin, Xavier leaves and Zander arrives and bets on black on the next two spins.
+Let $X$ be the number of bets that Xavier wins and let $Z$ be the number that Zander wins.
+
+1.  Identify the distribution of $X$ and the distribution of $Z$.
+\
+\
+\
+\
+\
+1.  Are $X$ and $Z$ independent?
+Explain.
+\
+\
+\
+\
+\
+1.  Compute $\text{P}(X = 2, Z = 1)$. 
+\
+\
+\
+\
+\
+1.  What does $X+Z$ represent in this context?
+Identify the distribution of $X+Z$ without doing any calculations.
+\
+\
+\
+\
+\
+1.  Compute $\text{P}(X + Z = 3)$. 
+\
+\
+\
+\
+\
+1.  Suppose that Yolanda bets on black on all 5 spins of the wheel.
+Does $X + Y$ have a Binomial distribution?
+Explain. 
+\
+\
+\
+\
+\
+1.  Suppose instead that Zavier bet on the number 7 in his two bets.
+Does $X + Z$ have a Binomial distribution in this case?
+Explain. 
+\
+\
+\
+\
+\
+:::
+
+-   If $X$ and $Y$ are independent, $X$ has a Binomial($n_X$, $p$) distribution, and $Y$ has a Binomial($n_Y$, $p$) distribution then $X+Y$ has a Binomial($n_X+n_Y$, $p$) 
+-   A Binomial(1, $p$) distribution is also known as a **Bernoulli($p$)** distribution, taking a value of 1 with probability $p$ and 0 with probability $1-p$.
+Any *indicator random variable* has a Bernoulli distribution.
+-   If $X_1, X_2, \ldots, X_n$ are independent each with a Bernoulli($p$) distribution, then $X_1+\cdots+X_n$ has a Binomial($n, p$) distribution.

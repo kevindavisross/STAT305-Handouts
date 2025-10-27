@@ -1,0 +1,227 @@
+# Approximating Expected Values
+
+{{< include _r_setup.qmd >}}
+
+{{< include _python_setup.qmd >}}
+
+
+
+-   The expected value of a random variable $X$ is its *probability-weighted average value* $\text{E}(X)$
+-   $\text{E}(X)$ can be interpreted as the *long run average value* of $X$
+-   We can approximate $\text{E}(X)$ by simulating many values of the random variable and computing the average (mean) in the usual way: add up the simulated values of $X$ and divide by the number of simulated values.
+
+::: {#exm-dice-sim-tactile-ev}
+Let $X$ be the number of vehicles crashes involving fatalities that occur in San Luis Obispo County in a randomly selected week.
+Suppose that $X$ has distribution
+
+| $x$ | $\text{P}(X=x)$ |
+|-----|----------------:|
+| 0   |           0.589 |
+| 1   |           0.312 |
+| 2   |           0.083 |
+| 3   |           0.014 |
+| 4   |           0.002 |
+
+:::
+
+1.  Intepret the probabilities as long run relative frequencies in this context
+\
+\
+\
+\
+\
+1.  Sketch a spinner for simulating values of $X$.
+\
+\
+\
+\
+\
+1.  Describe in detail how you could use simulation to approximate $\text{E}(X)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X)$ and compare to the simulated approximation.
+\
+\
+\
+\
+\
+1.  Interpret $\text{E}(X)$ in context.
+\
+\
+\
+\
+\
+1.  Suppose you want to approximate $\text{E}(X^2)$.
+(We'll see why soon.)
+Donny Don't says: "Just square the value from part 3".
+Is that true?
+If not, how would you use simulation to approximate $\text{E}(X^2)$?
+\
+\
+\
+\
+\
+1. Compute $\text{E}(X^2)$.
+Is it equal to $\text{E}(X)^2$?
+\
+\
+\
+\
+\
+
+
+
+-   In general the order of transforming and averaging is not interchangeable.
+-   Whether in the short run or the long run, in general
+\begin{align*}
+\text{Average of $g(X)$} & \neq g(\text{Average of $X$})\\
+\text{Average of $g(X, Y)$} & \neq g(\text{Average of $X$}, \text{Average of $Y$})
+\end{align*}
+-  In terms of expected values (long run averages), in general
+\begin{align*}
+\text{E}(g(X)) & \neq g(\text{E}(X))\\
+\text{E}(g(X, Y)) & \neq g(\text{E}(X), \text{E}(Y))
+\end{align*}
+
+
+::: {#exm-linearity-sum}
+Continuing @exm-dice-sim-tactile-ev.
+Suppose that the number of fatal crashes in any one week period follows the distribution in @exm-dice-sim-tactile-ev, independently from week to to week.
+Now consider a two week period, say this week and next week.
+Let $X$ be the number of fatal crashes in the first week and $Y$ in the second week, so that $X+Y$ is the total number of fatal crashes in the two week period.
+:::
+
+1.  Are $X$ and $Y$ the same random variable?
+\
+\
+\
+\
+\
+1. Do $X$ and $Y$ have the same distribution?
+Explain.
+\
+\
+\
+\
+\
+1.  What is $\text{E}(Y)$. Why?
+\
+\
+\
+\
+\
+1.  Describe how you would conduct a simulation to approximate the distribution of $X+Y$.
+\
+\
+\
+\
+\
+1.  Describe how you would use simulation to approximate $\text{E}(X+Y)$.
+\
+\
+\
+\
+\
+1.  Use simulation to approximate $\text{E}(X)$, $\text{E}(Y)$, and $\text{E}(X+Y)$.
+How are they related?
+\
+\
+\
+\
+\
+1.  Compute $\text{P}(X + Y = 0)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{P}(X + Y = 1)$.
+\
+\
+\
+\
+\
+1.  The following table represents the joint distribution of $X$ and $Y$.
+Explain how this table was constructed.
+
+    |        |        |        |        |        |        |
+    |--------|-------:|-------:|-------:|-------:|-------:|
+    | $x, y$ |      0 |      1 |      2 |      3 |      4 |
+    | 0      | 0.3469 | 0.1838 | 0.0489 | 0.0082 | 0.0012 |
+    | 1      | 0.1838 | 0.0973 | 0.0259 | 0.0044 | 0.0006 |
+    | 2      | 0.0489 | 0.0259 | 0.0069 | 0.0012 | 0.0002 |
+    | 3      | 0.0082 | 0.0044 | 0.0012 | 0.0002 | 0.0000 |
+    | 4      | 0.0012 | 0.0006 | 0.0002 | 0.0000 | 0.0000 |
+    \
+    \
+    \
+    \
+    \
+1.  Compute the distribution of $X+Y$.
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X+Y)$.
+Interpret the value in context.
+\
+\
+\
+\
+\
+1.  How is $\text{E}(X+Y)$ related to $\text{E}(X)$ and $\text{E}(Y)$?
+\
+\
+\
+\
+\
+
+
+-   In general the order of transforming and averaging is not interchangeable.
+-   However, the order is interchangeable for *linear* transformations.
+-   **Linearity of averages.**: If $X$ and $Y$ are random variables and $a$ and $b$ are non-random constants,
+whether in the short run or the long run,
+\begin{align*}
+\text{Average of $a+bX$} & = a+b(\text{Average of $X$})\\
+\text{Average of $X+Y$} & = \text{Average of $X$} +\text{Average of $Y$}
+\text{E}nd{align*}
+-   **Linearity of expected value.**: If $X$ and $Y$ are random variables and $m$ and $b$ are non-random constants,
+\begin{align*}
+\text{E}(mX+b) & = m\text{E}(X)+b\\
+\text{E}(X+Y) & = \text{E}(X) + \text{E}(Y)
+\end{align*}
+-   The expected value of the sum of $X$ and $Y$ is the sum of the expected value of $X$ and the expected value of $Y$ *regardless of the relationship between $X$ and $Y$.*
+
+
+::: {#exm-ce-crashes}
+Continuing @exm-linearity-sum.
+:::
+
+1.  Explain how we could use simulation to approximate the conditional distribution of $X+Y$ given $X = 1$.
+\
+\
+\
+\
+\
+1.  Explain how we could use simulation to approximate $\text{E}(X + Y|X = 1)$.
+\
+\
+\
+\
+\
+1.  Compute the conditional distribution of $X+Y$ given $X = 1$.
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X + Y|X = 1)$
+\
+\
+\
+\
+\

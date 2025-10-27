@@ -20,6 +20,15 @@ book:
     - independence.qmd
     - intro-simulation.qmd
     - approximating-probabilities.qmd
+    - approximating-expected-values.qmd
+    - variance-and-standard-deviation.qmd
+    - covariance-and-correlation.qmd
+    - counting-and-uniform.qmd
+    - discrete-pmf.qmd
+    - binomial.qmd
+    - negative-binomial.qmd
+    - poisson.qmd
+    - continuous-rv.qmd
     # - marginal-distributions.qmd
     # - averages.qmd
     # - joint-correlation.qmd
@@ -27,7 +36,6 @@ book:
     # - law-of-total-probability.qmd
     # - bayes-rule.qmd
     # - independence.qmd
-    # - counting-and-uniform.qmd
     # - discrete-pmf.qmd
     # - continuous-pdf.qmd
     # - cdf-and-quantile.qmd
