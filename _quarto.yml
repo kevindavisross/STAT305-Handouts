@@ -29,6 +29,8 @@ book:
     - negative-binomial.qmd
     - poisson.qmd
     - continuous-rv.qmd
+    - pdf.qmd
+    - expected-value-continuous.qmd
     # - marginal-distributions.qmd
     # - averages.qmd
     # - joint-correlation.qmd

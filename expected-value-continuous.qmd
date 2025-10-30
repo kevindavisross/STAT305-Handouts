@@ -1,0 +1,212 @@
+# Expected Values for Continuous Random Variables
+
+
+
+
+::: {#exm-meeting-pdf-ev}
+Continuing @exm-meeting-pdf1. 
+Han's arrival time $X$ (minutes after noon) has pdf
+$$
+f_X(x) = 
+\begin{cases}
+(2/3600)x, & 0<x<60,\\
+0 & \text{otherwise.}
+\end{cases}
+$$
+
+:::
+
+1.  Explain how you could use simulation to approximate $\text{E}(X)$.
+\
+\
+\
+\
+\
+1.  Explain how you could approximate $\text{E}(X)$ as a sum (as if $X$ were a discrete random variable). 
+\
+\
+\
+\
+\
+1.  How could you obtain a better approximation than the sum in the previous part? 
+What happens in the limit?
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{E}(X)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X \le \text{E}(X))$.
+\
+\
+\
+\
+\
+
+-   The **expected value** (a.k.a. *expectation* a.k.a. *mean*), of a random variable $X$ is a number denoted $\text{E}(X)$ representing the probability-weighted average value of $X$.
+-   The expected value of a continuous random variable with pdf $f_X$ is defined as $$
+    \text{E}(X) = \int_{-\infty}^\infty x f_X(x) dx
+    $$
+-   Replace the generic bounds $(-\infty, \infty)$ with the possible values of the random variable
+-   Note well that $\text{E}(X)$ represents *a single number*.
+-   The expected value is the "balance point" (center of gravity) of a distribution.
+-   The expected value of a random variable $X$ is defined by the probability-weighted average according to the underlying probability measure. But the expected value can also be interpreted as the **long-run average value**, and so can be approximated via simulation.
+-   Read the symbol $\text{E}(\cdot)$ as
+    -   Simulate lots of values of what's inside $(\cdot)$
+    -   Compute the average. This is a "usual" average; just sum all the simulated values and divide by the number of simulated values.
+
+
+
+::: {#exm-exponential-quakes-ev}
+Continuing @exm-exponential-quakes. 
+Let $X$ be the times (minutes) until the next earthquake occurs (of any magnitude in a certain region). 
+Assume that the pdf of $X$ is 
+$$
+f_X(x) = (1/120) e^{-x/120}, \qquad x \ge0
+$$
+:::
+
+
+1.  Explain how you could use simulation to approximate $\text{E}(X)$.
+\
+\
+\
+\
+\
+1.  Donny Dont says $\text{E}(X) = \int_0^\infty (1/120)e^{-x/120}dx = 1$. 
+Do you agree? 
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{E}(X)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(X \le \text{E}(X))$.
+\
+\
+\
+\
+\
+
+
+::: {#exm-meeting-pdf-ev-lotuc}
+Continuing @exm-meeting-pdf-ev. 
+Han's arrival time $X$ (minutes after noon) has pdf
+$$
+f_X(x) = 
+\begin{cases}
+(2/3600)x, & 0<x<60,\\
+0 & \text{otherwise.}
+\end{cases}
+$$
+
+:::
+
+1.  Explain how you could use simulation to approximate $\text{E}(X^2)$.
+\
+\
+\
+\
+\
+1.  Explain how you could approximate $\text{E}(X^2)$ as a sum (like a discrete random variable). 
+\
+\
+\
+\
+\
+1.  How could you obtain a better approximation than the sum in the previous part? 
+What happens in the limit?
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X^2)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{Var}(X)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{SD}(X)$.
+\
+\
+\
+\
+\ 
+
+-   The **"law of the unconscious statistician" (LOTUS)** says that the expected value of a transformed random variable can be found without finding the distribution of the transformed random variable, simply by applying the probability weights of the original random variable to the transformed values.
+\begin{align*}
+	& \text{Discrete $X$ with pmf $p_X$:} & \text{E}[g(X)] & = \sum_x g(x) p_X(x)\\
+	& \text{Continuous $X$ with pdf $f_X$:} & \text{E}[g(X)] & =\int_{-\infty}^\infty g(x) f_X(x) dx
+\end{align*}
+-   LOTUS says we don't have to first find the distribution of $Y=g(X)$ to find $\text{E}[g(X)]$; rather, we just simply apply the transformation $g$ to each possible value $x$ of $X$ and then apply the corresponding weight for $x$ to $g(x)$.
+-   Whether in the short run or the long run, in general
+\begin{align*}
+\text{Average of $g(X)$} & \neq g(\text{Average of $X$})
+\end{align*}
+-   In terms of expected values, in general
+\begin{align*}
+\text{E}(g(X)) & \neq g(\text{E}(X))
+\end{align*}
+The left side $\text{E}(g(X))$ represents first transforming the $X$ values and then averaging the transformed values. 
+The right side $g(\text{E}(X))$ represents first averaging the $X$ values and then plugging the average (a single number) into the transformation formula. 
+
+ 
+
+::: {#exm-exponential-quakes-ev-lotus}
+Continuing @exm-exponential-quakes-ev. 
+Let $X$ be the times (minutes) until the next earthquake occurs (of any magnitude in a certain region). 
+Assume that the pdf of $X$ is 
+$$
+f_X(x) = (1/120) e^{-x/120}, \qquad x \ge0
+$$
+:::
+
+
+1.  Explain how you could use simulation to approximate $\text{E}(X^2)$.
+\
+\
+\
+\
+\
+1.  Donny Dont says: "I can just use LOTUS and replace $x$ with $x^2$, so $\text{E}(X^2)$ is $\int_{-\infty}^{\infty} (1/120)x^2 e^{-x^2/120} dx$".
+Do you agree? 
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X^2)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{Var}(X)$.
+\
+\
+\
+\
+\ 
+1.  Compute $\text{SD}(X)$.
+\
+\
+\
+\
+\
