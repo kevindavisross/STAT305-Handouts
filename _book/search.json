@@ -318,5 +318,25 @@
     "crumbs": [
       "<span class='chapter-number'>22</span>  <span class='chapter-title'>Expected Values for Continuous Random Variables</span>"
     ]
+  },
+  {
+    "objectID": "exponential.html",
+    "href": "exponential.html",
+    "title": "23  Exponential Distributions",
+    "section": "",
+    "text": "Exponential distributions are often used to model the waiting times between events in a random process that occurs continuously over time.",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Exponential Distributions</span>"
+    ]
+  },
+  {
+    "objectID": "exponential.html#footnotes",
+    "href": "exponential.html#footnotes",
+    "title": "23  Exponential Distributions",
+    "section": "",
+    "text": "Thanks for former STAT 305 student Martin Hsu for this example and data.↩︎\nGeometric distributions are the only discrete distributions with the discrete analog of the memoryless property.↩︎\nThere is a more general expression of the pdf which replaces \\((\\alpha-1)!\\) with the Gamma function \\(\\Gamma(\\alpha)=\\int_0^\\infty u^{\\alpha-1}e^{-u} du\\), that can be used to define a Gamma pdf for any \\(\\alpha&gt;0\\). When \\(\\alpha\\) is a positive integer, \\(\\Gamma(\\alpha)=(\\alpha-1)!\\).↩︎\nLike Exponential distributions, Gamma distributions are sometimes parametrized directly by their mean \\(1/\\lambda\\), instead of the rate parameter \\(\\lambda\\). The mean \\(1/\\lambda\\) is called the scale parameter.↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>23</span>  <span class='chapter-title'>Exponential Distributions</span>"
+    ]
   }
 ]

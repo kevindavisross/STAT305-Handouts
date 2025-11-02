@@ -3,80 +3,151 @@
 
 
 
-- Exponential distributions are often used to model the *waiting times* between events in a random process that occurs continuously over time.
+Exponential distributions are often used to model the *waiting times* between events in a random process that occurs continuously over time.
 
 
 
 
 
 ::: {#exm-exponential-quakes2}
-Suppose that we model the time, measured continuously in hours, from now until the next earthquake (of any magnitude) occurs in southern CA  as a continuous random variable $X$ with pdf
+[NASA tracks data on fireball events](https://cneos.jpl.nasa.gov/fireballs/), exceptionally bright meteors that are spectacular enough to to be seen over a very wide area^[Thanks for former STAT 305 student Martin Hsu for this [example and data](https://mshsu.github.io/probasets/fireballs_demo.html).]. 
+Let $X$ be the time, measured in months (assume 30 days), between any two fireballs and suppose $X$ has pdf
 $$
-f_X(x) = 2 e^{-2x}, \; x \ge0
+f_X(x) = 2.5 e^{-2.5 x}, \; x \ge0
 $$
-
+We say that $X$ has an Exponential distribution with rate 2.5 per month.
 :::
 
-1. Sketch the pdf of $X$.  What does this tell you about waiting times?
+1.  Sketch the pdf of $X$ and verify that $f_X$ is a valid pdf.
 \
 \
 \
-1. Without doing any integration, approximate the probability that $X$ rounded to the nearest minute is 0.5 hours.
+\
+\
+1.  Without doing any integration, approximate the probability that the time until the next fireball *rounded to the nearest day* is 6 days.
 \
 \
 \
-1. Compute and interpret $\text{P}(X \le 3)$.
+\
+\
+1.  Compute the probability that the time until the next fireball is less than 6 days.
 \
 \
 \
-1. Find the cdf of $X$.
+\
+\
+1.  Compute and interpret $\text{P}(X > 2)$.
 \
 \
 \
-1. Find the median time between earthquakes.
+\
+\
+1.  Find the cdf of $X$.
 \
 \
 \
-1. Set up the integral you would solve to find $\text{E}(X)$.  Interpret $\text{E}(X)=1/2$.  How does the median compare to the mean?  Why?
+\
+\
+1.  Find the median time between fireballs.
 \
 \
 \
-1. Set up the integral you would solve to find $\text{E}(X^2)$.
+\
+\
+1.  Suggest a shortcut formula for $\text{E}(X)$. 
+Then compute and interpret $\text{E}(X)$.
+How does the mean compare to the median? 
+Why?
 \
 \
 \
-1. Find $\text{Var}(X)$ and $\text{SD}(X)$.
+\
+\
+1.  Compute and interpret $\text{P}(X \le \text{E}(X))$.
+\
+\
+\
+\
+\
+1.  Compute $\text{E}(X^2)$.
+\
+\
+\
+\
+\
+1.  Find $\text{Var}(X)$ and $\text{SD}(X)$.
+\
+\
+\
+\
+\
+1.  Suppose $Y$ is the time between fireballs measured in *days*. 
+How does all of the above change?
+\
+\
 \
 \
 \
 
-- A continuous random variable $X$ has an **Exponential distribution** with *rate* parameter $\lambda>0$ if its pdf is
+-   A continuous random variable $X$ has an **Exponential distribution** with *rate* parameter $\lambda>0$ if its pdf is
 $$
 f_X(x) =
 \begin{cases}\lambda e^{-\lambda x}, & x \ge 0,\\
 0, & \text{otherwise}
 \end{cases}
 $$
-- If $X$ has an Exponential($\lambda$) distribution then
+-   If $X$ has an Exponential($\lambda$) distribution then
 \begin{align*}
 \text{cdf:} \quad F_X(x) & = 1-e^{-\lambda x}, \quad x\ge 0\\
  \text{P}(X>x)  & = e^{-\lambda x}, \quad x\ge 0\\
+ \text{quantile:} \quad Q(p) & = -(1/\lambda) \ln(1-p),\quad 0<p<1\\
 \text{E}(X) & = \frac{1}{\lambda}\\
 \text{Var}(X) & = \frac{1}{\lambda^2}\\
 \text{SD}(X) & = \frac{1}{\lambda}
 \end{align*}
-- Exponential distributions are often used to model the *waiting time* in a random process until some event occurs.
-    - $\lambda$ is the average *rate* at which events occur over time (e.g., 2 per hour)
-    - $1/\lambda$ is the mean time between events (e.g., 1/2 hour)
-- If $X$ has an Exponential($\lambda)$ distribution and $a>0$ is a constant, then $aX$  has an Exponential($\lambda/a$) distribution.
-    - If $X$ is measured in hours with rate $\lambda = 2$ per hour and mean 1/2 hour
-    - Then $60X$ is measured in minutes with rate $2/60$ per minute and mean $60(1/2)=30$ minutes.
-- If $X$ has an Exponential(1) distribution and $\lambda>0$ is a constant then $X/\lambda$ has an Exponential($\lambda$) distribution.
-- If $U$ has a Uniform(0, 1) distribution then $-\log(U)$ has Exponential(1) distribution.  ($-\log(1-U)$ also has an Exponential(1) distribution.)
+-   Percentiles for any Exponential distribution follow a particular pattern in terms of multiples of the mean:
+    -   For any $m>0$,  $\text{P}(X \le m\text{E}(X)) = 1-e^{-m}$.
+    -   The $p$th percentile is $-\ln(1-p)$ times $\text{E}(X)$.
+    -   See @tbl-exponential-rule.
+-   Exponential distributions are often used to model the *waiting time* in a random process until some event occurs.
+    -   $\lambda$ is the average *rate* at which events occur over time (e.g., 2 per hour)
+    -   $1/\lambda$ is the mean time between events (e.g., 1/2 hour)
+-   If $X$ has an Exponential($\lambda)$ distribution and $a>0$ is a constant, then $aX$  has an Exponential($\lambda/a$) distribution.
+    -   If $X$ is measured in hours with rate $\lambda = 2$ per hour and mean 1/2 hour
+    -   Then $60X$ is measured in minutes with rate $2/60$ per minute and mean $60(1/2)=30$ minutes.
+-   If $X$ has an Exponential(1) distribution and $\lambda>0$ is a constant then $X/\lambda$ has an Exponential($\lambda$) distribution.
+-   If $U$ has a Uniform(0, 1) distribution then $-\ln(1-U)$ has Exponential(1) distribution, and $-(1/\lambda) \ln(1-U)$ has an Exponential($\lambda$) distribution. 
 
 
 
 
+
+```{r}
+#| label: tbl-exponential-rule
+#| echo: false
+#| warning: false
+#| tbl-cap: "Percentiles for an Exponential distribution in terms of multiples of the mean"
+
+library(tidyverse)
+library(kableExtra)
+
+z = sort(c(seq(0.5, 5, 0.5), qexp(c(0.1, 0.25, 0.5, 0.75, 0.9), 1)))
+
+p = pexp(z, 1)
+
+
+data.frame(p = paste(round(100 * p, 1), "%", sep = ""),
+           z = paste(format(z, digits = 2), "times the mean")) %>%
+  kbl(col.names = c("Percentile", "Relative to mean"),
+      caption = "Probabilty pattern for Exponential distributions",
+      align = c('r', 'l')) %>%
+  kable_styling(fixed_thead = TRUE)
+
+```
+
+
+
+<!-- 
 ::: {#exm-exponential-joint}
 $X$ and $Y$ are continuous random variables with joint pdf
 $$
@@ -122,105 +193,87 @@ $$
 \
 \
 
+ -->
 
 
-## Memoryless property
 
 ::: {#exm-exponential-quakes-memoryless}
-
-Let $X$ be the waiting time (hours) until the next earthquake and assume $X$ has an Exponential(2) distribution.
+Continuing @exm-exponential-quakes2. 
+Let $X$ be the waiting time (months) until the next fireball and assume $X$ has an Exponential(2.5) distribution.
 
 :::
 
-1. Find the probability that the waiting time is greater than 1 hour.
+1.  Find the conditional probability that the waiting time from now until the next fireball is greater than 3 months given that no fireballs occur in the next month. 
+Be sure to write a valid probability statement involving $X$ before computing.
 \
 \
 \
 \
 \
-1. Suppose that no earthquakes occur in the next 3 hours.  Find the conditional  probability that the waiting time (from now) is greater than 4 hours.  Be sure to write a valid probability statement involving $X$ before computing. What do you notice?
+1.  Compare to $\text{P}(X > 2)$. 
+What do you notice?
 \
 \
 \
 \
 \
-- **Memoryless property.**  If $W$ has an Exponential($\lambda$) distribution then for any $w,h>0$
+
+-   **Memoryless property.**  If $W$ has an Exponential($\lambda$) distribution then for any $w,h>0$
 $$
 \text{P}(W>w+h\,\vert\, W>w) = \text{P}(W>h)
 $$
-- Given that we have already waited $w$ units of time, the conditional probability that we wait at least an additional $h$ units of time is the same as the unconditional probability that we wait at least  $h$ units of time.
-- A continuous random variable $W$ has the memoryless property if and only if $W$ has an Exponential distribution.  That is, Exponential distributions are the *only* continuous^[Geometric distributions are the only discrete distributions with the discrete analog of the memoryless property.] distributions with the memoryless property.
-- If $W$ has an Exponential($\lambda$) distribution then the conditional distribution of the *excess* waiting time, $W - w$, given $\{W>w\}$ is Exponential($\lambda$).
+-   Given that we have already waited $w$ units of time, the conditional probability that we wait at least an additional $h$ units of time is the same as the unconditional probability that we wait at least  $h$ units of time.
+-   In this sense, the future waiting time does not "remember" how long we have already waited.
+-   A continuous random variable $W$ has the memoryless property if and only if $W$ has an Exponential distribution. 
+That is, Exponential distributions are the *only* continuous^[Geometric distributions are the only discrete distributions with the discrete analog of the memoryless property.] distributions with the memoryless property.
+-   If $W$ has an Exponential($\lambda$) distribution then the conditional distribution of the *excess* waiting time, $W - w$, given $\{W>w\}$ is Exponential($\lambda$).
 
 
-## Exponential race
 
 ::: {#exm-exponential-race-example}
-Xiomara and Rogelio each leave work at noon to meet the other for lunch.  The amount of time, $X$, that it takes Xiomara to arrive is a random variable with an Exponential distribution with mean 10 minutes. The amount of time, $Y$, that it takes Rogelio to arrive is a random variable with an Exponential distribution with mean 20 minutes.  Assume that $X$ and $Y$ are independent.  Let $W$ be the time, in minutes after noon, at which the first person arrives.
+Xiomara and Rogelio each leave work at noon from different locations to meet the other for lunch. 
+The amount of time, $X$, that it takes Xiomara to arrive is a random variable with an Exponential distribution with mean 10 minutes. 
+The amount of time, $Y$, that it takes Rogelio to arrive is a random variable with an Exponential distribution with mean 20 minutes. 
+Assume that $X$ and $Y$ are independent. 
+Let $W$ be the time, in minutes after noon, at which the first person arrives.
 
 :::
 
-1. What is the relationship between $W$ and $X, Y$?
+1.  What is the relationship between $W$ and $X, Y$?
 \
 \
 \
 \
 \
-1. Find and interpret $\text{P}(W>40)$.
+1.  Compute and interpret $\text{P}(W>40)$.
 \
 \
 \
 \
 \
-1. Find $\text{P}(W > w)$ and identify by name the distribution of $W$.
+1.  Find $\text{P}(W > w)$ and identify by name the distribution of $W$.
 \
 \
 \
 \
 \
-1. Find $\text{E}(W)$. Is it equal to $\min(\text{E}(X), \text{E}(Y))$?
+1.  Compute and interpret $\text{E}(W)$. 
+Is it equal to $\min(\text{E}(X), \text{E}(Y))$?
 \
 \
 \
 \
 \
-1. Is $\text{P}(Y>X)$ greater than or less than 0.5? Make an educated guess for $\text{P}(Y > X)$.
+1.  Is $\text{P}(Y>X)$ greater than or less than 0.5? 
+Make an educated guess for $\text{P}(Y > X)$. 
+Then run a simulation to approximate the probability.
 \
 \
 \
 \
 \
-1. Find $\text{P}(Y>X|X=10)$.
-\
-\
-\
-\
-\
-1. Find $\text{P}(Y>X|X=x)$ for general $x$.
-\
-\
-\
-\
-\
-1. Find $\text{P}(Y > X)$. Hint: Use a continuous version of the law of total probability.
-\
-\
-\
-\
-\
-1. Find $\text{P}(W>40, Y>X)$.
-\
-\
-\
-\
-\
-1. Find $\text{P}(W>w, Y>X)$ for general $w$.
-\
-\
-\
-\
-\
-1. Let $\text{I}_{\{Y > X\}}$ be the indicator that Xiomara arrives first. What can you say about $W$ and $\text{I}_{\{Y > X\}}$?
+1.  Use simulation to approximate the conditional distribution of $W$ given $\{Y > X\}$ and the conditional distribution of $W$ given $\{Y < X\}$. 
+What do you notice? 
 \
 \
 \
@@ -228,40 +281,115 @@ Xiomara and Rogelio each leave work at noon to meet the other for lunch.  The am
 \
 
 
-- **Exponential race** (a.k.a., competing risks.) Let $W_1, W_2, \ldots, W_n$ be independent random variables.  Suppose $W_i$ has an Exponential distribution with rate parameter $\lambda_i$. Let $W = \min(W_1, \ldots, W_n)$ and let $I$ be the discrete random variable which takes value $i$ when $W=W_i$, for $i=1, \ldots, n$.  Then
-    - $W$ has an Exponential distribution with rate $\lambda = \lambda_1 + \cdots+\lambda_n$
-    - $\text{P}(I=i) = \text{P}(W=W_i) = \frac{\lambda_i}{\lambda_1+\cdots+\lambda_n}, i = 1, \ldots, n$
-    - $W$ and $I$ are independent
-- Imagine there are $n$ contestants in a race, labeled $1, \ldots, n$, racing independently, and $W_i$ is the time it takes for the $i$th contestant to finish the race. Then $W = \min(W_1, \ldots, W_n)$ is the winning time of the race, and $W$ has an Exponential distribution with rate parameter equal to sum of the individual contestant rate parameters.
-- The discrete random variable $I$ is the label of which contestant is the winner. The probability that a particular contestant is the winner is the contestant's rate divided by the total rate. That is, the probability that contestant $i$ is the winner is proportional to the contestant's rate $\lambda_i$. 
-- Furthermore, $W$ and $I$ are independent.  Information about the winning time does not influence the probability that a particular contestant won. Information about which contestant won does not influence the distribution of the winning time.
+-   **Exponential race** (a.k.a., competing risks.) Let $W_1, W_2, \ldots, W_n$ be independent random variables. 
+Suppose $W_i$ has an Exponential distribution with rate parameter $\lambda_i$. 
+Let $W = \min(W_1, \ldots, W_n)$ and let $I$ be the discrete random variable which takes value $i$ when $W=W_i$, for $i=1, \ldots, n$. 
+Then
+    -   $W$ has an Exponential distribution with rate $\lambda = \lambda_1 + \cdots+\lambda_n$
+    -   $\text{P}(I=i) = \text{P}(W=W_i) = \frac{\lambda_i}{\lambda_1+\cdots+\lambda_n}, i = 1, \ldots, n$
+    -   $W$ and $I$ are independent
+-   Imagine there are $n$ contestants in a race, labeled $1, \ldots, n$, racing independently, and $W_i$ is the time it takes for the $i$th contestant to finish the race. 
+Then $W = \min(W_1, \ldots, W_n)$ is the winning time of the race, and $W$ has an Exponential distribution with rate parameter equal to sum of the individual contestant rate parameters.
+-   The discrete random variable $I$ is the label of which contestant is the winner. 
+The probability that a particular contestant is the winner is the contestant's rate divided by the total rate. 
+That is, the probability that contestant $i$ is the winner is proportional to the contestant's rate $\lambda_i$. 
+-   Furthermore, $W$ and $I$ are independent. 
+Information about the winning time does not influence the probability that a particular contestant won. 
+Information about which contestant won does not influence the distribution of the winning time.
 
-## Gamma distributions
+
+
+
+::: {#exm-poisson-to-exponential-cdf}
+Database queries to the Cal Poly data warehouse occur randomly throughout the day.
+During regular business hours, queries arrive at rate 0.8 per second on average, so that the average number of queries that arrive during any $t$ second time interval is $0.8t$.
+Suppose that the *number* of queries that arrive during any $t$ second time interval follows a marginal Poisson distribution with mean $0.8t$.
+
+We are interested in the distribution of $T$, the *time* (seconds) until the next query arrives. 
+:::
+
+1.  Interpret the event $\{T>2\}$.
+How can you express this as an equivalent event involving the number of queries?
+\
+\
+\
+\
+\
+1.  Compute $\text{P}(T > 2)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{P}(T > t)$ as a function of $t>0$.
+\
+\
+\
+\
+\
+1.  Identify by name the distribution of $T$; be sure to specify the values of any relevant parameters.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{E}(T)$.
+\
+\
+\
+\
+\
+
+
+
+
+-   Events occur continuously over time according to a  **Poisson process** with *rate* $\lambda>0$ (per unit time) if
+    -   The number of events that occur in any time interval of length $t$ has a Poisson$(\lambda t)$ distribution.
+        -   In particular, the distribution does not depend on the starting time or ending time of the interval, just its length.
+    -   The numbers of events that occur in disjoint intervals of time are independent.
+-   A random process is a Poisson process with rate $\lambda$ if and only if
+    -   it is a counting process, that is, it is a process which counts the number of occurrences of some event over time.
+    -   the *interarrival times* (times between events) $W_0, W_1,\ldots$ are independent Exponential$(\lambda)$ random variables
+-   A random process is a Poisson process with rate $\lambda$ if and only if 
+    -   It is a counting process
+    -   The numbers of events that occur in disjoint intervals of time are independent
+    -   For small $h$,
+        \begin{align*}
+        \text{P}(\text{0 events in time interval of length $h$}) & \approx 1-\lambda h\\
+        \text{P}(\text{1 events in time interval of length $h$}) & \approx \lambda h\\
+        \text{P}(\text{at least 2 events in time interval of length $h$}) & \approx 0
+        \end{align*}
+        -   Roughly, in short intervals of time, at most one event will occur, and the probability that an event does occur is proportional to the length of the time interval.
+        -   That is, if time is chopped up into many short intervals of equal length $h$, a Poisson Process behaves like a Bernoulli process: each short interval is a trial, an event either occurs (success) or not, the trials (intervals) are independent, the probability of success is the same for each trial ($\lambda h$), and the process counts the number of successes
+
+
+
 
 ::: {#exm-exponential-sum}
-Suppose that elapsed times (hours) between successive earthquakes are independent, each having an Exponential(2) distribution.  Let $T$ be the time elapsed from now until the third earthquake occurs.
+Suppose that elapsed times (hours) between successive fireballs are independent, each having an Exponential(2.5) distribution. 
+Let $T$ be the time elapsed from now until the third fireball occurs.
 
 :::
 
-1. Compute $\text{E}(T)$.
+1.  Compute $\text{E}(T)$.
 \
 \
 \
 \
 \
-1. Compute $\text{SD}(T)$.
+1.  Compute $\text{SD}(T)$.
 \
 \
 \
 \
 \
-1. Does $T$ have an Exponential distribution? Explain.
+1.  Does $T$ have an Exponential distribution? Explain.
 \
 \
 \
 \
 \
-1. Use simulation to approximate the distribution of $T$.
+1.  Use simulation to approximate the distribution of $T$.
 \
 \
 \
@@ -269,7 +397,7 @@ Suppose that elapsed times (hours) between successive earthquakes are independen
 \
 
 
-- A continuous random variable $X$ has a **Gamma distribution** with *shape* parameter $\alpha$, a positive integer^[There is a more general expression of the pdf which replaces $(\alpha-1)!$ with the *Gamma function* $\Gamma(\alpha)=\int_0^\infty u^{\alpha-1}e^{-u} du$, that can be used to define a Gamma pdf for any $\alpha>0$.  When $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$.], and *rate* parameter^[Like Exponential distributions, Gamma distributions are sometimes parametrized directly by their mean $1/\lambda$, instead of the rate parameter $\lambda$.  The mean $1/\lambda$ is called the scale parameter.] $\lambda>0$ if its pdf is
+-   A continuous random variable $X$ has a **Gamma distribution** with *shape* parameter $\alpha$, a positive integer^[There is a more general expression of the pdf which replaces $(\alpha-1)!$ with the *Gamma function* $\Gamma(\alpha)=\int_0^\infty u^{\alpha-1}e^{-u} du$, that can be used to define a Gamma pdf for any $\alpha>0$.  When $\alpha$ is a positive integer, $\Gamma(\alpha)=(\alpha-1)!$.], and *rate* parameter^[Like Exponential distributions, Gamma distributions are sometimes parametrized directly by their mean $1/\lambda$, instead of the rate parameter $\lambda$.  The mean $1/\lambda$ is called the scale parameter.] $\lambda>0$ if its pdf is
 \begin{align*}
 f_X(x) & = \frac{\lambda^\alpha}{(\alpha-1)!} x^{\alpha-1}e^{-\lambda x} , & x \ge 0,\\
 & \propto x^{\alpha-1}e^{-\lambda x} , & x \ge 0

@@ -82,5 +82,8 @@
   },
   "expected-value-continuous.qmd": {
     "expected-value-continuous.html": "1e212e39"
+  },
+  "exponential.qmd": {
+    "exponential.html": "c407555d"
   }
 }
