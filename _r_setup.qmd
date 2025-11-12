@@ -10,6 +10,8 @@ library(viridis)
 library(gtools)
 library(ggpubr)
 library(kableExtra)
+library(geomtextpath)
+library(scales)
 
 set.seed(21234)
 

@@ -32,6 +32,7 @@ book:
     - pdf.qmd
     - expected-value-continuous.qmd
     - exponential.qmd
+    - normal.qmd
     # - marginal-distributions.qmd
     # - averages.qmd
     # - joint-correlation.qmd
@@ -59,7 +60,7 @@ book:
     - references.qmd
   # appendices: 
   #   - problem-solving-strategies.qmd
-  #   - distribution-summary.qmd
+    # - distribution-summary.qmd
 
 
 bibliography: references.bib
