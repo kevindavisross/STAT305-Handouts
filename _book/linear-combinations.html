@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Discrete Random Variables: Probability Mass Functions – STAT 305 Handouts</title>
+<title>25&nbsp; Expected Values of Linear Combinations of Random Variables – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./binomial.html" rel="next">
-<link href="./counting-and-uniform.html" rel="prev">
+<link href="./CLT.html" rel="next">
+<link href="./normal.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -111,7 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discrete-pmf.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./linear-combinations.html"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Expected Values of Linear Combinations of Random Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -234,7 +234,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discrete-pmf.html" class="sidebar-item-text sidebar-link active">
+  <a href="./discrete-pmf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></span></a>
   </div>
 </li>
@@ -288,7 +288,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./linear-combinations.html" class="sidebar-item-text sidebar-link">
+  <a href="./linear-combinations.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Expected Values of Linear Combinations of Random Variables</span></span></a>
   </div>
 </li>
@@ -315,7 +315,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></h1>
+<h1 class="title"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Expected Values of Linear Combinations of Random Variables</span></h1>
 </div>
 
 
@@ -332,247 +332,194 @@ window.Quarto = {
 </header>
 
 
+<p>A <strong>linear rescaling</strong> of a random variable <span class="math inline">\(X\)</span> is of the form <span class="math inline">\(aX+b\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are non-random constants. A <strong>linear combination</strong> of two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is of the form <span class="math inline">\(aX + bY\)</span> where <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are non-random constants.</p>
+<p><strong>Properties of expected value</strong></p>
 <ul>
-<li>Roughly, a random variable assigns a number measuring some quantity of interest to each outcome of a random phenomenon.</li>
-<li>The <strong>(probability) distribution</strong> of a random variable specifies the possible values of the random variable and a way of determining corresponding probabilities.</li>
-<li>We will see many ways of describing a distribution, depending on how many random variables are involved and their types (discrete or continuous)</li>
-<li>A <strong>discrete</strong> random variable can take on only countably many isolated points on a number line. These are often counting type variables.
-<ul>
-<li>Note that “countably many” includes the case of countably infinite, such as <span class="math inline">\(\{0, 1, 2, \ldots\}\)</span>.</li>
-</ul></li>
-<li>The <strong>probability mass function (pmf)</strong> of a <em>discrete</em> RV <span class="math inline">\(X\)</span>, defined on a probability space with probability measure <span class="math inline">\(\text{P}\)</span>, is a function <span class="math inline">\(p_X:\mathbb{R}\mapsto[0,1]\)</span> which specifies each possible value of the RV and the probability that the RV takes that particular value: <span class="math inline">\(p_X(x)=\text{P}(X=x)\)</span> for each possible value of <span class="math inline">\(x\)</span>.</li>
-<li>Certain common distributions have special names and properties. We often specify a distribution by name along with values of relevant parameters.</li>
-</ul>
-<div id="exm-dice-pmf" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.1</strong></span> Roll a fair four-sided die twice and let <span class="math inline">\(X\)</span> be the sum and <span class="math inline">\(Y\)</span> the larger of the two rolls.</p>
-</div>
-<ol type="1">
-<li>Verify that the pmf of <span class="math inline">\(X\)</span> is <span class="math display">\[
-p_X(x) = \frac{4 - |x - 5|}{16}, \qquad x = 2, 3, \ldots, 8
-\]</span><br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Is the following the pmf of <span class="math inline">\(Y\)</span>? Discuss. <span class="math display">\[
-p_Y(u) = \frac{2u - 1}{16}
-\]</span><br>
-<br>
-<br>
-<br>
-<br>
-</li>
-</ol>
-<div id="exm-benford" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.2</strong></span> Randomly select a county in the U.S. Let <span class="math inline">\(X\)</span> be the leading digit in the county’s population.</p>
-<p><a href="https://en.wikipedia.org/wiki/List_of_counties_in_California">For example</a>, if the county’s population is 10,040,000 (Los Angeles County) then <span class="math inline">\(X=1\)</span>; if 3,170,000 (Orange County) then <span class="math inline">\(X=3\)</span>; if 283,000 (SLO County) then <span class="math inline">\(X=2\)</span>; if 30,600 (Lassen County) then <span class="math inline">\(X=3\)</span>. The possible values of <span class="math inline">\(X\)</span> are <span class="math inline">\(1, 2, \ldots, 9\)</span>. You might think that <span class="math inline">\(X\)</span> is equally likely to be any of its possible values. However, a more appropriate model is to assume that <span class="math inline">\(X\)</span> has pmf</p>
-<p><span class="math display">\[
-p_X(x) =
-\begin{cases}
-\log_{10}(1+\frac{1}{x}), &amp; x = 1, 2, \ldots, 9,\\
-0, &amp; \text{otherwise}
-\end{cases}
-\]</span></p>
-<p>This distribution<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is known as <a href="https://en.wikipedia.org/wiki/Benford's_law">Benford’s law</a>.</p>
-</div>
-<ol type="1">
-<li>Compute and interpret <span class="math inline">\(\text{P}(X = 1)\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X = 2)\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Construct a table specifying the distribution of <span class="math inline">\(X\)</span>, and the corresponding spinner.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Verify that <span class="math inline">\(p_X\)</span> is a valid pmf.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Find <span class="math inline">\(\text{P}(X \ge 3)\)</span><br>
-<br>
-<br>
-<br>
-<br>
-</li>
-</ol>
-<ul>
-<li>In a sequence of <strong>Bernoulli(<span class="math inline">\(p\)</span>) trials</strong>
-<ul>
-<li>There are only two possible outcomes, “success” (1) or not (0, “failure”), on each trial.</li>
-<li>The unconditional/marginal probability of success is the same on every trial, and equal to <span class="math inline">\(p\)</span>.</li>
-<li>The trials are independent.</li>
-</ul></li>
-</ul>
-<div id="exm-geometric-bball" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.3</strong></span> Maya is a basketball player who makes 40% of her three point field goal attempts. Suppose that she attempts three pointers until she makes one and then stops. Let <span class="math inline">\(X\)</span> be the total number of shots she attempts. Assume shot attempts are independent.</p>
-<ol type="1">
-<li>Can Maya’s attempts be consider Bernoulli trials?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>What are the possible values that <span class="math inline">\(X\)</span> can take? Is <span class="math inline">\(X\)</span> discrete or continuous?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X=1)\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X=2)\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X=3)\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Find the probability mass function of <span class="math inline">\(X\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Construct a table, plot, and spinner representing the distribution of <span class="math inline">\(X\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X&gt;3)\)</span>. Can you think of a way to do this without summing several terms?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X&gt;5|X &gt; 2)\)</span>. Compare to the previous part. What do you notice? Does this make sense?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>What seems like a reasonable shortcut formula for <span class="math inline">\(\text{E}(X)\)</span> in terms of <span class="math inline">\(p\)</span>? Hint: it might help to consider the case <span class="math inline">\(p=0.1\)</span> first, then apply similar logic to <span class="math inline">\(p=0.4\)</span> and general <span class="math inline">\(p\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute <span class="math inline">\(\text{E}(X)\)</span>. Did the shortcut work?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Interpret <span class="math inline">\(\text{E}(X)\)</span> in context.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute <span class="math inline">\(\text{Var}(X)\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Would <span class="math inline">\(\text{Var}(X)\)</span> be bigger or smaller if <span class="math inline">\(p=0.9\)</span>? If <span class="math inline">\(p=0.1\)</span>?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-</ol>
-</div>
-<ul>
-<li>Perform Bernoulli(<span class="math inline">\(p\)</span>) trials until a success occurs and then stop. Let <span class="math inline">\(X\)</span> count the total number of trials, including the single success. The distribution of <span class="math inline">\(X\)</span> is defined to be the <strong>Geometric(<span class="math inline">\(p\)</span>) distribution</strong>.</li>
-<li>The Geometric(<span class="math inline">\(p\)</span>) probability mass function follows from the fact that if <span class="math inline">\(X\)</span> has a Geometric distribution, then <span class="math inline">\(X = x\)</span> if and only if
-<ul>
-<li>the first <span class="math inline">\(x-1\)</span> trials are failures, and</li>
-<li>the <span class="math inline">\(x\)</span>th (last) trial results in success.</li>
-</ul></li>
-<li>A discrete random variable <span class="math inline">\(X\)</span> has a Geometric(<span class="math inline">\(p\)</span>) distribution if and only if its probability mass function is <span class="math display">\[\begin{align*}
-p_{X}(x) &amp; = p (1-p)^{x-1}, &amp; x=1, 2, 3, \ldots
+<li>Expected value and linear rescaling: If <span class="math inline">\(X\)</span> is a random variable and <span class="math inline">\(a, b\)</span> are non-random constants then <span class="math display">\[
+\text{E}(aX + b)  = a\text{E}(X) + b
+\]</span></li>
+<li>Linearity of expected value: For <em>any</em> two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, <span class="math display">\[\begin{align*}
+\text{E}(X + Y) &amp; = \text{E}(X) + \text{E}(Y)
 \end{align*}\]</span></li>
-<li>If <span class="math inline">\(X\)</span> has a Geometric(<span class="math inline">\(p\)</span>) distribution then <span class="math display">\[\begin{align*}
-\text{P}(X &gt; x) &amp; = (1-p)^x, \qquad x = 1, 2, 3, \ldots\\
-\text{E}(X) &amp; = \frac{1}{p}\\
-\text{Var}(X) &amp; = \frac{1-p}{p^2}
-\end{align*}\]</span></li>
+<li>That is, the expected value of the sum is the sum of expected values, regardless of how the random variables are related.</li>
+<li>Therefore, you only need to know the marginal distributions of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> to find the expected value of their sum. (But keep in mind that the <em>distribution</em> of <span class="math inline">\(X+Y\)</span> will depend on the joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.)</li>
+<li>Combining properties of linear rescaling with linearity of expected value yields the expected value of a linear combination, which extends naturally to more than two random variables. <span class="math display">\[
+\text{E}(aX + bY + c) = a\text{E}(X)+b\text{E}(Y) + c
+\]</span></li>
 </ul>
-<div id="exm-geometric-bball-sim" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.4</strong></span> Continuing the previous example.</p>
+<p><strong>Properties of variance</strong></p>
+<ul>
+<li>Variance and linear rescaling: If <span class="math inline">\(X\)</span> is a random variable and <span class="math inline">\(a, b\)</span> are non-random constants then <span class="math display">\[\begin{align*}
+\text{SD}(aX + b) &amp; = |a|\text{SD}(X)\\
+\text{Var}(aX + b) &amp; = a^2\text{Var}(X)
+\end{align*}\]</span></li>
+<li>Variance of sums and differences of random variables <span class="math display">\[\begin{align*}
+\text{Var}(X + Y) &amp; = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X, Y)\\
+\text{Var}(X - Y) &amp; = \text{Var}(X) + \text{Var}(Y) - 2\text{Cov}(X, Y)
+\end{align*}\]</span></li>
+<li>The variance of the sum (or difference) is the sum of the variances if and only if <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are uncorrelated. <span class="math display">\[\begin{align*}
+\text{Var}(X+Y)  &amp; = \text{Var}(X) + \text{Var}(Y)\qquad \text{if $X, Y$ are uncorrelated}\\
+\text{Var}(X-Y)  &amp; = \text{Var}(X) + \text{Var}(Y)\qquad \text{if $X, Y$ are uncorrelated}
+\end{align*}\]</span></li>
+<li>If <span class="math inline">\(a, b, c\)</span> are non-random constants and <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables then <span class="math display">\[
+\text{Var}(aX + bY + c) = a^2\text{Var}(X) + b^2\text{Var}(Y) + 2ab\text{Cov}(X, Y)
+\]</span></li>
+</ul>
+<div id="exm-sat-var-calc-sum" class="theorem example">
+<p><span class="theorem-title"><strong>Example 25.1</strong></span> Recall the SAT score Application assignment.</p>
+<p>Let <span class="math inline">\(M\)</span> be the Math score and <span class="math inline">\(R\)</span> be the Reading (and Writing) score of a randomly selected SAT taker. We’ll assume <span class="math inline">\((M, R)\)</span> pairs follow a <em>Bivariate Normal distribution</em>.</p>
+<ul>
+<li>Math scores (<span class="math inline">\(M\)</span>) have mean 500 and standard deviation 140</li>
+<li>Reading scores (<span class="math inline">\(R\)</span>) have mean 520 and standard deviation 110</li>
+</ul>
+<p>For each of the following scenarios, compute</p>
+<ul>
+<li><span class="math inline">\(\text{E}(M + R)\)</span></li>
+<li><span class="math inline">\(\text{Var}(M + R)\)</span></li>
+<li><span class="math inline">\(\text{SD}(M + R)\)</span></li>
+</ul>
+</div>
 <ol type="1">
-<li>Specify how you could simulate a value of <span class="math inline">\(X\)</span> using the “simulate from the probability space” method.<br>
+<li><span class="math inline">\(\text{Corr}(M, R) = 0\)</span><br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Specify how you could simulate a value of <span class="math inline">\(X\)</span> using the “simulate from the distribution” method.<br>
+<li><span class="math inline">\(\text{Corr}(M, R) = 0.6\)</span><br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Explain how you could use simulation to approximate the distribution of <span class="math inline">\(X\)</span> and its expected value.<br>
+<li><span class="math inline">\(\text{Corr}(M, R) = -0.9\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>In which of these scenarios is <span class="math inline">\(\text{SD}(M + R)\)</span> largest? Smallest? Can you explain why intuitively?<br>
 <br>
 <br>
 <br>
 <br>
 </li>
 </ol>
-</div>
+<div id="exm-sat-var-calc-diff" class="theorem example">
+<p><span class="theorem-title"><strong>Example 25.2</strong></span> Recall the SAT score Application assignment.</p>
+<p>Let <span class="math inline">\(M\)</span> be the Math score and <span class="math inline">\(R\)</span> be the Reading (and Writing) score of a randomly selected SAT taker. We’ll assume <span class="math inline">\((M, R)\)</span> pairs follow a <em>Bivariate Normal distribution</em>.</p>
 <ul>
-<li>There are two basic methods for simulating a value <span class="math inline">\(x\)</span> of a random variable <span class="math inline">\(X\)</span>.
-<ul>
-<li><strong>Simulate from the probability space.</strong> Simulate an outcome <span class="math inline">\(\omega\)</span> from the underlying probability space and set <span class="math inline">\(x = X(\omega)\)</span>.</li>
-<li><strong>Simulate from the distribution.</strong> Simulate a value <span class="math inline">\(x\)</span> directly from the distribution of <span class="math inline">\(X\)</span>.</li>
-</ul></li>
-<li>The “simulate from the distribution” method corresponds to constructing a spinner representing the marginal distribution of <span class="math inline">\(X\)</span> and spinning it once to generate <span class="math inline">\(x\)</span>. This method does require that the distribution of <span class="math inline">\(X\)</span> is known. However, as we will see in many examples, <em>it is common to specify the distribution of a random variable directly without defining the underlying probability space</em>.</li>
+<li>Math scores (<span class="math inline">\(M\)</span>) have mean 500 and standard deviation 140</li>
+<li>Reading scores (<span class="math inline">\(R\)</span>) have mean 520 and standard deviation 110</li>
 </ul>
-<div id="exm-dd-same-distribution-pmf" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.5</strong></span> Donny Dont is thoroughly confused about the distinction between a random variable and its distribution. Help him understand by by providing a simple concrete example of <em>two different random variables</em> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> that have the <em>same distribution</em>. Can you think of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> for which <span class="math inline">\(\text{P}(X = Y) = 0\)</span>?<br>
-<br>
-<br>
-<br>
-<br>
-</p>
-</div>
+<p>For each of the following scenarios, compute</p>
 <ul>
-<li>Do not confuse a random variable with its distribution!</li>
-<li>A random variable measures a numerical quantity which depends on the outcome of a random phenomenon</li>
-<li>The distribution of a random variable specifies the long run pattern of variation of values of the random variable over many repetitions of the underlying random phenomenon.</li>
+<li><span class="math inline">\(\text{E}(M - R)\)</span></li>
+<li><span class="math inline">\(\text{Var}(M - R)\)</span></li>
+<li><span class="math inline">\(\text{SD}(M - R)\)</span></li>
 </ul>
+</div>
+<ol type="1">
+<li><span class="math inline">\(\text{Corr}(M, R) = 0\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{Corr}(M, R) = 0.6\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{Corr}(M, R) = -0.9\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>In which of these scenarios is <span class="math inline">\(\text{SD}(M - R)\)</span> largest? Smallest? Can you explain why intuitively?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>Two continuous random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have a <strong>Bivariate Normal</strong> distribution with parameters <span class="math inline">\(\mu_X\)</span>, <span class="math inline">\(\mu_Y\)</span>, <span class="math inline">\(\sigma_X&gt;0\)</span>, <span class="math inline">\(\sigma_Y&gt;0\)</span>, and <span class="math inline">\(-1&lt;\rho&lt;1\)</span> if the joint pdf is <span class="math display">\[
+{\scriptsize
+f_{X, Y}(x,y) =
+\frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}\exp\left(-\frac{1}{2(1-\rho^2)}\left[\left(\frac{x-\mu_X}{\sigma_X}\right)^2+\left(\frac{y-\mu_Y}{\sigma_Y}\right)^2-2\rho\left(\frac{x-\mu_X}{\sigma_X}\right)\left(\frac{y-\mu_Y}{\sigma_Y}\right)\right]\right)
+}
+\]</span></li>
+<li>It can be shown that if the pair <span class="math inline">\((X, Y)\)</span> has a BivariateNormal(<span class="math inline">\(\mu_X\)</span>, <span class="math inline">\(\mu_Y\)</span>, <span class="math inline">\(\sigma_X\)</span>, <span class="math inline">\(\sigma_Y\)</span>, <span class="math inline">\(\rho\)</span>) distribution <span class="math display">\[\begin{align*}
+\text{E}(X) &amp; =\mu_X\\
+\text{E}(Y) &amp; =\mu_Y\\
+\text{SD}(X) &amp; = \sigma_X\\
+\text{SD}(Y) &amp; = \sigma_Y\\
+\text{Corr}(X, Y) &amp; = \rho
+\end{align*}\]</span></li>
+<li>A Bivariate Normal Density has elliptical contours. For each height <span class="math inline">\(c&gt;0\)</span> the set <span class="math inline">\(\{(x,y): f_{X, Y}(x,y)=c\}\)</span> is an ellipse. The density decreases as <span class="math inline">\((x, y)\)</span> moves away from <span class="math inline">\((\mu_X, \mu_Y)\)</span>, most steeply along the minor axis of the ellipse, and least steeply along the major of the ellipse.</li>
+<li>A scatterplot of <span class="math inline">\((x,y)\)</span> pairs generated from a Bivariate Normal distribution will have a rough linear association and the cloud of points will resemble an ellipse.</li>
+<li>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have a Bivariate Normal distribution, then the marginal distributions are also Normal: <span class="math inline">\(X\)</span> has a Normal<span class="math inline">\(\left(\mu_X,\sigma_X\right)\)</span> distribution and <span class="math inline">\(Y\)</span> has a Normal<span class="math inline">\(\left(\mu_Y,\sigma_Y\right)\)</span>.</li>
+<li>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have a Bivariate Normal distribution and <span class="math inline">\(\text{Corr}(X, Y)=0\)</span> then <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent. (Remember, in general it is possible to have situations where the correlation is 0 but the random variables are not independent.)</li>
+<li><strong><span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have a Bivariate Normal distribution if and only if every linear combination of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> has a Normal distribution.</strong> That is, <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have a Bivariate Normal distribution if and only if <span class="math inline">\(aX+bY\)</span> has a Normal distribution for all <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>.</li>
+</ul>
+<div id="exm-bvn-sat-calc" class="theorem example">
+<p><span class="theorem-title"><strong>Example 25.3</strong></span> Let <span class="math inline">\(M\)</span> be the Math score and <span class="math inline">\(R\)</span> be the Reading (and Writing) score of a randomly selected SAT taker. We’ll assume <span class="math inline">\((M, R)\)</span> pairs follow a <em>Bivariate Normal distribution</em>.</p>
+<ul>
+<li>Math scores (<span class="math inline">\(M\)</span>) have mean 500 and standard deviation 140</li>
+<li>Reading scores (<span class="math inline">\(R\)</span>) have mean 520 and standard deviation 110</li>
+<li>The correlation is 0.6</li>
+</ul>
+</div>
+<ol type="1">
+<li>Compute the probability that a student has a total score above 1400.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that a student has a higher Math than Reading score.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<p><strong>Properties of covariance</strong></p>
+<p><span class="math display">\[\begin{align*}
+\text{Cov}(X, X) &amp;= \text{Var}(X)\qquad\qquad\\
+\text{Cov}(X, Y) &amp; = \text{Cov}(Y, X)\\
+\text{Cov}(X, c) &amp; = 0 \\
+\text{Cov}(aX+b, cY+d) &amp; = ac\text{Cov}(X,Y)\\
+\text{Cov}(X+Y,\; U+V) &amp; = \text{Cov}(X, U)+\text{Cov}(X, V) + \text{Cov}(Y, U) + \text{Cov}(Y, V)
+\end{align*}\]</span></p>
+<div id="exm-cov-bilinear" class="theorem example">
+<p><span class="theorem-title"><strong>Example 25.4</strong></span> Let <span class="math inline">\(X\)</span> be the number of two-point field goals a basketball player makes in a game, <span class="math inline">\(Y\)</span> the number of three point field goals made, and <span class="math inline">\(Z\)</span> the number of free throws made (worth one point each). Assume <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, <span class="math inline">\(Z\)</span> have standard deviations of 2.5, 3.7, 1.8, respectively, and <span class="math inline">\(\text{Corr}(X,Y) = 0.1\)</span>, <span class="math inline">\(\text{Corr}(X, Z) = 0.3\)</span>, <span class="math inline">\(\text{Corr}(Y,Z) = -0.5\)</span>.</p>
+</div>
+<ol type="1">
+<li>Find the standard deviation of the number of fields goals in a game (not including free throws)<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find the standard deviation of total points scored on fields goals in a game (not including free throws)<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find the standard deviation of total points scored in a game.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
 
 
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>You can find a nice explanation of Benford’s law <a href="https://towardsdatascience.com/benfords-law-a-simple-explanation-341e17abbe75">here</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -976,13 +923,13 @@ p_{X}(x) &amp; = p (1-p)^{x-1}, &amp; x=1, 2, 3, \ldots
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./counting-and-uniform.html" class="pagination-link" aria-label="Equally Likely Outcomes and Counting Rules">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Equally Likely Outcomes and Counting Rules</span></span>
+      <a href="./normal.html" class="pagination-link" aria-label="Normal Distributions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Normal Distributions</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./binomial.html" class="pagination-link" aria-label="Binomial Distributions">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Binomial Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./CLT.html" class="pagination-link" aria-label="Central Limit Theorem">
+        <span class="nav-page-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Central Limit Theorem</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

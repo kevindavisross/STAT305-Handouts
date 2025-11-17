@@ -1,250 +1,190 @@
 # Expected Values of Linear Combinations of Random Variables
 
+A **linear rescaling** of a random variable $X$ is of the form $aX+b$ where $a$ and $b$ are non-random constants. 
+A **linear combination** of two random variables $X$ and $Y$ is of the form $aX + bY$ where $a$ and $b$ are non-random constants.
 
 
-## Linear rescaling
+**Properties of expected value**
 
-
-If $X$ is a random variable and $a, b$ are non-random constants then
-
-\begin{align*}
-\text{E}(aX + b) & = a\text{E}(X) + b\\
-\text{SD}(aX + b) & = |a|\text{SD}(X)\\
-\text{Var}(aX + b) & = a^2\text{Var}(X)
-\end{align*}
-
-
-
-## Linearity of expected value
-
-
-
-::: {#exm-sat-compare-ev}
-Refer to the tables and plots in [Example 5.29](https://bookdown.org/kevin_davisross/probsim-book/expected-values-of-linear-combinations-of-random-variables.html#exm:sat-compare-ev) in the textbook.
-Each scenario contains SAT Math ($X$) and Reading ($Y$) scores for 10 hypothetical students, along with the total score ($T  =  X + Y$) and the difference between the Math and Reading scores ($D = X - Y$, negative values indicate lower Math than Reading scores).
-Note that the 10 $X$ values are the same in each scenario, and the 10 $Y$ values are the same in each scenario, but the $(X, Y)$ values are paired in different ways: the correlation is 0.78 in scenario 1, -0.02 in scenario 2, and -0.94 in scenario 3.
-
-:::
-
-1. What is the mean of $T = X + Y$ in each scenario? How does it relate to the means of $X$ and $Y$?
-Does the correlation affect the mean of $T = X + Y$?
-\
-\
-\
-1. What is the mean of $D = X - Y$ in each scenario? How does it relate to the means of $X$ and $Y$?
-Does the correlation affect the mean of $D = X - Y$?
-\
-\
-\
-
-- **Linearity of expected value.** For *any* two random variables $X$ and $Y$,
+-   Expected value and linear rescaling: If $X$ is a random variable and $a, b$ are non-random constants then
+$$
+\text{E}(aX + b)  = a\text{E}(X) + b
+$$
+-   Linearity of expected value: For *any* two random variables $X$ and $Y$,
 \begin{align*}
 \text{E}(X + Y) & = \text{E}(X) + \text{E}(Y)
 \end{align*}
-- That is, the expected value of the sum is the sum of expected values, regardless of how the random variables are related.
-- Therefore, you only need to know the marginal distributions of $X$ and $Y$ to find the expected value of their sum.  (But keep in mind that the *distribution* of $X+Y$ will depend on the joint distribution of $X$ and $Y$.)
-- Whether in the short run or the long run,
+-   That is, the expected value of the sum is the sum of expected values, regardless of how the random variables are related.
+-   Therefore, you only need to know the marginal distributions of $X$ and $Y$ to find the expected value of their sum.  (But keep in mind that the *distribution* of $X+Y$ will depend on the joint distribution of $X$ and $Y$.)
+-   Combining properties of linear rescaling with linearity of expected value yields the expected value of a linear combination, which extends naturally to more than two random variables.
+    $$
+    \text{E}(aX + bY + c) = a\text{E}(X)+b\text{E}(Y) + c
+    $$
+
+**Properties of variance**
+
+-   Variance and linear rescaling: If $X$ is a random variable and $a, b$ are non-random constants then
 \begin{align*}
-\text{Average of $X + Y$ } & = \text{Average of $X$} + \text{Average of $Y$}
+\text{SD}(aX + b) & = |a|\text{SD}(X)\\
+\text{Var}(aX + b) & = a^2\text{Var}(X)
 \end{align*}
-regardless of the joint distribution of $X$ and $Y$.
-- A **linear combination** of two random variables $X$ and $Y$ is of the form $aX + bY$ where $a$ and $b$ are non-random constants.  Combining properties of linear rescaling with linearity of expected value yields the expected value of a linear combination.
-    $$
-    \text{E}(aX + bY) = a\text{E}(X)+b\text{E}(Y)
-    $$
-- Linearity of expected value extends naturally to more than two random variables.
-
-::: {#exm-matching-ev-n}
-Recall the matching problem in @exm-matching-ev. We showed that the expected value of the number of matches $X$ is $\text{E}(X)=1$ when $n=4$.  Now consider a general $n$: there are $n$ objects that are shuffled and placed uniformly at random in $n$ spots with one object per spot.  Let $X$ be the number of matches.  Can you find a general formula for $\text{E}(X)$? 
-
-:::
-
-1. Before proceeding take a minute to consider: how do you think $\text{E}(X)$ depends on $n$? Will $\text{E}(X)$ increase as $n$ increases? Decrease? Stay the same?
-\
-\
-\
-\
-\
-1. When $n=4$ we derived the distribution of $X$ and used it to find $\text{E}(X)=1$. Now we'll see how to find $\text{E}(X)$ without first finding the distribution of $X$. The key is to use the indicator random variables from Example \@ref(exm:matching-indicator).  Let $\text{I}_1$ be the indicator that object 1 is placed correctly in spot 1.  Find $\text{E}(\text{I}_1)$.
-\
-\
-\
-\
-\
-1. When $n=4$, find $\text{E}(\text{I}_j)$ for $j=1,2,3, 4$.
-\
-\
-\
-\
-\
-1. What is the relationship between the random variables $X$ and $\text{I}_1, \text{I}_2,\text{I}_3, \text{I}_4$?
-\
-\
-\
-\
-\
-1. Use the previous parts to find $\text{E}(X)$.
-\
-\
-\
-\
-\
-1. Now consider a general $n$. Let $\text{I}_i$ be the indicator that object $j$ is placed correctly in spot $j$, $j=1, \ldots, n$.  Find $\text{E}(\text{I}_j)$.
-\
-\
-\
-\
-\
-1. What is the relationship between $X$ and $\text{I}_1, \ldots, \text{I}_n$?
-\
-\
-\
-\
-\
-1. Find $\text{E}(X)$.  Be amazed.
-\
-\
-\
-\
-\
-1. Interpret $\text{E}(X)$ is context.
-\
-\
-\
-\
-\
-
-## Variance of linear combinations of random variables
-
-::: {#exm-var-2X}
-Consider a random variable $X$ with $\text{Var}(X)=1$.  What is $\text{Var}(2X)$?
-
-- Walt says: $\text{SD}(2X) = 2\text{SD}(X)$ so $\text{Var}(2X) = 2^2\text{Var}(X) = 4(1) = 4$.
-- Jesse says: Variance of a sum is a sum of variances, so $\text{Var}(2X) = \text{Var}(X+X)$ which is equal to $\text{Var}(X)+\text{Var}(X) = 1+1=2$.
-
-Who is correct?  Why is the other wrong?
-  
-:::
-\
-\
-\
-\
-\
-
-::: {#exm-sat-compare-var}
-Recall Example @exm-sat-compare-ev.
-:::
-
-1. In which of the three scenarios is $\text{Var}(X + Y)$ the largest?
-Can you explain why?
-\
-\
-\
-1. In which of the three scenarios is $\text{Var}(X + Y)$ the smallest?
-Can you explain why?
-\
-\
-\
-1. In which scenario is $\text{Var}(X + Y)$ roughly equal to the sum of $\text{Var}(X)$ and $\text{Var}(Y)$?
-\
-\
-\
-1. In which of the three scenarios is $\text{Var}(X - Y)$ the largest?
-Can you explain why?
-\
-\
-\
-1. In which of the three scenarios is $\text{Var}(X - Y)$ the smallest?
-Can you explain why?
-\
-\
-\
-1. In which scenario is $\text{Var}(X - Y)$ roughly equal to the *sum* of $\text{Var}(X)$ and $\text{Var}(Y)$?
-\
-\
-\
-
-- **Variance of sums and differences of random variables.**
+-   Variance of sums and differences of random variables
 \begin{align*}
 \text{Var}(X + Y) & = \text{Var}(X) + \text{Var}(Y) + 2\text{Cov}(X, Y)\\
 \text{Var}(X - Y) & = \text{Var}(X) + \text{Var}(Y) - 2\text{Cov}(X, Y)
 \end{align*}
-
-::: {#exm-sat-var-calc-sum}
-
-Assume that SAT Math ($X$) and Reading ($Y$) scores follow a Bivariate Normal distribution, Math  scores have mean 527 and standard deviation 107, and Reading scores have mean 533 and standard deviation 100.  Compute $\text{Var}(X + Y)$ and $\text{SD}(X+Y)$ for each of the following correlations.
-
-:::
-
-1. $\text{Corr}(X, Y) = 0.77$
-\
-\
-\
-\
-\
-1. $\text{Corr}(X, Y) = 0.40$
-\
-\
-\
-\
-\
-1. $\text{Corr}(X, Y) = 0$
-\
-\
-\
-\
-\
-1. $\text{Corr}(X, Y) = -0.77$
-\
-\
-\
-\
-\
-
-
-::: {#exm-sat-var-calc-diff}
-Continuing the previous example. Compute $\text{Var}(X - Y)$ and $\text{SD}(X-Y)$ for each of the following correlations.
-
-:::
-
-1. $\text{Corr}(X, Y) = 0.77$
-\
-\
-\
-\
-\
-1. $\text{Corr}(X, Y) = 0.40$
-\
-\
-\
-\
-\
-1. $\text{Corr}(X, Y) = 0$
-\
-\
-\
-\
-\
-1. $\text{Corr}(X, Y) = -0.77$
-\
-\
-\
-\
-\
-
-- The variance of the sum is the sum of the variances if and only if $X$ and $Y$ are uncorrelated.
+-   The variance of the sum (or difference) is the sum of the variances if and only if $X$ and $Y$ are uncorrelated.
 \begin{align*}
 \text{Var}(X+Y)  & = \text{Var}(X) + \text{Var}(Y)\qquad \text{if $X, Y$ are uncorrelated}\\
 \text{Var}(X-Y)  & = \text{Var}(X) + \text{Var}(Y)\qquad \text{if $X, Y$ are uncorrelated}
 \end{align*}
-- The variance of the difference of uncorrelated random variables is the *sum* of the variances
-- If $a, b, c$ are non-random constants and $X$ and $Y$ are random variables then
+-   If $a, b, c$ are non-random constants and $X$ and $Y$ are random variables then
 $$
 \text{Var}(aX + bY + c) = a^2\text{Var}(X) + b^2\text{Var}(Y) + 2ab\text{Cov}(X, Y)
 $$
 
-## Bilinearity of covariance
+::: {#exm-sat-var-calc-sum}
 
+Recall the SAT score Application assignment.
+
+Let $M$ be the Math score and $R$ be the Reading (and Writing) score of a randomly selected SAT taker. 
+We'll assume $(M, R)$ pairs follow a *Bivariate Normal distribution*.
+
+-   Math scores ($M$) have mean 500 and standard deviation 140
+-   Reading scores ($R$) have mean 520 and standard deviation 110
+
+For each of the following scenarios, compute
+
+-   $\text{E}(M + R)$
+-   $\text{Var}(M + R)$
+-   $\text{SD}(M + R)$
+
+:::
+
+1.  $\text{Corr}(M, R) = 0$
+\
+\
+\
+\
+\
+1.  $\text{Corr}(M, R) = 0.6$
+\
+\
+\
+\
+\
+1.  $\text{Corr}(M, R) = -0.9$
+\
+\
+\
+\
+\
+1.  In which of these scenarios is $\text{SD}(M + R)$ largest? 
+Smallest? 
+Can you explain why intuitively?
+\
+\
+\
+\
+\
+
+::: {#exm-sat-var-calc-diff}
+
+Recall the SAT score Application assignment.
+
+Let $M$ be the Math score and $R$ be the Reading (and Writing) score of a randomly selected SAT taker. 
+We'll assume $(M, R)$ pairs follow a *Bivariate Normal distribution*.
+
+-   Math scores ($M$) have mean 500 and standard deviation 140
+-   Reading scores ($R$) have mean 520 and standard deviation 110
+
+For each of the following scenarios, compute
+
+-   $\text{E}(M - R)$
+-   $\text{Var}(M - R)$
+-   $\text{SD}(M - R)$
+
+:::
+
+1. $\text{Corr}(M, R) = 0$
+\
+\
+\
+\
+\
+1. $\text{Corr}(M, R) = 0.6$
+\
+\
+\
+\
+\
+1. $\text{Corr}(M, R) = -0.9$
+\
+\
+\
+\
+\
+1.  In which of these scenarios is $\text{SD}(M - R)$ largest? 
+Smallest? 
+Can you explain why intuitively?
+\
+\
+\
+\
+\
+
+
+-   Two continuous random variables $X$ and $Y$ have a **Bivariate Normal** distribution with parameters $\mu_X$, $\mu_Y$, $\sigma_X>0$, $\sigma_Y>0$, and $-1<\rho<1$ if the joint pdf is
+$$
+{\scriptsize
+f_{X, Y}(x,y) = 
+ \frac{1}{2\pi\sigma_X\sigma_Y\sqrt{1-\rho^2}}\exp\left(-\frac{1}{2(1-\rho^2)}\left[\left(\frac{x-\mu_X}{\sigma_X}\right)^2+\left(\frac{y-\mu_Y}{\sigma_Y}\right)^2-2\rho\left(\frac{x-\mu_X}{\sigma_X}\right)\left(\frac{y-\mu_Y}{\sigma_Y}\right)\right]\right)
+}
+$$
+-   It can be shown that if the pair $(X, Y)$ has a BivariateNormal($\mu_X$, $\mu_Y$, $\sigma_X$, $\sigma_Y$, $\rho$) distribution
+\begin{align*}
+\text{E}(X) & =\mu_X\\
+\text{E}(Y) & =\mu_Y\\
+\text{SD}(X) & = \sigma_X\\
+\text{SD}(Y) & = \sigma_Y\\
+\text{Corr}(X, Y) & = \rho
+\end{align*}
+-   A Bivariate Normal Density has elliptical contours. 
+For each height $c>0$ the set $\{(x,y): f_{X, Y}(x,y)=c\}$ is an ellipse. 
+The density decreases as $(x, y)$ moves away from $(\mu_X, \mu_Y)$, most steeply along the minor axis of the ellipse, and least steeply along the major of the ellipse.
+-   A scatterplot of $(x,y)$ pairs generated from a Bivariate Normal distribution will have a rough linear association and the cloud of points will resemble an ellipse.
+-   If $X$ and $Y$ have a Bivariate Normal distribution, then the marginal distributions are also Normal: $X$ has a Normal$\left(\mu_X,\sigma_X\right)$ distribution and  $Y$ has a Normal$\left(\mu_Y,\sigma_Y\right)$.
+-   If $X$ and $Y$ have a Bivariate Normal distribution and $\text{Corr}(X, Y)=0$ then $X$ and $Y$ are independent. 
+(Remember, in general it is possible to have situations where the correlation is 0 but the random variables are not independent.)
+-   **$X$ and $Y$ have a Bivariate Normal distribution if and only if every linear combination of $X$ and $Y$ has a Normal distribution.** 
+That is, $X$ and $Y$ have a Bivariate Normal distribution if and only if $aX+bY$ has a  Normal distribution for all $a$, $b$. 
+
+
+::: {#exm-bvn-sat-calc}
+Let $M$ be the Math score and $R$ be the Reading (and Writing) score of a randomly selected SAT taker. 
+We'll assume $(M, R)$ pairs follow a *Bivariate Normal distribution*.
+
+-   Math scores ($M$) have mean 500 and standard deviation 140
+-   Reading scores ($R$) have mean 520 and standard deviation 110
+-   The correlation is 0.6
+
+:::
+
+1.  Compute the probability that a student has a total score above 1400.
+\
+\
+\
+\
+\
+1.  Compute the probability that a student has a higher Math than Reading score.
+\
+\
+\
+\
+\
+
+
+**Properties of covariance**
 
 \begin{align*}
 \text{Cov}(X, X) &= \text{Var}(X)\qquad\qquad\\
@@ -254,3 +194,27 @@ $$
 \text{Cov}(X+Y,\; U+V) & = \text{Cov}(X, U)+\text{Cov}(X, V) + \text{Cov}(Y, U) + \text{Cov}(Y, V)
 \end{align*}
 
+::: {#exm-cov-bilinear}
+
+Let $X$ be the number of two-point field goals a basketball player makes in a game, $Y$ the number of three point field goals made, and $Z$ the number of free throws made (worth one point each). 
+Assume $X$, $Y$, $Z$ have standard deviations of 2.5, 3.7, 1.8, respectively, and $\text{Corr}(X,Y) = 0.1$, $\text{Corr}(X, Z) = 0.3$, $\text{Corr}(Y,Z) = -0.5$.  
+:::
+
+1.  Find the standard deviation of the number of fields goals in a game (not including free throws)
+\
+\
+\
+\
+\
+1.  Find the standard deviation of total points scored on fields goals in a game (not including free throws)
+\
+\
+\
+\
+\
+1.  Find the standard deviation of total points scored in a game.
+\
+\
+\
+\
+\
