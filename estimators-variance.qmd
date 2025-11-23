@@ -1,0 +1,118 @@
+# Variance of Estimators
+
+
+-   The bias function of an estimator measures the estimator's tendency, over many hypothetical samples,
+    to overestimate or underestimate the parameter, as a function of
+    potential values of the parameter.
+-   But bias is only one consideration.
+    Bias only considers the average
+    value of the estimator over many samples, which is just one feature
+    of the estimator's sample-to-sample distribution.
+
+
+
+::: {#exm-poisson-unbiased}
+Consider again estimating $\mu$ for a Poisson($\mu$)
+distribution based on a random sample $X_1, \ldots, X_n$ of size $n$. 
+We have seen that both $\bar{X}$ and $S^2$ are unbiased estimators of
+$\mu$. 
+If we want to choose between these two estimators, how do we
+decide?
+:::
+
+1.  Assume $n=3$ and $\mu=2$.
+    Describe in full detail how you could conduct a simulation to approximate the sample-to-sample distribution of $\bar{X}$ and its and its expected value and standard deviation.
+    Then conduct the simulation and record the results.
+    What does the standard deviation measure?
+    \
+    \
+    \
+    \
+    \
+1.  Repeat part 1 for $S^2$.
+    \
+    \
+    \
+    \
+    \
+1.  Compare the simulation results for $\bar{X}$ and $S^2$ when $n=3$
+    and $\mu = 2$. 
+    Based on the simulation results, which estimator of
+    $\mu$ is preferred when $\mu = 2$: $\bar{X}$ or $S^2$? Why? But
+    then explain why this information by itself isn't very helpful.\
+    \
+    \
+    \
+    \
+
+-   A statistic (or estimator) is a characteristic of the *sample* which can be
+    computed from the data. More precisely, a statistic is a function of
+    $X_1,\ldots,X_n$, but not of $\theta$.
+-   Because the sample is random, a statistic is itself a *random variable*, and
+    therefore has its own probability distribution, which describes
+    how values of the statistic would vary from sample-to-sample
+    over many (hypothetical) samples. 
+-   Statistics exhibit **sample-to-sample variability**: the value of a
+    statistic varies from sample to sample.
+    -   For many statistics (e.g., means and proportions)--- but not all--- statistics from larger random samples vary less, from sample to
+    sample, than statistics from smaller random samples.  
+    -   For example, $\text{Var}(\bar{X}_n) =\frac{\sigma^2}{n}$.
+-   When choosing between two *unbiased* estimators, the one with
+    smaller variance is generally preferred.
+-   Remember that the variance of an estimator will be a function of the
+    unknown parameter $\theta$, so we need to consider the variance
+    *function* for various potential values of $\theta$.
+
+
+::: {#exm-poisson-unbiased-2}
+Consider again estimating $\mu$ for a Poisson($\mu$)
+distribution based on a random sample $X_1, \ldots, X_n$ of size $n$. 
+We have seen that both $\bar{X}$ and $S^2$ are unbiased estimators of
+$\mu$. 
+If we want to choose between these two estimators, how do we
+decide?
+:::
+
+
+1.  Identify the variance function of $\bar{X}$.
+    \
+    \
+    \
+    \
+    \
+1.  Describe in full detail how you could use simulation to approximate the variance function of $S^2$.
+    \
+    \
+    \
+    \
+    \
+1.  It can be shown that 
+    $$
+    \textrm{Var}(S^2) = \frac{2\mu^2}{n-1} + \frac{\mu}{n}, \qquad \text{when the population distribution is Poisson($\mu$)}
+    $$
+    Sketch a plot of the variance functions of both $\bar{X}$ and $S^2$. 
+    \
+    \
+    \
+    \
+    \
+1.  Which of these two unbiased estimators of $\mu$, $\bar{X}$ or $S^2$, is preferred?
+Why?
+    \
+    \
+    \
+    \
+    \
+1.  Suppose $n=3$ and the sample is $(3, 0, 2)$. 
+For this sample $\bar{x} = 1.67$ and $s^2 = 2.33$. 
+Which number, 1.67 or 2.33, is a better estimate of $\mu$? 
+Explain.
+    \
+    \
+    \
+    \
+    \
+1.  Suppose $n=3$ and the sample is $(3, 0, 2)$. 
+For this sample $\bar{x} = 1.67$ and $s^2 = 2.33$.
+Which number, 1.67 or 2.33, would you choose as the estimate of $\mu$ based on this sample? 
+Why?

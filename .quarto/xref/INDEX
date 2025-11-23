@@ -94,5 +94,20 @@
   },
   "CLT.qmd": {
     "CLT.html": "4123bf42"
+  },
+  "statistical-estimation.qmd": {
+    "statistical-estimation.html": "395720a5"
+  },
+  "maximum-likelihood-estimation.qmd": {
+    "maximum-likelihood-estimation.html": "45f1d310"
+  },
+  "estimators-mse.qmd": {
+    "estimators-mse.html": "237320fb"
+  },
+  "estimators-bias.qmd": {
+    "estimators-bias.html": "ee9a3064"
+  },
+  "estimators-variance.qmd": {
+    "estimators-variance.html": "ccc8896f"
   }
 }

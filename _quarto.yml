@@ -35,6 +35,11 @@ book:
     - normal.qmd
     - linear-combinations.qmd
     - CLT.qmd
+    - statistical-estimation.qmd
+    - maximum-likelihood-estimation.qmd
+    - estimators-bias.qmd
+    - estimators-variance.qmd
+    - estimators-mse.qmd
     # - marginal-distributions.qmd
     # - averages.qmd
     # - joint-correlation.qmd
@@ -59,9 +64,9 @@ book:
     # - joint-normal.qmd
     
     - references.qmd
-  # appendices: 
+  appendices: 
   #   - problem-solving-strategies.qmd
-    # - distribution-summary.qmd
+    - distribution-summary.qmd
 
 
 bibliography: references.bib

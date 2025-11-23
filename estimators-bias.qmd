@@ -1,0 +1,208 @@
+# Bias of Estimators
+
+-   MLE is one procedure for finding an estimator of a parameter
+    $\theta$, but there any others
+-   When several estimators of $\theta$ are available, how
+    do we decide which is "better"?
+-   The value of a parameter $\theta$ is unknown, so it is impossible to
+    determine if any single estimate of $\theta$ is good or bad.
+-   An estimator is a random variable that returns different estimates
+    of $\theta$ for different samples. 
+    So even if an estimator produces
+    "good" estimates of $\theta$ for some samples, it might produce
+    "bad" estimates of $\theta$ for others.
+-   Therefore, we can never determine for any particular sample if an
+    estimator produces a good estimate of the true unknown value of
+    $\theta$.
+-   Rather, we evaluate the estimation *procedure*: Over many samples,
+    does an estimator tend to produce reasonable estimates of $\theta$
+    for a range of potential values of $\theta$?
+-   Remember: a statistic/estimator is a random variable whose
+    sampling distribution describes how values of the estimator vary
+    from sample-to-sample over many (hypothetical) samples.
+    -   We can estimate the degree of this variability by *simulating
+        many hypothetical samples* from an assumed population
+        distribution and computing the value of the statistic for each
+        sample.
+    -   However, *in practice usually only a single sample is selected*
+        and a single value of the statistic is observed, and we don't
+        know what the population distribution is.
+
+
+::: {#exm-bias-sim-poisson}
+Recall that in the car dealership problem we were trying to
+estimate $\mu$ based on a random sample $X_1, \ldots, X_n$ from a Poisson($\mu$) distribution.
+We considered a few different estimators of $\mu$.
+
+\begin{align*}
+\bar{X} &= \frac{1}{n}\sum_{i=1}^n X_i\\
+S^2 & = \frac{1}{n-1}\sum_{i=1}^n\left(X_i-\bar{X}\right)^2\\
+\hat{\sigma}^2 & = \frac{1}{n}\sum_{i=1}^n\left(X_i-\bar{X}\right)^2\\
+\hat{\mu} & = \frac{n}{n+100}\bar{X}+ \frac{100}{n+100}(2.3)
+\end{align*}
+
+Let's see how these estimators perform when $\mu = 2$ for samples of size $n=3$.
+:::
+
+1.  Describe in detail how you could use simulation to approximate the distribution of $\bar{X}$ for samples of size $n=3$ when $\mu=2$.
+\
+\
+\
+\
+\
+1.  Conduct the simulation and approximate $\text{E}(\bar{X})$. 
+Interpret this value.
+\
+\
+\
+\
+\
+1.  Repeat parts 1 and 2 for $S^2$.
+\
+\
+\
+\
+\
+1.  Repeat parts 1 and 2 for $\hat{\sigma}^2$.
+\
+\
+\
+\
+\
+1.  Repeat parts 1 and 2 for $\hat{\mu}$.
+\
+\
+\
+\
+\
+1.  Identify if each estimators tend to overestimate $\mu$, underestimate $\mu$, or neither, when $\mu=2$. 
+But then explain why this information by itself itself helpful.
+\
+\
+\
+\
+\
+
+-   $\hat{\theta}$ is an **unbiased** estimator of $\theta$ if
+    $$
+    \textrm{E}\left(\hat{\theta}\right) = \theta \quad \text{for \emph{all} potential values of $\theta$}
+    $$
+-   Roughly speaking, an unbiased estimator does not tend to
+    systematically overestimate or underestimate the parameter of
+    interest, regardless of the true value of the parameter.
+-   The **bias (function)** of an estimator is the difference
+    between its expected value (over many hypothetical samples) and
+    the true (but unknown) value of the parameter
+    $$
+    \text{bias}(\hat{\theta}) = \textrm{E}(\hat{\theta}- \theta) = \textrm{E}(\hat{\theta}) - \theta, \qquad \text{a function of $\theta$}
+    $$
+-   If an estimator is unbiased its bias function is 0
+-   In general, the sample mean $\bar{X}$ is an *unbiased* estimator of the
+    population mean $\mu$.
+    $$
+    \textrm{E}(\bar{X}) = \mu
+    $$
+-   In general, the "$1/(n-1)$" sample variance $S^2$ is an *unbiased* estimator of the
+    population variance $\sigma^2$
+    $$
+    \textrm{E}(S^2) = \sigma^2
+    $$
+
+
+
+::: {#exm-bias-poisson}
+Consider estimating $\mu$ for a Poisson($\mu$) distribution.
+Determine which of the following estimators are unbiased estimators of $\mu$ based on a random sample from a Poisson($\mu$) distribution.
+If the estimator is not unbiased, identify and plot its bias function.
+:::
+
+1.  $\bar{X}$.
+\
+\
+\
+\
+\
+1.  $S^2$
+\
+\
+\
+\
+\
+1.  $\hat{\sigma}^2$.
+(Hint: $\hat{\sigma}^2 = \frac{n-1}{n} S^2$.)
+\
+\
+\
+\
+\
+1.  $\hat{\mu} = \frac{n}{n+100}\bar{X}+ \frac{100}{n+100}(2.3)$.
+\
+\
+\
+\
+\
+
+
+::: {#exm-poisson-invariance-bias}
+Continuing the Poisson($\mu$) problem.
+Let $\theta=e^{-\mu}$. 
+We know $\bar{X}$ is an unbiased estimator of $\mu$.
+We also know that $\hat{\theta}=e^{-\bar{X}}$ is the MLE of $\theta=e^{-\mu}$.
+Is $\hat{\theta}$ an unbiased estimator of
+$\theta$?\
+:::
+
+1.  Describe in detail how you would use simulation to approximate the bias of $\hat{\theta}$ as an estimator of $\theta$ when $\mu = 2$.
+\
+\
+\
+\
+\
+1.  Describe in detail how you would use simulation to approximate the
+    bias *function* of $\hat{\theta}$.
+\
+\
+\
+\
+\
+1.  Explain the reason why $e^{-\bar{X}}$ is a biased estimator of $e^{-\mu}$ even though $\bar{X}$ is an unbiased estimator of $\mu$.
+\
+\
+\
+\
+\
+
+-   In general, if $\hat{\theta}$ is an unbiased estimator of $\theta$,
+    $g(\hat{\theta})$ is usually NOT an unbiased estimator of
+    $g(\theta)$ (unless $g$ is linear).
+    -   Because in general
+        $\textrm{E}(g(\hat{\theta}))\neq g(\textrm{E}(\hat{\theta}))$.
+-   For example, even though the "$1/(n-1)$" sample variance $S^2$ is an unbiased estimator of the
+    population variance $\sigma^2$, the corresponding sample standard deviation $S$ is a biased estimator of the population standard deviation $\sigma$
+
+::: {#exm-poisson-asymptotic}
+Continuing the Poisson($\mu$) problem. 
+Consider the estimator $\hat{\sigma}^2$. 
+Recall that the bias function is $\text{bias}(\hat{\sigma}^2) = -\frac{\mu}{n}$. 
+What happens to the
+bias function as $n$ increases. 
+What does this mean?
+\
+\
+\
+\
+\
+:::
+
+
+
+-   An estimator $\hat{\theta}_n$ is an **asymptotically unbiased**
+    estimator of $\theta$ if $\textrm{E}(\hat{\theta}_n)\to \theta$ as
+    $n\to\infty$ for all $\theta$, that is, if
+    $\text{bias}(\hat{\theta}_n)\to 0$ as $n\to\infty$ for all
+    $\theta$.
+-   For an asymptotically unbiased estimator, if the sample size is
+    large $\textrm{E}(\hat{\theta})\approx \theta$, regardless of the
+    true value of $\theta$. That is, if the sample size is large the
+    estimator is "nearly unbiased".
+-   MLEs are often biased, but in general, MLEs are asymptotically unbiased
