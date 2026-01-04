@@ -7,11 +7,11 @@ Consider just a few examples.
 1.  The probability that you roll doubles in a turn of a board game.
 1.  The probability you win the next [Powerball lottery](https://www.powerball.com/) if you purchase a single ticket, 4-8-15-16-42, plus the Powerball number, 23.
 1.  The probability that a "randomly selected" Cal Poly student is a California resident.
-1.  The probability that the high temperature in San Luis Obispo next Tuesday is above 90 degrees F.
+1.  The probability that the high temperature in San Luis Obispo next Tuesday is above 80 degrees F.
 1.  The probability that the Philadelphia Eagles win the next Superbowl.
 1.  The probability that the Republican candidate wins the 2032 U.S. Presidential Election.
 1.  The probability that extraterrestrial life currently exists somewhere in the universe.
-1.  The probability that you ate an apple on April 17, 2009.
+1.  The probability that you ate an apple on April 17, 2014.
 
 
 ::: {#exm-randomness}
@@ -96,9 +96,8 @@ If not, how would you interpret the 30% as a long run relative frequency?
 -   When interpreting the long run, be careful to define the random phenomenon that is being repeated
 
 ::: {#exm-donny-assumption-versus-observation}
-In the first 7 games of his NBA career, Paolo Banchero attempted 60 free throws and successfully made 44.
-Donny Don't says "the probability that Paolo Banchero successfully makes a free throw attempt is 44/60 = 0.733."
-Do you agree?
+You flip a coin 10 times and it lands on heads 7 times. 
+Is it true that the probability that the coin lands on heads is 7/10=0.7?
 Explain.
 :::
 
@@ -154,23 +153,23 @@ How would you respond?
 
 ::: {#exm-subjective-bet}
 
-What is your subjective probability that Professor Ross (the author) has a TikTok account?
+What is your subjective probability that Prof. Ross saw Taylor Swift's Eras Tour live in concert?
 Consider the following two bets, and suppose you must choose only one.
 
-A)  You win $100 if Professor Ross has a TikTok account, and you win nothing otherwise.
+A)  You win $100 if Professor Ross went to the Eras Tour, and you win nothing otherwise.
 A)  A box contains 40 green and 60 gold marbles that are otherwise identical.
 The marbles are thoroughly mixed and one marble is selected at random.
 You win $100 if the selected marble is green, and you win nothing otherwise.
 
 1.  Which of the above bets would you prefer?
 Or are you completely indifferent?
-What does this say about your subjective probability that Professor Ross has a Tik Tok account?
+What does this say about your subjective probability that Prof Ross saw the Eras Tour live?
 1.  If you preferred bet B to bet A, consider bet C which has a similar setup to B but now there are 20 green and 80 gold marbles.
 Do you prefer bet A or bet C?
-What does this say about your subjective probability that Professor Ross has a Tik Tok account? 
+What does this say about your subjective probability that Prof Ross saw the Eras Tour live? 
 1.  If you preferred bet A to bet B, consider bet D which has a similar setup to B but now there are 60 green and 40 gold marbles.
 Do you prefer bet A or bet D?
-What does this say about your subjective probability that Professor Ross has a Tik Tok account?
+What does this say about your subjective probability that Prof Ross saw the Eras Tour live?
 1.  Continue to consider different numbers of green and gold marbles.
 Can you zero in on your subjective probability?
 \
@@ -183,46 +182,48 @@ Can you zero in on your subjective probability?
 
 ::: {#exm-worldseries}
 
-As of Jun 13, [FanGraphs](https://www.fangraphs.com/standings/playoff-odds/fg/mlb) listed the following probabilities for who will win the 2025 MLB World Series.
+As of Jan 3, [ESPN](https://www.espn.com/espn/betting/story/_/id/43748901/super-bowl-2026-odds-win-nfl-betting) listed the following probabilities for who will win the 2026 Superbowl.
 :::
 
 
 
-| Team     | Probability |
-|----------|------------:|
-| Dodgers  |         21% |
-| Yankees  |         17% |
-| Tigers   |         10% |
-| Mets     |         10% |
-| Phillies |          7% |
-| Other    |             |
+| Team                 | Probability |
+|----------------------|------------:|
+| Seattle Seahawks     |         18% |
+| Los Angeles Rams     |         15% |
+| Denver Broncos       |         12% |
+| San Francisco 49ers  |         10% |
+| New England Patriots |         10% |
+| Philadelphia Eagles  |          9% |
+| Other                |             |
 
-According to FanGraphs (as of Jun 13):
+According to ESPN (as of Jan 3):
 
 1.  Are the above percentages relative frequencies or subjective probabilities? Why?
 \
 \
-1.  What must be the probability that a team other than the above five teams wins the championship?
+1.  What must be the probability that a team other than the above six teams wins the championship?
 That is, what value goes in the "Other" row in the table?
 \
 \
 \
 \
 \
-2.  The Dodgers are how many times more likely than the Phillies to win?
+1.  The Seahawks are how many times more likely than the Eagles to win?
+The Seahawks are how many times more likely than the Broncos to win?
 \
 \
 \
 \
 \
-3.  What must be the probability that the Dodgers do *not* win the championship?
-How many times more likely are the Dodgers to not win than to win (this ratio is the "odds against" the Dodgers winning).
+1.  What must be the probability that the 49ers do *not* win the championship?
+How many times more likely are the 49ers to not win than to win (this ratio is the "odds against" the 49ers winning).
 \
 \
 \
 \
 \
-1.  How could you construct a circular spinner (like from a kids game) to simulate the World Series champion according to these probabilities? According to this model, what would you expect the results of 10000 repetitions of a simulation of the champion to look like?
+1.  How could you construct a circular spinner (like from a kids game) to simulate the champion according to these probabilities? According to this model, what would you expect the results of 10000 repetitions of a simulation of the champion to look like?
 \
 \
 \
@@ -234,12 +235,12 @@ How many times more likely are the Dodgers to not win than to win (this ratio is
 
 ::: {#exm-worldseries-proportional}
 
-Suppose your subjective probabilities for the 2025 World Series champion satisfy the following conditions.
+Suppose your subjective probabilities for the 2026 Superbowl satisfy the following conditions.
 
--   The Brewers and Yankees are equally likely to win
--   The Phillies are 1.5 times more likely than the Yankees to win
--   The Dodgers are 2 times more likely than the Phillies to win
--   The winner is as likely to be among these four teams --- Brewers, Yankees, Phillies, Dodgers --- as not.
+-   The 49ers and Eagles are equally likely to win
+-   The Rams are 1.5 times more likely than the 49ers to win
+-   The Seahawks are 2 times more likely than the Rams to win
+-   The winner is as likely to be among these four teams---49ers, Eagles, Rams, Seahawks---as not.
 
 Construct a table of your subjective probabilities like the one in @exm-worldseries.
 :::
@@ -279,12 +280,12 @@ Assume the two probabilities are not equal.
 ::: {#exm-bet-EV}
 
 Ron and Leslie agree to the following bet.
-They'll ask Professor Ross if he has a TikTok account.
-If he does, Leslie will pay
+They'll ask Professor Ross if he saw the Eras Tour live.
+If he did, Leslie will pay
 Ron \$200; if not, Ron will pay Leslie \$100.
-(Neither has any direct information about whether or not Professor Ross has a TikTok account.)
+(Neither has any direct information about whether or not Prof Ross saw the Eras Tour.)
 
-1.  Given this setup, which of the following is being judged as more likely: that Professor Ross has a TikTok account, or that he does not?  Why?
+1.  Given this setup, which of the following is being judged as more likely: that Prof Ross saw the Eras Tour, or that he did not?  Why?
 \
 \
 \
@@ -297,7 +298,7 @@ Ron \$200; if not, Ron will pay Leslie \$100.
 \
 \
 1.  Ron and Leslie agree that this is a fair bet, and neither would accept worse odds.
-What is their subjective probability that Professor Ross has a TikTok account?
+What is their subjective probability that Professor Ross saw the Eras Tour?
 \
 \
 \

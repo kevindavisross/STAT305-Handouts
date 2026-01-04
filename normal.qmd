@@ -275,6 +275,7 @@ spinner3
 -   @fig-normal-cdf-def defines a Normal distribution by specifying all of its percentiles. 
 -   The empirical rule is often described in terms of "within [blank] standard deviations of the mean" as in the following:
     -   38% of values are within 0.5 standard deviations of the mean
+    -   50% of values are withing 0.67 standard deviations of the mean
     -   68% of values are within 1 standard deviation of the mean
     -   87% of values are within 1.5 standard deviations of the mean
     -   95% of values are within 2 standard deviations of the mean

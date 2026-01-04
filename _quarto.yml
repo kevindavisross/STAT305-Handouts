@@ -12,61 +12,40 @@ book:
     - randomness-and-probability.qmd
     - working-with-probabilities.qmd
     - interpreting-probabilities.qmd
-    - outcomes-events-rvs.qmd
-    - probability-models.qmd
-    - intro-to-distributions.qmd
-    - conditioning.qmd
-    - probability-rules.qmd
-    - independence.qmd
-    - intro-simulation.qmd
-    - approximating-probabilities.qmd
-    - approximating-expected-values.qmd
-    - variance-and-standard-deviation.qmd
-    - covariance-and-correlation.qmd
-    - counting-and-uniform.qmd
-    - discrete-pmf.qmd
-    - binomial.qmd
-    - negative-binomial.qmd
-    - poisson.qmd
-    - continuous-rv.qmd
-    - pdf.qmd
-    - expected-value-continuous.qmd
-    - exponential.qmd
-    - normal.qmd
-    - linear-combinations.qmd
-    - CLT.qmd
-    - statistical-estimation.qmd
-    - maximum-likelihood-estimation.qmd
-    - estimators-bias.qmd
-    - estimators-variance.qmd
-    - estimators-mse.qmd
-    # - marginal-distributions.qmd
-    # - averages.qmd
-    # - joint-correlation.qmd
-    # - conditional-distributions.qmd
-    # - law-of-total-probability.qmd
-    # - bayes-rule.qmd
+    # - outcomes-events-rvs.qmd
+    # - probability-models.qmd
+    # - intro-to-distributions.qmd
+    # - conditioning.qmd
+    # - probability-rules.qmd
     # - independence.qmd
+    # - intro-simulation.qmd
+    # - approximating-probabilities.qmd
+    # - approximating-expected-values.qmd
+    # - variance-and-standard-deviation.qmd
+    # - covariance-and-correlation.qmd
+    # - counting-and-uniform.qmd
     # - discrete-pmf.qmd
-    # - continuous-pdf.qmd
-    # - cdf-and-quantile.qmd
-    # - transformations.qmd
-    # - joint-pmf-and-pdf.qmd
-    # - conditional-pmf-and-pdf.qmd
-    # - expected-value.qmd
-    # - variance.qmd
-    # - covariance.qmd
-    # - conditional-expectation.qmd
-    # - binomial-and-negative-binomial.qmd
+    # - binomial.qmd
+    # - negative-binomial.qmd
     # - poisson.qmd
+    # - poisson-approximation.qmd # NEED TO ADD
+    # - continuous-rv.qmd
+    # - pdf.qmd
+    # - expected-value-continuous.qmd
     # - exponential.qmd
     # - normal.qmd
-    # - joint-normal.qmd
-    
+    # - linear-combinations.qmd
+    # - CLT.qmd
+    # - statistical-estimation.qmd
+    # - maximum-likelihood-estimation.qmd
+    # - estimators-bias.qmd
+    # - estimators-variance.qmd
+    # - estimators-mse.qmd
     - references.qmd
   appendices: 
   #   - problem-solving-strategies.qmd
     - distribution-summary.qmd
+    - normal-empirical-rule.qmd
 
 
 bibliography: references.bib
