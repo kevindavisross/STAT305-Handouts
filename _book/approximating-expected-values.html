@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>12&nbsp; Expected Values: Approximation and Some Properties – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./approximating-expected-values.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./approximating-probabilities.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./approximating-expected-values.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -200,13 +210,13 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./approximating-expected-values.html" class="sidebar-item-text sidebar-link">
+  <a href="./approximating-expected-values.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -244,7 +254,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></h1>
 </div>
 
 
@@ -261,11 +271,279 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<ul>
+<li>The expected value of a random variable <span class="math inline">\(X\)</span> is its <em>probability-weighted average value</em> <span class="math inline">\(\text{E}(X)\)</span></li>
+<li><span class="math inline">\(\text{E}(X)\)</span> can be interpreted as the <em>long run average value</em> of <span class="math inline">\(X\)</span></li>
+<li>We can approximate <span class="math inline">\(\text{E}(X)\)</span> by simulating many values of the random variable and computing the average (mean) in the usual way: add up the simulated values of <span class="math inline">\(X\)</span> and divide by the number of simulated values.</li>
+</ul>
+<div id="exm-dice-sim-tactile-ev" class="theorem example">
+<p><span class="theorem-title"><strong>Example 12.1</strong></span> Let <span class="math inline">\(X\)</span> be the number of vehicles crashes involving fatalities that occur in San Luis Obispo County in a randomly selected week. Suppose that <span class="math inline">\(X\)</span> has distribution<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(\text{P}(X=x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td style="text-align: right;">0.589</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: right;">0.312</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td style="text-align: right;">0.083</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td style="text-align: right;">0.014</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: right;">0.002</td>
+</tr>
+</tbody>
+</table>
 </div>
+<ol type="1">
+<li>Intepret the probabilities as long run relative frequencies in this context<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch a spinner for simulating values of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Describe in detail how you could use simulation to approximate <span class="math inline">\(\text{E}(X)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{E}(X)\)</span> and compare to the simulated approximation.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Interpret <span class="math inline">\(\text{E}(X)\)</span> in context.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Suppose you want to approximate <span class="math inline">\(\text{E}(X^2)\)</span>. (We’ll see why soon.) Donny Don’t says: “Just square the value from part 3”. Is that true? If not, how would you use simulation to approximate <span class="math inline">\(\text{E}(X^2)\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{E}(X^2)\)</span>. Is it equal to <span class="math inline">\(\text{E}(X)^2\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>In general the order of transforming and averaging is not interchangeable.</li>
+<li>Whether in the short run or the long run, in general <span class="math display">\[\begin{align*}
+\text{Average of $g(X)$} &amp; \neq g(\text{Average of $X$})\\
+\text{Average of $g(X, Y)$} &amp; \neq g(\text{Average of $X$}, \text{Average of $Y$})
+\end{align*}\]</span></li>
+<li>In terms of expected values (long run averages), in general <span class="math display">\[\begin{align*}
+\text{E}(g(X)) &amp; \neq g(\text{E}(X))\\
+\text{E}(g(X, Y)) &amp; \neq g(\text{E}(X), \text{E}(Y))
+\end{align*}\]</span></li>
+</ul>
+<div id="exm-linearity-sum" class="theorem example">
+<p><span class="theorem-title"><strong>Example 12.2</strong></span> Continuing <a href="#exm-dice-sim-tactile-ev" class="quarto-xref">Example&nbsp;<span>12.1</span></a>. Suppose that the number of fatal crashes in any one week period follows the distribution in <a href="#exm-dice-sim-tactile-ev" class="quarto-xref">Example&nbsp;<span>12.1</span></a>, independently from week to to week. Now consider a two week period, say this week and next week. Let <span class="math inline">\(X\)</span> be the number of fatal crashes in the first week and <span class="math inline">\(Y\)</span> in the second week, so that <span class="math inline">\(X+Y\)</span> is the total number of fatal crashes in the two week period.</p>
+</div>
+<ol type="1">
+<li><p>Are <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> the same random variable?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Do <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> have the same distribution? Explain.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>What is <span class="math inline">\(\text{E}(Y)\)</span>. Why?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Describe how you would conduct a simulation to approximate the distribution of <span class="math inline">\(X+Y\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Describe how you would use simulation to approximate <span class="math inline">\(\text{E}(X+Y)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Use simulation to approximate <span class="math inline">\(\text{E}(X)\)</span>, <span class="math inline">\(\text{E}(Y)\)</span>, and <span class="math inline">\(\text{E}(X+Y)\)</span>. How are they related?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compute <span class="math inline">\(\text{P}(X + Y = 0)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compute <span class="math inline">\(\text{P}(X + Y = 1)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>The following table represents the joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Explain how this table was constructed.</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(x, y\)</span></td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td style="text-align: right;">0.3469</td>
+<td style="text-align: right;">0.1838</td>
+<td style="text-align: right;">0.0489</td>
+<td style="text-align: right;">0.0082</td>
+<td style="text-align: right;">0.0012</td>
+</tr>
+<tr class="odd">
+<td>1</td>
+<td style="text-align: right;">0.1838</td>
+<td style="text-align: right;">0.0973</td>
+<td style="text-align: right;">0.0259</td>
+<td style="text-align: right;">0.0044</td>
+<td style="text-align: right;">0.0006</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td style="text-align: right;">0.0489</td>
+<td style="text-align: right;">0.0259</td>
+<td style="text-align: right;">0.0069</td>
+<td style="text-align: right;">0.0012</td>
+<td style="text-align: right;">0.0002</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td style="text-align: right;">0.0082</td>
+<td style="text-align: right;">0.0044</td>
+<td style="text-align: right;">0.0012</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td style="text-align: right;">0.0012</td>
+<td style="text-align: right;">0.0006</td>
+<td style="text-align: right;">0.0002</td>
+<td style="text-align: right;">0.0000</td>
+<td style="text-align: right;">0.0000</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compute the distribution of <span class="math inline">\(X+Y\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Compute <span class="math inline">\(\text{E}(X+Y)\)</span>. Interpret the value in context.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>How is <span class="math inline">\(\text{E}(X+Y)\)</span> related to <span class="math inline">\(\text{E}(X)\)</span> and <span class="math inline">\(\text{E}(Y)\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+</ol>
+<ul>
+<li>In general the order of transforming and averaging is not interchangeable.</li>
+<li>However, the order is interchangeable for <em>linear</em> transformations.</li>
+<li><strong>Linearity of averages.</strong>: If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> are non-random constants, whether in the short run or the long run, <span class="math display">\[\begin{align*}
+\text{Average of $(mX+b)$} &amp; = m(\text{Average of $X$})+b\\
+\text{Average of $(X+Y)$} &amp; = \text{Average of $X$} +\text{Average of $Y$}
+\end{align*}\]</span></li>
+<li><strong>Linearity of expected value.</strong>: If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are random variables and <span class="math inline">\(m\)</span> and <span class="math inline">\(b\)</span> are non-random constants, <span class="math display">\[\begin{align*}
+\text{E}(mX+b) &amp; = m\text{E}(X)+b\\
+\text{E}(X+Y) &amp; = \text{E}(X) + \text{E}(Y)
+\end{align*}\]</span></li>
+<li>The expected value of the sum of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> is the sum of the expected value of <span class="math inline">\(X\)</span> and the expected value of <span class="math inline">\(Y\)</span> <em>regardless of the relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</em></li>
+</ul>
+<div id="exm-ce-crashes" class="theorem example">
+<p><span class="theorem-title"><strong>Example 12.3</strong></span> Continuing <a href="#exm-linearity-sum" class="quarto-xref">Example&nbsp;<span>12.2</span></a>.</p>
+</div>
+<ol type="1">
+<li>Explain how we could use simulation to approximate the conditional distribution of <span class="math inline">\(X+Y\)</span> given <span class="math inline">\(X = 1\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Explain how we could use simulation to approximate <span class="math inline">\(\text{E}(X + Y|X = 1)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the conditional distribution of <span class="math inline">\(X+Y\)</span> given <span class="math inline">\(X = 1\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{E}(X + Y|X = 1)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
 
 
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Source: the <a href="https://www.chp.ca.gov/programs-services/services-information/switrs-internet-statewide-integrated-traffic-records-system">California Highway Patrol Statewide Integrated Traffic Records System (CHP-SWITRS)</a> public dataset available through the Berkeley <a href="https://tims.berkeley.edu/">Transportation Incident Mapping System (TIMS)</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -669,13 +947,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./approximating-expected-values.html" class="pagination-link" aria-label="Expected Values: Approximation and Some Properties">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span>
+      <a href="./approximating-probabilities.html" class="pagination-link" aria-label="Approximating Probabilities">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

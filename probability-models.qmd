@@ -10,7 +10,7 @@
     -   If $\Omega$ represents the sample space then $\text{P}(\Omega) = 1$.
     -   (*Countable additivity.*) If $A_1, A_2, A_3, \ldots$ are disjoint then
         $$
-        \text{P}(A_1 \cup A_2 \cup A_2 \cup \cdots) = \text{P}(A_1) + \text{P}(A_2) +\text{P}(A_3) + \cdots
+        \text{P}(A_1 \cup A_2 \cup A_3 \cup \cdots) = \text{P}(A_1) + \text{P}(A_2) +\text{P}(A_3) + \cdots
         $$
 -   Additional properties of a probability measure follow from the axioms
     -   *Complement rule*. For any event $A$, $\text{P}(A^c)  = 1 - \text{P}(A)$.
@@ -25,24 +25,22 @@
         $$
 -   A **probability model** (or **probability space**) is the collection of all outcomes, events, and random variables associated with a random phenomenon along with the probabilities of all events of interest under the assumptions of the model.
 -   The axioms of a probability measure are minimal logical consistent requirements that ensure that probabilities of different events fit together in a valid, coherent way.
--   A single probability measure corresponds to a particular set of assumptions about the random phenomenon.
--   There can be many probability measures defined on a single sample space, each one corresponding to a different probability model for the random phenomenon.
--   Probabilities of events can change if the probability measure changes.
 
 
 ::: {#exm-die-fair}
-Consider a *single* roll of a four-sided die.
-(Careful: don't confuse these examples with other examples that involve two rolls.)
+Suppose that the playoff for some sport is down to the final 4 teams, which we'll label teams 1, 2, 3, 4 (in no particular order).
+We're interested in which team will win the championship.
 The sample space is $\{1, 2, 3, 4\}$.
 @tbl-die-events lists all possible *events*.
 
-1.  Add a description in words for each of the events
+1.  Add a description in words for each of the events.
 \
 \
 \
 \
 \
-1.  Suppose the die is fair, and let $\text{P}$ denote the correponding probability measure.
+1.  Pat assumes that the four teams are equally likely to win the championship. 
+Let $\text{P}$ denote Pat's correponding probability measure.
 Compute $\text{P}(A)$ for each event in @tbl-die-events.
 \
 \
@@ -52,7 +50,7 @@ Compute $\text{P}(A)$ for each event in @tbl-die-events.
 :::
 
 
-| $A$ | Description | $\text{P}(A)$ | $\text{Q}(A)$ | $\tilde{\text{Q}}(A)$?
+| $A$ | Description | $\text{P}(A)$ | $\text{Q}(A)$ | $\tilde{\text{P}}(A)$|
 | --- | --- | --- | --- | --- |
 | $\emptyset$ | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |  | | |
 $\{1\}$ | |  | | |
@@ -74,11 +72,11 @@ $\{1, 2, 3, 4\}$ | |  | | |
 : All possible events associated with a single roll of a four-sided die. {#tbl-die-events}
 
 ::: {#exm-die-weighted}
-Consider a *single* roll of a four-sided die, but suppose the die is weighted so that the outcomes are no longer equally likely.
-Let $\text{Q}$ denote the probability measure corresponding to a particular weighting.
+Continuing @exm-die-fair.
+Quentin assumes the teams are not equally likely to win the championship.
+Let $\text{Q}$ denote Quentin's probability measure.
 A few probabilities are provided in @tbl-die-events; compute $\text{Q}(A)$ for all other events in @tbl-die-events.
-In what particular way is the die weighted?
-That is, what is the probability of each the four possible outcomes?
+What is Quentin's assumed probability that each team wins the championship?
 \
 \
 \
@@ -90,17 +88,16 @@ That is, what is the probability of each the four possible outcomes?
 
 
 ::: {#exm-dice-normalize}
-Consider a single roll of a different weighted four-sided die. Suppose that
+Continuing @exm-die-fair.
+Tilda assumes that
 
--   Rolling a 1 is twice as likely as rolling a 4
--   Rolling a 2 is three times as likely as rolling a 4
--   Rolling a 3 is 1.5 times as likely as rolling a 4
+-   Team 1 is twice as likely to win the championship as team 4
+-   Team 2 is three times as likely to win the championship as team 4
+-   Team 3 is 1.5 times as likely as to win the championship as team 4
 
-Let $\tilde{\text{Q}}$ denote the probability measure corresponding to this particular weighting.
-Compute $\tilde{\text{Q}}(A)$ for all events in @tbl-die-events.
-
-In what particular way is the die weighted?
-That is, what is the probability of each the four possible outcomes?
+Let $\tilde{\text{P}}$ denote Tilda's probability measure.
+Compute $\tilde{\text{P}}(A)$ for all events in @tbl-die-events.
+What is Tilda's assumed probability that each team wins the championship?
 \
 \
 \
@@ -109,7 +106,11 @@ That is, what is the probability of each the four possible outcomes?
 :::
 
 
-
+-   The axioms of a probability measure are minimal logical consistent requirements that ensure that probabilities of different events fit together in a valid, coherent way.
+-   In particular, the axioms do NOT require outcomes to be equally likely
+-   A single probability measure corresponds to a particular set of assumptions about the random phenomenon.
+-   There can be many probability measures defined on a single sample space, each one corresponding to a different probability model for the random phenomenon.
+-   Probabilities of events can change if the probability measure changes.
 
 ::: {#exm-meeting-probspace1d-uniform}
 The general meeting problem involves multiple people, but
@@ -193,7 +194,7 @@ What assumptions about Han's arrival time does this probability measure reflect?
 
 
 ::: {#exm-meeting-probspace1d-limit}
-Continuing with the uniform probability measure of @exm-meeting-probspace1d-uniform.
+Continuing with the uniform probability measure $\textbf{P}$ of @exm-meeting-probspace1d-uniform.
 
 
 1.  Compute the probability that Han arrives between 12:00 and 12:01, within 1 minute after noon.
@@ -233,7 +234,7 @@ Discuss.
 
 
 ::: {#exm-meeting-probspace1d-limit-nonuniform}
-Continuing with the non-uniform probability measure of @exm-meeting-nonuniform-probspace1.
+Continuing with the non-uniform probability measure $\textbf{Q}$ of @exm-meeting-nonuniform-probspace1.
 
 
 
@@ -245,12 +246,6 @@ Continuing with the non-uniform probability measure of @exm-meeting-nonuniform-p
 \
 \
 1.  Compute the probability that Han arrives between 12:00:00 and 12:00:01, within 1 second after noon.
-\
-\
-\
-\
-\
-1.  Compute the probability that Han arrives between 12:00:00.000 and 12:01:00.001, within 1 millisecond after noon.
 \
 \
 \
@@ -269,12 +264,6 @@ Continuing with the non-uniform probability measure of @exm-meeting-nonuniform-p
 \
 \
 1.  Compute the probability that Han arrives between 12:59:59 and 1:00:00, within 1 second before 1:00.
-\
-\
-\
-\
-\
-1.  Compute the probability that Han arrives between 12:59:59.999 and 1:00:00.000, within 1 millisecond before 1:00.
 \
 \
 \
@@ -338,6 +327,12 @@ Compute and interpret the following.
 \
 \
 1.  $\text{P}(W < 1)$
+\
+\
+\
+\
+\
+1.  $\text{P}(W < 1/60)$
 \
 \
 \

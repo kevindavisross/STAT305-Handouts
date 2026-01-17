@@ -14,39 +14,21 @@ A probability model of a random phenomenon consists of a sample space of possibl
 
 
 ::: {#exm-dice-sim}
-Consider a box model for rolling a four-sided die.
+Consider rolling a four-sided die.
 
-1.  Set up a box model for simulating a roll of each of the following dice.
-    a.  a fair four-sided die
-    a.  a die that lands on 1, 2, 3, 4, with respective probability 0.1, 0.2, 0.3, 0.4
-    \
-    \
-    \
-    \
-    \
-1.  Roll a die from the previous part twice and let $X$ be the sum of two rolls and let $Y$ be the larger of the two rolls (or the common value if a tie).
-Explain how you would use the box models from the previous part to simulate a realization of $(X, Y)$.
+1.  Set up a box model for simulating a roll of a fair four-sided die. 
+Then set up a spinner. 
+Suppose you spin this spinner many times. 
+Sketch a plot of the simulated values.
 \
 \
 \
 \
 \
-1.  Let $A$ be the event that the sum is 3, and let $I_A$ be the indicator random variable.
-Explain how you would use the box models to simulate a realization of $A$ and $I_A$.
-\
-\
-\
-\
-\
-1.  In the previous parts, could you use spinners instead?
-\
-\
-\
-\
-\
-1.  Use a *fair* four-sided die (or a box or a spinner) to simulate a few repetitions.
-(Yes, really do it.)
-For each repetition, record the results of the first and second rolls (or draws or spins) and the simulated values of $X$, $Y$, $A$, and $I_A$.
+1.  Set up a box model for simulating a roll of a die that lands on 1, 2, 3, 4, with respective probability 0.1, 0.2, 0.3, 0.4. 
+Then set up a spinner.
+Suppose you spin this spinner many times. 
+Sketch a plot of the simulated values.
 \
 \
 \
@@ -56,91 +38,116 @@ For each repetition, record the results of the first and second rolls (or draws 
 
 
 ::: {#exm-meeting-box-sim}
-Assume that Regina and Cady each arrive at a time uniformly at random in the continuous time interval between noon and 1:00, independently of each other.
-Let $R$ be Regina's arrival time (minutes after noon), $Y$ Cady's, $T=\min(R, Y)$, $W = |R-Y|$.
-
-
-
-1.  Explain how you could construct a circular spinner to simulate Regina's arrival time.
-In particular, what values go at the "3 o'clock", "6 o'clock", and "9 o'clock" points on the spinner's axis?
-(Here "3 o'clock" refers to the direction on the "clock" (spinner), and not arrival time.)
-\
-\
-\
-\
-\
-1.  Explain how you could use the spinner from the previous part to simulate an outcome, that is, a pair of arrival times for Regina and Cady, and the values of $R$, $Y$, $T$, $W$.
-\
-\
-\
-\
-\
-1.  Why could we not simulate this situation with a box model?
-\
-\
-\
-\
-\
+Consider the meeting problem.
 :::
 
-::: {#exm-meeting-tactile-sim-normal}
-Imagine we have an unlabeled circular spinner with an infinitely fine needle that after being spun well lands on a point on the spinner's axis uniformly at random.
-But now suppose that Regina's arrival time is not uniformly distributed.
-How should we label the spinner's circular axis to reflect assumptions about Regina's arrival time?
+
+1.  Suppose Regina arrives uniformly at random in the continuous time interval between noon and 1:00 (that is, between 0 and 60 minutes after noon). 
+Construct a circular spinner to simulate Regina's arrival time.
+In particular, what values go at the "3 o'clock", "6 o'clock", and "9 o'clock" points on the spinner's axis?
+(Here "3 o'clock" refers to the direction on the "clock" (spinner), one quarter of the way around, and not arrival time.)
+Suppose you spin this spinner many times. 
+Sketch a histogram of the simulated arrival times.
+\
+\
+\
+\
+\
+1.  Suppose you use the following spinner to simulate Han's arrival time. 
+Suppose you spin this spinner many times. 
+Sketch a histogram of the simulated arrival times. 
+Roughly what does such a model assume about Han's arrival time?
+```{r}
+#| label: fig-meeting-nonuniform-spinner
+#| echo: false
+#| warning: false
+#| fig-cap: "The same spinner is displayed on both sides, with different features highlighted on the left and right. Only selected rounded values are displayed, but in the idealized model the spinner is infinitely precise so that any value between 0 and 60 is possible. Notice that the values on the axis are *not* evenly spaced."
+#| fig-subcap: 
+#|   - "Divided into equal area sectors"
+#|   - "Spinner axis marked in increments of 10 minutes"
+#| layout-ncol: 3
+
+library(tidyverse)
+library(scales)
+
+n = 12
+
+xp <- data.frame(
+  x = (0:(n-1))/n,
+  p = rep(1/n, n)
+  )
+
+cdf = c(0, cumsum(xp$p))
+
+plotp = (cdf[-1] + cdf[-length(cdf)]) / 2
+  
+spinner1 <- ggplot(xp, aes(x="", y=p, fill=x))+
+  geom_bar(width = 1, stat = "identity", color="black", fill="white") + 
+  coord_polar("y", start=0) +
+  theme_void() +
+  # plot the possible values on the outside
+  scale_y_continuous(breaks = xp$x, minor_breaks = (0:99)/100, labels=c("60|0  ", round(60 * sqrt((1:(n-1))/n), 2))) +
+  theme(axis.text.x=element_text(size=12, face="bold"))
+
+spinner1
 
 
-1.  In particular, suppose that Regina has a probability of 0.25 of arriving in each of the intervals $[0, 23]$, $[23, 30]$, $[30, 37]$, $[37, 60]$.
-Start to label the spinner for simulating Regina's arrival time; what values should go at the "3 o'clock", "6 o'clock", and "9 o'clock" positions on the spinner's circular axis?
-\
-\
-\
-\
-\
-1.  Also assume that Regina has a probability of (roughly):
+xr = seq(10, 60, 10)
+xl = seq(0, 50, 10)
+
+p = (xr / 60) ^ 2 - (xl / 60) ^ 2
+
+xp <- data.frame(xr, p)
+
+cdf = c(0, cumsum(xp$p))
+
+
+
+plotp = (cdf[-1] + cdf[-length(cdf)]) / 2
+  
+spinner2 <- ggplot(xp, aes(x="", y=p, fill=xr))+
+  geom_bar(width = 1, stat = "identity", color="black", fill="white", linetype=1) + 
+  coord_polar("y", start=0) +
+  # coord_curvedpolar("y", start = 0) +
+  theme_void() +
+  # plot the possible values on the outside
+  scale_y_continuous(breaks = cdf[-c(length(cdf))], labels=c("60|0  ", 10, 20, 30, 40, 50)) +
+  theme(axis.text.x=element_text(angle = 0, size=12, face = "bold")) +
+    geom_text(aes(y = plotp,
+                label = percent(p, accuracy = 0.1)), size=4, color=c(NA, rep("black",5)))
+
+spinner2
+
+```
+
+1.  Suppose that Cady has a probability of 0.25 of arriving in each of the intervals $[0, 23]$, $[23, 30]$, $[30, 37]$, $[37, 60]$.
+Also assume that Cady has a probability of (roughly):
 
     -   0.025 of arriving in the interval $[0, 10]$
     -   0.135 of arriving in the interval $[10, 20]$
     -   0.135 of arriving in the interval $[40, 50]$
     -   0.025 of arriving in the interval $[50, 60]$
 
-    At what points on the spinner's circular axis should the values 10, 20, 40, and 50 go?
-    What is the probability that Regina arrives in the interval $[20, 30]$?
-    $[30, 40]$?
+    Sketch a spinner for simulating Cady's arrival time. 
+    Suppose you spin this spinner many times. 
+    Sketch a histogram of the simulated arrival times. 
+    Roughly what does such a model assume about Cady's arrival time?
     \
-\
-\
-\
-\
-1.  What does this spinner say about Regina's arrival time: is she most likely to arrive near noon, near 12:30, or near 1:00?
-\
-\
-\
-\
-\
-:::
+    \
+    \
+    \
+    \
 
-::: {#exm-impeach-sim}
-Consider simulating a randomly selected U.S. adult and determining whether or not the person is age 18-29 and whether or not they use Snapchat.
-Let $A$ be the event that the selected adult is age 18-29, $C$ be the event that the selected adult uses Snapchat, and $\text{P}$ correspond to randomly selecting an American adult.
-Suppose that $\text{P}(A) = 0.20$, $\text{P}(C) = 0.24$, and $\text{P}(A\cap C) = 0.13$.
+1.  Now suppose Regina, Han, and Cady arrive independently of each other, according to the assumptions in the previous parts. 
+Let $T$ (minutes after noon) be the time of the first arrival, and let $W$ be the amount of time (minutes) the first to arrive waits for the last to arrive. 
+Explain how you can use simulation to approximate the joint and marginal distributions of $T$ and $W$.
+\
+\
+\
+\
+\
 
 
-1.  Donny Don't says, "we need two spinners to simulate this situation: One spinner with areas of 0.20 and 0.80 for age 18-29 or not, and another spinner with areas of 0.24 and 0.76 to represent uses Snapchat or not.
-Then spin each spinner once to simulate one repetition."
-Do you agree? Explain.
-\
-\
-\
-\
-\
-1.  How could you perform one repetition of the simulation using just a single spinner?
-(Hint: it needs 4 sectors.)
-\
-\
-\
-\
-\
-:::
 
 
 ::: {#exm-impeach2-sim}
@@ -161,12 +168,19 @@ Also suppose that
 -   22% of American adults are age 65+
 
 Consider simulating a randomly selected U.S. adult and determining the person's age group and whether or not they use Snapchat.
-How could you perform one repetition of the simulation using spinners based solely on the percentages provided above, without first constructing a two-way table or finding $\text{P}(A_1\cap C)$, etc?
+
+1.  How could you perform one repetition of the simulation using spinners based solely on the percentages provided above, without first computing any other probabilities?
 (Hint: you'll need a few spinners, but you might not spin them all in a single repetition.)
 \
 \
 \
 \
 \
-
+1.  How could you perform one repetitionof the simulation using just a single spinner? 
+(Hint: You'll need to compute some probabilities first.)
+\
+\
+\
+\
+\
 :::

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>7&nbsp; Conditioning – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./approximating-expected-values.html" rel="prev">
+<link href="./probability-rules.html" rel="next">
+<link href="./intro-to-distributions.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conditioning.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -170,7 +180,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conditioning.html" class="sidebar-item-text sidebar-link">
+  <a href="./conditioning.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning</span></span></a>
   </div>
 </li>
@@ -206,7 +216,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -244,7 +254,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Conditioning</span></h1>
 </div>
 
 
@@ -261,11 +271,271 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<ul>
+<li>Conditioning concerns how probabilities of events or distributions of random variables are influenced by information about the occurrence of events or the values of random variables.</li>
+<li>A probability is a measure of the likelihood or degree of uncertainty of an event. A <em>conditional probability</em> revises this measure to reflect any “new” information about the outcome of the underlying random phenomenon.</li>
+</ul>
+<div id="exm-impeach" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.1</strong></span> The probability that a randomly selected American adult believes in human-driven climate change<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is 0.54.</p>
+<p>The probability<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> that a randomly selected American adult is a Democrat is 0.28.</p>
 </div>
+<ol type="1">
+<li>Donny Don’t says that the probability that a randomly selected American adult both (1) is a Democrat, <em>and</em> (2) believes in human-driven climate change is equal to <span class="math inline">\(0.28\times 0.54\)</span>. Do you agree?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Suppose that the probability that a randomly selected American adult both is a Democrat and believes in human-driven climate change is 0.19. Construct an appropriate two-way table of probabilities.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that a randomly selected American adult <em>who is a Democrat</em> believes in human-driven climate change.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that a randomly selected American adult <em>who believes in human-driven climate change</em> is a Democrat.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>How can the probability in the two previous parts be written in terms of the probabilities provided (0.54, 0.28, 0.19)?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>The <strong>conditional probability of event <span class="math inline">\(A\)</span> given event <span class="math inline">\(B\)</span></strong>, denoted <span class="math inline">\(\text{P}(A|B)\)</span>, is defined as (provided <span class="math inline">\(\text{P}(B)&gt;0\)</span>) <span class="math display">\[
+\text{P}(A|B) = \frac{\text{P}(A\cap B)}{\text{P}(B)}
+\]</span></li>
+<li>The conditional probability <span class="math inline">\(\text{P}(A|B)\)</span> represents how the likelihood or degree of uncertainty of event <span class="math inline">\(A\)</span> should be updated to reflect information that event <span class="math inline">\(B\)</span> has occurred.</li>
+<li>In general, knowing whether or not event <span class="math inline">\(B\)</span> occurs influences the probability of event <span class="math inline">\(A\)</span>. That is, <span class="math display">\[
+\text{In general, } \text{P}(A|B) \neq \text{P}(A)
+\]</span></li>
+<li>Be careful: order is essential in conditioning. That is, <span class="math display">\[
+\text{In general, } \text{P}(A|B) \neq \text{P}(B|A)
+\]</span></li>
+<li>Within the context of two events, we have joint, conditional, and marginal probabilities.
+<ul>
+<li>Joint: unconditional probability involving both events, <span class="math inline">\(\text{P}(A \cap B)\)</span>.</li>
+<li>Conditional: conditional probability of one event given the other, <span class="math inline">\(\text{P}(A | B)\)</span>, <span class="math inline">\(\text{P}(B | A)\)</span>.</li>
+<li>Marginal: unconditional probability of a single event <span class="math inline">\(\text{P}(A)\)</span>, <span class="math inline">\(\text{P}(B)\)</span>.</li>
+</ul></li>
+<li>The relationship <span class="math inline">\(\text{P}(A|B) = \text{P}(A\cap B)/\text{P}(B)\)</span> can be stated generically as <span class="math display">\[
+\text{conditional} = \frac{\text{joint}}{\text{marginal}}
+\]</span></li>
+<li>In many problems conditional probabilities are provided or can be determined directly.</li>
+</ul>
+<div id="exm-impeach2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.2</strong></span> Suppose that</p>
+<ul>
+<li>67% of Democrats believe in human-driven climate</li>
+<li>46% of Independents believe in human-driven climate</li>
+<li>34% of Republicans believe in human-driven climate</li>
+</ul>
+<p>Also suppose that</p>
+<ul>
+<li>28% of American adults are Democrats</li>
+<li>42% of American adults are Independents</li>
+<li>30% of American adults are Republicans</li>
+</ul>
+</div>
+<ol type="1">
+<li>Define the event <span class="math inline">\(A\)</span> to represent “believes in human-driven climate change” and <span class="math inline">\(D, I, R\)</span> to correspond to affiliation in each of the parties. If the probability measure <span class="math inline">\(\text{P}\)</span> corresponds to selecting an American adult uniformly at random, write all the percentages above as probabilities using proper notation.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Construct an appropriate two-way table of probabilities.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Now suppose that the randomly selected American believes in human-driven climate change. How does this information change the probability that the selected American belongs to each political party? Answer by computing appropriate probabilities (and using proper notation).<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>How many times more likely is it for an American <em>adult</em> to believe in human-driven climate change and be Independent than to:
+<ol type="a">
+<li>believe in human-driven climate change and be Democrat<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>believe in human-driven climate change and be Republican<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol></li>
+<li>How many times more likely is it for an American adult <em>who believes in human-driven climate change</em> to be Independent than to be:
+<ol type="a">
+<li>Democrat<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Republican<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol></li>
+<li>What do you notice about the answers to the two previous parts?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>The process of conditioning can be thought of as <strong>“slicing and renormalizing”.</strong>
+<ul>
+<li>Extract the “slice” corresponding to the event being conditioned on (and discard the rest). For example, a slice might correspond to a particular row or column of a two-way table.<br>
+</li>
+<li>“Renormalize” the values in the slice so that corresponding probabilities add up to 1.</li>
+</ul></li>
+<li>Slicing determines the <em>shape</em>; renormalizing determines the <em>scale</em>.</li>
+<li>Slicing determines relative probabilities; renormalizing just makes sure they add up to 1.</li>
+</ul>
+<div id="exm-dice-probspace2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 7.3</strong></span> Roll a fair four-sided die twice. Let <span class="math inline">\(X\)</span> be the sum of the two dice, and let <span class="math inline">\(Y\)</span> be the larger of the two rolls (or the common value if both rolls are the same). The table below represents the joint distribution of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p>
+</div>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(x\)</span> \ <span class="math inline">\(y\)</span></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td style="text-align: right;">1/16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2/16</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1/16</td>
+<td style="text-align: right;">2/16</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2/16</td>
+<td style="text-align: right;">2/16</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1/16</td>
+<td style="text-align: right;">2/16</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2/16</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1/16</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Compute and interpret in context <span class="math inline">\(\text{P}(X=5|Y=4)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Construct a table to represent the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=4\)</span> by “slicing and renormalizing”.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Interpret the the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=4\)</span> as a long run relative frequency distribution.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{E}(X|Y = 4)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Interpret the value from the previous part as a long run average value in context.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Construct a table to represent the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=3\)</span>, and compute <span class="math inline">\(\text{E}(X|Y = 3)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Construct a table to represent the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=2\)</span>, and compute <span class="math inline">\(\text{E}(X|Y = 2)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Construct a table to represent the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=1\)</span>, and compute <span class="math inline">\(\text{E}(X|Y = 1)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
 
 
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Probabilities are estimated based on this <a href="https://epic.uchicago.edu/insights/2024-poll-americans-views-on-climate-change-and-policy-in-12-charts/">2024 survey</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Estimate based on <a href="https://news.gallup.com/poll/692978/democrats-regain-advantage-party-affiliation.aspx">Gallup poll</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -669,13 +939,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./approximating-expected-values.html" class="pagination-link" aria-label="Expected Values: Approximation and Some Properties">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span>
+      <a href="./intro-to-distributions.html" class="pagination-link" aria-label="Distributions of Random Variables (A Brief Introduction)">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Distributions of Random Variables (A Brief Introduction)</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./probability-rules.html" class="pagination-link" aria-label="Probability Rules">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability Rules</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

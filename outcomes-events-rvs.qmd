@@ -9,6 +9,7 @@ $$
 
 Probability models can be applied to any situation in which there are multiple potential
 outcomes and there is uncertainty about which outcome will occur.
+We'll introduce the basic mathematical objects associated with a probability model: outcomes, events, and random variables.
 
 
 ## Outcomes
@@ -25,17 +26,26 @@ outcomes of a random phenomenon. An **outcome**, denoted $\omega$ (the lowercase
 
 
 ::: {#exm-dice-outcome}
-Roll a four-sided die twice, and record the result of each roll in sequence as an ordered pair.  For example, the outcome $(3, 1)$ represents a 3 on the first roll and a 1 on the second; this is not the same outcome as $(1, 3)$.
+Roll a four-sided die.
 :::
 
-1.  How many possible outcomes are there?
+1.  If we only consider a single roll of the die, what is an appropriate sample space?
+\
+\
+\
+\
+\
+1.  Now consider two rolls of the die, and record the result of each roll in sequence as an ordered pair. 
+For example, the outcome $(3, 1)$ represents a 3 on the first roll and a 1 on the second; this is not the same outcome as $(1, 3)$.
+How many possible outcomes are there?
 Identify the sample space.
 \
 \
 \
 \
 \
-1.  We might be interested in the sum of the two dice.  Explain why it is still advantageous to define the sample space as in the previous part, rather than as $\Omega=\{2, \ldots, 8\}$.
+1.  We might be interested in the sum of the two dice. 
+Explain why it is still advantageous to define the sample space as in the previous part, rather than as $\Omega=\{2, \ldots, 8\}$.
 \
 \
 \
@@ -52,32 +62,20 @@ Then the two-stage process can be completed in any one of $n_1\times n_2$ ways.
 What is important is that there are distinct stages, each with its own number of "choices".
 
 
-::: {#exm-matching-outcome}
-The "matching problem" is one well known probability problem.
-The general setup involves $n$ distincts objects labeled $1, \ldots, n$ which are placed in $n$ distinct boxes labeled $1, \ldots, n$, with exactly one object placed in each box.
 
-1.  Consider the matching problem with $n=3$.
-Label the objects 1, 2, 3, and the spots 1, 2, 3, with spot 1 the correct spot for object 1, etc. 
-Specify an appropriate definition of an outcome, determine the number of outcomes, and specify the sample space.
-\
-\
-\
-\
-\
-1.  For a general $n$, how many possible outcomes are there?
-\
-\
-\
-\
-\
-:::
 
 ::: {#exm-meeting-outcome}
-Regina and Cady plan to meet for lunch
+Regina and Cady plan to meet for lunch.
 They will definitely arrive between noon and 1, but their exact arrival times are uncertain.
 Rather than dealing with clock time, it is helpful to represent noon as time 0 and measure time as minutes after noon,  including fractions of a minute, so that arrival times take values in the continuous interval [0, 60].
 
-Specify an appropriate definition of an outcome and draw a picture representing the sample space.
+1.  If we only consider Regina's arrival time, specify an appropriate sample space.
+\
+\
+\
+\
+\
+1.  Now consider both arrival times and specify an appropriate definition of an outcome and draw a picture representing the sample space.
 \
 \
 \
@@ -102,48 +100,65 @@ Specify an appropriate definition of an outcome and draw a picture representing 
 
 
 ::: {#exm-matching-event}
-Matching problem. For $n=3$, objects labeled 1, 2, 3, are placed at random in spots labeled 1, 2, 3, with spot 1 the correct spot for object 1, etc.
-Using the sample space from @exm-matching-outcome, identify the following events.
+The "matching problem" is one well known probability problem.
+The general setup involves $n$ distincts objects labeled $1, \ldots, n$ which are placed in $n$ distinct boxes labeled $1, \ldots, n$, with exactly one object placed in each box.
 :::
 
-1.  $B$, the event that no objects are put in the correct spot.
+1.  Consider the matching problem with $n=3$.
+Label the objects 1, 2, 3, and the spots 1, 2, 3, with spot 1 the correct spot for object 1, etc. 
+Specify an appropriate definition of an outcome, determine the number of outcomes, and specify the sample space.
 \
 \
 \
 \
 \
-1.  In words, what does $B^c$ represent?
-\
-\
-\
-\
-\
-1.  $A$, the event that all objects are put in the correct spot.
-\
-\
-\
-\
-\
-1.  $C$, the event that exactly 2 objects are put in the correct spot.
-\
-\
-\
-\
-\
-1.  $A_3$, the event that object 3 is put (correctly) in spot 3.
-\
-\
-\
-\
-\
+1.  Using the sample space from the previous part, identify the following events.
+
+    a.  $B$, the event that no objects are put in the correct spot.
+    \
+    \
+    \
+    \
+    \
+    a.  In words, what does $B^c$ represent?
+    \
+    \
+    \
+    \
+    \
+    a.  $A$, the event that all objects are put in the correct spot.
+    \
+    \
+    \
+    \
+    \
+    a.  $C$, the event that exactly 2 objects are put in the correct spot.
+    \
+    \
+    \
+    \
+    \
+    a.  $A_3$, the event that object 3 is put (correctly) in spot 3.
+    \
+    \
+    \
+    \
+    \
+
+1.  For a general $n$, how many possible outcomes are there?
+    \
+    \
+    \
+    \
+    \
 1.  For a general $n$ let $A$ the event that all objects are put in the correct spot, let $B$ the event that no objects are put in the correct spot, and let $A_i$ be the event that object $i$ is put (correctly) in spot $i$, $i=1,\ldots, n$.
 What is the relationship between $A$ and $A_1, \ldots, A_n$? 
 What is the relationship between $B$ and $A_1, \ldots, A_n$?
-\
-\
-\
-\
-\
+    \
+    \
+    \
+    \
+    \
 
 ::: {#exm-meeting-event}
 
@@ -218,10 +233,10 @@ Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (
 | (4, 3)  |     |     |
 | (4, 4)  |     |     |
 
-1.  Construct a table identifying the values of $X$ and $Y$ for each outcome in the sample space.
+1.  Complete the table to identify the values of $X$ and $Y$ for each outcome in the sample space.
 \
 \ 
-1.  Identify the possible values of $X$.
+<!-- 1.  Identify the possible values of $X$.
 \
 \
 \
@@ -238,14 +253,8 @@ Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (
 \
 \
 \
-\
+\ -->
 1.  Identify $\{Y = 1\}$.
-\
-\
-\
-\
-\
-1.  Identify $\{Y = 2\}$.
 \
 \
 \
@@ -257,19 +266,13 @@ Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (
 \
 \
 \
-1.  Identify $\{Y = 4\}$.
-\
-\
-\
-\
-\
 1.  Identify $\{X \le 4\}$.
 \
 \
 \
 \
 \
-1.  Identify $\{X = 4, Y = 3\}$
+1.  Identify $\{X \le 4, Y = 3\}$
 \
 \
 \
@@ -279,7 +282,6 @@ Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (
 
 ::: {#exm-matching-indicator}
 Matching problem. For $n=3$ objects labeled 1, 2, 3, are placed at random in spots labeled 1, 2, 3, with spot 1 the correct spot for object 1, etc.
-Recall the sample space from @exm-matching-outcome.
 Let the random variable $X$ count the number of objects that are put in the correct spot.
 Let $I_1$ be equal to 1 if object 1 is placed (correctly) in spot 1, and define $I_2, I_3$ similarly.
 :::
@@ -293,15 +295,15 @@ Let $I_1$ be equal to 1 if object 1 is placed (correctly) in spot 1, and define 
 | 312     |     |       |       |       |
 | 321     |     |       |       |       |
 
-1.  Construct a table identifying the value of $X, I_1, I_2, I_3$  for each outcome in the sample space.
+1.  Complete the table to identify the value of $X, I_1, I_2, I_3$  for each outcome in the sample space.
 \ 
 \ 
-1.  Identify the possible values of $X$.
+<!-- 1.  Identify the possible values of $X$.
 \
 \
 \
 \
-\
+\ -->
 1.  What is the relationship between $I_3$ and event $A_3$ from @exm-matching-event?
 \
 \

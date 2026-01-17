@@ -5,41 +5,44 @@
 
 
 ::: {#exm-puppy}
-Consider the following hypothetical data.
+Do Americans think it is important for federal judges to be impartial in how they decide court cases? 
+Consider the following data from the [Pew Research Center](https://www.pewresearch.org/politics/2025/04/23/views-of-congress-parties-and-courts/pp_2025-4-23_trump-100-days_05-05/). 
+(Indepedendents are classified as either lean Democrat or lean Republican.)
 
-|                               | Democrat ($D$) | Not Democrat ($D^c$) | Total |
-|-------------------------------|---------------:|---------------------:|------:|
-| Loves puppies ($L$)           |            180 |                  270 |   450 |
-| Does not love puppies ($L^c$) |             20 |                   30 |    50 |
-| Total                         |            200 |                  300 |   500 |
+|                       | Democrat/lean Dem ($D$) | Republican/lean Rep ($D^c$) | Total |
+|-----------------------|------------------------:|----------------------------:|------:|
+| Important ($I$)       | 1674                    | 1531                        | 3205  |
+| Not important ($I^c$) | 146                     | 133                         | 279   |
+| Total                 | 1820                    | 1664                        | 3484  |
 
-Suppose a person is randomly selected from this group.  Consider the events
+Suppose a person is randomly selected from this sample. 
+Consider the events
 \begin{align*}
-L & = \{\text{person loves puppies}\}\\
-D & = \{\text{person is a Democrat}\}
+I & = \{\text{person thinks it is important for judges to be impartial}\}\\
+D & = \{\text{person is a Democrat/leans Dem}\}
 \end{align*}
 
 :::
 
-1.  Compute and interpret $\text{P}(L)$.
+1.  Compute and interpret $\text{P}(I)$.
 \
 \
 \
 \
 \
-1.  Compute and interpret $\text{P}(L|D)$.
+1.  Compute and interpret $\text{P}(I|D)$.
 \
 \
 \
 \
 \
-1.  Compute and interpret $\text{P}(L|D^c)$.
+1.  Compute and interpret $\text{P}(I|D^c)$.
 \
 \
 \
 \
 \
-1.  What do you notice about $\text{P}(L)$, $\text{P}(L|D)$, and $\text{P}(L|D^c)$?
+1.  What do you notice about $\text{P}(I)$, $\text{P}(I|D)$, and $\text{P}(I|D^c)$?
 \
 \
 \
@@ -51,37 +54,37 @@ D & = \{\text{person is a Democrat}\}
 \
 \
 \
-1.  Compute and interpret $\text{P}(D|L)$.
+1.  Compute and interpret $\text{P}(D|I)$.
 \
 \
 \
 \
 \
-1.  Compute and interpret $\text{P}(D|L^c)$.
+1.  Compute and interpret $\text{P}(D|I^c)$.
 \
 \
 \
 \
 \
-1.  What do you notice about $\text{P}(D)$, $\text{P}(D|L)$, and $\text{P}(D|L^c)$?
+1.  What do you notice about $\text{P}(D)$, $\text{P}(D|I)$, and $\text{P}(D|I^c)$?
 \
 \
 \
 \
 \
-1.  Compute and interpret $\text{P}(D \cap L)$.
+1.  Compute and interpret $\text{P}(D \cap I)$.
 \
 \
 \
 \
 \
-1.  What is the relationship between $\text{P}(D \cap L$) and $\text{P}(D)$ and $\text{P}(L)$?
+1.  What is the relationship between $\text{P}(D \cap I)$ and $\text{P}(D)$ and $\text{P}(I)$?
 \
 \
 \
 \
 \
-1.  When randomly selecting a person from this particular group, would you say that events $D$ and $L$ are independent?  Why?
+1.  When randomly selecting a person from this particular group, would you say that events $D$ and $I$ are independent?  Why?
 \
 \
 \
@@ -178,70 +181,43 @@ Events that are independent under one probability measure might not be independe
 Whether or not independence is a valid assumption depends on the underlying random phenomenon.
 
 
-::: {#exm-independent-probmeasure}
-You have just been elected president (congratulations!) and you need to choose one of four people to sing the national anthem at your inauguration: Alicia, Ariana, Beyonce, or Billie.
-You write their names on some cards --- *each name on possibly a different number of cards*  --- shuffle the cards, and draw one.
-Let $A$ be the event that either Alicia or Ariana is selected, and $B$ be the event that either Alicia or Beyonce is selected.
-
-The following questions ask you to specify probability models satisfying different conditions.
-You can specify the model by identifying how many cards each person's name is written on.
-For each model, find the probabilities of $A$, $B$, and $A\cap B$, and verify whether or not events $A$ and $B$ are independent according to the model.
-:::
-
-1.  Specify a probability model according to which the events $A$ and $B$ are independent.
-\
-\
-\
-\
-\
-1.  Specify a different probability model according to which the events $A$ and $B$ are independent.
-\
-\
-\
-\
-\
-1.  Specify a probability model according to which the events $A$ and $B$ are not independent.
-\
-\
-\
-\
-\
-
-
 
 
 
 ::: {#exm-coin-multiple-events-independent}
-Flip a fair coin twice. Let
+As in the birthday problem, assume that birthdays are distributed equally over 365 days.
+Randomly select 3 people.
 
-- $A$ be the event that the first flip lands on heads
-- $B$ be the event that the second flip lands on heads,
-- $C$ be the event that both flips land on the same side.
+
+-   $A_{12}$ is the event that the first and second persons selected have the same birthday
+-   $A_{13}$ is the event that the first and third persons selected have the same birthday
+-   $A_{23}$ is the event that the second and third persons selected have the same birthday
+  
   
 :::
 
-1. Are the two events $A$ and $B$ independent?
+1. Are the two events $A_{12}$ and $A_{13}$ independent?
 \
 \
 \
 \
 \
 \
-1. Are the two events $A$ and $C$ independent?
+1. Are the two events $A_{12}$ and $A_{23}$ independent?
 \
 \
 \
 \
 \
 \
-1. Are the two events $B$ and $C$ independent?
+1. Are the two events $A_{13}$ and $A_{23}$ independent?
 \
 \
 \
 \
 \
 \
-1. Are the three events $A$, $B$, and $C$ independent?
+1. Are the three events $A_{12}$, $A_{13}$, and $A{23}$ independent?
 \
 \
 \
@@ -250,7 +226,7 @@ Flip a fair coin twice. Let
 \
 
 
--   Events $A_1, A_2, A_3, \ldots$ are **independent** if:
+-   A collection of events $A_1, A_2, A_3, \ldots$ are **independent** if:
     -   any pair of events $A_i, A_j, (i \neq j)$ satisfies $\text{P}(A_i\cap A_j)=\text{P}(A_i)\text{P}(A_j)$,
     -   and any triple of events $A_i, A_j, A_k$ (distinct $i,j,k$) satisfies $\text{P}(A_i\cap A_j\cap A_k)=\text{P}(A_i)\text{P}(A_j)\text{P}(A_k)$,
     -   and any quadruple of events satisfies $\text{P}(A_i\cap A_j\cap A_k \cap A_m)=\text{P}(A_i)\text{P}(A_j)\text{P}(A_k)\text{P}(A_m)$,

@@ -1,6 +1,6 @@
 # Approximating Probabilities
 
--   A probability is a theoretical long run relative frequency.
+-   A probability can be interepreted as a theoretical long run relative frequency.
 -  The probability of event $A$ can be approximated by simulating, according to the assumptions corresponding to the probability measure $\text{P}$, the random phenomenon a large number of times and computing the relative frequency of $A$.
 $$
 {\small
@@ -11,9 +11,10 @@ $$
 However, we often start by carrying out a few repetitions, (1) by hand to help make the process more concrete, or (2) by computer to check that our code is working correctly
 -   A probability can be approximated by a relative frequency from a large number of simulated repetitions, but there is some simulation margin of error, due to natural variability in the simulation.
 -   The margin of error when approximating a single probability based on a simulated relative frequency is roughly on the order $1/\sqrt{N}$, where $N$ is the *number of independently simulated values used to calculate the relative frequency.*
--   Use a margin of error of $2/\sqrt{N}$ when approximating many probabilities based on a single simulation.
+    -   Use a margin of error of $2/\sqrt{N}$ when approximating many probabilities based on a single simulation.
 -   Be careful when conditioning, especially when conditioning on values of continuous random variables.
-
+-   The larger $N$ the more precise the estimate, but there is cost to simulating and storing more repetitions in terms of computational time and memory. 
+More importantly, beware a false sense of precision: A precise estimate of a probability under the assumptions of the model is not necessarily a comparably precise estimate of the true probability.
 
 
 ::: {#exm-dice-sim-tactile}
@@ -53,8 +54,8 @@ What would the margin of error be?
 
 ::: {#exm-meeting-sim-intro}
 
-Suppose that Regina and Cady's arrival times (minutes after noon) are independent, with Regina's arrival time $R$ uniformly distributed between 0 and 60, and Cady's $Y$ arrival time following a Normal(30, 10) distribution. 
-Let $W = |R-Y|$.
+Recall the three person meeting problem in @exm-meeting-box-sim; let $W$ be the time the first person waits for the last person. 
+
 :::
 
 1.  Explain in full detail how you could conduct an appropriate simulation using spinners and use the results to approximate the probability $\text{P}(W < 15)$.
@@ -63,7 +64,7 @@ Let $W = |R-Y|$.
 \
 \
 \
-1.  In 10000 simulated repetitions, $W<15$ in 4975.
+1.  In 10000 simulated repetitions, $W<15$ in 1821.
 Approximate and interpret $\text{P}(W < 15)$; include a margin of error. 
 \
 \
@@ -72,17 +73,18 @@ Approximate and interpret $\text{P}(W < 15)$; include a margin of error.
 \
 
 ::: {#exm-impeach-sim}
-Consider simulating a randomly selected U.S. adult and determining whether or not the person is age 18-29 and whether or not they use Snapchat.
-Let $A$ be the event that the selected adult is age 18-29, $C$ be the event that the selected adult uses Snapchat, and $\text{P}$ correspond to randomly selecting an American adult.
-Suppose that $\text{P}(A) = 0.20$, $\text{P}(C) = 0.24$, and $\text{P}(A\cap C) = 0.13$.
+Consider simulating a randomly selected U.S. adult and determining whether or not the person has a college degree and whether or not they can fix a problem with a car's engine.
+Let $C$ be the event that the selected adult has a college degree, $E$ be the event that the selected adult can fix an engine, and $\text{P}$ correspond to randomly selecting an American adult.
+Suppose that[^fix-engine] $\text{P}(C) = 0.40$, $\text{P}(E) = 0.28$, and $\text{P}(C\cap E) = 0.07$.
 
+[^fix-engine]: Values are based on this [Pew Research survey.](https://www.pewresearch.org/short-reads/2025/10/10/navigate-with-a-compass-fix-a-car-engine-what-americans-say-they-can-and-cant-do/)
 
 1.  In 10000 repetitions of an appropriate simulation
-    -   $A$ occurs on 1989 repetitions
-    -   $C$ occurs on 2432 repetitions
-    -   Both $A$ and $C$ occur on 1309 repetitions.
+    -   $C$ occurs on 3989 repetitions
+    -   $E$ occurs on 2837 repetitions
+    -   Both $C$ and $E$ occur on 680 repetitions.
 
-    Use the simulation results to approximate $\text{P}(C | A)$.
+    Use the simulation results to approximate $\text{P}(E | C)$.
     \
     \
     \
@@ -96,7 +98,7 @@ Suppose that $\text{P}(A) = 0.20$, $\text{P}(C) = 0.24$, and $\text{P}(A\cap C) 
 \
 \
 \
-1.  What is another method for performing the simulation and estimating $\text{P}(C |A)$ that has a margin of error of 0.01?
+1.  What is another method for performing the simulation and estimating $\text{P}(E |C)$ that has a margin of error of 0.01?
 What is the disadvantage of this method?
 \
 \
@@ -109,30 +111,35 @@ What is the disadvantage of this method?
 
 ::: {#exm-dice-tactile-conditional-prob}
 
-We'll continue with the dice rolling example: roll two fair four-sided dice and let $X$ be the sum and $Y$ the larger of the rolls.
-For each of the following, describe how to approximate the probability with a margin of error of 0.01.
+Continuing @exm-dice-sim-tactile, roll two fair four-sided dice and let $X$ be the sum and $Y$ the larger of the rolls.
 
 
 
-1.  $\text{P}(X = 6 | Y = 4)$.
+1.  For each of the following, describe how to approximate the probability with a margin of error of 0.01.
+    a.  $\text{P}(X = 6 | Y = 4)$.
+    \
+    \
+    \
+    \
+    \
+    a.  $\text{P}(Y = 4 | X = 6)$.
+    \
+    \
+    \
+    \
+    \
+1.  Explain how to approximate the conditional distribution of $X$ given $Y=4$.
 \
 \
 \
 \
 \
-1.  $\text{P}(Y = 4 | X = 6)$.
-\
-\
-\
-\
-\
-
 :::
 
 ::: {#exm-meeting-sim-intro}
 
-Suppose that Regina and Cady's arrival times (minutes after noon) are independent, with Regina's arrival time $R$ uniformly distributed between 0 and 60, and Cady's $Y$ arrival time following a Normal(30, 10) distribution. 
-We want to approximate the probability that they arrive within 15 minutes of each given that Regina arrives at 12:40.
+Continuing @exm-meeting-sim-intro.
+We want to approximate the conditional probability that $W<15$ given that the first person arrives at 12:10.
 Explain in detail how you would conduct a simulation to approximate this probability.
 (Be careful!)
 

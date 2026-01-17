@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>10&nbsp; Introduction to Simulation – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./approximating-expected-values.html" rel="prev">
+<link href="./approximating-probabilities.html" rel="next">
+<link href="./independence.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro-simulation.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Simulation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -188,7 +198,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro-simulation.html" class="sidebar-item-text sidebar-link">
+  <a href="./intro-simulation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Simulation</span></span></a>
   </div>
 </li>
@@ -206,7 +216,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -244,7 +254,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Simulation</span></h1>
 </div>
 
 
@@ -261,8 +271,134 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<p>A probability model of a random phenomenon consists of a sample space of possible outcomes, associated events and random variables, and a probability measure which encapsulates the model assumptions and determines probabilities of events and distributions of random variables. We will study strategies for computing probabilities, distributions, expected values, and more, but in many situations explicit computation is difficult. Simulation provides a powerful tool for working with probability models and solving complex problems.</p>
+<ul>
+<li><strong>Simulation</strong> involves using a probability model to artificially recreate a random phenomenon, many times, usually using a computer.</li>
+<li>Given a probability model, we can simulate outcomes, occurrences of events, and values of random variables, according to the specifications of the probability measure which reflects the model assumptions.</li>
+<li>In general, a simulation involves the following steps.
+<ol type="1">
+<li><strong>Set up.</strong> Define a probability space, and related random variables and events.</li>
+<li><strong>Simulate.</strong> Simulate — according to the assumptions reflected in the probability measure — outcomes, occurrences of events, and values of random variables.</li>
+<li><strong>Summarize.</strong> Summarize simulation output in plots and summary statistics (relative frequencies, averages, standard deviations, correlations, etc) to describe and approximate probabilities, distributions, and related characteristics.</li>
+<li><strong>Sensitivity analysis.</strong> Investigate how results respond to changes in the assumptions or parameters of the simulation.</li>
+</ol></li>
+<li>Many random phenomena can be concretely represented in terms of “box models” and “spinners”.</li>
+</ul>
+<div id="exm-dice-sim" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.1</strong></span> Consider rolling a four-sided die.</p>
+<ol type="1">
+<li>Set up a box model for simulating a roll of a fair four-sided die. Then set up a spinner. Suppose you spin this spinner many times. Sketch a plot of the simulated values.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Set up a box model for simulating a roll of a die that lands on 1, 2, 3, 4, with respective probability 0.1, 0.2, 0.3, 0.4. Then set up a spinner. Suppose you spin this spinner many times. Sketch a plot of the simulated values.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<div id="exm-meeting-box-sim" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.2</strong></span> Consider the meeting problem.</p>
+</div>
+<ol type="1">
+<li>Suppose Regina arrives uniformly at random in the continuous time interval between noon and 1:00 (that is, between 0 and 60 minutes after noon). Construct a circular spinner to simulate Regina’s arrival time. In particular, what values go at the “3 o’clock”, “6 o’clock”, and “9 o’clock” points on the spinner’s axis? (Here “3 o’clock” refers to the direction on the “clock” (spinner), one quarter of the way around, and not arrival time.) Suppose you spin this spinner many times. Sketch a histogram of the simulated arrival times.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Suppose you use the following spinner to simulate Han’s arrival time. Suppose you spin this spinner many times. Sketch a histogram of the simulated arrival times. Roughly what does such a model assume about Han’s arrival time?</li>
+</ol>
+<div id="fig-meeting-nonuniform-spinner" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-meeting-nonuniform-spinner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-meeting-nonuniform-spinner" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-meeting-nonuniform-spinner-1" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-meeting-nonuniform-spinner-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="intro-simulation_files/figure-html/fig-meeting-nonuniform-spinner-1.png" class="img-fluid figure-img" data-ref-parent="fig-meeting-nonuniform-spinner" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-meeting-nonuniform-spinner-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Divided into equal area sectors
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-meeting-nonuniform-spinner" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-meeting-nonuniform-spinner-2" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-meeting-nonuniform-spinner-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="intro-simulation_files/figure-html/fig-meeting-nonuniform-spinner-2.png" class="img-fluid figure-img" data-ref-parent="fig-meeting-nonuniform-spinner" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-meeting-nonuniform-spinner-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Spinner axis marked in increments of 10 minutes
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-meeting-nonuniform-spinner-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: The same spinner is displayed on both sides, with different features highlighted on the left and right. Only selected rounded values are displayed, but in the idealized model the spinner is infinitely precise so that any value between 0 and 60 is possible. Notice that the values on the axis are <em>not</em> evenly spaced.
+</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li><p>Suppose that Cady has a probability of 0.25 of arriving in each of the intervals <span class="math inline">\([0, 23]\)</span>, <span class="math inline">\([23, 30]\)</span>, <span class="math inline">\([30, 37]\)</span>, <span class="math inline">\([37, 60]\)</span>. Also assume that Cady has a probability of (roughly):</p>
+<ul>
+<li>0.025 of arriving in the interval <span class="math inline">\([0, 10]\)</span></li>
+<li>0.135 of arriving in the interval <span class="math inline">\([10, 20]\)</span></li>
+<li>0.135 of arriving in the interval <span class="math inline">\([40, 50]\)</span></li>
+<li>0.025 of arriving in the interval <span class="math inline">\([50, 60]\)</span></li>
+</ul>
+<p>Sketch a spinner for simulating Cady’s arrival time. Suppose you spin this spinner many times. Sketch a histogram of the simulated arrival times. Roughly what does such a model assume about Cady’s arrival time?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Now suppose Regina, Han, and Cady arrive independently of each other, according to the assumptions in the previous parts. Let <span class="math inline">\(T\)</span> (minutes after noon) be the time of the first arrival, and let <span class="math inline">\(W\)</span> be the amount of time (minutes) the first to arrive waits for the last to arrive. Explain how you can use simulation to approximate the joint and marginal distributions of <span class="math inline">\(T\)</span> and <span class="math inline">\(W\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+</ol>
+<div id="exm-impeach2-sim" class="theorem example">
+<p><span class="theorem-title"><strong>Example 10.3</strong></span> Suppose that</p>
+<ul>
+<li>65% of American adults age 18-29 use Snapchat</li>
+<li>24% of American adults age 30-49 use Snapchat</li>
+<li>12% of American adults age 50-64 use Snapchat</li>
+<li>2% of American adults age 65+ use Snapchat</li>
+</ul>
+<p>Also suppose that</p>
+<ul>
+<li>20% of American adults are age 18-29</li>
+<li>33% of American adults are age 30-49</li>
+<li>25% of American adults are age 50-64</li>
+<li>22% of American adults are age 65+</li>
+</ul>
+<p>Consider simulating a randomly selected U.S. adult and determining the person’s age group and whether or not they use Snapchat.</p>
+<ol type="1">
+<li>How could you perform one repetition of the simulation using spinners based solely on the percentages provided above, without first computing any other probabilities? (Hint: you’ll need a few spinners, but you might not spin them all in a single repetition.)<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>How could you perform one repetitionof the simulation using just a single spinner? (Hint: You’ll need to compute some probabilities first.)<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
 </div>
 
 
@@ -669,13 +805,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./approximating-expected-values.html" class="pagination-link" aria-label="Expected Values: Approximation and Some Properties">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span>
+      <a href="./independence.html" class="pagination-link" aria-label="Independence">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Independence</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./approximating-probabilities.html" class="pagination-link" aria-label="Approximating Probabilities">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

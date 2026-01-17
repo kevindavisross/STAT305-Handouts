@@ -1,4 +1,4 @@
-# Approximating Expected Values
+# Expected Values: Approximation and Some Properties
 
 {{< include _r_setup.qmd >}}
 
@@ -12,7 +12,10 @@
 
 ::: {#exm-dice-sim-tactile-ev}
 Let $X$ be the number of vehicles crashes involving fatalities that occur in San Luis Obispo County in a randomly selected week.
-Suppose that $X$ has distribution
+Suppose that $X$ has distribution[^crashes]
+
+
+[^crashes]: Source: the [California Highway Patrol Statewide Integrated Traffic Records System (CHP-SWITRS)](https://www.chp.ca.gov/programs-services/services-information/switrs-internet-statewide-integrated-traffic-records-system) public dataset available through the Berkeley [Transportation Incident Mapping System (TIMS)](https://tims.berkeley.edu/).
 
 | $x$ | $\text{P}(X=x)$ |
 |-----|----------------:|
@@ -186,9 +189,9 @@ Interpret the value in context.
 -   **Linearity of averages.**: If $X$ and $Y$ are random variables and $a$ and $b$ are non-random constants,
 whether in the short run or the long run,
 \begin{align*}
-\text{Average of $a+bX$} & = a+b(\text{Average of $X$})\\
-\text{Average of $X+Y$} & = \text{Average of $X$} +\text{Average of $Y$}
-\text{E}nd{align*}
+\text{Average of $(mX+b)$} & = m(\text{Average of $X$})+b\\
+\text{Average of $(X+Y)$} & = \text{Average of $X$} +\text{Average of $Y$}
+\end{align*}
 -   **Linearity of expected value.**: If $X$ and $Y$ are random variables and $m$ and $b$ are non-random constants,
 \begin{align*}
 \text{E}(mX+b) & = m\text{E}(X)+b\\

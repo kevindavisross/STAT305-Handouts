@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>4&nbsp; Outcomes, Events, and Random Variables – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./approximating-expected-values.html" rel="prev">
+<link href="./probability-models.html" rel="next">
+<link href="./interpreting-probabilities.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./outcomes-events-rvs.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Outcomes, Events, and Random Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -152,7 +162,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./outcomes-events-rvs.html" class="sidebar-item-text sidebar-link">
+  <a href="./outcomes-events-rvs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Outcomes, Events, and Random Variables</span></span></a>
   </div>
 </li>
@@ -206,7 +216,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -244,7 +254,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Outcomes, Events, and Random Variables</span></h1>
 </div>
 
 
@@ -261,11 +271,466 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<div class="hidden">
+<p><span class="math display">\[
+\def\IP{{\bf P}}
+\]</span></p>
+</div>
+<p>Probability models can be applied to any situation in which there are multiple potential outcomes and there is uncertainty about which outcome will occur. We’ll introduce the basic mathematical objects associated with a probability model: outcomes, events, and random variables.</p>
+<section id="outcomes" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="outcomes"><span class="header-section-number">4.1</span> Outcomes</h2>
+<ul>
+<li>Due to the wide variety of types of random phenomena, an <strong>outcome</strong> can be virtually anything</li>
+<li>In particular, an outcome does <em>not</em> have to be a number.</li>
+<li>The <strong>sample space</strong>, denoted <span class="math inline">\(\Omega\)</span> (the uppercase Greek letter “omega”), is the set of all possible outcomes of a random phenomenon. An <strong>outcome</strong>, denoted <span class="math inline">\(\omega\)</span> (the lowercase Greek letter “omega”), is an element of the sample space: <span class="math inline">\(\omega\in\Omega\)</span>.</li>
+<li>Mathematically, the sample space <span class="math inline">\(\Omega\)</span> is a <em>set</em> containing all possible outcomes, while an individual outcome <span class="math inline">\(\omega\)</span> is a <em>point</em> or <em>element</em> in <span class="math inline">\(\Omega\)</span>.</li>
+<li>A random phenomenon is modeled by a <em>single</em> sample space, with respect to which all objects (events, random variables) are defined. Whenever possible, a sample space outcome should be defined to provide the maximum amount of information about the outcome of random phenomenon.</li>
+<li>In practice we rarely enumerate the sample space as we’ll for some of the examples in this class. Nonetheless, there is always some underlying sample space corresponding to all possible outcomes of the random phenomenon.</li>
+</ul>
+<div id="exm-dice-outcome" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.1</strong></span> Roll a four-sided die.</p>
+</div>
+<ol type="1">
+<li>If we only consider a single roll of the die, what is an appropriate sample space?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Now consider two rolls of the die, and record the result of each roll in sequence as an ordered pair. For example, the outcome <span class="math inline">\((3, 1)\)</span> represents a 3 on the first roll and a 1 on the second; this is not the same outcome as <span class="math inline">\((1, 3)\)</span>. How many possible outcomes are there? Identify the sample space.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>We might be interested in the sum of the two dice. Explain why it is still advantageous to define the sample space as in the previous part, rather than as <span class="math inline">\(\Omega=\{2, \ldots, 8\}\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li><strong>Multiplication principle for counting</strong> Suppose that stage 1 of a process can be completed in any one of <span class="math inline">\(n_1\)</span> ways. Further, suppose that for each way of completing the stage 1, stage 2 can be completed in any one of <span class="math inline">\(n_2\)</span> ways. Then the two-stage process can be completed in any one of <span class="math inline">\(n_1\times n_2\)</span> ways.</li>
+<li>This rule extends naturally to a <span class="math inline">\(\ell\)</span>-stage process, which can then be completed in any one of <span class="math inline">\(n_1\times n_2\times n_3\times\cdots\times n_\ell\)</span> ways.</li>
+<li>It is not important whether there is a “first” or “second” stage. What is important is that there are distinct stages, each with its own number of “choices”.</li>
+</ul>
+<div id="exm-meeting-outcome" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.2</strong></span> Regina and Cady plan to meet for lunch. They will definitely arrive between noon and 1, but their exact arrival times are uncertain. Rather than dealing with clock time, it is helpful to represent noon as time 0 and measure time as minutes after noon, including fractions of a minute, so that arrival times take values in the continuous interval [0, 60].</p>
+<ol type="1">
+<li>If we only consider Regina’s arrival time, specify an appropriate sample space.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Now consider both arrival times and specify an appropriate definition of an outcome and draw a picture representing the sample space.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+</section>
+<section id="events" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="events"><span class="header-section-number">4.2</span> Events</h2>
+<ul>
+<li>An event is something that could happen or might be true.</li>
+<li>An <em>event</em> is a collection of outcomes that satisfy some criteria.</li>
+<li>Mathematically, an <strong>event</strong> <span class="math inline">\(A\)</span> is a <em>subset</em> of the sample space: <span class="math inline">\(A\subseteq \Omega\)</span>.</li>
+<li>Events are typically denoted with capital letters near the start of the alphabet, with or without subscripts (e.g.&nbsp;<span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, <span class="math inline">\(C\)</span>, <span class="math inline">\(A_1\)</span>, <span class="math inline">\(A_2\)</span>). Events can be composed from others using <a href="https://en.wikipedia.org/wiki/Set_(mathematics)#Basic_operations">basic set operations</a> like unions (<span class="math inline">\(A\cup B\)</span>), intersections (<span class="math inline">\(A \cap B\)</span>), and complements (<span class="math inline">\(A^c\)</span>).
+<ul>
+<li>Read <span class="math inline">\(A^c\)</span> as “not <span class="math inline">\(A\)</span>”.</li>
+<li>Read <span class="math inline">\(A\cap B\)</span> as “<span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>”</li>
+<li>Read <span class="math inline">\(A \cup B\)</span> as “<span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span>”. Note that unions (<span class="math inline">\(\cup\)</span>, “or”) are always inclusive. <span class="math inline">\(A\cup B\)</span> occurs if <span class="math inline">\(A\)</span> occurs but <span class="math inline">\(B\)</span> does not, <span class="math inline">\(B\)</span> occurs but <span class="math inline">\(A\)</span> does not, or both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occur.</li>
+</ul></li>
+<li>A collection of events <span class="math inline">\(A_1, A_2, \ldots\)</span> are <strong>disjoint</strong> (a.k.a. mutually exclusive) if <span class="math inline">\(A_i \cap A_j = \emptyset\)</span> for all <span class="math inline">\(i \neq j\)</span>. That is, multiple events are disjoint if none of the events have any outcomes in common.</li>
+<li>If the sample space outcomes are represented by rows in a spreadsheet, then an event is a subset of rows that satisfies some criteria</li>
+</ul>
+<div id="exm-matching-event" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.3</strong></span> The “matching problem” is one well known probability problem. The general setup involves <span class="math inline">\(n\)</span> distincts objects labeled <span class="math inline">\(1, \ldots, n\)</span> which are placed in <span class="math inline">\(n\)</span> distinct boxes labeled <span class="math inline">\(1, \ldots, n\)</span>, with exactly one object placed in each box.</p>
+</div>
+<ol type="1">
+<li><p>Consider the matching problem with <span class="math inline">\(n=3\)</span>. Label the objects 1, 2, 3, and the spots 1, 2, 3, with spot 1 the correct spot for object 1, etc. Specify an appropriate definition of an outcome, determine the number of outcomes, and specify the sample space.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Using the sample space from the previous part, identify the following events.</p>
+<ol type="a">
+<li><span class="math inline">\(B\)</span>, the event that no objects are put in the correct spot.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>In words, what does <span class="math inline">\(B^c\)</span> represent?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(A\)</span>, the event that all objects are put in the correct spot.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(C\)</span>, the event that exactly 2 objects are put in the correct spot.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(A_3\)</span>, the event that object 3 is put (correctly) in spot 3.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol></li>
+<li><p>For a general <span class="math inline">\(n\)</span>, how many possible outcomes are there?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>For a general <span class="math inline">\(n\)</span> let <span class="math inline">\(A\)</span> the event that all objects are put in the correct spot, let <span class="math inline">\(B\)</span> the event that no objects are put in the correct spot, and let <span class="math inline">\(A_i\)</span> be the event that object <span class="math inline">\(i\)</span> is put (correctly) in spot <span class="math inline">\(i\)</span>, <span class="math inline">\(i=1,\ldots, n\)</span>. What is the relationship between <span class="math inline">\(A\)</span> and <span class="math inline">\(A_1, \ldots, A_n\)</span>? What is the relationship between <span class="math inline">\(B\)</span> and <span class="math inline">\(A_1, \ldots, A_n\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+</ol>
+<div id="exm-meeting-event" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.4</strong></span> Using the sample space from <a href="#exm-meeting-outcome" class="quarto-xref">Example&nbsp;<span>4.2</span></a>, identify the following events using pictures.</p>
+</div>
+<ol type="1">
+<li>Identify <span class="math inline">\(A\)</span>, the event that Regina arrives after Cady.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Identify <span class="math inline">\(B\)</span>, the event that either Regina or Cady arrives before 12:30.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Identify <span class="math inline">\(C\)</span>, the event that they arrive within 15 minutes of each other.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Identify <span class="math inline">\(D\)</span>, the event that Regina arrives before 12:24.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</section>
+<section id="random-variables" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="random-variables"><span class="header-section-number">4.3</span> Random variables</h2>
+<ul>
+<li>Roughly, a <em>random variable</em> assigns a number measuring some quantity of interest to each outcome of a random phenomenon.</li>
+<li>Mathematically, a <strong>random variable (RV)</strong> <span class="math inline">\(X\)</span> is a <em>function</em> that takes an outcome in the sample space as input and returns a real number as output</li>
+<li>The random variable itself is typically denoted with a capital letter (<span class="math inline">\(X\)</span>); possible values of that random variable are denoted with lower case letters (<span class="math inline">\(x\)</span>).
+<ul>
+<li>Think of the capital letter <span class="math inline">\(X\)</span> as a label standing in for a formula like “the number of heads in 4 flips of a coin” and</li>
+<li><span class="math inline">\(x\)</span> as a dummy variable standing in for a particular value like 3.</li>
+</ul></li>
+<li><strong>Discrete random variables</strong> take at most countably many possible values (e.g., <span class="math inline">\(0, 1, 2, \ldots\)</span>). They are often counting variables (e.g., the number of Heads in 10 coin flips).</li>
+<li><strong>Continuous random variables</strong> can take any real value in some interval (e.g., <span class="math inline">\([0, 1]\)</span>, <span class="math inline">\([0,\infty)\)</span>, <span class="math inline">\((-\infty, \infty)\)</span>.). That is, continuous random variables can take uncountably many different values. Continuous random variables are often measurement variables (e.g., height, weight, income).</li>
+<li>A function of a random variable is also a random variable: if <span class="math inline">\(X\)</span> is a RV then so is <span class="math inline">\(g(X)\)</span></li>
+<li>Sums and products, etc., of random variables <em>defined on the same sample space</em> are random variables. If<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are RVs defined on the same sample space then so are <span class="math inline">\(X+Y\)</span>, <span class="math inline">\(X-Y\)</span>, <span class="math inline">\(XY\)</span></li>
+<li>If the sample space outcomes are represented by rows in a spreadsheet, then random variables correspond to columns.</li>
+<li>Expressions like <span class="math inline">\(X=x\)</span> or <span class="math inline">\(\{X=x\}\)</span> represent <em>events</em>: for which outcomes is the value of the random variable <span class="math inline">\(X\)</span> equal to the value <span class="math inline">\(x\)</span></li>
+</ul>
+<div id="exm-dice-rv" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.5</strong></span> Roll a four-sided die twice, and record the result of each roll in sequence. Recall the sample space from <a href="#exm-dice-outcome" class="quarto-xref">Example&nbsp;<span>4.1</span></a>. Let <span class="math inline">\(X\)</span> be the sum of the two dice, and let <span class="math inline">\(Y\)</span> be the larger of the two rolls (or the common value if both rolls are the same).</p>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th><span class="math inline">\(X\)</span></th>
+<th><span class="math inline">\(Y\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(1, 1)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(1, 2)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(1, 3)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(1, 4)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(2, 1)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(2, 2)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(2, 3)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(2, 4)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(3, 1)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(3, 2)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(3, 3)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(3, 4)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(4, 1)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(4, 2)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>(4, 3)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>(4, 4)</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Complete the table to identify the values of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> for each outcome in the sample space.<br>
+&nbsp; <!-- 1.  Identify the possible values of $X$.
+\
+\
+\
+\
+\
+1.  Identify the possible values of $Y$.
+\
+\
+\
+\
+\
+1.  Identify the possible values of the pair $(X, Y)$.
+\
+\
+\
+\
+\ --></li>
+<li>Identify <span class="math inline">\(\{Y = 1\}\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Identify <span class="math inline">\(\{Y = 3\}\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Identify <span class="math inline">\(\{X \le 4\}\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Identify <span class="math inline">\(\{X \le 4, Y = 3\}\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-matching-indicator" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.6</strong></span> Matching problem. For <span class="math inline">\(n=3\)</span> objects labeled 1, 2, 3, are placed at random in spots labeled 1, 2, 3, with spot 1 the correct spot for object 1, etc. Let the random variable <span class="math inline">\(X\)</span> count the number of objects that are put in the correct spot. Let <span class="math inline">\(I_1\)</span> be equal to 1 if object 1 is placed (correctly) in spot 1, and define <span class="math inline">\(I_2, I_3\)</span> similarly.</p>
+</div>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Outcome</th>
+<th style="text-align: right;"><span class="math inline">\(X\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(I_1\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(I_2\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(I_3\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>123</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>132</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td>213</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>231</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="odd">
+<td>312</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+<tr class="even">
+<td>321</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li>Complete the table to identify the value of <span class="math inline">\(X, I_1, I_2, I_3\)</span> for each outcome in the sample space. &nbsp; &nbsp; <!-- 1.  Identify the possible values of $X$.
+\
+\
+\
+\
+\ --></li>
+<li>What is the relationship between <span class="math inline">\(I_3\)</span> and event <span class="math inline">\(A_3\)</span> from <a href="#exm-matching-event" class="quarto-xref">Example&nbsp;<span>4.3</span></a>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>How can you express <span class="math inline">\(X\)</span> in terms of <span class="math inline">\(I_1, I_2, I_3\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>The <strong>indicator (a.k.a., Bernoulli) random variable</strong> corresponding to event <span class="math inline">\(A\)</span> is equal to 1 if <span class="math inline">\(A\)</span> occurs and 0 otherwise</li>
+<li>Indicator random variables can be used for incremental counting and are often useful in problems involving “find the expected number of”</li>
+</ul>
+<div id="exm-meeting-rv" class="theorem example">
+<p><span class="theorem-title"><strong>Example 4.7</strong></span> Regina and Cady will definitely arrive between noon and 1, but their exact arrival times are uncertain. Recall the sample space from <a href="#exm-meeting-outcome" class="quarto-xref">Example&nbsp;<span>4.2</span></a>. Let <span class="math inline">\(R\)</span> be the random variable representing Regina’s arrival time (minutes after noon), and <span class="math inline">\(Y\)</span> for Cady.</p>
+<ol type="1">
+<li>What does the random variable <span class="math inline">\(T = \min(R, Y)\)</span> represent? What are the possible values of <span class="math inline">\(T\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What does the random variable <span class="math inline">\(W = |R - Y|\)</span> represent? What are the possible values of <span class="math inline">\(W\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Let <span class="math inline">\(N\)</span> be the number of people (out of 2) who arrive before 12:30. How can you represent <span class="math inline">\(N\)</span> in terms of <span class="math inline">\(R\)</span> and <span class="math inline">\(Y\)</span>. (Hint: use indicators.)<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Identify each of the random variables above as discrete or continuous.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Interpret each of the following in words and draw a picture representing it.
+<ol type="a">
+<li><span class="math inline">\(\{R &gt; Y\}\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\{T &lt; 30\}\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\{W &lt; 15\}\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\{R &lt; 24\}\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol></li>
+</ol>
 </div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -669,13 +1134,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./approximating-expected-values.html" class="pagination-link" aria-label="Expected Values: Approximation and Some Properties">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span>
+      <a href="./interpreting-probabilities.html" class="pagination-link" aria-label="Interpreting Probabilities and &quot;Expected&quot; Values">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Interpreting Probabilities and “Expected” Values</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./probability-models.html" class="pagination-link" aria-label="Probability Models">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Models</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

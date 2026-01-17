@@ -1,116 +1,50 @@
 {
+  "outcomes-events-rvs.qmd": {
+    "outcomes-events-rvs.html": "6fad7d1b"
+  },
   "index.qmd": {
-    "index.html": "d2379296"
-  },
-  "intro.qmd": {
-    "intro.html": "49ef6065"
-  },
-  "summary.qmd": {
-    "summary.html": "0816d67b"
-  },
-  "references.qmd": {
-    "references.html": "17147efc"
+    "index.html": "83f6c086"
   },
   "randomness-and-probability.qmd": {
-    "randomness-and-probability.html": "429103b3"
+    "randomness-and-probability.html": "b53b4fc6"
   },
   "working-with-probabilities.qmd": {
-    "working-with-probabilities.html": "efbf57a3"
+    "working-with-probabilities.html": "3ad0b968"
   },
   "interpreting-probabilities.qmd": {
-    "interpreting-probabilities.html": "3f55ba92"
-  },
-  "problem-solving-strategies.qmd": {
-    "problem-solving-strategies.html": "e94cd296"
-  },
-  "distribution-summary.qmd": {
-    "distribution-summary.html": "b6931cc4"
-  },
-  "outcomes-events-rvs.qmd": {
-    "outcomes-events-rvs.html": "77bb54ea"
+    "interpreting-probabilities.html": "42262758"
   },
   "probability-models.qmd": {
-    "probability-models.html": "33265804"
-  },
-  "conditioning.qmd": {
-    "conditioning.html": "bf50af07"
+    "probability-models.html": "c39730f8"
   },
   "intro-to-distributions.qmd": {
-    "intro-to-distributions.html": "05bef0b8"
+    "intro-to-distributions.html": "5ee15ef6"
   },
-  "probability-rules.qmd": {
-    "probability-rules.html": "962c791a"
+  "conditioning.qmd": {
+    "conditioning.html": "eb2b20f1"
   },
-  "independence.qmd": {
-    "independence.html": "1b919cf7"
+  "references.qmd": {
+    "references.html": "c5d0e250"
   },
-  "intro-simulation.qmd": {
-    "intro-simulation.html": "4988462c"
-  },
-  "approximating-probabilities.qmd": {
-    "approximating-probabilities.html": "27da764a"
-  },
-  "approximating-expected-values.qmd": {
-    "approximating-expected-values.html": "0699f53d"
-  },
-  "variance-and-standard-deviation.qmd": {
-    "variance-and-standard-deviation.html": "adefef2e"
-  },
-  "counting-and-uniform.qmd": {
-    "counting-and-uniform.html": "4fb24339"
-  },
-  "covariance-and-correlation.qmd": {
-    "covariance-and-correlation.html": "1f7d53a7"
-  },
-  "discrete-pmf.qmd": {
-    "discrete-pmf.html": "13bafb36"
-  },
-  "binomial.qmd": {
-    "binomial.html": "a6c666e8"
-  },
-  "negative-binomial.qmd": {
-    "negative-binomial.html": "5324bcaf"
-  },
-  "poisson.qmd": {
-    "poisson.html": "7c171293"
-  },
-  "continuous-rv.qmd": {
-    "continuous-rv.html": "0227f222"
-  },
-  "pdf.qmd": {
-    "pdf.html": "9e8e7a95"
-  },
-  "expected-value-continuous.qmd": {
-    "expected-value-continuous.html": "1e212e39"
-  },
-  "exponential.qmd": {
-    "exponential.html": "c407555d"
-  },
-  "normal.qmd": {
-    "normal.html": "4263e4b7"
-  },
-  "linear-combinations.qmd": {
-    "linear-combinations.html": "4c8ea7c1"
-  },
-  "CLT.qmd": {
-    "CLT.html": "4123bf42"
-  },
-  "statistical-estimation.qmd": {
-    "statistical-estimation.html": "395720a5"
-  },
-  "maximum-likelihood-estimation.qmd": {
-    "maximum-likelihood-estimation.html": "45f1d310"
-  },
-  "estimators-mse.qmd": {
-    "estimators-mse.html": "237320fb"
-  },
-  "estimators-bias.qmd": {
-    "estimators-bias.html": "ee9a3064"
-  },
-  "estimators-variance.qmd": {
-    "estimators-variance.html": "ccc8896f"
+  "distribution-summary.qmd": {
+    "distribution-summary.html": "fef0d7e9"
   },
   "normal-empirical-rule.qmd": {
-    "normal-empirical-rule.html": "918b1c85"
+    "normal-empirical-rule.html": "6cfefcdf"
+  },
+  "probability-rules.qmd": {
+    "probability-rules.html": "0df05b6a"
+  },
+  "independence.qmd": {
+    "independence.html": "3ff2b2cc"
+  },
+  "intro-simulation.qmd": {
+    "intro-simulation.html": "60257802"
+  },
+  "approximating-probabilities.qmd": {
+    "approximating-probabilities.html": "bed3a4ef"
+  },
+  "approximating-expected-values.qmd": {
+    "approximating-expected-values.html": "996d9b27"
   }
 }

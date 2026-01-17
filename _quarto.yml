@@ -12,15 +12,15 @@ book:
     - randomness-and-probability.qmd
     - working-with-probabilities.qmd
     - interpreting-probabilities.qmd
-    # - outcomes-events-rvs.qmd
-    # - probability-models.qmd
-    # - intro-to-distributions.qmd
-    # - conditioning.qmd
-    # - probability-rules.qmd
-    # - independence.qmd
-    # - intro-simulation.qmd
-    # - approximating-probabilities.qmd
-    # - approximating-expected-values.qmd
+    - outcomes-events-rvs.qmd
+    - probability-models.qmd
+    - intro-to-distributions.qmd
+    - conditioning.qmd
+    - probability-rules.qmd
+    - independence.qmd
+    - intro-simulation.qmd
+    - approximating-probabilities.qmd
+    - approximating-expected-values.qmd
     # - variance-and-standard-deviation.qmd
     # - covariance-and-correlation.qmd
     # - counting-and-uniform.qmd

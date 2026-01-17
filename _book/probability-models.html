@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>5&nbsp; Probability Models – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./approximating-expected-values.html" rel="prev">
+<link href="./intro-to-distributions.html" rel="next">
+<link href="./outcomes-events-rvs.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability-models.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Models</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -158,7 +168,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./probability-models.html" class="sidebar-item-text sidebar-link">
+  <a href="./probability-models.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Models</span></span></a>
   </div>
 </li>
@@ -206,7 +216,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -244,7 +254,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Probability Models</span></h1>
 </div>
 
 
@@ -261,8 +271,426 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<ul>
+<li>A <strong>probability measure</strong>, typically denoted <span class="math inline">\(\text{P}\)</span>, assigns probabilities to <em>events</em> to quantify their relative likelihoods according to the assumptions of the model of the random phenomenon.</li>
+<li>The probability of event <span class="math inline">\(A\)</span>, computed according to probability measure <span class="math inline">\(\text{P}(A)\)</span>, is denoted <span class="math inline">\(\text{P}(A)\)</span>.</li>
+<li>A valid probability measure <span class="math inline">\(\text{P}\)</span> must satisfy the following three logical consistency “axioms”.
+<ul>
+<li>For any event <span class="math inline">\(A\)</span>, <span class="math inline">\(0 \le \text{P}(A) \le 1\)</span>.</li>
+<li>If <span class="math inline">\(\Omega\)</span> represents the sample space then <span class="math inline">\(\text{P}(\Omega) = 1\)</span>.</li>
+<li>(<em>Countable additivity.</em>) If <span class="math inline">\(A_1, A_2, A_3, \ldots\)</span> are disjoint then <span class="math display">\[
+\text{P}(A_1 \cup A_2 \cup A_3 \cup \cdots) = \text{P}(A_1) + \text{P}(A_2) +\text{P}(A_3) + \cdots
+\]</span></li>
+</ul></li>
+<li>Additional properties of a probability measure follow from the axioms
+<ul>
+<li><em>Complement rule</em>. For any event <span class="math inline">\(A\)</span>, <span class="math inline">\(\text{P}(A^c)  = 1 - \text{P}(A)\)</span>.</li>
+<li><em>Subset rule</em>. If <span class="math inline">\(A \subseteq B\)</span> then <span class="math inline">\(\text{P}(A) \le \text{P}(B)\)</span>.</li>
+<li><em>Addition rule for two events</em>. If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are any two events <span class="math display">\[
+\text{P}(A\cup B) = \text{P}(A) + \text{P}(B) - \text{P}(A \cap B)
+\]</span></li>
+<li><em>Law of total probability</em>. If <span class="math inline">\(C_1, C_2, C_3\ldots\)</span> are disjoint events with <span class="math inline">\(C_1\cup C_2 \cup C_3\cup \cdots =\Omega\)</span>, then <span class="math display">\[
+\text{P}(A)  = \text{P}(A \cap C_1) + \text{P}(A \cap C_2) + \text{P}(A \cap C_3) + \cdots
+\]</span></li>
+</ul></li>
+<li>A <strong>probability model</strong> (or <strong>probability space</strong>) is the collection of all outcomes, events, and random variables associated with a random phenomenon along with the probabilities of all events of interest under the assumptions of the model.</li>
+<li>The axioms of a probability measure are minimal logical consistent requirements that ensure that probabilities of different events fit together in a valid, coherent way.</li>
+</ul>
+<div id="exm-die-fair" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.1</strong></span> Suppose that the playoff for some sport is down to the final 4 teams, which we’ll label teams 1, 2, 3, 4 (in no particular order). We’re interested in which team will win the championship. The sample space is <span class="math inline">\(\{1, 2, 3, 4\}\)</span>. <a href="#tbl-die-events" class="quarto-xref">Table&nbsp;<span>5.1</span></a> lists all possible <em>events</em>.</p>
+<ol type="1">
+<li>Add a description in words for each of the events.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Pat assumes that the four teams are equally likely to win the championship. Let <span class="math inline">\(\text{P}\)</span> denote Pat’s correponding probability measure. Compute <span class="math inline">\(\text{P}(A)\)</span> for each event in <a href="#tbl-die-events" class="quarto-xref">Table&nbsp;<span>5.1</span></a>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<div id="tbl-die-events" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-die-events-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: All possible events associated with a single roll of a four-sided die.
+</figcaption>
+<div aria-describedby="tbl-die-events-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(A\)</span></th>
+<th>Description</th>
+<th><span class="math inline">\(\text{P}(A)\)</span></th>
+<th><span class="math inline">\(\text{Q}(A)\)</span></th>
+<th><span class="math inline">\(\tilde{\text{P}}(A)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\emptyset\)</span></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{1\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\{2\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{3\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\{4\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{1, 2\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\{1, 3\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{1, 4\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\{2, 3\}\)</span></td>
+<td></td>
+<td></td>
+<td>0.5</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{2, 4\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\{3, 4\}\)</span></td>
+<td></td>
+<td></td>
+<td>0.7</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{1, 2, 3\}\)</span></td>
+<td></td>
+<td></td>
+<td>0.6</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\{1, 2, 4\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{1, 3, 4\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\{2, 3, 4\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\{1, 2, 3, 4\}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="exm-die-weighted" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.2</strong></span> Continuing <a href="#exm-die-fair" class="quarto-xref">Example&nbsp;<span>5.1</span></a>. Quentin assumes the teams are not equally likely to win the championship. Let <span class="math inline">\(\text{Q}\)</span> denote Quentin’s probability measure. A few probabilities are provided in <a href="#tbl-die-events" class="quarto-xref">Table&nbsp;<span>5.1</span></a>; compute <span class="math inline">\(\text{Q}(A)\)</span> for all other events in <a href="#tbl-die-events" class="quarto-xref">Table&nbsp;<span>5.1</span></a>. What is Quentin’s assumed probability that each team wins the championship?<br>
+<br>
+<br>
+<br>
+<br>
+</p>
+</div>
+<div id="exm-dice-normalize" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.3</strong></span> Continuing <a href="#exm-die-fair" class="quarto-xref">Example&nbsp;<span>5.1</span></a>. Tilda assumes that</p>
+<ul>
+<li>Team 1 is twice as likely to win the championship as team 4</li>
+<li>Team 2 is three times as likely to win the championship as team 4</li>
+<li>Team 3 is 1.5 times as likely as to win the championship as team 4</li>
+</ul>
+<p>Let <span class="math inline">\(\tilde{\text{P}}\)</span> denote Tilda’s probability measure. Compute <span class="math inline">\(\tilde{\text{P}}(A)\)</span> for all events in <a href="#tbl-die-events" class="quarto-xref">Table&nbsp;<span>5.1</span></a>. What is Tilda’s assumed probability that each team wins the championship?<br>
+<br>
+<br>
+<br>
+<br>
+</p>
+</div>
+<ul>
+<li>The axioms of a probability measure are minimal logical consistent requirements that ensure that probabilities of different events fit together in a valid, coherent way.</li>
+<li>In particular, the axioms do NOT require outcomes to be equally likely</li>
+<li>A single probability measure corresponds to a particular set of assumptions about the random phenomenon.</li>
+<li>There can be many probability measures defined on a single sample space, each one corresponding to a different probability model for the random phenomenon.</li>
+<li>Probabilities of events can change if the probability measure changes.</li>
+</ul>
+<div id="exm-meeting-probspace1d-uniform" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.4</strong></span> The general meeting problem involves multiple people, but we’ll first consider the arrival time of just a single person, who we’ll call Han. Suppose that Han arrives “uniformly at random” at a time in <span class="math inline">\([0, 60]\)</span>.</p>
+<ol type="1">
+<li>Compute the probability that Han arrives before 12:15.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives after 12:45.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Let <span class="math inline">\(\text{P}\)</span> denote the corresponding probability measure. Suggest a general formula for <span class="math inline">\(\text{P}([a, b])\)</span>, the probability that Han arrives between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> minutes after noon for <span class="math inline">\(0\le a&lt;b\le 60\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han’s arrival time, truncated to the nearest minute, is 0 minutes after noon; that is, find the probability that Han arrives between 12:00 and 12:01.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Continue to compute the probability that Han’s arrival time truncated to the nearest minute is <span class="math inline">\(1, 2, 3, \ldots, 59\)</span>, and sketch a plot with arrival time (truncated minutes after noon) on the horizontal axis and probability on the vertical axis. Is the plot what you would expect for arriving “uniformly at random”?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<div id="exm-meeting-nonuniform-probspace1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.5</strong></span> Assume that the probability that Han arrives between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> minutes after noon is <span class="math inline">\((b/60)^2 - (a/60)^2\)</span>, for <span class="math inline">\(0\le a&lt;b\le 60\)</span>. Let <span class="math inline">\(\text{Q}\)</span> denote the corresponding probability measure; notice that <span class="math inline">\(\text{Q}([0, 60]) = (60/60)^2 - (0/60)^2 = 1\)</span>. Compute the following probabilities and compare your answers to the corresponding parts from <a href="#exm-meeting-probspace1d-uniform" class="quarto-xref">Example&nbsp;<span>5.4</span></a>.</p>
+<ol type="1">
+<li>Compute the probability that Han arrives before 12:15.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives after 12:45.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability Han’s arrival time, truncated to the nearest minute, is 0 minutes after noon; that is, find the probability that Han arrives between 12:00 and 12:01.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability Han’s arrival time, truncated to the nearest minute, is 59 minutes after noon; that is, find the probability that Han arrives between 12:59 and 1:00.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Continue to compute the probability that Han’s arrival time truncated to the nearest minute is <span class="math inline">\(1, 2, 3, \ldots, 59\)</span>, and sketch a plot with arrival time (truncated minutes after noon) on the horizontal axis and probability on the vertical axis. What assumptions about Han’s arrival time does this probability measure reflect?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<div id="exm-meeting-probspace1d-limit" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.6</strong></span> Continuing with the uniform probability measure <span class="math inline">\(\textbf{P}\)</span> of <a href="#exm-meeting-probspace1d-uniform" class="quarto-xref">Example&nbsp;<span>5.4</span></a>.</p>
+<ol type="1">
+<li>Compute the probability that Han arrives between 12:00 and 12:01, within 1 minute after noon.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives between 12:00:00 and 12:00:01, within 1 second after noon.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives between 12:00:00.000 and 12:01:00.001, within 1 millisecond after noon.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives at the exact time 12:00:00.00000… (with infinite precision).<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability that Han arrives “at noon”? Discuss.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<div id="exm-meeting-probspace1d-limit-nonuniform" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.7</strong></span> Continuing with the non-uniform probability measure <span class="math inline">\(\textbf{Q}\)</span> of <a href="#exm-meeting-nonuniform-probspace1" class="quarto-xref">Example&nbsp;<span>5.5</span></a>.</p>
+<ol type="1">
+<li>Compute the probability that Han arrives between 12:00 and 12:01, within 1 minute after noon.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives between 12:00:00 and 12:00:01, within 1 second after noon.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives at the exact time 12:00:00.00000… (with infinite precision).<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives between 12:59 and 1:00, within 1 minute before 1:00.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives between 12:59:59 and 1:00:00, within 1 second before 1:00.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the probability that Han arrives at the exact time 1:00:00.00000… (with infinite precision).<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Which is more likely: that Han arrives “at noon” or “at 1:00”? Discuss.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<ul>
+<li>For a continuous sample space, the probability of any particular outcome is 0.</li>
+<li>Particular outcomes represent “infinite precision” which is not practical in real applications</li>
+<li>For continuous sample spaces it makes more sense to consider “close to” probabilities rather than “equals to” probabilities.</li>
+<li>“Close to” events correspond to <em>intervals</em> of reasonable practical precision and these intervals can have non-zero probability.</li>
+<li>Certain outcomes can be more likely than others in the “close to” sense.</li>
+</ul>
+<div id="exm-meeting-probspace2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 5.8</strong></span> Back to the Regina, Cady meeting problem. Assume that Regina and Cady each arrive at a time uniformly at random between noon and 1:00, independently of each other, so that they arrive “uniformly at random” in the sample space of <a href="outcomes-events-rvs.html#exm-meeting-outcome" class="quarto-xref">Example&nbsp;<span>4.2</span></a>. Let <span class="math inline">\(\text{P}\)</span> denote the corresponding probability measure.</p>
+<p>Let <span class="math inline">\(R\)</span> be the random variable representing Regina’s arrival time (minutes after noon), and <span class="math inline">\(Y\)</span> for Cady, and let <span class="math inline">\(T = \min(R, Y)\)</span> and <span class="math inline">\(W = |R - Y|\)</span>.</p>
+<p>Compute and interpret the following.</p>
+<ol type="1">
+<li><span class="math inline">\(\text{P}(R &gt; Y)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{P}(T &lt; 30)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{P}(W &lt; 15)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{P}(R &lt; 24)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{P}(W &lt; 1)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{P}(W &lt; 1/60)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{P}(W = 0)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability that Regina and Cady arrive “at the same time”? Discuss.</li>
+</ol>
 </div>
 
 
@@ -669,13 +1097,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./approximating-expected-values.html" class="pagination-link" aria-label="Expected Values: Approximation and Some Properties">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span>
+      <a href="./outcomes-events-rvs.html" class="pagination-link" aria-label="Outcomes, Events, and Random Variables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Outcomes, Events, and Random Variables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./intro-to-distributions.html" class="pagination-link" aria-label="Distributions of Random Variables (A Brief Introduction)">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Distributions of Random Variables (A Brief Introduction)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>11&nbsp; Approximating Probabilities – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./approximating-expected-values.html" rel="prev">
+<link href="./approximating-expected-values.html" rel="next">
+<link href="./intro-simulation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./approximating-probabilities.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -194,7 +204,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./approximating-probabilities.html" class="sidebar-item-text sidebar-link">
+  <a href="./approximating-probabilities.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></span></a>
   </div>
 </li>
@@ -206,7 +216,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -244,7 +254,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Approximating Probabilities</span></h1>
 </div>
 
 
@@ -261,11 +271,137 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<ul>
+<li>A probability can be interepreted as a theoretical long run relative frequency.</li>
+<li>The probability of event <span class="math inline">\(A\)</span> can be approximated by simulating, according to the assumptions corresponding to the probability measure <span class="math inline">\(\text{P}\)</span>, the random phenomenon a large number of times and computing the relative frequency of <span class="math inline">\(A\)</span>. <span class="math display">\[
+{\small
+\text{P}(A) \approx \frac{\text{number of repetitions on which $A$ occurs}}{\text{number of repetitions}}, \quad \text{for a large number of $\text{P}$-repetitions}
+}
+\]</span></li>
+<li>In practice, many repetitions of a simulation are performed on a computer to approximate what happens in the “long run”. However, we often start by carrying out a few repetitions, (1) by hand to help make the process more concrete, or (2) by computer to check that our code is working correctly</li>
+<li>A probability can be approximated by a relative frequency from a large number of simulated repetitions, but there is some simulation margin of error, due to natural variability in the simulation.</li>
+<li>The margin of error when approximating a single probability based on a simulated relative frequency is roughly on the order <span class="math inline">\(1/\sqrt{N}\)</span>, where <span class="math inline">\(N\)</span> is the <em>number of independently simulated values used to calculate the relative frequency.</em>
+<ul>
+<li>Use a margin of error of <span class="math inline">\(2/\sqrt{N}\)</span> when approximating many probabilities based on a single simulation.</li>
+</ul></li>
+<li>Be careful when conditioning, especially when conditioning on values of continuous random variables.</li>
+<li>The larger <span class="math inline">\(N\)</span> the more precise the estimate, but there is cost to simulating and storing more repetitions in terms of computational time and memory. More importantly, beware a false sense of precision: A precise estimate of a probability under the assumptions of the model is not necessarily a comparably precise estimate of the true probability.</li>
+</ul>
+<div id="exm-dice-sim-tactile" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.1</strong></span> Roll a fair four-sided die twice and let <span class="math inline">\(X\)</span> be the sum and <span class="math inline">\(Y\)</span> the larger of the two rolls.</p>
+</div>
+<ol type="1">
+<li>Explain how you would use simulation to approximate
+<ol type="a">
+<li><span class="math inline">\(\text{P}(X=6)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{P}(X=6, Y = 4)\)</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol></li>
+<li>In 10000 repetitions of the simulation, <span class="math inline">\(X=6\)</span> on 1915 repetitions. Approximate <span class="math inline">\(\text{P}(X=6)\)</span>, including a margin of error.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Explain how you would use simulation to approximate the distribution of <span class="math inline">\(X\)</span>. What would the margin of error be?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-meeting-sim-intro" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.2</strong></span> Recall the three person meeting problem in <a href="intro-simulation.html#exm-meeting-box-sim" class="quarto-xref">Example&nbsp;<span>10.2</span></a>; let <span class="math inline">\(W\)</span> be the time the first person waits for the last person.</p>
+</div>
+<ol type="1">
+<li>Explain in full detail how you could conduct an appropriate simulation using spinners and use the results to approximate the probability <span class="math inline">\(\text{P}(W &lt; 15)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>In 10000 simulated repetitions, <span class="math inline">\(W&lt;15\)</span> in 1821. Approximate and interpret <span class="math inline">\(\text{P}(W &lt; 15)\)</span>; include a margin of error.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-impeach-sim" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.3</strong></span> Consider simulating a randomly selected U.S. adult and determining whether or not the person has a college degree and whether or not they can fix a problem with a car’s engine. Let <span class="math inline">\(C\)</span> be the event that the selected adult has a college degree, <span class="math inline">\(E\)</span> be the event that the selected adult can fix an engine, and <span class="math inline">\(\text{P}\)</span> correspond to randomly selecting an American adult. Suppose that<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math inline">\(\text{P}(C) = 0.40\)</span>, <span class="math inline">\(\text{P}(E) = 0.28\)</span>, and <span class="math inline">\(\text{P}(C\cap E) = 0.07\)</span>.</p>
+<ol type="1">
+<li><p>In 10000 repetitions of an appropriate simulation</p>
+<ul>
+<li><span class="math inline">\(C\)</span> occurs on 3989 repetitions</li>
+<li><span class="math inline">\(E\)</span> occurs on 2837 repetitions</li>
+<li>Both <span class="math inline">\(C\)</span> and <span class="math inline">\(E\)</span> occur on 680 repetitions.</li>
+</ul>
+<p>Use the simulation results to approximate <span class="math inline">\(\text{P}(E | C)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>What is the margin of error for your estimate in the previous part?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>What is another method for performing the simulation and estimating <span class="math inline">\(\text{P}(E |C)\)</span> that has a margin of error of 0.01? What is the disadvantage of this method?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+</ol>
+</div>
+<div id="exm-dice-tactile-conditional-prob" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.4</strong></span> Continuing <a href="#exm-dice-sim-tactile" class="quarto-xref">Example&nbsp;<span>11.1</span></a>, roll two fair four-sided dice and let <span class="math inline">\(X\)</span> be the sum and <span class="math inline">\(Y\)</span> the larger of the rolls.</p>
+<ol type="1">
+<li>For each of the following, describe how to approximate the probability with a margin of error of 0.01.
+<ol type="a">
+<li><span class="math inline">\(\text{P}(X = 6 | Y = 4)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li><span class="math inline">\(\text{P}(Y = 4 | X = 6)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol></li>
+<li>Explain how to approximate the conditional distribution of <span class="math inline">\(X\)</span> given <span class="math inline">\(Y=4\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<div id="exm-meeting-sim-intro" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.5</strong></span> Continuing <a href="#exm-meeting-sim-intro" class="quarto-xref">Example&nbsp;<span>11.5</span></a>. We want to approximate the conditional probability that <span class="math inline">\(W&lt;15\)</span> given that the first person arrives at 12:10. Explain in detail how you would conduct a simulation to approximate this probability. (Be careful!)</p>
 </div>
 
 
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Values are based on this <a href="https://www.pewresearch.org/short-reads/2025/10/10/navigate-with-a-compass-fix-a-car-engine-what-americans-say-they-can-and-cant-do/">Pew Research survey.</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -669,13 +805,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./approximating-expected-values.html" class="pagination-link" aria-label="Expected Values: Approximation and Some Properties">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span>
+      <a href="./intro-simulation.html" class="pagination-link" aria-label="Introduction to Simulation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Introduction to Simulation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./approximating-expected-values.html" class="pagination-link" aria-label="Expected Values: Approximation and Some Properties">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -51,7 +51,7 @@ Let $X$ be the sum of the two dice, and let $Y$ be the larger of the two rolls (
 
 Consider the matching problem with $n=4$: objects labeled 1, 2, 3, 4, are placed at random in spots labeled 1, 2, 3, 4, with spot 1 the correct spot for object 1, etc.
 Let the random variable $X$ count the number of objects that are put back in the correct spot.
-Let $\text{P}$ denote the probability measure corresponding to the assumption that the objects are equally likely to be placed in any spot, so that the 24 possible placements are equally.
+Let $\text{P}$ denote the probability measure corresponding to the assumption that the objects are equally likely to be placed in any spot, so that the 24 possible placements are equally likely.
   
 :::
 
