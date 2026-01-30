@@ -46,5 +46,17 @@
   },
   "approximating-expected-values.qmd": {
     "approximating-expected-values.html": "996d9b27"
+  },
+  "variance-and-standard-deviation.qmd": {
+    "variance-and-standard-deviation.html": "7ee1677f"
+  },
+  "covariance-and-correlation.qmd": {
+    "covariance-and-correlation.html": "7d77449b"
+  },
+  "counting-and-uniform.qmd": {
+    "counting-and-uniform.html": "4d9a5387"
+  },
+  "discrete-pmf.qmd": {
+    "discrete-pmf.html": "ad64a1ff"
   }
 }

@@ -40,71 +40,25 @@ $$
 
 
 
-::: {#exm-benford}
-Randomly select a county in the U.S. Let $X$ be the leading digit in the county's population. 
-
-[For example](https://en.wikipedia.org/wiki/List_of_counties_in_California), if the county's population is 10,040,000 (Los Angeles County) then $X=1$; if 3,170,000 (Orange County) then $X=3$; if 283,000 (SLO County) then $X=2$; if 30,600 (Lassen County) then $X=3$.
-The possible values of $X$ are $1, 2, \ldots, 9$.
-You might think that $X$ is equally likely  to be any of its possible values.
-However, a more appropriate model is to assume that  $X$ has pmf
-
-$$
-p_X(x) = 
-\begin{cases}
-\log_{10}(1+\frac{1}{x}), & x = 1, 2, \ldots, 9,\\
-0, & \text{otherwise}
-\end{cases}
-$$
-
-This distribution^[You can find a nice explanation of Benford's law [here](https://towardsdatascience.com/benfords-law-a-simple-explanation-341e17abbe75).] is known as [Benford's law](https://en.wikipedia.org/wiki/Benford's_law).
-
-:::
-
-1.  Compute and interpret $\text{P}(X = 1)$.
-\
-\
-\
-\
-\
-1.  Compute and interpret $\text{P}(X = 2)$.
-\
-\
-\
-\
-\
-1.  Construct a table specifying the distribution of $X$, and the corresponding spinner.
-\
-\
-\
-\
-\
-1. Verify that $p_X$ is a valid pmf.
-\
-\
-\
-\
-\
-1.  Find $\text{P}(X \ge 3)$
-\
-\
-\
-\
-\
-
-
 -   In a sequence of **Bernoulli($p$) trials**
     -   There are only two possible outcomes, "success" (1) or not (0, "failure"), on each trial.
     -   The unconditional/marginal probability of success is the same on every trial, and equal to $p$.
     -   The trials are independent.
 
 
-::: {#exm-geometric-bball}
-Maya is a basketball player who makes 40% of her three point field goal attempts.
-Suppose that she attempts three pointers until she makes one and then stops.
-Let $X$ be the total number of shots she attempts.
-Assume shot attempts are independent.
+::: {#exm-lookaway-geometric}
 
-1.  Can Maya's attempts be consider Bernoulli trials?
+Recall the "lookaway challenge of @exm-lookaway.
+
+The game consists of possibly multiple rounds. In the first round, you point in one of four directions: up, down, left or right. At the exact same time, your friend also looks in one of those four directions. If your friend looks in the same direction you're pointing, you win! Otherwise, you switch roles and the game continues to the next round — now your friend points in a direction and you try to look away. As long as no one wins, you keep switching off who points and who looks.
+The game ends, and the current "pointer" wins, whenever the  "looker" looks in the same direction as the pointer.
+
+Suppose that each player is equally likely to point/look in each of the four directions, independently from round to round. 
+
+Let $X$ be the number of rounds until the game ends.
+:::
+
+1.  Can the rounds be considered Bernoulli trials?
 \
 \
 \
@@ -147,6 +101,13 @@ Is $X$ discrete or continuous?
 \
 \
 \
+1.  How can you use the distribution of $X$ to compute the probability that the player who starts as the pointer wins the game?
+(In @exm-lookaway we computed this to be 4/7 using the law of total probability.)
+\
+\
+\
+\
+\
 1.  Compute and interpret $\text{P}(X>3)$.
 Can you think of a way to do this without summing several terms?
 \
@@ -164,13 +125,13 @@ Does this make sense?
 \
 \
 1.  What seems like a reasonable shortcut formula for $\text{E}(X)$ in terms of $p$? 
-Hint: it might help to consider the case $p=0.1$ first, then apply similar logic to $p=0.4$ and general $p$.
+Consider the case $p=0.25$ first and then general $p$.
 \
 \
 \
 \
 \
-1.  Compute $\text{E}(X)$. 
+1.  Compute $\text{E}(X)$ using the pmf of $X$.
 Did the shortcut work?
 \
 \
@@ -196,7 +157,7 @@ If $p=0.1$?
 \
 \
 \
-:::
+
 
 
 
@@ -219,7 +180,7 @@ p_{X}(x) & = p (1-p)^{x-1}, & x=1, 2, 3, \ldots
 
 
 ::: {#exm-geometric-bball-sim}
-Continuing the previous example.
+Continuing @exm-lookaway-geometric.
 
 1.  Specify how you could simulate a value of $X$ using the "simulate from the probability space" method.
 \
@@ -257,7 +218,8 @@ However, as we will see in many examples, *it is common to specify the distribut
 
 ::: {#exm-dd-same-distribution-pmf}
 
-Donny Dont is thoroughly confused about the distinction between a random variable and its distribution.  Help him understand by by providing a simple concrete example of *two different random variables* $X$ and $Y$ that have the *same distribution*. 
+Donny Dont is thoroughly confused about the distinction between a random variable and its distribution. 
+Help him understand by by providing a simple concrete example of *two different random variables* $X$ and $Y$ that have the *same distribution*. 
 Can you think of $X$ and $Y$ for which $\text{P}(X = Y) = 0$?
 \
 \

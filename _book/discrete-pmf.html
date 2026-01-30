@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>16&nbsp; Discrete Random Variables: Probability Mass Functions – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./discrete-pmf.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./counting-and-uniform.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discrete-pmf.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -224,13 +234,13 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discrete-pmf.html" class="sidebar-item-text sidebar-link">
+  <a href="./discrete-pmf.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -268,7 +278,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></h1>
 </div>
 
 
@@ -285,9 +295,204 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<ul>
+<li>Roughly, a random variable assigns a number measuring some quantity of interest to each outcome of a random phenomenon.</li>
+<li>The <strong>(probability) distribution</strong> of a random variable specifies the possible values of the random variable and a way of determining corresponding probabilities.</li>
+<li>We will see many ways of describing a distribution, depending on how many random variables are involved and their types (discrete or continuous)</li>
+<li>A <strong>discrete</strong> random variable can take on only countably many isolated points on a number line. These are often counting type variables.
+<ul>
+<li>Note that “countably many” includes the case of countably infinite, such as <span class="math inline">\(\{0, 1, 2, \ldots\}\)</span>.</li>
+</ul></li>
+<li>The <strong>probability mass function (pmf)</strong> of a <em>discrete</em> RV <span class="math inline">\(X\)</span>, defined on a probability space with probability measure <span class="math inline">\(\text{P}\)</span>, is a function <span class="math inline">\(p_X:\mathbb{R}\mapsto[0,1]\)</span> which specifies each possible value of the RV and the probability that the RV takes that particular value: <span class="math inline">\(p_X(x)=\text{P}(X=x)\)</span> for each possible value of <span class="math inline">\(x\)</span>.</li>
+<li>Certain common distributions have special names and properties. We often specify a distribution by name along with values of relevant parameters.</li>
+</ul>
+<div id="exm-dice-pmf" class="theorem example">
+<p><span class="theorem-title"><strong>Example 16.1</strong></span> Roll a fair four-sided die twice and let <span class="math inline">\(X\)</span> be the sum and <span class="math inline">\(Y\)</span> the larger of the two rolls.</p>
 </div>
+<ol type="1">
+<li>Verify that the pmf of <span class="math inline">\(X\)</span> is <span class="math display">\[
+p_X(x) = \frac{4 - |x - 5|}{16}, \qquad x = 2, 3, \ldots, 8
+\]</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Is the following the pmf of <span class="math inline">\(Y\)</span>? Discuss. <span class="math display">\[
+p_Y(u) = \frac{2u - 1}{16}
+\]</span><br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>In a sequence of <strong>Bernoulli(<span class="math inline">\(p\)</span>) trials</strong>
+<ul>
+<li>There are only two possible outcomes, “success” (1) or not (0, “failure”), on each trial.</li>
+<li>The unconditional/marginal probability of success is the same on every trial, and equal to <span class="math inline">\(p\)</span>.</li>
+<li>The trials are independent.</li>
+</ul></li>
+</ul>
+<div id="exm-lookaway-geometric" class="theorem example">
+<p><span class="theorem-title"><strong>Example 16.2</strong></span> Recall the “lookaway challenge of <a href="probability-rules.html#exm-lookaway" class="quarto-xref">Example&nbsp;<span>8.4</span></a>.</p>
+<p>The game consists of possibly multiple rounds. In the first round, you point in one of four directions: up, down, left or right. At the exact same time, your friend also looks in one of those four directions. If your friend looks in the same direction you’re pointing, you win! Otherwise, you switch roles and the game continues to the next round — now your friend points in a direction and you try to look away. As long as no one wins, you keep switching off who points and who looks. The game ends, and the current “pointer” wins, whenever the “looker” looks in the same direction as the pointer.</p>
+<p>Suppose that each player is equally likely to point/look in each of the four directions, independently from round to round.</p>
+<p>Let <span class="math inline">\(X\)</span> be the number of rounds until the game ends.</p>
+</div>
+<ol type="1">
+<li>Can the rounds be considered Bernoulli trials?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What are the possible values that <span class="math inline">\(X\)</span> can take? Is <span class="math inline">\(X\)</span> discrete or continuous?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X=1)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X=2)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X=3)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find the probability mass function of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Construct a table, plot, and spinner representing the distribution of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>How can you use the distribution of <span class="math inline">\(X\)</span> to compute the probability that the player who starts as the pointer wins the game? (In <a href="probability-rules.html#exm-lookaway" class="quarto-xref">Example&nbsp;<span>8.4</span></a> we computed this to be 4/7 using the law of total probability.)<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X&gt;3)\)</span>. Can you think of a way to do this without summing several terms?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X&gt;5|X &gt; 2)\)</span>. Compare to the previous part. What do you notice? Does this make sense?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What seems like a reasonable shortcut formula for <span class="math inline">\(\text{E}(X)\)</span> in terms of <span class="math inline">\(p\)</span>? Consider the case <span class="math inline">\(p=0.25\)</span> first and then general <span class="math inline">\(p\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{E}(X)\)</span> using the pmf of <span class="math inline">\(X\)</span>. Did the shortcut work?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Interpret <span class="math inline">\(\text{E}(X)\)</span> in context.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{Var}(X)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Would <span class="math inline">\(\text{Var}(X)\)</span> be bigger or smaller if <span class="math inline">\(p=0.9\)</span>? If <span class="math inline">\(p=0.1\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>Perform Bernoulli(<span class="math inline">\(p\)</span>) trials until a success occurs and then stop. Let <span class="math inline">\(X\)</span> count the total number of trials, including the single success. The distribution of <span class="math inline">\(X\)</span> is defined to be the <strong>Geometric(<span class="math inline">\(p\)</span>) distribution</strong>.</li>
+<li>The Geometric(<span class="math inline">\(p\)</span>) probability mass function follows from the fact that if <span class="math inline">\(X\)</span> has a Geometric distribution, then <span class="math inline">\(X = x\)</span> if and only if
+<ul>
+<li>the first <span class="math inline">\(x-1\)</span> trials are failures, and</li>
+<li>the <span class="math inline">\(x\)</span>th (last) trial results in success.</li>
+</ul></li>
+<li>A discrete random variable <span class="math inline">\(X\)</span> has a Geometric(<span class="math inline">\(p\)</span>) distribution if and only if its probability mass function is <span class="math display">\[\begin{align*}
+p_{X}(x) &amp; = p (1-p)^{x-1}, &amp; x=1, 2, 3, \ldots
+\end{align*}\]</span></li>
+<li>If <span class="math inline">\(X\)</span> has a Geometric(<span class="math inline">\(p\)</span>) distribution then <span class="math display">\[\begin{align*}
+\text{P}(X &gt; x) &amp; = (1-p)^x, \qquad x = 1, 2, 3, \ldots\\
+\text{E}(X) &amp; = \frac{1}{p}\\
+\text{Var}(X) &amp; = \frac{1-p}{p^2}
+\end{align*}\]</span></li>
+</ul>
+<div id="exm-geometric-bball-sim" class="theorem example">
+<p><span class="theorem-title"><strong>Example 16.3</strong></span> Continuing <a href="#exm-lookaway-geometric" class="quarto-xref">Example&nbsp;<span>16.2</span></a>.</p>
+<ol type="1">
+<li>Specify how you could simulate a value of <span class="math inline">\(X\)</span> using the “simulate from the probability space” method.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Specify how you could simulate a value of <span class="math inline">\(X\)</span> using the “simulate from the distribution” method.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Explain how you could use simulation to approximate the distribution of <span class="math inline">\(X\)</span> and its expected value.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+</div>
+<ul>
+<li>There are two basic methods for simulating a value <span class="math inline">\(x\)</span> of a random variable <span class="math inline">\(X\)</span>.
+<ul>
+<li><strong>Simulate from the probability space.</strong> Simulate an outcome <span class="math inline">\(\omega\)</span> from the underlying probability space and set <span class="math inline">\(x = X(\omega)\)</span>.</li>
+<li><strong>Simulate from the distribution.</strong> Simulate a value <span class="math inline">\(x\)</span> directly from the distribution of <span class="math inline">\(X\)</span>.</li>
+</ul></li>
+<li>The “simulate from the distribution” method corresponds to constructing a spinner representing the marginal distribution of <span class="math inline">\(X\)</span> and spinning it once to generate <span class="math inline">\(x\)</span>. This method does require that the distribution of <span class="math inline">\(X\)</span> is known. However, as we will see in many examples, <em>it is common to specify the distribution of a random variable directly without defining the underlying probability space</em>.</li>
+</ul>
+<div id="exm-dd-same-distribution-pmf" class="theorem example">
+<p><span class="theorem-title"><strong>Example 16.4</strong></span> Donny Dont is thoroughly confused about the distinction between a random variable and its distribution. Help him understand by by providing a simple concrete example of <em>two different random variables</em> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> that have the <em>same distribution</em>. Can you think of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> for which <span class="math inline">\(\text{P}(X = Y) = 0\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</p>
+</div>
+<ul>
+<li>Do not confuse a random variable with its distribution!</li>
+<li>A random variable measures a numerical quantity which depends on the outcome of a random phenomenon</li>
+<li>The distribution of a random variable specifies the long run pattern of variation of values of the random variable over many repetitions of the underlying random phenomenon.</li>
+</ul>
 
 
 
@@ -693,13 +898,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./discrete-pmf.html" class="pagination-link" aria-label="Discrete Random Variables: Probability Mass Functions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></span>
+      <a href="./counting-and-uniform.html" class="pagination-link" aria-label="Equally Likely Outcomes and Counting Rules">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Equally Likely Outcomes and Counting Rules</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

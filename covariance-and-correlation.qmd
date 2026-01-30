@@ -1,9 +1,9 @@
 # Covariance and Correlation
 
 
--  Quantities like expected value and variance summarize characteristics of the *marginal* distribution of a single random variable.
--  When there are multiple random variables their *joint* distribution is of interest.
--  Covariance and correlation summarize a characteristic of the joint distribution of two random variables, namely, the degree to which they "co-deviate from the their respective means".
+-   Quantities like expected value and variance summarize characteristics of the *marginal* distribution of a single random variable.
+-   When there are multiple random variables their *joint* distribution is of interest.
+-   Covariance and correlation summarize a characteristic of the joint distribution of two random variables, namely, the degree to which they "co-deviate from the their respective means".
 
 ## Covariance
 
@@ -14,10 +14,11 @@
 \end{align*}
 -   Covariance is the long run average of the products of the paired deviations from the mean
 -   Covariance is the expected value of the product minus the product of expected values.
+    -   Remember: in general $\text{E}(XY)$ is not necessarily equal to $\text{E}(X)\text{E}(Y)$
 
 ::: {#exm-meeting-covariance}
-In the meeting problem, assume the two arrival times $R$ and $Y$ each have a Uniform(0, 60) distribution, independently.
-Let $T=\min(R, Y)$ be the time of the first arrival and let $W=|R-Y|$ be the waiting time of the first person for the second to arrive.  
+In the meeting problem, assume the two arrival times $X$ and $Y$ each have a Uniform(0, 60) distribution, independently.
+Let $T=\min(X, Y)$ be the time of the first arrival and let $W=|X-Y|$ be the waiting time of the first person for the second to arrive.  
 :::
 
 
@@ -39,8 +40,8 @@ Explain why.
 -   $\text{Cov}(X,Y)>0$ (positive association): above average values of $X$ tend to be associated with above average values of $Y$
 -   $\text{Cov}(X,Y)<0$ (negative association): above average values of $X$ tend to be associated with below average values of $Y$
 -   $\text{Cov}(X,Y)=0$  indicates that the random variables are  **uncorrelated**: there is no overall positive or negative association.
--   But be careful: if $X$ and $Y$ are  uncorrelated there can still be a relationship between $X$ and $Y$; there is just no overall positive or negative association. 
-We will see examples that demonstrate that being uncorrelated does not necessarily imply that random variables are independent.
+    -   $X$ and $Y$ are uncorrelated if and only if $\text{E}(XY)= \text{E}(X)\text{E}(X)$
+    -   But be careful: if $X$ and $Y$ are  uncorrelated there can still be a relationship between $X$ and $Y$; there is just no overall positive or negative association. 
 
 ::: {#exm-covariance-discrete}
 Roll a fair four-sided die twice.
@@ -86,6 +87,7 @@ Let
 -   $Y$ the larger of the two rolls
 -   $W$ the number of rolls equal to 4
 -   $Z$ the number of rolls equal to 1
+-   $V = W + Z$
 
 Without doing any calculations, determine if the covariance between each of the following pairs of variables is positive, negative, or zero.
 Explain your reasoning conceptually.
@@ -93,30 +95,43 @@ Explain your reasoning conceptually.
 
 
 
-1.  $X$ and $W$
+1.  $\text{Cov}(X,W)$ 
 \
 \
 \
 \
 \
-1.  $X$ and $Z$
+1.  $\text{Cov}(X,Z)$
 \
 \
 \
 \
 \
-1.  $X$ and $V$
+1.  $\text{Cov}(X,V)$
 \
 \
 \
 \
 \
-1.  $W$ and $Z$
+1.  $\text{Cov}(W,Z)$
 \
 \
 \
 \
 \
+1.  $\text{Cov}(X,V) = 0$. 
+Are $X$ and $V$ independent?
+\
+\
+\
+\
+\
+
+-   $\text{Cov}(X,Y)=0$  indicates that the random variables are  **uncorrelated**: there is no overall positive or negative association.
+    -   $X$ and $Y$ are uncorrelated if and only if $\text{E}(XY)= \text{E}(X)\text{E}(Y)$
+-   But be careful: if $X$ and $Y$ are  uncorrelated there can still be a relationship between $X$ and $Y$; there is just no overall positive or negative association. 
+-   If $X$ and $Y$ are independent then $\text{Cov}(X,Y)=0$
+-   But the converse is not true; there are many examples of uncorrelated random variables that are not independent.
 
 
 :::{#exm-football-cov}

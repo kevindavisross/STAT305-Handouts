@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>13&nbsp; Variance and Standard Deviation – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./discrete-pmf.html" rel="prev">
+<link href="./covariance-and-correlation.html" rel="next">
+<link href="./approximating-expected-values.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./variance-and-standard-deviation.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Variance and Standard Deviation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -206,7 +216,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./variance-and-standard-deviation.html" class="sidebar-item-text sidebar-link">
+  <a href="./variance-and-standard-deviation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Variance and Standard Deviation</span></span></a>
   </div>
 </li>
@@ -230,7 +240,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -268,7 +278,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Variance and Standard Deviation</span></h1>
 </div>
 
 
@@ -285,11 +295,251 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<p>The values of a random variable vary. The distribution of a random variable describes its pattern of variability. The expected value of a random variable summarizes the distribution in just a single number, the long run average value. But the expected value does not tell us much about the degree of variability of the random variable. Do the values of the random variable tend to be close to the expected value, or are they spread out? Variance and standard deviation are numbers that address these questions.</p>
+<div id="exm-uniform-variance" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.1</strong></span> Let <span class="math inline">\(X\)</span> be a random variable with a Uniform(0, 60) distribution (like we have seen in the meeting problem).</p>
 </div>
+<ol type="1">
+<li>Sketch a histogram of many simulated values of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Explain how you could use simulation to approximate <span class="math inline">\(\text{E}(X)\)</span>. What do you think the value of <span class="math inline">\(\text{E}(X)\)</span> is for this <span class="math inline">\(X\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Explain how we could use simulation to approximate <span class="math inline">\(\text{E}(|X - \text{E}(X)|)\)</span>. Why might we consider this quantity as a measure of variability? What do you think the value of <span class="math inline">\(\text{E}(|X - \text{E}(X)|)\)</span> is for this <span class="math inline">\(X\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>The variance of <span class="math inline">\(X\)</span> is defined as <span class="math inline">\(\text{Var}(X) = \text{E}(|X - \text{E}(X)|^2)\)</span>. Explain how you could use simulation to approximate <span class="math inline">\(\text{E}(|X - \text{E}(X)|^2)\)</span>. Why might we consider variance as a measure of variability?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>The standard deviation of <span class="math inline">\(X\)</span> is defined as <span class="math inline">\(\text{SD}(X) = \sqrt{\text{Var}(X)}\)</span>. Explain why we take the square root. Hint: consider measurement units, e.g., if <span class="math inline">\(X\)</span> is measured in minutes what are the measurement units of variance and standard deviation? Why might we consider standard deviation as a measure of variability?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Is <span class="math inline">\(\text{SD}(X)\)</span> equal to <span class="math inline">\(\text{E}(|X - \text{E}(X)|)\)</span>? Why or why not?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Explain how we can use simulation to approximate <span class="math inline">\(\text{E}(X^2)\)</span>. Is it equal to <span class="math inline">\(\text{E}(X)^2\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Use simulation to approximate <span class="math inline">\(\text{E}(X^2) - \text{E}(X)^2\)</span>. What do you notice?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>The <strong>variance</strong> of a random variable <span class="math inline">\(X\)</span> is <span class="math display">\[\begin{align*}
+  \text{Var}(X) &amp; = \text{E}\left(\left(X-\text{E}(X)\right)^2\right)\\
+&amp; = \text{E}\left(X^2\right) - \left(\text{E}(X)\right)^2
+\end{align*}\]</span></li>
+<li>The <strong>standard deviation</strong> of a random variable is <span class="math display">\[
+\text{SD}(X) = \sqrt{\text{Var}(X)}
+\]</span></li>
+<li>Variance is the long run average squared deviation from the mean.</li>
+<li>Standard deviation measures, roughly, the long run average distance from the mean. The measurement units of the standard deviation are the same as for the random variable itself.</li>
+<li>The definition <span class="math inline">\(\text{E}((X-\text{E}(X))^2)\)</span> represents the concept of variance. However, variance is usually computed using the following equivalent but slightly simpler formula. <span class="math display">\[
+\text{Var}(X) = \text{E}\left(X^2\right) - \left(\text{E}\left(X\right)\right)^2
+\]</span></li>
+<li>That is, variance is the expected value of the square of <span class="math inline">\(X\)</span> minus the square of the expected value of <span class="math inline">\(X\)</span>.<br>
+</li>
+<li>In some cases, we have the expected value and variance and we want to compute <span class="math inline">\(\text{E}(X^2)\)</span>. Rearranging the above formula yields <span class="math display">\[
+\text{E}\left(X^2\right)  = \text{Var}(X) + \left(\text{E}\left(X\right)\right)^2
+\]</span></li>
+<li>Variance has many nice theoretical properties (which we’ll see later). Whenever you need to compute a standard deviation, first find the variance and then take the square root at the end.</li>
+</ul>
+<div id="exm-sd-matching" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.2</strong></span> The plots below summarize hypothetical distributions of quiz scores in six classes. All plots are on the same scale. Each quiz score is a whole number between 0 and 10 inclusive.</p>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="variance-and-standard-deviation_files/figure-html/sd-matching-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol type="1">
+<li>Donny Dont says that C represents the smallest SD, since there is no variability in the heights of the bars. Do you agree that C represents “no variability? Explain.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the smallest <em>possible</em> value the SD of quiz scores could be? What would need to be true about the distribution for this to happen? (This scenario might not be represented by one the plots.)<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Without doing any calculations, arrange the classes in order based on their SDs from smallest to largest.<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>In one of the classes, the SD of quiz scores is 5. Which one? Why?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Is the SD in F greater than, less than, or equal to 1? Why?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Provide a ballpark estimate of SD in each case.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-batch-testing" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.3</strong></span> This is a simplified example of <em>batch testing</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> for a disease. In batch testing, specimens (like blood or saliva samples) from a group of people are pooled together into one batch, which then undergoes one test. If none of the people has the disease, then the batch test result will be negative, and no further tests are required. But if at least one person in the batch has the disease, then the batch test result will be positive, and then each person in the batch must be tested individually. (We’re assuming no false positives and no false negatives for this example.)</p>
+<p>Suppose that <span class="math inline">\(n=8\)</span> people to be tested are split into two groups of 4 people each. Within each group of 4 people, specimens are combined into a batch to be tested. If anyone in the batch has the disease, then the batch test will be positive, and those 4 people will need to be tested individually. Assume that each person has probability <span class="math inline">\(p=0.1\)</span> of having the disease, independently from person to person. (The assumption of independence might be unreasonable if the people are in close contact with one another.)</p>
+<p>Let <span class="math inline">\(X\)</span> represent the total number of tests that are conducted.</p>
+</div>
+<ol type="1">
+<li>What are the possible values of <span class="math inline">\(X\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find the distribution of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{E}(X)\)</span>. In what sense is batch testing betting than just testing all 8 individuals initially?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{Var}(X)\)</span> and <span class="math inline">\(\text{SD}(X)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<!-- ::: {#exm-crash-variance}
+Continuing @exm-dice-sim-tactile-ev.
+Let $X$ be the number of vehicles crashes involving fatalities that occur in San Luis Obispo County in a randomly selected week.
+Suppose that $X$ has distribution
+
+| $x$ | $\text{P}(X=x)$ |
+|-----|----------------:|
+| 0   |           0.589 |
+| 1   |           0.312 |
+| 2   |           0.083 |
+| 3   |           0.014 |
+| 4   |           0.002 |
+
+:::
+
+1.  Explain how you could use simulation to approximate $\text{Var}(X)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{Var}(X)$.
+\
+\
+\
+\
+\
+1.  Compute $\text{SD}(X)$ and interpret the value in context.
+\
+\
+\
+\
+\
+ -->
+<div id="exm-sat-z-score" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.4</strong></span> SAT scores have a mean of 1050 and a standard deviation of 200. ACT scores have a mean of 21 and a standard deviation of 5.5. The shape of the distributions of scores is similar for the two tests.</p>
+<p>Darius’s score on the SAT is 1500. Alfred’s score on the ACT is 31. We’ll investigate who scored relatively better on their test.</p>
+</div>
+<ol type="1">
+<li>Compute the deviation from the mean for Darius’s SAT score. How large is this value relative to the standard deviation for SAT scores (which measures, roughly, the average deviation from the mean)?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute the deviation from the mean for Alfred’s ACT score. How large is this value relative to the standard deviation for ACT scores?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Who scored relatively better on their test? Explain.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Could we answer the previous question if we did not know that the shapes were similar?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>Standard deviation provides a “ruler” by which we can judge a particular realized value of a random variable relative to the distribution of values.</li>
+<li>If <span class="math inline">\(X\)</span> is a random variable with expected value <span class="math inline">\(\text{E}(X)\)</span> and standard deviation <span class="math inline">\(\text{SD}(X)\)</span>, then the <strong>standardized random variable</strong> is <span class="math display">\[
+Z = \frac{X - \text{E}(X)}{\text{SD}(X)}
+\]</span></li>
+<li>However, keep in mind that comparing standardized values is most appropriate for distributions that have <em>similar shapes</em>.</li>
+<li>Standardization is most natural for random variables that follow a Normal distribution.</li>
+<li>A Normal distribution has two parameters: its mean (typically denoted <span class="math inline">\(\mu\)</span>) and its standard deviation (typically denoted <span class="math inline">\(\sigma\)</span>).</li>
+<li>For Normal distributions the probability that a value is within (or beyond) a given number of standard deviations from the mean follows a specific pattern called the <a href="sec-empirical-rule">“empirical rule”</a>. For example:
+<ul>
+<li>50% of values are within 0.67 standard deviations of the mean</li>
+<li>68% of values are within 1 standard deviation of the mean</li>
+<li>95% of values are within 2 standard deviations of the mean</li>
+<li>99.7% of values are within 3 standard deviations of the mean</li>
+</ul></li>
+<li>We will study Normal distributions in much more detail later</li>
+</ul>
 
 
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Thanks to Allan Rossman for this example. His <a href="https://askgoodquestions.blog/2020/03/30/39-batch-testing/">blog</a> has more investigations into batch testing, including what happens as <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> change. <a href="https://cosam.calpoly.edu/intersections/2021/innovative-response">Cal Poly</a> implemented versions of batch testing for COVID through <a href="https://www.calpoly.edu/news/massive-team-effort-inside-cal-polys-new-saliva-based-covid-testing-program">saliva samples</a> and <a href="https://mustangnews.net/cal-poly-tests-wastewater-for-covid-19/">wastewater testing</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -693,13 +943,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./discrete-pmf.html" class="pagination-link" aria-label="Discrete Random Variables: Probability Mass Functions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></span>
+      <a href="./approximating-expected-values.html" class="pagination-link" aria-label="Expected Values: Approximation and Some Properties">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Expected Values: Approximation and Some Properties</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./covariance-and-correlation.html" class="pagination-link" aria-label="Covariance and Correlation">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Covariance and Correlation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

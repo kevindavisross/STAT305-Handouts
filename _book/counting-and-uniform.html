@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>References – STAT 305 Handouts</title>
+<title>15&nbsp; Equally Likely Outcomes and Counting Rules – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,26 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -49,8 +30,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="next">
-<link href="./discrete-pmf.html" rel="prev">
+<link href="./discrete-pmf.html" rel="next">
+<link href="./covariance-and-correlation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -89,6 +70,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -101,7 +111,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./counting-and-uniform.html"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Equally Likely Outcomes and Counting Rules</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -218,7 +228,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./counting-and-uniform.html" class="sidebar-item-text sidebar-link">
+  <a href="./counting-and-uniform.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Equally Likely Outcomes and Counting Rules</span></span></a>
   </div>
 </li>
@@ -230,7 +240,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References</span></a>
   </div>
 </li>
@@ -268,7 +278,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">References</h1>
+<h1 class="title"><span id="sec-counting-and-uniform" class="quarto-section-identifier"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Equally Likely Outcomes and Counting Rules</span></span></h1>
 </div>
 
 
@@ -285,11 +295,246 @@ div.csl-indent {
 </header>
 
 
-<div id="refs" role="list" style="display: none">
-
+<ul>
+<li>For a sample space <span class="math inline">\(\Omega\)</span> with finitely many possible outcomes, assuming <strong>equally likely outcomes</strong> corresponds to a probabiliy measure <span class="math inline">\(\text{P}\)</span> which satisfies <span class="math display">\[
+\text{P}(A) = \frac{|A|}{|\Omega|} = \frac{\text{number of outcomes in $A$}}{\text{number of outcomes in $\Omega$}} \qquad{\text{when outcomes are equally likely}}
+\]</span></li>
+<li>Computing probabilities in the equally likely case reduces to just counting outcomes.</li>
+<li>But remember:
+<ul>
+<li>In most situations, outcomes are not equally likely</li>
+<li>Even if the sample space outcomes are equally likely, the possible values of related random variables are usually not.</li>
+</ul></li>
+<li>However, rules for counting outcomes are useful even in situations where the outcomes are not equally likely</li>
+</ul>
+<div id="exm-counting-internet-packets" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.1</strong></span> Suppose that to send an internet packet from the east coast of the US to the west coast, a packet must go through a major east-coast city (Boston, New York, Washington DC, or Atlanta), then a major midwest city (Chicago, St.&nbsp;Louis, or New Orleans), and then a major west-coast city (San Francisco or Los Angeles). How many possible routes are there?</p>
 </div>
+<p><br>
+<br>
+<br>
+<br>
+<br>
+</p>
+<ul>
+<li><strong>Multiplication principle for counting.</strong> Suppose that stage 1 of a process can be completed in any one of <span class="math inline">\(n_1\)</span> ways. Further, suppose that for each way of completing the stage 1, stage 2 can be completed in any one of <span class="math inline">\(n_2\)</span> ways. Then the two-stage process can be completed in any one of <span class="math inline">\(n_1\times n_2\)</span> ways.</li>
+<li>This rule extends naturally to a <span class="math inline">\(\ell\)</span>-stage process, which can then be completed in any one of <span class="math inline">\(n_1\times n_2\times n_3\times\cdots\times n_\ell\)</span> ways.</li>
+<li>In the multiplication principle it is not important whether there is a “first” or “second” stage. What is important is that there are distinct stages, each with its own number of “choices”.</li>
+</ul>
+<div id="exm-ceo1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.2</strong></span> Suppose the board of directors of a corporation has identified 5 candidates — Ariana, Beyonce, Cardi, Drake, Elvis — for three distinct executive positions: chief executive officer (CEO), chief financial officer (CFO), and chief operating officer (COO). In the interest of fairness, the board assigns 3 of the 5 candidates to the positions completely at random. No individual can hold more than one of the positions.</p>
+<p>When calculating probabilities below, consider the sample space of all possible executive teams.</p>
+</div>
+<ol type="1">
+<li>How many executive teams are possible?<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability that Ariana is CEO, Beyonce is CFO, and Cardi is COO?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability that Ariana is CEO and Beyonce is CFO?<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability that Ariana is CEO?<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li><strong>Number of “ordered” arrangements.</strong> The number of “ordered” arrangements of <span class="math inline">\(k\)</span> items, selected <em>without</em> replacement from a set of <span class="math inline">\(n\)</span> distinct items is <span class="math display">\[
+n(n-1)(n-2)\cdots(n-k+1) = \frac{n!}{(n-k)!}
+\]</span></li>
+<li>Recall the <strong>factorial</strong> notation: <span class="math inline">\(m!=m(m-1)(m-2)\cdots (3)(2)(1)\)</span>. For example, <span class="math inline">\(5!=5\times4\times3\times2\times1=120\)</span>. By definition, 0!=1.</li>
+</ul>
+<div id="exm-ceo2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.3</strong></span> Your boss is forming a committee of 3 people for a new project team, and 5 people — Ariana, Beyonce, Cardi, Drake, Elvis— have volunteered to be on the committee. In the interest of fairness, 3 of the 5 people will be selected uniformly at random to form the committee.</p>
+</div>
+<ol type="1">
+<li>How many possible committees consist of Ariana, Beyonce, Cardi? How many executive teams from the previous example consisted of Ariana, Beyonce, Cardi? How is this example different from the executive team example?<br>
+<br>
+<br>
+<br>
+</li>
+<li>How many different possible committees of 3 people can be formed from the 5 volunteers?<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>The following is the relationship between “ordered” and “unordered” counting. <span class="math display">\[\begin{align*}
+    &amp; \quad \left(\text{number of ``ordered'' selections of $k$ from $n$}\right)\\
+        = &amp;\quad \left(\text{number of ``unordered'' selections of $k$ from $n$}\right)\\
+    &amp;\qquad \times\left(\text{number of ways of arranging the $k$ items in order}\right).
+\end{align*}\]</span></li>
+<li>“Ordered” and “unordered” are somewhat misnomers. It is not important whether there is a “first”, “second”, “third”, etc. What is important is whether or not there are <em>distinct stages</em>, each with its own number of “choices”.
+<ul>
+<li>In <a href="#exm-ceo1" class="quarto-xref">Example&nbsp;<span>15.2</span></a>, it doesn’t matter if we pick the CEO first and the CFO second or the CFO first and the CEO second; what does matter is that choosing the CEO is a distinct stage from choosing the CFO.</li>
+</ul></li>
+<li><strong>Number of permutations.</strong> The number of ways of arranging <span class="math inline">\(k\)</span> items in order is <span class="math display">\[
+k\times (k-1)\times (k-2)\times\cdots\times 3\times 2\times1 = k!
+\]</span></li>
+<li><strong>Number of combinations.</strong> The number of ways to choose <span class="math inline">\(k\)</span> items <em>without</em> replacement from a group of <span class="math inline">\(n\)</span> distinct items where <em>“order” does not matter</em>, denoted <span class="math inline">\(\binom{n}{k}\)</span>, is <span class="math display">\[
+\binom{n}{k} = \frac{n(n-1)(n-2)\cdots(n-k+1)}{k!} = \frac{n!}{k!(n-k)!}
+\]</span></li>
+<li>The quantity on the right is just a compact way of representing the quantity in the middle. But since factorials can be very large, it’s best to use the quantity in the middle to compute. In R: <code>choose(n, k)</code>. In Python: <code>math.comb(n, k)</code></li>
+<li>The symbol <span class="math inline">\(\binom{n}{k}\)</span> is by definition equal to the quantity in the middle above. It is read as “<span class="math inline">\(n\)</span> choose <span class="math inline">\(k\)</span>” and is referred to as a <strong>binomial coefficient</strong>.</li>
+</ul>
+<div id="exm-ceo3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.4</strong></span> Continuous <a href="#exm-ceo2" class="quarto-xref">Example&nbsp;<span>15.3</span></a>. Your boss is forming a committee of 3 people for a new project team, and 5 people — Ariana, Beyonce, Cardi, Drake, Elvis— have volunteered to be on the committee. In the interest of fairness, 3 of the 5 people will be selected uniformly at random to form the committee.</p>
+</div>
+<ol type="1">
+<li>Find the probability that the committee consists of Ariana, Beyonce, and Cardi.<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find the probability that Ariana and Beyonce are on the committee.<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find the probability that Ariana is on the committee.<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-counting-card-partition" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.5</strong></span> A standard deck of 52 cards contains 4 suits (hearts, diamonds, spades, clubs) each consisting of 13 different face values (2 through 10, jack, queen, king, ace). The deck is well shuffled and a hand of 5 cards is dealt (without replacement as is usual in practice).</p>
+</div>
+<ol type="1">
+<li>How many possible hands are there?<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability the hand contains exactly 4 hearts?<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability the hand contains 3 aces and 2 kings?<br>
+<br>
+<br>
+<br>
+</li>
+<li>What is the probability the hand is a full house (3 cards of one face value and 2 of another)?<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<div id="exm-capture-hypergeometric" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.6</strong></span> <em>Capture-recapture</em> sampling is a technique often used to estimate the size of a population. Suppose you want to estimate <span class="math inline">\(N\)</span>, the number of <a href="https://www.parks.ca.gov/?page_id=30273">monarch butterflies in Pismo Beach</a>. Assume that <span class="math inline">\(N\)</span> is a fixed but unknown number<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>; the population size doesn’t change over time. You first capture a sample of <span class="math inline">\(N_1\)</span> butterflies, selected randomly without replacement, and tag them and release them. At a later date, you then capture a second sample of <span class="math inline">\(n\)</span> butterflies, selected randomly from the <span class="math inline">\(N\)</span> butterflies <em>without</em> replacement. Let <span class="math inline">\(X\)</span> be the number of butterflies in the second sample that have tags (because they were also caught in the first sample). (Assume that the tagging has no effect on behavior, so that selection in the first sample is independent of selection in the second sample.)</p>
+<p>In practice, <span class="math inline">\(N\)</span> is unknown and the goal is to estimate it based on what we observe for <span class="math inline">\(X\)</span>; we’ll see later how to do this later. For now, we’ll start with a simpler, but unrealistic, example where <span class="math inline">\(N\)</span> is known. Assume there are <span class="math inline">\(N=52\)</span> butterflies, <span class="math inline">\(N_1 = 13\)</span> are tagged in the first sample, and <span class="math inline">\(n=5\)</span> is the size of the second sample.</p>
+</div>
+<ol type="1">
+<li><p>What are the possible values of <span class="math inline">\(X\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Describe in detail how you could use simulation to approximate the distribution of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Find <span class="math inline">\(\text{P}(X = 0)\)</span> in two ways. Interpret the value in context.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Find the probability that in the second sample the first butterfly selected is tagged but the rest are not.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Find the probability that in the second sample the first four butterflies selected are not tagged but the fifth is.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Find <span class="math inline">\(\text{P}(X = 1)\)</span> in two ways. Interpret the value in context.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Find <span class="math inline">\(\text{P}(X = 2)\)</span> in two ways. Interpret the value in context.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Suggest a formula for determining the distribution of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Suggest a simple shortcut formula for <span class="math inline">\(\text{E}(X)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+<li><p>Use the distribution of <span class="math inline">\(X\)</span> to compute <span class="math inline">\(\text{E}(X)\)</span>. Does it match with the shortcut formula? Intepret the value in context.<br>
+<br>
+<br>
+<br>
+<br>
+</p></li>
+</ol>
+<!-- 1.  Now suppose that $N$ is unknown and that there are $N_1 = 1000$ tagged butterflies (from the first sample).
+In a later sample of $n=100$ butterflies, $x = 5$ are tagged.
+What is an intuitive estimate of $N$ based on this sample?
+\
+\
+\
+\
+\ -->
+<ul>
+<li>Consider a population of size <span class="math inline">\(N=N_1+N_0\)</span> (e.g., a box with <span class="math inline">\(N\)</span> tickets)
+<ul>
+<li>Each individual in the population can be classified as “success” (1) or “failure” (0)</li>
+<li><span class="math inline">\(N_1\)</span> individuals in the population are “success” (1)</li>
+<li><span class="math inline">\(N_0\)</span> individuals in the population are “failure” (0)</li>
+</ul></li>
+<li>Randomly select a sample of <span class="math inline">\(n\)</span> individuals from a population with <span class="math inline">\(N_1\)</span> successes and <span class="math inline">\(N_0\)</span> failures <em>without replacement</em> and let <span class="math inline">\(X\)</span> be the number of individuals in the selected sample that are successes. The distribution of <span class="math inline">\(X\)</span> is defined to be the <strong>Hypergeometric(<span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_0\)</span>, <span class="math inline">\(n\)</span>) distribution</strong>.
+<ul>
+<li>If successes are labeled as 1 and failures as 0, the random variable <span class="math inline">\(X\)</span> which counts the number of successes in the sample is equal to the sum of the 1/0 labels of the individuals in the sample.</li>
+</ul></li>
+<li>A discrete random variable <span class="math inline">\(X\)</span> has a <strong>Hypergeometric distribution</strong> with with parameters <span class="math inline">\(n, N_0, N_1\)</span>, all nonnegative integers—with <span class="math inline">\(N = N_0+N_1\)</span> and <span class="math inline">\(p=N_1/N\)</span>—if its distribution satisfies<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="math display">\[\begin{align*}
+\text{P}(X=x) &amp; = \frac{\binom{N_1}{x}\binom{N_0}{n-x}}{\binom{N_0+N_1}{n}},\quad  x = 0, 1, \ldots, n;\, x \le N_1;\, x \ge n - N_0  \\
+\end{align*}\]</span></li>
+<li>If <span class="math inline">\(X\)</span> has a Hypergeometric(<span class="math inline">\(n\)</span>, <span class="math inline">\(N_1\)</span>, <span class="math inline">\(N_0\)</span>) distribution <span class="math display">\[\begin{align*}
+\text{E}(X) &amp; = np\\
+\text{Var}(X) &amp; = np(1-p)\left(\frac{N-n}{N-1}\right)
+\end{align*}\]</span></li>
+</ul>
 
 
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Another approach—a <em>Bayesian</em> approach—is to treat the unknown number <span class="math inline">\(N\)</span> as a <em>random variable</em> with a distribution that quantifies its uncertainty.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>We must have <span class="math inline">\(X\le N_1\)</span> since there can’t be more successes in the sample than there are in the population. Similarly, we must have <span class="math inline">\(X\ge n - N_0\)</span>, that is <span class="math inline">\(n-X\le N_0\)</span>, since there can’t be more failures in the sample than there are in the population. Often the population sizes <span class="math inline">\(N_0\)</span> and <span class="math inline">\(N_1\)</span> are large relative to the sample size <span class="math inline">\(n\)</span> in which case <span class="math inline">\(X\)</span> simply takes values <span class="math inline">\(0, 1,\ldots, n\)</span>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -693,13 +938,13 @@ div.csl-indent {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./discrete-pmf.html" class="pagination-link" aria-label="Discrete Random Variables: Probability Mass Functions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></span>
+      <a href="./covariance-and-correlation.html" class="pagination-link" aria-label="Covariance and Correlation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Covariance and Correlation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <span class="nav-page-text">Summary of Some Common Distributions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./discrete-pmf.html" class="pagination-link" aria-label="Discrete Random Variables: Probability Mass Functions">
+        <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

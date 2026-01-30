@@ -1,4 +1,4 @@
-# Percentiles for Normal Distributions (Empirical Rule) {.unnumbered}
+# Percentiles for Normal Distributions (Empirical Rule) {#sec-empirical-rule .unnumbered}
 
 {{< include _r_setup.qmd >}}
 

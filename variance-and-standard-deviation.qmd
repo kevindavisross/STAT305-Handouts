@@ -196,7 +196,52 @@ axis(1, xs)
 \
 \
 
-::: {#exm-crash-variance}
+::: {#exm-batch-testing}
+This is a simplified example of *batch testing*[^batch-note] for a disease. 
+In batch testing, specimens (like blood or saliva samples) from a group of people are pooled together into one batch, which then undergoes one test. 
+If none of the people has the disease, then the batch test result will be negative, and no further tests are required. 
+But if at least one person in the batch has the disease, then the batch test result will be positive, and then each person in the batch must be tested individually.
+(We're assuming no false positives and no false negatives for this example.)
+
+Suppose that $n=8$ people to be tested are split into two groups of 4 people each. 
+Within each group of 4 people, specimens are combined into a batch to be tested. 
+If anyone in the batch has the disease, then the batch test will be positive, and those 4 people will need to be tested individually. 
+Assume that each person has probability $p=0.1$ of having the disease, independently from person to person. 
+(The assumption of independence might be unreasonable if the people are in close contact with one another.)
+
+Let $X$ represent the total number of tests that are conducted.
+
+:::
+
+[^batch-note]: Thanks to Allan Rossman for this example. His [blog](https://askgoodquestions.blog/2020/03/30/39-batch-testing/) has more investigations into batch testing, including what happens as $n$ and $p$ change. [Cal Poly](https://cosam.calpoly.edu/intersections/2021/innovative-response) implemented versions of batch testing for COVID through [saliva samples](https://www.calpoly.edu/news/massive-team-effort-inside-cal-polys-new-saliva-based-covid-testing-program) and [wastewater testing](https://mustangnews.net/cal-poly-tests-wastewater-for-covid-19/).
+
+1.  What are the possible values of $X$?
+\
+\
+\
+\
+\
+1.  Find the distribution of $X$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{E}(X)$.
+In what sense is batch testing betting than just testing all 8 individuals initially?
+\
+\
+\
+\
+\
+1.  Compute $\text{Var}(X)$ and $\text{SD}(X)$.
+\
+\
+\
+\
+\
+
+<!-- ::: {#exm-crash-variance}
 Continuing @exm-dice-sim-tactile-ev.
 Let $X$ be the number of vehicles crashes involving fatalities that occur in San Luis Obispo County in a randomly selected week.
 Suppose that $X$ has distribution
@@ -229,7 +274,7 @@ Suppose that $X$ has distribution
 \
 \
 \
-
+ -->
 
 
 
@@ -239,7 +284,8 @@ SAT scores have a mean of 1050 and a standard deviation of 200.
 ACT scores have a mean of 21 and a standard deviation of 5.5.
 The shape of the distributions of scores is similar for the two tests.
 
-Darius's score on the SAT is 1500.  Alfred's score on the ACT is 31.
+Darius's score on the SAT is 1500. 
+Alfred's score on the ACT is 31.
 We'll investigate who scored relatively better on their test.
 
 :::
@@ -280,13 +326,9 @@ $$
 -   However, keep in mind that comparing standardized values is most appropriate for distributions that have *similar shapes*.
 -   Standardization is most natural for random variables that follow a Normal distribution.
 -   A Normal distribution has two parameters: its mean (typically denoted $\mu$) and its standard deviation (typically denoted $\sigma$).
--   For Normal distributions the probability that a value is within (or beyond) a given number of standard deviations from the mean follows a specific pattern called the "empirical rule". For example:
+-   For Normal distributions the probability that a value is within (or beyond) a given number of standard deviations from the mean follows a specific pattern called the ["empirical rule"](sec-empirical-rule). For example:
+    -   50% of values are within 0.67 standard deviations of the mean
     -   68% of values are within 1 standard deviation of the mean
     -   95% of values are within 2 standard deviations of the mean
     -   99.7% of values are within 3 standard deviations of the mean
 -   We will study Normal distributions in much more detail later
-
-::: {#exm-meeting-tactile-sim-normal-empirical-rule}
-The spinner in @exm-meeting-tactile-sim-normal represents the Normal(30, 10) distribution.
-Explain how this spinner reflects the empirical rule
-:::

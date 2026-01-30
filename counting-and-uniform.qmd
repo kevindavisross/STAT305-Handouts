@@ -41,7 +41,7 @@ What is important is that there are distinct stages, each with its own number of
 
 
 ::: {#exm-ceo1}
-Suppose the board of directors of a corporation has identified 5 candidates --- Ariana, Beyonce, Cardi, Drake, Elvis --- for three executive positions: chief executive officer (CEO), chief financial officer (CFO), and chief operating officer (COO). 
+Suppose the board of directors of a corporation has identified 5 candidates --- Ariana, Beyonce, Cardi, Drake, Elvis --- for three distinct executive positions: chief executive officer (CEO), chief financial officer (CFO), and chief operating officer (COO). 
 In the interest of fairness, the board assigns 3 of the 5 candidates to the positions completely at random. No individual can hold more than one of the positions.
 
 When calculating probabilities below, consider the sample space of all possible executive teams.
@@ -79,13 +79,10 @@ $$
 Your boss is forming a committee of 3 people for a new project team, and 5 people --- Ariana, Beyonce, Cardi, Drake, Elvis--- have volunteered to be on the committee.  In the interest of fairness, 3 of the 5 people will be selected uniformly at random to form the committee.
 :::
 
-1.  How is this situation different from the executive team example?
-\
-\
-\
-\
+
 1.  How many possible committees consist of Ariana, Beyonce, Cardi?
-How many executive teams consisted of Ariana, Beyonce, Cardi?
+How many executive teams from the previous example consisted of Ariana, Beyonce, Cardi? 
+How is this example different from the executive team example?
 \
 \
 \
@@ -104,13 +101,13 @@ How many executive teams consisted of Ariana, Beyonce, Cardi?
 \end{align*}
 -   "Ordered" and "unordered" are somewhat misnomers.
 It is not important whether there is a "first", "second", "third", etc.
-What is important is that there are distinct stages, each with its own number of "choices".
-    -   In @exm-ceo1, it doesn't matter if we pick the CEO first and the CFO second; what does matter is that choosing the CEO is a distinct stage from choosing the CFO.
+What is important is whether or not there are *distinct stages*, each with its own number of "choices".
+    -   In @exm-ceo1, it doesn't matter if we pick the CEO first and the CFO second or the CFO first and the CEO second; what does matter is that choosing the CEO is a distinct stage from choosing the CFO.
 -   **Number of permutations.**  The number of ways of arranging $k$ items in order is
 $$
 k\times (k-1)\times (k-2)\times\cdots\times 3\times 2\times1 = k!
 $$
--   **Number of combinations.**  The number of ways to choose $k$ items without replacement from a group of $n$ distinct items where *"order" does not matter*, denoted $\binom{n}{k}$, is
+-   **Number of combinations.**  The number of ways to choose $k$ items *without* replacement from a group of $n$ distinct items where *"order" does not matter*, denoted $\binom{n}{k}$, is
 $$
 \binom{n}{k} = \frac{n(n-1)(n-2)\cdots(n-k+1)}{k!} = \frac{n!}{k!(n-k)!}
 $$
@@ -148,7 +145,7 @@ In the interest of fairness, 3 of the 5 people will be selected uniformly at ran
 ::: {#exm-counting-card-partition}
 
 A standard deck of 52 cards contains 4 suits (hearts, diamonds, spades, clubs)  each consisting of 13 different face values (2 through 10, jack, queen, king, ace). 
-The deck is well shuffled and a hand of 5 cards is dealt.
+The deck is well shuffled and a hand of 5 cards is dealt (without replacement as is usual in practice).
 :::
 
 1.  How many possible hands are there?
@@ -156,7 +153,7 @@ The deck is well shuffled and a hand of 5 cards is dealt.
 \
 \
 \
-1.  What is the probability the hand contains 4 aces?
+1.  What is the probability the hand contains exactly 4 hearts?
 \
 \
 \
@@ -175,17 +172,20 @@ The deck is well shuffled and a hand of 5 cards is dealt.
 
 
 ::: {#exm-capture-hypergeometric}
-Capture-recapture sampling is a technique often used to estimate the size of a population.
-Suppose you want to estimate $N$, the number of [monarch butterflies in Pismo Beach](https://www.parks.ca.gov/?page_id=30273).  (Assume that $N$ is a fixed but unknown number; the population size doesn't change over time.)
+*Capture-recapture* sampling is a technique often used to estimate the size of a population.
+Suppose you want to estimate $N$, the number of [monarch butterflies in Pismo Beach](https://www.parks.ca.gov/?page_id=30273). 
+Assume that $N$ is a fixed but unknown number[^capture-bayes]; the population size doesn't change over time.
 You first capture a sample of $N_1$ butterflies, selected randomly without replacement, and tag them and release them.
-At a later date, you then capture a second sample of $n$ butterflies, selected randomly *without* replacement.
+At a later date, you then capture a second sample of $n$ butterflies, selected randomly from the $N$ butterflies *without* replacement.
 Let $X$ be the number of butterflies in the second sample that have tags (because they were also caught in the first sample).
 (Assume that the tagging has no effect on behavior, so that selection in the first sample is independent of selection in the second sample.)
 
-In practice, $N$ is unknown.
-But let's start with a simpler, but unrealistic, example where there are $N=52$ butterflies, $N_1 = 13$ are tagged in the first sample, and $n=5$ is the size of the second sample.
+In practice, $N$ is unknown and the goal is to estimate it based on what we observe for $X$; we'll see later how to do this later.
+For now, we'll start with a simpler, but unrealistic, example where $N$ is known. 
+Assume there are $N=52$ butterflies, $N_1 = 13$ are tagged in the first sample, and $n=5$ is the size of the second sample.
 :::
 
+[^capture-bayes]: Another approach---a *Bayesian* approach---is to treat the unknown number $N$ as a *random variable* with a distribution that quantifies its uncertainty.
 
 1.  What are the possible values of $X$?
 \
@@ -201,7 +201,8 @@ But let's start with a simpler, but unrealistic, example where there are $N=52$ 
 \
 \
 
-1.  Find $\text{P}(X = 0)$ in two ways.
+1.  Find $\text{P}(X = 0)$ in two ways. 
+Interpret the value in context.
 \
 \
 \
@@ -222,14 +223,16 @@ But let's start with a simpler, but unrealistic, example where there are $N=52$ 
 \
 \
 
-1.  Find $\text{P}(X = 1)$ in two ways.
+1.  Find $\text{P}(X = 1)$ in two ways. 
+Interpret the value in context.
 \
 \
 \
 \
 \
 
-1.  Find $\text{P}(X = 2)$ in two ways.
+1.  Find $\text{P}(X = 2)$ in two ways. 
+Interpret the value in context.
 \
 \
 \
@@ -243,7 +246,16 @@ But let's start with a simpler, but unrealistic, example where there are $N=52$ 
 \
 \
 
-1.  Suggest a simple shortcut formula for the expected value of $X$.
+1.  Suggest a simple shortcut formula for $\text{E}(X)$.
+\
+\
+\
+\
+\
+
+1.  Use the distribution of $X$ to compute $\text{E}(X)$. 
+Does it match with the shortcut formula?
+Intepret the value in context.
 \
 \
 \
@@ -259,9 +271,15 @@ What is an intuitive estimate of $N$ based on this sample?
 \
 \ -->
 
-
--   A discrete random variable $X$ has a **Hypergeometric distribution** with parameters
-$n, N_0, N_1$, all nonnegative integers --- with $N = N_0+N_1$ and $p=N_1/N$ --- if its distribution satisfies^[We must have $X\le N_1$ since there can't be more successes in the sample than there are in the population. Similarly, we must have $X\ge n - N_0$, that is $n-X\le N_0$, since there can't be more failures in the sample than there are in the population. Often the population sizes $N_0$ and $N_1$ are large relative to the sample size $n$ in which case $X$ simply takes values $0, 1,\ldots, n$.]
+-   Consider a population of size $N=N_1+N_0$ (e.g., a box with $N$ tickets)
+    -   Each individual in the population can be classified as "success" (1) or "failure" (0)
+    -   $N_1$ individuals in the population are "success" (1)
+    -   $N_0$ individuals in the population are "failure" (0)
+-   Randomly select a sample of $n$ individuals from a population with $N_1$ successes and $N_0$ failures *without replacement* and let $X$ be the number of individuals in the selected sample that are successes. 
+The distribution of $X$ is defined to be the **Hypergeometric($N_1$, $N_0$, $n$) distribution**.
+    -   If successes are labeled as 1 and failures as 0, the random variable $X$ which counts the number of successes in the sample is equal to the sum of the 1/0 labels of the individuals in the sample.
+-   A discrete random variable $X$ has a **Hypergeometric distribution** with with parameters
+$n, N_0, N_1$, all nonnegative integers---with $N = N_0+N_1$ and $p=N_1/N$---if its distribution satisfies[^hyper-possible-values]
 \begin{align*}
 \text{P}(X=x) & = \frac{\binom{N_1}{x}\binom{N_0}{n-x}}{\binom{N_0+N_1}{n}},\quad  x = 0, 1, \ldots, n;\, x \le N_1;\, x \ge n - N_0  \\
 \end{align*}
@@ -270,12 +288,9 @@ $n, N_0, N_1$, all nonnegative integers --- with $N = N_0+N_1$ and $p=N_1/N$ ---
 \text{E}(X) & = np\\
 \text{Var}(X) & = np(1-p)\left(\frac{N-n}{N-1}\right)
 \end{align*}
--   Imagine a box containing $N=N_1+N_0$ tickets
-    -   $N_1$ of which are labeled 1 ("success") and
-$N_0$ of which are labeled 0 ("failure").
-    -   Randomly select $n$ tickets from the box *without replacement* and let $X$ be the number of tickets in the sample that are labeled 1.
-    -   Then $X$ has a Hypergeometric($N_1$, $N_0$, $n$) distribution.
-    -   Since the tickets are labeled 1 and 0, the random variable $X$ which counts the number of successes is equal to the sum of the 1/0 values on the tickets.
+
+
+[^hyper-possible-values]: We must have $X\le N_1$ since there can't be more successes in the sample than there are in the population. Similarly, we must have $X\ge n - N_0$, that is $n-X\le N_0$, since there can't be more failures in the sample than there are in the population. Often the population sizes $N_0$ and $N_1$ are large relative to the sample size $n$ in which case $X$ simply takes values $0, 1,\ldots, n$.
 
 
 
