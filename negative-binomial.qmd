@@ -3,9 +3,11 @@
 
 ::: {#exm-nb-bball-math}
 Suppose that 86% of Cal Poly students are CA residents.
-Randomly select Cal Poly students one at a time, independently, until you select 5 CA residents, then stop.
+Randomly select Cal Poly students one at a time, independently[^nb-independent], until you select 5 CA residents, then stop.
 Let $X$ be the total number of students selected.
 :::
+
+[^nb-independent]: Technically this means *with replacement*, but since the population of Cal Poly students is much larger than the sample we're selecting then independence is a reasonable assumption even if selecting *without* replacement.
 
 1.  Does $X$ have a Binomial distribution? 
 A Geometric distribution?
@@ -22,7 +24,7 @@ Is $X$ discrete or continuous?
 \
 \
 \
-1.  Describe how you could use a tactile simulation to simulate a single value of $X$.
+<!-- 1.  Describe how you could use a tactile simulation to simulate a single value of $X$.
 \
 \
 \
@@ -33,7 +35,7 @@ Is $X$ discrete or continuous?
 \
 \
 \
-\
+\ -->
 1.  Describe in words how you could use simulation to approximate the distribution of $X$.
 \
 \
@@ -154,6 +156,8 @@ The distribution of $X$ is defined to be the **Negative Binomial($r$, $p$) distr
 \begin{align*}
 p_{X}(x) & = \binom{x-1}{r-1}p^r(1-p)^{x-r}, & x=r, r+1, r+2, \ldots
 \end{align*}
+    -   In the NegativeBinomial($r$, $p$) situation, there are $\binom{x-1}{x-r}=\binom{x-1}{r-1}$ S/F sequences that result in exactly $x-r$ failures---and thus $r-1$ succeses---in the first $x-1$ trials and success on trial $x$
+    -   and each of these sequences has probability $p^r(1-p)^{x-r}$
 -   If $X$ has a NegativeBinomial($r$, $p$) distribution
 \begin{align*}
 \text{E}(X) & = \frac{r}{p}\\

@@ -1,100 +1,8 @@
 # Poisson Approximation
 
+-   Poisson models are often used to model the distribution of random variables that count the number of "relatively rare" events that occur over a certain interval of time/in a certain location 
 
--   Binomial and Negative Binomial models have several restrictive assumptions that might not be satisfied in practice
--   Poisson models are more flexible and are often used to model the distribution of random variables that count the number of "relatively rare" events that occur over a certain interval of time/in a certain location 
-
-
-
-::: {#exm-poisson-matching}
-Recall the matching problem with a general $n$: there are $n$ objects that are shuffled and placed uniformly at random in $n$ spots with one object per spot. 
-Note: $n$ is a fixed number, but we are considering different values of it.
-
-We have seen that $\text{E}(X)=1$ for any $n$ and that unless $n$ is small (e.g., $n \le 6$) the approximate distribution of $X$ is the Poisson(1) distribution.
-
-:::
-
-```{r}
-#| label: tbl-matching-poisson-distribution
-#| echo: false
-#| warning: false
-#| tbl-cap: "Poisson(1) distribution, the approximate distribution of $X$, the number of matches in the matching problem for general $n$ and uniformly random placement of objects in spots."
-
-library(tidyverse)
-library(kableExtra)
-
-y = 0:7
-p = dpois(y, 1)
-
-kbl(
-  data.frame(y, p),
-  col.names = c("x", "P(X=x)"),
-  booktabs = TRUE,
-  digits = 4
-) |>
-  kable_styling()
-
-```  
-
-
-
-1.  Does $X$ have a Binomial distribution? 
-Consider: What is a trial? 
-What is success? 
-Is the number of trials fixed? 
-Is the probability of success the same on each trial? 
-Are the trials independent?
-\
-\
-\
-\
-\
-1.  Starting with $x=0$, describe the distributon of $X$ in terms of relative likelihoods: "1 is [blank] times as likely as 0", "2 is [blank] times as likely as 1", etc
-\
-\
-\
-\
-\
-1.  Specify the pmf of $X$.
-\
-\
-\
-\
-\
-1.  Use the pmf to compute $\text{E}(X)$.
-\
-\
-\
-\
-\
-1.  Use the pmf to compute $\text{Var}(X)$.
-\
-\
-\
-\
-\
-
-
--   A random variable $X$ has a **Poisson distribution** with parameter $\mu>0$ if the possible values are $0, 1, 2, \ldots$ and the pmf follows the
-$$
-\text{Poisson(}\mu\text{) pattern:}\quad x \text{ is } \frac{\mu}{x} \text{ as likely as } x-1 \quad \text{ (for } x = 1, 2, 3, \ldots)
-$$
--   As a function of $x=0, 1, 2, \ldots$, a Poisson($\mu$) pmf increases for $x<\mu$ and then decreases for $x >\mu$
-    -   If $\mu$ is a whole number, then the Poisson pmf assigns the same probability to the values $\mu$ and $\mu-1$.
-    -   If $\mu<1$ then $x=0$ has the highest probability and the pmf decreases from there.
--   A discrete random variable $X$ has a Poisson distribution with parameter $\mu>0$ if and only if its probability mass function $p_X$ satisfies
-$$
-p_X(x) = \frac{e^{-\mu}\mu^x}{x!}, \quad x=0,1,2,\ldots
-$$
--  The shape of a Poisson pmf as a function of $x$ is given by $\mu^x/x!$. 
-The constant $e^{-\mu}$ simply renormalizes the heights of the pmf so  that the probabilities sum to 1.
--   If $X$ has a Poisson($\mu$) distribution then
-\begin{align*}
-\text{E}(X) & = \mu\\
-\text{Var}(X) & = \mu
-\end{align*}
-
-::: {#exm-homerun-poisson}
+::: {#exm-homerun-poisson-assumptions}
 
 Let $X$ be the number of home runs hit (in total by both teams) in a randomly selected Major League Baseball game.
 Assume that $X$ has a Poisson(2.4) distribution.
@@ -118,93 +26,9 @@ Assume that $X$ has a Poisson(2.4) distribution.
 \
 \
 \
-1.  Interpret the parameter 2.4 in context.
-\
-\
-\
-\
-\
-1.  Compute $\text{P}(X = 2.4)$.
-\
-\
-\
-\
-\
-1.  Identify the most likely value of $X$.
-\
-\
-\
-\
-\
-1.  Specify the pmf of $X$.
-\
-\
-\
-\
-\
-1.  Compute $\text{P}(X = 0)$ and interpret the value in context.
-\
-\
-\
-\
-\
-1.  Construct a table and spinner corresponding to the distribution of $X$.
-\
-\
-\
-\
-\
 
-
-
-::: {#exm-poisson-aggregation}
-Suppose that the number of fatal crashes in SLO County in a week follows, approximately, a Poisson(0.53) distribution, independently from week to week.
-Let $X$ be the number of fatal crashes in a period of 4 consecutive weeks (close enough to a "month").
-
-:::
-
-1.  What is $\text{E}(X)$? 
-You should be able to compute it without knowing the distribution of $X$.
-\
-\
-\
-\
-\
-1.  Compute $\text{P}(X = 0)$.
-\
-\
-\
-\
-\
-1.  Compute $\text{P}(X = 1)$.
-\
-\
-\
-\
-\
-1.  How could you use simulation to approximate the distribution of $X$?
-\
-\
-\
-\
-\
-1.  Use simulation to approximate the distribution of $X$. 
-Does the approximate distribution follow (approximately) the Poisson pattern?
-\
-\
-\
-\
-\
-1.  Use a Poisson pmf to compute $\text{P}(X = 5)$.
-\
-\
-\
-\
-\
-
--   **Poisson aggregation.** If $X$ and $Y$ are independent, $X$ has a Poisson($\mu_X$) distribution,  and $Y$ has a Poisson($\mu_Y$) distribution, then $X+Y$ has a Poisson($\mu_X+\mu_Y$) distribution.
--   If component counts are independent and each has a Poisson distribution, then the total count also has a Poisson distribution.
-
+-   Binomial and Negative Binomial models have several restrictive assumptions that might not be satisfied in practice
+-   Poisson models are more flexible and are often used to model the distribution of random variables that count the number of "relatively rare" events that occur over a certain interval of time/in a certain location 
 
 ::: {#exm-poisson-birthday}
 Recall the birthday problem: in a group of $n$ people what is the probability that at least two have the same birthday? 
@@ -228,13 +52,13 @@ If so, what is it?
 \
 \
 1.  Are any *two* trials independent? 
-To answer this questions, suppose that three people in the group are Bill, Frank, and Julia and consider any *two* of the trials that involve these three people.
+To answer this questions, suppose that three people in the group are Abe, Bill, and Charles and consider any *two* of the trials that involve these three people.
 \
 \
 \
 \
 \
-1.  Are any *three* trials independent?  Consider the three trials that involve Bill, Frank, and Julia.
+1.  Are any *three* trials independent? Consider the three trials that involve Abe, Bill, and Charles.
 \
 \
 \
@@ -275,7 +99,7 @@ Then $N$ has an approximate Poisson distribution with parameter $\text{E}(N) = \
 
 
 ::: {#exm-poisson-birthday-three}
-Use Poisson approximation to approximate that probability that at least *three* people in a group of $n$ people share a birthday. 
+Use Poisson approximation to approximate the probability that at least *three* people in a group of $n$ people share a birthday. 
 How large does $n$ need to be for the probability to be greater than 0.5?
 :::
 

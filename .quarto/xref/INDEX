@@ -58,5 +58,20 @@
   },
   "discrete-pmf.qmd": {
     "discrete-pmf.html": "ad64a1ff"
+  },
+  "binomial.qmd": {
+    "binomial.html": "68832b5f"
+  },
+  "negative-binomial.qmd": {
+    "negative-binomial.html": "0d0a0a41"
+  },
+  "poisson.qmd": {
+    "poisson.html": "46f73a80"
+  },
+  "poisson-approximation.qmd": {
+    "poisson-approximation.html": "0a9b19a0"
+  },
+  "continuous-rv.qmd": {
+    "continuous-rv.html": "b62ca37b"
   }
 }

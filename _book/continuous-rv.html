@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Percentiles for Normal Distributions (Empirical Rule) – STAT 305 Handouts</title>
+<title>21&nbsp; Continuous Random Variables – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,7 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./distribution-summary.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./poisson-approximation.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -73,6 +74,35 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -85,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./distribution-summary.html">Appendices</a></li><li class="breadcrumb-item"><a href="./normal-empirical-rule.html">Percentiles for Normal Distributions (Empirical Rule)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./continuous-rv.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Continuous Random Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -238,7 +268,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./continuous-rv.html" class="sidebar-item-text sidebar-link">
+  <a href="./continuous-rv.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Continuous Random Variables</span></span></a>
   </div>
 </li>
@@ -265,7 +295,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./normal-empirical-rule.html" class="sidebar-item-text sidebar-link active">
+  <a href="./normal-empirical-rule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Percentiles for Normal Distributions (Empirical Rule)</span></a>
   </div>
 </li>
@@ -280,9 +310,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./distribution-summary.html">Appendices</a></li><li class="breadcrumb-item"><a href="./normal-empirical-rule.html">Percentiles for Normal Distributions (Empirical Rule)</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-empirical-rule" class="quarto-section-identifier">Percentiles for Normal Distributions (Empirical Rule)</span></h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Continuous Random Variables</span></h1>
 </div>
 
 
@@ -299,273 +329,404 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div id="fig-normal-cdf-def-appendix" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-normal-cdf-def-appendix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-normal-cdf-def-appendix" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-normal-cdf-def-appendix-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-normal-cdf-def-appendix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal-empirical-rule_files/figure-html/fig-normal-cdf-def-appendix-1.png" class="img-fluid figure-img" data-ref-parent="fig-normal-cdf-def-appendix" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-normal-cdf-def-appendix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Percentiles highlighted in 0.5 increments of standard deviations from the mean
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-normal-cdf-def-appendix" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-normal-cdf-def-appendix-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-normal-cdf-def-appendix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal-empirical-rule_files/figure-html/fig-normal-cdf-def-appendix-2.png" class="img-fluid figure-img" data-ref-parent="fig-normal-cdf-def-appendix" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-normal-cdf-def-appendix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Deciles highligted in terms of standard deviations from the mean
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-cdf-def-appendix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: The Normal(0, 1) cdf. Provides the cdf for any Normal distribution if the variable is measured in <em>standard deviations from the mean</em>. It’s the same cdf in both figures just with different values highlighted.
-</figcaption>
-</figure>
-</div>
-<div id="tbl-normal-cdf-def-appendix" class="quarto-layout-panel anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-normal-cdf-def-appendix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1: Select percentiles for a Normal distribution in terms of standard deviations from the mean
-</figcaption>
-<div aria-describedby="tbl-normal-cdf-def-appendix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-normal-cdf-def-appendix" style="flex-basis: 50.0%;justify-content: center;">
-<div id="tbl-normal-cdf-def-appendix-1" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
-<figure class="quarto-float quarto-subfloat-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-normal-cdf-def-appendix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) In 0.5 increments of standard deviations from the mean
-</figcaption>
-<div aria-describedby="tbl-normal-cdf-def-appendix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-normal-cdf-def-appendix-1" class="table do-not-create-environment caption-top" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Percentile</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Standard deviations from the mean</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">0.02%</td>
-<td style="text-align: right;">-3.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">0.1%</td>
-<td style="text-align: right;">-3.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">0.6%</td>
-<td style="text-align: right;">-2.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">2.3%</td>
-<td style="text-align: right;">-2.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">6.7%</td>
-<td style="text-align: right;">-1.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">15.9%</td>
-<td style="text-align: right;">-1.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">30.9%</td>
-<td style="text-align: right;">-0.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">50%</td>
-<td style="text-align: right;">0.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">69.1%</td>
-<td style="text-align: right;">0.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">84.1%</td>
-<td style="text-align: right;">1.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">93.3%</td>
-<td style="text-align: right;">1.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">97.7%</td>
-<td style="text-align: right;">2.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">99.4%</td>
-<td style="text-align: right;">2.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">99.9%</td>
-<td style="text-align: right;">3.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">99.98%</td>
-<td style="text-align: right;">3.5</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="tbl-normal-cdf-def-appendix" style="flex-basis: 50.0%;justify-content: center;">
-<div id="tbl-normal-cdf-def-appendix-2" class="table do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="margin-left: auto; margin-right: auto;">
-<figure class="quarto-float quarto-subfloat-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="tbl-normal-cdf-def-appendix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Deciles and quantiles as standard deviations from the mean
-</figcaption>
-<div aria-describedby="tbl-normal-cdf-def-appendix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="tbl-normal-cdf-def-appendix-2" class="table do-not-create-environment caption-top" data-quarto-postprocess="true">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Percentile</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Standard deviations from the mean</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">1%</td>
-<td style="text-align: right;">-2.33</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">5%</td>
-<td style="text-align: right;">-1.64</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">10%</td>
-<td style="text-align: right;">-1.28</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">20%</td>
-<td style="text-align: right;">-0.84</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">25%</td>
-<td style="text-align: right;">-0.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">30%</td>
-<td style="text-align: right;">-0.52</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">40%</td>
-<td style="text-align: right;">-0.25</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">50%</td>
-<td style="text-align: right;">0.00</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">60%</td>
-<td style="text-align: right;">0.25</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">70%</td>
-<td style="text-align: right;">0.52</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">75%</td>
-<td style="text-align: right;">0.67</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">80%</td>
-<td style="text-align: right;">0.84</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">90%</td>
-<td style="text-align: right;">1.28</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">95%</td>
-<td style="text-align: right;">1.64</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">99%</td>
-<td style="text-align: right;">2.33</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-</div>
-</div>
-</div>
-</figure>
-</div>
-<div id="fig-normal-cdf-spinner-appendix" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-normal-cdf-spinner-appendix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-normal-cdf-spinner-appendix" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-normal-cdf-spinner-appendix-1" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-normal-cdf-spinner-appendix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal-empirical-rule_files/figure-html/fig-normal-cdf-spinner-appendix-1.png" class="img-fluid figure-img" data-ref-parent="fig-normal-cdf-spinner-appendix" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-normal-cdf-spinner-appendix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Each sector represents an interval with 5% probability
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-normal-cdf-spinner-appendix" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-normal-cdf-spinner-appendix-2" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-normal-cdf-spinner-appendix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal-empirical-rule_files/figure-html/fig-normal-cdf-spinner-appendix-2.png" class="img-fluid figure-img" data-ref-parent="fig-normal-cdf-spinner-appendix" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-normal-cdf-spinner-appendix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Each sector represents an interval with 1% probability
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-normal-cdf-spinner-appendix" style="flex-basis: 33.3%;justify-content: flex-start;">
-<div id="fig-normal-cdf-spinner-appendix-3" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-normal-cdf-spinner-appendix-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="normal-empirical-rule_files/figure-html/fig-normal-cdf-spinner-appendix-3.png" class="img-fluid figure-img" data-ref-parent="fig-normal-cdf-spinner-appendix" width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-normal-cdf-spinner-appendix-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) Values labeled in increments of 0.5 standard deviations from the mean
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normal-cdf-spinner-appendix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: A continuous <em>Normal(0, 1)</em> spinner. The same spinner is displayed in all figures, with different features highlighted. This spinner can be used to simulate values from any Normal distribution by simulating values in terms of standard deviations from the mean.
-</figcaption>
-</figure>
-</div>
-<p>The empirical rule is often described in terms of “within [blank] standard deviations of the mean” as in the following:</p>
 <ul>
-<li>38% of values are within 0.5 standard deviations of the mean</li>
-<li>50% of values are withing 0.67 standard deviations of the mean</li>
-<li>68% of values are within 1 standard deviation of the mean</li>
-<li>87% of values are within 1.5 standard deviations of the mean</li>
-<li>95% of values are within 2 standard deviations of the mean</li>
-<li>99% of values are within 2.6 standard deviations of the mean</li>
-<li>99.7% of values are within 3 standard deviations of the mean</li>
-<li>99.99% of values are within 4 standard deviations of the mean</li>
+<li><strong>The probability that a continuous random variable <span class="math inline">\(X\)</span> equals any particular value is 0.</strong> That is, if <span class="math inline">\(X\)</span> is continuous then <span class="math inline">\(\text{P}(X=x)=0\)</span> for all <span class="math inline">\(x\)</span>.<br>
+</li>
+<li>For continuous random variables, it doesn’t really make sense to talk about the probability that the random value is <em>equal to</em> a particular value.</li>
+<li>Even though any specific value of a continuous random variable has probability 0, <em>intervals</em> can have positive probability. In particular, the probability that a continuous random variable is “close to” a specific value can be positive.</li>
+<li>For continuous random variables, finding frequencies of individual values and impulse plots (like we used for discrete RVs) don’t make any sense since each simulated value will only occur once in the simulation.</li>
+<li>Instead, we summarize simulated values of continuous random variables in a <em>histogram</em>. A <strong>histogram</strong> groups the observed values into “close-to bins” and plots frequencies or <em>densities</em> for each bin.</li>
+<li>Typically, in a histogram <em>areas</em> of bars represent relative frequencies; in which case the axis which represents the height of the bars is called “density”.</li>
+<li>The continuous analog of a probability mass function (pmf) is a <strong>probability density function (pdf)</strong>. However, while pmfs and pdfs play analogous roles, they are different in one fundamental way; namely, a pmf outputs probabilities directly, while a pdf does not.</li>
+<li>A probability density function only provides the density height; the <em>area under the density curve determines probabilities</em>.</li>
+<li>For a continuous random variable <span class="math inline">\(X\)</span> with pdf <span class="math inline">\(f_X\)</span>, the probability that <span class="math inline">\(X\)</span> takes a value in the interval <span class="math inline">\([a, b]\)</span> is the <em>area under the pdf over the region</em> <span class="math inline">\([a,b]\)</span>.</li>
 </ul>
-<p><img src="_graphics/normal_empirical.png" class="img-fluid" style="width:100.0%"></p>
+<!-- 
+::: {#exm-continuous-uniform}
+We'll start with the simplest case. 
+Many software programs have "random number generators" that simulate continuous values uniformly at random between 0 and 1. 
+Let $U$ have such a Uniform(0, 1) distribution.
+:::
+
+1.  Sketch a spinner for simulating values of $U$. 
+\
+\
+\
+\
+\
+1.  Sketch a histogram that would result after simulating many values of $U$. 
+\
+\
+\
+\
+\
+1.  Specify the probability density function of $U$. 
+\
+\
+\
+\
+\
+1.  Use the probability density function to compute $\text{P}(X > 0.8)$. 
+\
+\
+\
+\
+\
+1.  Compute $\text{P}(X = 0.8)$. 
+\
+\
+\
+\
+\
+1.  Compute and interpret $\text{P}(|X -  0.8| < 0.005)$. 
+\
+\
+\
+\
+\
+1.  Let $X = 10 + 50 U$. 
+Determine the pdf of $X$.
+\
+\
+\
+\
+\
+
+
+
+
+-   A continuous random variable $X$ has a **Uniform distribution** with parameters $a$ and $b$, with $a<b$, if its probability density function $f_X$ satisfies
+\begin{align*}
+f_X(x) & \propto \text{constant}, \quad & & a<x<b\\
+& = \frac{1}{b-a}, \quad & &  a<x<b.
+\end{align*}
+-   If $X$ has a Uniform($a$, $b$) distribution then
+\begin{align*}
+\text{E}(X) & = \frac{a+b}{2}\\
+\text{Var}(X) & = \frac{|b-a|^2}{12}\\
+\text{SD}(X) & = \frac{|b-a|}{\sqrt{12}}\approx 0.289|b-a|
+\end{align*}
+-   The "standard" Uniform distribution is the Uniform(0, 1) distribution.
+-   If $U$ has a Uniform(0, 1) distribution then $X = a + (b-a)U$ has a Uniform($a$, $b$) distribution.
+
+
+
+
+
+
+
+::: {#exm-normal-spinner-percentogram}
+Recall @exm-meeting-tactile-sim-normal in which we assumed an arrival time (minutes after noon) followed a Normal(30, 10) distribution, represented by the spinners in @fig-meeting-normal-spinner.
+Pay close attention to the values on the spinner axis; they do not follow a linear scale.
+:::
+
+
+
+::: {#fig-meeting-normal-spinner .cell layout-ncol="2"}
+::: {.cell-output-display}
+![Values at 1 o'clock, 2 o'clock, etc](continuous-rv_files/figure-html/fig-meeting-normal-spinner-1.png){#fig-meeting-normal-spinner-1 width=672}
+:::
+
+::: {.cell-output-display}
+![Spinner axis marked at 10 minute intervals](continuous-rv_files/figure-html/fig-meeting-normal-spinner-2.png){#fig-meeting-normal-spinner-2 width=672}
+:::
+
+A continuous *Normal(30, 10)* spinner. The same spinner is displayed on both sides, with different features highlighted on the left and right. Only selected rounded values are displayed, but in the idealized model the spinner is infinitely precise so that any real number is a possible outcome. Notice that the values on the axis are *not* evenly spaced.
+:::
+
+
+
+1.  Sketch a histogram corresponding to @fig-meeting-normal-spinner-2 with 6 bins of *equal* width.
+What should the area of each histogram bar be?
+What should the density heights of the bars be?
+\
+\
+\
+\
+\
+1.  Sketch a histogram corresponding to @fig-meeting-normal-spinner-1 with 12 bins of *unequal* width.
+What should the area of each histogram bar be?
+What should the density heights of the bars be?
+Be careful!
+The variable axis of the histogram should still be a number line with linear scale---e.g., the interval [0, 10] should be the same length as the interval [10, 20]---but the histogram bins will not have the same width. 
+\
+\
+\
+\
+\
+1.  Sketch a smooth curve that describes the shape of the Normal(30, 10) distribution.
+\
+\
+\
+\
+\
+
+ -->
+<div id="exm-height-percentile" class="theorem example">
+<p><span class="theorem-title"><strong>Example 21.1</strong></span> Maggie and Seamus are babies who have just turned one. At their one-year visits to their pediatrician:</p>
+<ul>
+<li>Maggie is 76cm tall and in the <a href="https://www.cdc.gov/growthcharts/data/set1clinical/cj41l018.pdf">75th percentile of height for females</a>.</li>
+<li>Seamus is 72cm tall and in the <a href="https://www.cdc.gov/growthcharts/data/set1clinical/cj41l017.pdf">10th percentile of height for males</a>.</li>
+</ul>
+<p>Explain what these percentiles mean.<br>
+<br>
+<br>
+<br>
+<br>
+</p>
+</div>
+<ul>
+<li>A distribution is basically just a collection of <em>percentiles</em>.</li>
+<li>Roughly, the value <span class="math inline">\(x\)</span> is the <span class="math inline">\(p\)</span>th percentile of a distribution of a random variable <span class="math inline">\(X\)</span> if <span class="math inline">\(p\)</span> percent of values of the variable are less than or equal to <span class="math inline">\(x\)</span>: <span class="math inline">\(\text{P}(X\le x) = p\)</span>.</li>
+<li>The <em>cumulative distribution function (cdf)</em> of a random variable fills in the blank for any given <span class="math inline">\(x\)</span>: <span class="math inline">\(x\)</span> is the (blank) percentile. That is, for an input <span class="math inline">\(x\)</span>, the cdf outputs <span class="math inline">\(\text{P}(X\le x)\)</span>.</li>
+<li>The <strong>cumulative distribution function (cdf)</strong> (of a random variable <span class="math inline">\(X\)</span> defined on a probability space with probability measure <span class="math inline">\(\text{P}\)</span>) is the function, <span class="math inline">\(F_X: \mathbb{R}\mapsto[0,1]\)</span>, defined by <span class="math inline">\(F_X(x) = \text{P}(X\le x)\)</span>.</li>
+<li>A cdf is defined for all real numbers <span class="math inline">\(x\)</span> regardless of whether <span class="math inline">\(x\)</span> is a possible value of <span class="math inline">\(X\)</span>.</li>
+<li>A cdf defines a distribution by defining all of its percentiles. Given all the percentiles we can determine the probability that the random variable lies in any interval.</li>
+</ul>
+<!-- ::: {#exm-meeting-normal-percentile}
+Recall @exm-normal-spinner-percentogram where $X$ has a Normal(30, 10) distribution. 
+Let $F$ be the cdf of $X$.
+:::
+
+1.  Compute and interpret $F(23.26)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $F(40)$.
+\
+\
+\
+\
+\
+1.  Compute and interpret $F(40) - F(23.26)$.
+\
+\
+\
+\
+\
+1.  Find $x$ such that $F(x) = 0.75$, and interpret.
+\
+\
+\
+\
+\
+
+
+ -->
+<div id="exm-quake-percentile-table" class="theorem example">
+<p><span class="theorem-title"><strong>Example 21.2</strong></span> In a certain region, times (minutes) between occurrences of earthquakes (of any magnitude) have a distribution with percentiles displayed in <a href="#tbl-quake-percentile-table" class="quarto-xref">Table&nbsp;<span>21.1</span></a>. Suppose an earthquake just occurred and let <span class="math inline">\(X\)</span> be the amount of time until the next earthquake; we’ll assume <a href="#tbl-quake-percentile-table" class="quarto-xref">Table&nbsp;<span>21.1</span></a> represents (partially) the distribution of <span class="math inline">\(X\)</span>.</p>
+</div>
+<div class="cell">
+<div id="tbl-quake-percentile-table" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-quake-percentile-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;21.1: Percentiles for <a href="#exm-quake-percentile-table" class="quarto-xref">Example&nbsp;<span>21.2</span></a>.
+</figcaption>
+<div aria-describedby="tbl-quake-percentile-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="table do-not-create-environment cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Percentile</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Value (minutes)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">10th</td>
+<td style="text-align: right;">12.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">20th</td>
+<td style="text-align: right;">26.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">30th</td>
+<td style="text-align: right;">42.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">40th</td>
+<td style="text-align: right;">61.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">50th</td>
+<td style="text-align: right;">83.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">60th</td>
+<td style="text-align: right;">110.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">70th</td>
+<td style="text-align: right;">144.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">80th</td>
+<td style="text-align: right;">193.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">90th</td>
+<td style="text-align: right;">276.3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<ol type="1">
+<li>Let <span class="math inline">\(F\)</span> be the cdf of <span class="math inline">\(X\)</span>. Evaluate and interpret <span class="math inline">\(F(12.6)\)</span> and <span class="math inline">\(F(26.8)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Construct a spinner corresponding to this distribution.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch a histogram of this distribution with <em>unequal</em> bin widths.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch the pdf of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch a histogram of this distribution with equal bin widths.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Let <span class="math inline">\(Q(0.1)\)</span> represent the value of <span class="math inline">\(x\)</span> for which <span class="math inline">\(F(x)=0.1\)</span>. Evaluate and interpret <span class="math inline">\(Q(0.1)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<ul>
+<li>The <em>quantile function</em> (essentially the inverse cdf) fills in the following blank for a given <span class="math inline">\(p\in[0, 1]\)</span>: the <span class="math inline">\(100p\)</span>th percentile is (blank).</li>
+<li>For example, evaluating the quantile function at <span class="math inline">\(p=0.25\)</span> outputs the 25th percentile.</li>
+<li>For a <em>continuous</em> random variable with cdf <span class="math inline">\(F\)</span>, the <strong>quantile function</strong> <span class="math inline">\(Q:[0,1]\mapsto\mathbb{R}\)</span> is the inverse of the cdf, <span class="math inline">\(Q(p) = F^{-1}(p)\)</span>.</li>
+<li>A quantile function basically gives you the same information as a cdf, just in the other direction. Both a quantile function and a cdf define a distribution by specifying all the percentiles.</li>
+</ul>
+<div id="exm-meeting-nonuniform-cdf" class="theorem example">
+<p><span class="theorem-title"><strong>Example 21.3</strong></span> Recall <a href="probability-models.html#exm-meeting-nonuniform-probspace1" class="quarto-xref">Example&nbsp;<span>5.5</span></a>. Let <span class="math inline">\(X\)</span> be the random variable representing Han’s arrival time and assume that the cdf of <span class="math inline">\(X\)</span> satisfies <span class="math display">\[
+F(x) = (x/60)^2, \qquad 0\le x\le 60
+\]</span></p>
+</div>
+<ol type="1">
+<li>Compute and interpret <span class="math inline">\(\text{P}(X\le 30)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X \le 42.42)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X \le 51.96)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>What do the previous parts tell you about the percentiles of <span class="math inline">\(X\)</span>?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Use the answers to the previous parts to start to construct a spinner for simulating values of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>How could you fill in more of the spinner? For example, where should you place the values 10, 20, 30, 40, 50 on the spinner axis?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Suppose you simulate many values of <span class="math inline">\(X\)</span>. Sketch a histogram of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Sketch the pdf of <span class="math inline">\(X\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret the 10th percentile.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret the 90th percentile.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Find an expression for the <span class="math inline">\(p\)</span>th percentile, where <span class="math inline">\(0&lt;p&lt;1\)</span>, e.g., <span class="math inline">\(p=0.1\)</span> corresponds to the 10th percentile.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Use the answers to the previous parts to start to construct a spinner for simulating values of <span class="math inline">\(X\)</span>. How could you fill in more of the spinner?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+</ol>
+<!-- ::: {#exm-quake-percentile-table-quantile}
+Let $X$ be a continuous random variable whose distribution is partially summarized by @tbl-quake-percentile-table.
+
+1.  Let $F$ be the cdf of $X$.
+Evaluate and interpret $F(42.8)$.
+\
+\
+\
+\
+\
+1.  Let $Q$ be the quantile function of $X$.
+Evaluate and interpret $Q(0.9)$.
+\
+\
+\
+\
+\
+
+:::
+
+ -->
+<ul>
+<li>The quantile function can be used to create a spinner for a distribution. Basically, the values on the outside boundary of the spinner are scaled based on the quantile function (which is determined by the cdf). Intervals corresponding to regions of higher density (“more likely”) values are stretched out on the spinner boundary; intervals corresponding regions of lower density (“less likely” values) are shrunk.</li>
+<li><strong>Universality of the Uniform (or “one spinner to rule them all”).</strong> Let <span class="math inline">\(F\)</span> be a cdf and <span class="math inline">\(Q\)</span> its corresponding quantile function. Let <span class="math inline">\(U\)</span> have a Uniform(0, 1) distribution and define the random variable <span class="math inline">\(X=Q(U)\)</span>. Then the cdf of <span class="math inline">\(X\)</span> is <span class="math inline">\(F\)</span>.</li>
+<li>Universality of the uniform might look complicated but all it basically says is that you can construct a spinner by putting the 25th percentile 25% of the way around, the 75th percentile 75% of the way around, etc.</li>
+<li>Actually, universality of the uniform says we don’t have to create a new spinner. We can just spin the Uniform(0, 1) spinner—which would tell us what percentile that we want, e.g., 0.7 for the 70th percentile—and transform each resulting value by plugging it into the quantile function to obtain the percentile in the measurement units of the the variable.</li>
+</ul>
 
 
 
@@ -971,11 +1132,14 @@ Figure&nbsp;2: A continuous <em>Normal(0, 1)</em> spinner. The same spinner is d
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./distribution-summary.html" class="pagination-link" aria-label="Summary of Some Common Distributions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Summary of Some Common Distributions</span>
+      <a href="./poisson-approximation.html" class="pagination-link" aria-label="Poisson Approximation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Poisson Approximation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

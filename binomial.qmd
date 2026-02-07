@@ -4,20 +4,15 @@
 
 
 ::: {#exm-binomial-capture}
-Capture-recapture sampling is a technique often used to estimate the size of a population. 
-Suppose you want to estimate $N$, the number of [monarch butterflies in Pismo Beach](https://www.parks.ca.gov/?page_id=30273). 
-(Assume that $N$ is a fixed but unknown number; the population size doesn't change over time.) 
-You first capture a sample of $N_1$ butterflies, selected randomly, and tag them and release them. 
-At a later date, you then capture a second sample of $n$ butterflies, selected randomly **_with replacement_**. 
-Let $X$ be the number of butterflies in the second sample that have tags (because they were also caught in the first sample). 
-(Assume that the tagging has no effect on behavior, so that selection in the first sample is independent of selection in the second sample.)
+[Biathlon](https://en.wikipedia.org/wiki/Biathlon) is a winter sport that combines cross-country skiing and rifle shooting. 
+In Olympic sprint biathlon, each competitor competes in a ski race (10km for men, 7.5km for women) during which they also shoot at a total of 10 targets. 
+Suppose that Campbell has a probability of 0.87 of successfully hitting any single target, independently.
 
-In practice, $N$ is unknown and the point of capture-recapture sampling is to estimate $N$. 
-But let's start with a simpler, but unrealistic, example where there are $N=52$ butterflies, $N_1 = 13$ are tagged and $N_0=52-13 = 39$ are not, and $n=5$ is the size of the second sample.
+Let $X$ be the number of targets, out of 10, that Campbell successfully hits in their next sprint race.
 
 :::
 
-1.  Can the selections (for the second sample) be considered Bernoulli trials?
+1.  Can the shots at the targets be considered Bernoulli trials?
 \
 \
 \
@@ -35,38 +30,38 @@ But let's start with a simpler, but unrealistic, example where there are $N=52$ 
 \
 \
 \
-1.  Compute and interpret $\text{P}(X = 0)$.
+1.  Compute and interpret $\text{P}(X = 10)$.
 \
 \
 \
 \
 \
-1.  Compute the probability that in the second sample the first butterfly selected is tagged but the rest are not.
+1.  Compute the probability that the Campbell makes their first 9 shots and misses the last.
 \
 \
 \
 \
 \
-1.  Explain why the previous part is not $\text{P}(X = 1)$.
+1.  Explain why the previous part is not $\text{P}(X = 9)$.
 \
 \
 \
 \
 \
-1.  How many outcomes (S/F sequences of length 5) satisfy the event $\{X = 1\}$? 
+1.  How many outcomes (S/F sequences of length 10) satisfy the event $\{X = 9\}$? 
 Answer without listing all the possibilities.
 \
 \
 \
 \
 \
-1.  Compute and interpret $\text{P}(X = 1)$.
+1.  Compute and interpret $\text{P}(X = 9)$.
 \
 \
 \
 \
 \
-1.  Compute and interpret $\text{P}(X = 2)$.
+1.  Compute and interpret $\text{P}(X = 8)$.
 \
 \
 \
@@ -85,7 +80,7 @@ Then use the pmf to create a table and spinner representing the distribution of 
 \
 \
 \
-1.  Compute $\text{E}(X)$. 
+1.  Compute and interpret $\text{E}(X)$. 
 Did the shortcut formula work?
 \
 \
@@ -110,6 +105,8 @@ $n$, a nonnegative integer, and $p\in[0, 1]$ if and only if its probability mass
 \begin{align*}
 p_{X}(x) & = \binom{n}{x} p^x (1-p)^{n-x}, & x=0, 1, 2, \ldots, n
 \end{align*}
+    -   In the Binomial($n$, $p$) situation, there are $\binom{n}{x}$ S/F sequences that result in exactly $x$ successes---and thus $n-x$ failures---in $n$ trials,
+    -   and each of these sequences has probability $p^x(1-p)^{n-x}$
 -   If $X$ has a Binomial($n$, $p$) distribution then
 \begin{align*}
 \text{E}(X) & = np\\

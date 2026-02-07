@@ -8,7 +8,7 @@
 
 ::: {#exm-poisson-matching}
 Recall the matching problem with a general $n$: there are $n$ objects that are shuffled and placed uniformly at random in $n$ spots with one object per spot. 
-Note: $n$ is a fixed number, but we are considering different values of it.
+Note: $n$ is a fixed and known number, but we are considering different values of it.
 
 We have seen that $\text{E}(X)=1$ for any $n$ and that unless $n$ is small (e.g., $n \le 6$) the approximate distribution of $X$ is the Poisson(1) distribution.
 
@@ -38,7 +38,7 @@ kbl(
 
 
 
-1.  Does $X$ have a Binomial distribution? 
+<!-- 1.  Does $X$ have a Binomial distribution? 
 Consider: What is a trial? 
 What is success? 
 Is the number of trials fixed? 
@@ -48,13 +48,17 @@ Are the trials independent?
 \
 \
 \
-\
-1.  Starting with $x=0$, describe the distributon of $X$ in terms of relative likelihoods: "1 is [blank] times as likely as 0", "2 is [blank] times as likely as 1", etc
-\
-\
-\
-\
-\
+\ -->
+1.  Starting with $x=0$, describe the distribution of $X$ in terms of relative likelihoods:
+    -   1 is [blank] times as likely as 0
+    -   2 is [blank] times as likely as 1
+    -   3 is [blank] times as likely as 2
+    -   4 is [blank] times as likely as 3
+    -   5 is [blank] times as likely as 4
+    -   6 is [blank] times as likely as 5
+    -   In general, $x$ is [blank] times as likely as $x-1$, for $x=1, 2, 3, \ldots$
+    \
+    \
 1.  Specify the pmf of $X$.
 \
 \
@@ -86,13 +90,19 @@ $$
 $$
 p_X(x) = \frac{e^{-\mu}\mu^x}{x!}, \quad x=0,1,2,\ldots
 $$
--  The shape of a Poisson pmf as a function of $x$ is given by $\mu^x/x!$. 
-The constant $e^{-\mu}$ simply renormalizes the heights of the pmf so  that the probabilities sum to 1.
+    -   The Poisson pattern implies that the shape of a Poisson pmf as a function of $x$ is given by $\mu^x/x!$.
+    $$
+    p(x) = p(0)\frac{\mu^x}{x!}, \qquad x = 0, 1, 2, \ldots
+    $$ 
+    -   The constant $p(0) = e^{-\mu}$ simply renormalizes the pmf so  that the probabilities sum[^exp-taylor] to 1.
 -   If $X$ has a Poisson($\mu$) distribution then
 \begin{align*}
 \text{E}(X) & = \mu\\
 \text{Var}(X) & = \mu
 \end{align*}
+
+
+[^exp-taylor]: Recall the series expansion $e^{\mu} = \sum_{x=0}^\infty \frac{\mu^x}{x!}$ 
 
 ::: {#exm-homerun-poisson}
 
@@ -100,24 +110,6 @@ Let $X$ be the number of home runs hit (in total by both teams) in a randomly se
 Assume that $X$ has a Poisson(2.4) distribution.
 :::
 
-1.  In what ways is this like the Binomial situation?
-\
-\
-\
-\
-\
-1.  In what ways is this NOT like the Binomial situation?
-\
-\
-\
-\
-\
-1.  In what sense are home runs "relatively rare"?
-\
-\
-\
-\
-\
 1.  Interpret the parameter 2.4 in context.
 \
 \
@@ -204,80 +196,4 @@ Does the approximate distribution follow (approximately) the Poisson pattern?
 
 -   **Poisson aggregation.** If $X$ and $Y$ are independent, $X$ has a Poisson($\mu_X$) distribution,  and $Y$ has a Poisson($\mu_Y$) distribution, then $X+Y$ has a Poisson($\mu_X+\mu_Y$) distribution.
 -   If component counts are independent and each has a Poisson distribution, then the total count also has a Poisson distribution.
-
-
-::: {#exm-poisson-birthday}
-Recall the birthday problem: in a group of $n$ people what is the probability that at least two have the same birthday? 
-(Ignore multiple births and February 29 and assume that the other 365 days are all equally likely.) 
-We will investigate this problem using Poisson approximation. 
-Imagine that we have a trial for each possible *pair* of people in the group, and let "success" indicate that the pair shares a birthday. 
-Consider both a general $n$ and $n=30$.
-:::
-
-1.  How many trials are there?
-\
-\
-\
-\
-\
-1.  Do the trials have the same probability of success? 
-If so, what is it?
-\
-\
-\
-\
-\
-1.  Are any *two* trials independent? 
-To answer this questions, suppose that three people in the group are Bill, Frank, and Julia and consider any *two* of the trials that involve these three people.
-\
-\
-\
-\
-\
-1.  Are any *three* trials independent?  Consider the three trials that involve Bill, Frank, and Julia.
-\
-\
-\
-\
-\
-1.  Let $X$ be the number of *pairs* that share a birthday. 
-Does $X$ have a Binomial distribution?
-\
-\
-\
-\
-\
-1.  If $X$ has an approximate Poisson distribution, what would the parameter have to be? 
-Compare this Poisson distribution with a simulation of $X$; does it seem like a reasonable approximation?
-\
-\
-\
-\
-\
-1.  Approximate the probability that at least two people share the same birthday. 
-Compare to the theoretical value.
-\
-\
-\
-\
-\
-
-
-
-**Poisson paradigm.** Let $A_1, A_2, \ldots, A_n$ be a collection of $n$ events. 
-Suppose event $i$ occurs with marginal probability $p_i=\text{P}(A_i)$. Let $N = \text{I}_{A_i} + \text{I}_{A_2} + \cdots + \text{I}_{A_n}$ be the random variable which counts the number of the events in the collection which occur. Suppose
-
--   $n$ is "large",
--   $p_1, \ldots, p_n$ are "comparably small", and
--   the events $A_1, \ldots, A_n$ are "not too dependent",
-
-Then $N$ has an approximate Poisson distribution with parameter $\text{E}(N) = \sum_{i=1}^n p_i$.
-
-
-::: {#exm-poisson-birthday-three}
-Use Poisson approximation to approximate that probability that at least *three* people in a group of $n$ people share a birthday. 
-How large does $n$ need to be for the probability to be greater than 0.5?
-:::
-
-
 
