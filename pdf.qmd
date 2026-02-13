@@ -138,7 +138,7 @@ $$
 $$
 \frac{\text{P}(X \text{ is close to } x_1)}{\text{P}(X \text{ is close to } x_2)} \approx \frac{f_X(x_1)}{f_X(x_2)}
 $$
-regardless of how "close to" is defined.
+regardless of how "close to" is defined (as long as it's reasonably "small")
 
 
 

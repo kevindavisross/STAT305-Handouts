@@ -58,7 +58,7 @@ What happens in the limit?
 -   The expected value of a random variable $X$ is defined by the probability-weighted average according to the underlying probability measure. But the expected value can also be interpreted as the **long-run average value**, and so can be approximated via simulation.
 -   Read the symbol $\text{E}(\cdot)$ as
     -   Simulate lots of values of what's inside $(\cdot)$
-    -   Compute the average. This is a "usual" average; just sum all the simulated values and divide by the number of simulated values.
+    -   Compute the average. This is a "usual" average, regardless of whether the variable is discrete or continuous; just sum all the simulated values and divide by the number of simulated values.
 
 
 

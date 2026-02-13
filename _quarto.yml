@@ -30,10 +30,10 @@ book:
     - poisson.qmd
     - poisson-approximation.qmd
     - continuous-rv.qmd
-    # - pdf.qmd
-    # - expected-value-continuous.qmd
-    # - exponential.qmd
-    # - normal.qmd
+    - pdf.qmd
+    - expected-value-continuous.qmd
+    - exponential.qmd
+    - normal.qmd
     # - linear-combinations.qmd
     # - CLT.qmd
     # - statistical-estimation.qmd

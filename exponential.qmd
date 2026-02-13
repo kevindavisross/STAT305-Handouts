@@ -139,7 +139,6 @@ p = pexp(z, 1)
 data.frame(p = paste(round(100 * p, 1), "%", sep = ""),
            z = paste(format(z, digits = 2), "times the mean")) %>%
   kbl(col.names = c("Percentile", "Relative to mean"),
-      caption = "Probabilty pattern for Exponential distributions",
       align = c('r', 'l')) %>%
   kable_styling(fixed_thead = TRUE)
 

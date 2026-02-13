@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>16&nbsp; Discrete Random Variables: Probability Mass Functions – STAT 305 Handouts</title>
+<title>23&nbsp; Expected Values for Continuous Random Variables – STAT 305 Handouts</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./binomial.html" rel="next">
-<link href="./counting-and-uniform.html" rel="prev">
+<link href="./exponential.html" rel="next">
+<link href="./pdf.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -111,7 +111,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discrete-pmf.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./expected-value-continuous.html"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Expected Values for Continuous Random Variables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -234,7 +234,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discrete-pmf.html" class="sidebar-item-text sidebar-link active">
+  <a href="./discrete-pmf.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></span></a>
   </div>
 </li>
@@ -276,7 +276,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./expected-value-continuous.html" class="sidebar-item-text sidebar-link">
+  <a href="./expected-value-continuous.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Expected Values for Continuous Random Variables</span></span></a>
   </div>
 </li>
@@ -332,7 +332,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Discrete Random Variables: Probability Mass Functions</span></h1>
+<h1 class="title"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Expected Values for Continuous Random Variables</span></h1>
 </div>
 
 
@@ -349,32 +349,41 @@ window.Quarto = {
 </header>
 
 
-<ul>
-<li>Roughly, a random variable assigns a number measuring some quantity of interest to each outcome of a random phenomenon.</li>
-<li>The <strong>(probability) distribution</strong> of a random variable specifies the possible values of the random variable and a way of determining corresponding probabilities.</li>
-<li>We will see many ways of describing a distribution, depending on how many random variables are involved and their types (discrete or continuous)</li>
-<li>A <strong>discrete</strong> random variable can take on only countably many isolated points on a number line. These are often counting type variables.
-<ul>
-<li>Note that “countably many” includes the case of countably infinite, such as <span class="math inline">\(\{0, 1, 2, \ldots\}\)</span>.</li>
-</ul></li>
-<li>The <strong>probability mass function (pmf)</strong> of a <em>discrete</em> RV <span class="math inline">\(X\)</span>, defined on a probability space with probability measure <span class="math inline">\(\text{P}\)</span>, is a function <span class="math inline">\(p_X:\mathbb{R}\mapsto[0,1]\)</span> which specifies each possible value of the RV and the probability that the RV takes that particular value: <span class="math inline">\(p_X(x)=\text{P}(X=x)\)</span> for each possible value of <span class="math inline">\(x\)</span>.</li>
-<li>Certain common distributions have special names and properties. We often specify a distribution by name along with values of relevant parameters.</li>
-</ul>
-<div id="exm-dice-pmf" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.1</strong></span> Roll a fair four-sided die twice and let <span class="math inline">\(X\)</span> be the sum and <span class="math inline">\(Y\)</span> the larger of the two rolls.</p>
+<div id="exm-meeting-pdf-ev" class="theorem example">
+<p><span class="theorem-title"><strong>Example 23.1</strong></span> Continuing <a href="pdf.html#exm-meeting-pdf1" class="quarto-xref">Example&nbsp;<span>22.1</span></a>. Han’s arrival time <span class="math inline">\(X\)</span> (minutes after noon) has pdf <span class="math display">\[
+f_X(x) =
+\begin{cases}
+(2/3600)x, &amp; 0&lt;x&lt;60,\\
+0 &amp; \text{otherwise.}
+\end{cases}
+\]</span></p>
 </div>
 <ol type="1">
-<li>Verify that the pmf of <span class="math inline">\(X\)</span> is <span class="math display">\[
-p_X(x) = \frac{4 - |x - 5|}{16}, \qquad x = 2, 3, \ldots, 8
-\]</span><br>
+<li>Explain how you could use simulation to approximate <span class="math inline">\(\text{E}(X)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Is the following the pmf of <span class="math inline">\(Y\)</span>? Discuss. <span class="math display">\[
-p_Y(u) = \frac{2u - 1}{16}
-\]</span><br>
+<li>Explain how you could approximate <span class="math inline">\(\text{E}(X)\)</span> as a sum (as if <span class="math inline">\(X\)</span> were a discrete random variable).<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>How could you obtain a better approximation than the sum in the previous part? What happens in the limit?<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{E}(X)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X \le \text{E}(X))\)</span>.<br>
 <br>
 <br>
 <br>
@@ -382,93 +391,80 @@ p_Y(u) = \frac{2u - 1}{16}
 </li>
 </ol>
 <ul>
-<li>In a sequence of <strong>Bernoulli(<span class="math inline">\(p\)</span>) trials</strong>
+<li>The <strong>expected value</strong> (a.k.a. <em>expectation</em> a.k.a. <em>mean</em>), of a random variable <span class="math inline">\(X\)</span> is a number denoted <span class="math inline">\(\text{E}(X)\)</span> representing the probability-weighted average value of <span class="math inline">\(X\)</span>.</li>
+<li>The expected value of a continuous random variable with pdf <span class="math inline">\(f_X\)</span> is defined as <span class="math display">\[
+\text{E}(X) = \int_{-\infty}^\infty x f_X(x) dx
+\]</span></li>
+<li>Replace the generic bounds <span class="math inline">\((-\infty, \infty)\)</span> with the possible values of the random variable</li>
+<li>Note well that <span class="math inline">\(\text{E}(X)\)</span> represents <em>a single number</em>.</li>
+<li>The expected value is the “balance point” (center of gravity) of a distribution.</li>
+<li>The expected value of a random variable <span class="math inline">\(X\)</span> is defined by the probability-weighted average according to the underlying probability measure. But the expected value can also be interpreted as the <strong>long-run average value</strong>, and so can be approximated via simulation.</li>
+<li>Read the symbol <span class="math inline">\(\text{E}(\cdot)\)</span> as
 <ul>
-<li>There are only two possible outcomes, “success” (1) or not (0, “failure”), on each trial.</li>
-<li>The unconditional/marginal probability of success is the same on every trial, and equal to <span class="math inline">\(p\)</span>.</li>
-<li>The trials are independent.</li>
+<li>Simulate lots of values of what’s inside <span class="math inline">\((\cdot)\)</span></li>
+<li>Compute the average. This is a “usual” average, regardless of whether the variable is discrete or continuous; just sum all the simulated values and divide by the number of simulated values.</li>
 </ul></li>
 </ul>
-<div id="exm-lookaway-geometric" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.2</strong></span> Recall the “lookaway challenge of <a href="probability-rules.html#exm-lookaway" class="quarto-xref">Example&nbsp;<span>8.4</span></a>.</p>
-<p>The game consists of possibly multiple rounds. In the first round, you point in one of four directions: up, down, left or right. At the exact same time, your friend also looks in one of those four directions. If your friend looks in the same direction you’re pointing, you win! Otherwise, you switch roles and the game continues to the next round — now your friend points in a direction and you try to look away. As long as no one wins, you keep switching off who points and who looks. The game ends, and the current “pointer” wins, whenever the “looker” looks in the same direction as the pointer.</p>
-<p>Suppose that each player is equally likely to point/look in each of the four directions, independently from round to round.</p>
-<p>Let <span class="math inline">\(X\)</span> be the number of rounds until the game ends.</p>
+<div id="exm-exponential-quakes-ev" class="theorem example">
+<p><span class="theorem-title"><strong>Example 23.2</strong></span> Continuing <a href="pdf.html#exm-exponential-quakes" class="quarto-xref">Example&nbsp;<span>22.3</span></a>. Let <span class="math inline">\(X\)</span> be the times (minutes) until the next earthquake occurs (of any magnitude in a certain region). Assume that the pdf of <span class="math inline">\(X\)</span> is <span class="math display">\[
+f_X(x) = (1/120) e^{-x/120}, \qquad x \ge0
+\]</span></p>
 </div>
 <ol type="1">
-<li>Can the rounds be considered Bernoulli trials?<br>
+<li>Explain how you could use simulation to approximate <span class="math inline">\(\text{E}(X)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>What are the possible values that <span class="math inline">\(X\)</span> can take? Is <span class="math inline">\(X\)</span> discrete or continuous?<br>
+<li>Donny Dont says <span class="math inline">\(\text{E}(X) = \int_0^\infty (1/120)e^{-x/120}dx = 1\)</span>. Do you agree?<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X=1)\)</span>.<br>
+<li>Compute and interpret <span class="math inline">\(\text{E}(X)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X=2)\)</span>.<br>
+<li>Compute and interpret <span class="math inline">\(\text{P}(X \le \text{E}(X))\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X=3)\)</span>.<br>
+</ol>
+<div id="exm-meeting-pdf-ev-lotus" class="theorem example">
+<p><span class="theorem-title"><strong>Example 23.3</strong></span> Continuing <a href="#exm-meeting-pdf-ev" class="quarto-xref">Example&nbsp;<span>23.1</span></a>. Han’s arrival time <span class="math inline">\(X\)</span> (minutes after noon) has pdf <span class="math display">\[
+f_X(x) =
+\begin{cases}
+(2/3600)x, &amp; 0&lt;x&lt;60,\\
+0 &amp; \text{otherwise.}
+\end{cases}
+\]</span></p>
+</div>
+<ol type="1">
+<li>Explain how you could use simulation to approximate <span class="math inline">\(\text{E}(X^2)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Find the probability mass function of <span class="math inline">\(X\)</span>.<br>
+<li>Explain how you could approximate <span class="math inline">\(\text{E}(X^2)\)</span> as a sum (like a discrete random variable).<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Construct a table, plot, and spinner representing the distribution of <span class="math inline">\(X\)</span>.<br>
+<li>How could you obtain a better approximation than the sum in the previous part? What happens in the limit?<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>How can you use the distribution of <span class="math inline">\(X\)</span> to compute the probability that the player who starts as the pointer wins the game? (In <a href="probability-rules.html#exm-lookaway" class="quarto-xref">Example&nbsp;<span>8.4</span></a> we computed this to be 4/7 using the law of total probability.)<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X&gt;3)\)</span>. Can you think of a way to do this without summing several terms?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute and interpret <span class="math inline">\(\text{P}(X&gt;5|X &gt; 2)\)</span>. Compare to the previous part. What do you notice? Does this make sense?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>What seems like a reasonable shortcut formula for <span class="math inline">\(\text{E}(X)\)</span> in terms of <span class="math inline">\(p\)</span>? Consider the case <span class="math inline">\(p=0.25\)</span> first and then general <span class="math inline">\(p\)</span>.<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Compute <span class="math inline">\(\text{E}(X)\)</span> using the pmf of <span class="math inline">\(X\)</span>. Did the shortcut work?<br>
-<br>
-<br>
-<br>
-<br>
-</li>
-<li>Interpret <span class="math inline">\(\text{E}(X)\)</span> in context.<br>
+<li>Compute <span class="math inline">\(\text{E}(X^2)\)</span>.<br>
 <br>
 <br>
 <br>
@@ -480,73 +476,61 @@ p_Y(u) = \frac{2u - 1}{16}
 <br>
 <br>
 </li>
-<li>Would <span class="math inline">\(\text{Var}(X)\)</span> be bigger or smaller if <span class="math inline">\(p=0.9\)</span>? If <span class="math inline">\(p=0.1\)</span>?<br>
+<li>Compute <span class="math inline">\(\text{SD}(X)\)</span>.<br>
 <br>
 <br>
 <br>
-<br>
-</li>
+&nbsp;</li>
 </ol>
 <ul>
-<li>Perform Bernoulli(<span class="math inline">\(p\)</span>) trials until a success occurs and then stop. Let <span class="math inline">\(X\)</span> count the total number of trials, including the single success. The distribution of <span class="math inline">\(X\)</span> is defined to be the <strong>Geometric(<span class="math inline">\(p\)</span>) distribution</strong>.</li>
-<li>The Geometric(<span class="math inline">\(p\)</span>) probability mass function follows from the fact that if <span class="math inline">\(X\)</span> has a Geometric distribution, then <span class="math inline">\(X = x\)</span> if and only if
-<ul>
-<li>the first <span class="math inline">\(x-1\)</span> trials are failures, and</li>
-<li>the <span class="math inline">\(x\)</span>th (last) trial results in success.</li>
-</ul></li>
-<li>A discrete random variable <span class="math inline">\(X\)</span> has a Geometric(<span class="math inline">\(p\)</span>) distribution if and only if its probability mass function is <span class="math display">\[\begin{align*}
-p_{X}(x) &amp; = p (1-p)^{x-1}, &amp; x=1, 2, 3, \ldots
+<li>The <strong>“law of the unconscious statistician” (LOTUS)</strong> says that the expected value of a transformed random variable can be found without finding the distribution of the transformed random variable, simply by applying the probability weights of the original random variable to the transformed values. <span class="math display">\[\begin{align*}
+&amp; \text{Discrete $X$ with pmf $p_X$:} &amp; \text{E}[g(X)] &amp; = \sum_x g(x) p_X(x)\\
+&amp; \text{Continuous $X$ with pdf $f_X$:} &amp; \text{E}[g(X)] &amp; =\int_{-\infty}^\infty g(x) f_X(x) dx
 \end{align*}\]</span></li>
-<li>If <span class="math inline">\(X\)</span> has a Geometric(<span class="math inline">\(p\)</span>) distribution then <span class="math display">\[\begin{align*}
-\text{P}(X &gt; x) &amp; = (1-p)^x, \qquad x = 1, 2, 3, \ldots\\
-\text{E}(X) &amp; = \frac{1}{p}\\
-\text{Var}(X) &amp; = \frac{1-p}{p^2}
+<li>LOTUS says we don’t have to first find the distribution of <span class="math inline">\(Y=g(X)\)</span> to find <span class="math inline">\(\text{E}[g(X)]\)</span>; rather, we just simply apply the transformation <span class="math inline">\(g\)</span> to each possible value <span class="math inline">\(x\)</span> of <span class="math inline">\(X\)</span> and then apply the corresponding weight for <span class="math inline">\(x\)</span> to <span class="math inline">\(g(x)\)</span>.</li>
+<li>Whether in the short run or the long run, in general <span class="math display">\[\begin{align*}
+\text{Average of $g(X)$} &amp; \neq g(\text{Average of $X$})
 \end{align*}\]</span></li>
+<li>In terms of expected values, in general <span class="math display">\[\begin{align*}
+\text{E}(g(X)) &amp; \neq g(\text{E}(X))
+\end{align*}\]</span> The left side <span class="math inline">\(\text{E}(g(X))\)</span> represents first transforming the <span class="math inline">\(X\)</span> values and then averaging the transformed values. The right side <span class="math inline">\(g(\text{E}(X))\)</span> represents first averaging the <span class="math inline">\(X\)</span> values and then plugging the average (a single number) into the transformation formula.</li>
 </ul>
-<div id="exm-geometric-bball-sim" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.3</strong></span> Continuing <a href="#exm-lookaway-geometric" class="quarto-xref">Example&nbsp;<span>16.2</span></a>.</p>
+<div id="exm-exponential-quakes-ev-lotus" class="theorem example">
+<p><span class="theorem-title"><strong>Example 23.4</strong></span> Continuing <a href="#exm-exponential-quakes-ev" class="quarto-xref">Example&nbsp;<span>23.2</span></a>. Let <span class="math inline">\(X\)</span> be the times (minutes) until the next earthquake occurs (of any magnitude in a certain region). Assume that the pdf of <span class="math inline">\(X\)</span> is <span class="math display">\[
+f_X(x) = (1/120) e^{-x/120}, \qquad x \ge0
+\]</span></p>
+</div>
 <ol type="1">
-<li>Specify how you could simulate a value of <span class="math inline">\(X\)</span> using the “simulate from the probability space” method.<br>
+<li>Explain how you could use simulation to approximate <span class="math inline">\(\text{E}(X^2)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Specify how you could simulate a value of <span class="math inline">\(X\)</span> using the “simulate from the distribution” method.<br>
+<li>Donny Dont says: “I can just use LOTUS and replace <span class="math inline">\(x\)</span> with <span class="math inline">\(x^2\)</span>, so <span class="math inline">\(\text{E}(X^2)\)</span> is <span class="math inline">\(\int_{-\infty}^{\infty} (1/120)x^2 e^{-x^2/120} dx\)</span>”. Do you agree?<br>
 <br>
 <br>
 <br>
 <br>
 </li>
-<li>Explain how you could use simulation to approximate the distribution of <span class="math inline">\(X\)</span> and its expected value.<br>
+<li>Compute <span class="math inline">\(\text{E}(X^2)\)</span>.<br>
+<br>
+<br>
+<br>
+<br>
+</li>
+<li>Compute <span class="math inline">\(\text{Var}(X)\)</span>.<br>
+<br>
+<br>
+<br>
+&nbsp;</li>
+<li>Compute <span class="math inline">\(\text{SD}(X)\)</span>.<br>
 <br>
 <br>
 <br>
 <br>
 </li>
 </ol>
-</div>
-<ul>
-<li>There are two basic methods for simulating a value <span class="math inline">\(x\)</span> of a random variable <span class="math inline">\(X\)</span>.
-<ul>
-<li><strong>Simulate from the probability space.</strong> Simulate an outcome <span class="math inline">\(\omega\)</span> from the underlying probability space and set <span class="math inline">\(x = X(\omega)\)</span>.</li>
-<li><strong>Simulate from the distribution.</strong> Simulate a value <span class="math inline">\(x\)</span> directly from the distribution of <span class="math inline">\(X\)</span>.</li>
-</ul></li>
-<li>The “simulate from the distribution” method corresponds to constructing a spinner representing the marginal distribution of <span class="math inline">\(X\)</span> and spinning it once to generate <span class="math inline">\(x\)</span>. This method does require that the distribution of <span class="math inline">\(X\)</span> is known. However, as we will see in many examples, <em>it is common to specify the distribution of a random variable directly without defining the underlying probability space</em>.</li>
-</ul>
-<div id="exm-dd-same-distribution-pmf" class="theorem example">
-<p><span class="theorem-title"><strong>Example 16.4</strong></span> Donny Dont is thoroughly confused about the distinction between a random variable and its distribution. Help him understand by by providing a simple concrete example of <em>two different random variables</em> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> that have the <em>same distribution</em>. Can you think of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> for which <span class="math inline">\(\text{P}(X = Y) = 0\)</span>?<br>
-<br>
-<br>
-<br>
-<br>
-</p>
-</div>
-<ul>
-<li>Do not confuse a random variable with its distribution!</li>
-<li>A random variable measures a numerical quantity which depends on the outcome of a random phenomenon</li>
-<li>The distribution of a random variable specifies the long run pattern of variation of values of the random variable over many repetitions of the underlying random phenomenon.</li>
-</ul>
 
 
 
@@ -952,13 +936,13 @@ p_{X}(x) &amp; = p (1-p)^{x-1}, &amp; x=1, 2, 3, \ldots
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./counting-and-uniform.html" class="pagination-link" aria-label="Equally Likely Outcomes and Counting Rules">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Equally Likely Outcomes and Counting Rules</span></span>
+      <a href="./pdf.html" class="pagination-link" aria-label="Probability Density Functions of Continuous Random Variables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Probability Density Functions of Continuous Random Variables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./binomial.html" class="pagination-link" aria-label="Binomial Distributions">
-        <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Binomial Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./exponential.html" class="pagination-link" aria-label="Exponential Distributions">
+        <span class="nav-page-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Exponential Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

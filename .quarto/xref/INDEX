@@ -73,5 +73,17 @@
   },
   "continuous-rv.qmd": {
     "continuous-rv.html": "b62ca37b"
+  },
+  "pdf.qmd": {
+    "pdf.html": "1b15e9fd"
+  },
+  "expected-value-continuous.qmd": {
+    "expected-value-continuous.html": "99cc527b"
+  },
+  "exponential.qmd": {
+    "exponential.html": "30f201be"
+  },
+  "normal.qmd": {
+    "normal.html": "b291ef8c"
   }
 }
