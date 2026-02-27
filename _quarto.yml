@@ -34,13 +34,14 @@ book:
     - expected-value-continuous.qmd
     - exponential.qmd
     - normal.qmd
-    # - linear-combinations.qmd
+    - linear-combinations.qmd
     # - CLT.qmd
-    # - statistical-estimation.qmd
-    # - maximum-likelihood-estimation.qmd
-    # - estimators-bias.qmd
-    # - estimators-variance.qmd
-    # - estimators-mse.qmd
+    - statistical-estimation.qmd
+    - maximum-likelihood-estimation.qmd
+    - estimators-bias.qmd
+    - estimators-variance.qmd
+    - estimators-mse.qmd
+    # - CLT.qmd
     - references.qmd
   appendices: 
   #   - problem-solving-strategies.qmd

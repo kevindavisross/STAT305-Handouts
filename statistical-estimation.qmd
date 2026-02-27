@@ -141,6 +141,11 @@ statistics questions
         $\theta \equiv (\mu, \sigma)$ consisting of the population mean
         and the population standard deviation.
 
+
+    -   The **population mean**, typically denoted $\mu$, is the average of the values of the variable over all individuals in the population, $\mu=\text{E}(X)$  
+
+    -   The **population standard deviation**, typically denoted $\sigma$, is the standard deviation of all the individual values in the population, $\sigma=\text{SD}(X)$
+
 -   A parameter is a *fixed number* but its value is *unknown*[^3].
 
 -   Many statistical studies involve *random sampling* from a
@@ -173,6 +178,8 @@ statistics questions
 
     -   The *distribution* of a statistic will depend on $\theta$, but
         the *value* of a statistic will not.
+
+    -   The **sample mean**, typically denoted $\bar{X}$, is the average of the values of the variable over all individuals in the population, $\bar{X}=(X_1+\cdots+X_n)/n$  
 
 -   A statistic $\hat{\theta}\equiv T(X_1,\ldots,X_n)$ used to estimate
     a parameter $\theta$ is called a **(point) estimator**.

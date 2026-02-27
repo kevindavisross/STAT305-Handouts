@@ -27,6 +27,9 @@
     -   However, *in practice usually only a single sample is selected*
         and a single value of the statistic is observed, and we don't
         know what the population distribution is.
+-   Roughly, there are two sources of differences between a statistic and a corresponding parameter
+    -   systematic errors due to estimation bias
+    -   "chance errors" due to natural sample-to-sample variability
 
 
 ::: {#exm-poisson-mse}
@@ -102,15 +105,15 @@ Does that mean we should prefer $S^2$ over $\hat{\sigma}^2$?
 ::: {#exm-poisson-mse-no-best}
 Continuing estimating $\mu$ for a Poisson($\mu$)
 distribution.
-Consider $\bar{X}$ and the constant estimator 2.3.
+Consider $\bar{X}$ and the constant estimator 4.2.
 :::
 
-1.  Esplain what it means to use 2.3 as an estimation procedure.\
+1.  Esplain what it means to use 4.2 as an estimation procedure.\
 \
 \
 \
 \
-1.  Find the MSE of the constant estimator 2.3.\
+1.  Find the MSE of the constant estimator 4.2.\
     \
     \
     \
@@ -127,8 +130,8 @@ Consider $\bar{X}$ and the constant estimator 2.3.
     \
     \
 4.  Donny Don't says: "neither estimator has smaller MSE for all values
-    of $\mu$. So we'll use the constant estimator 2.3 when $\mu$ is near
-    2.3 (between 1.57 and 3.36 if $n=3$) and we'll use $\bar{X}$ for
+    of $\mu$. So we'll use the constant estimator 4.2 when $\mu$ is near
+    4.2 (between 3.17 and 5.56 if $n=3$) and we'll use $\bar{X}$ for
     other values of $\mu$". Do you agree with Donny's strategy? Do you
     see any problems with it?\
     \
@@ -137,7 +140,7 @@ Consider $\bar{X}$ and the constant estimator 2.3.
     \
 5.  What happens to the MSEs as $n$ increases? In particular, what
     happens to the range of values of $\mu$ for which the constant
-    estimator 2.3 has smaller MSE than $\bar{X}$?\
+    estimator 4.2 has smaller MSE than $\bar{X}$?\
     \
     \
     \

@@ -85,5 +85,26 @@
   },
   "normal.qmd": {
     "normal.html": "b291ef8c"
+  },
+  "linear-combinations.qmd": {
+    "linear-combinations.html": "65adc769"
+  },
+  "CLT.qmd": {
+    "CLT.html": "df412e4e"
+  },
+  "statistical-estimation.qmd": {
+    "statistical-estimation.html": "e95d7cd5"
+  },
+  "maximum-likelihood-estimation.qmd": {
+    "maximum-likelihood-estimation.html": "9b3ff573"
+  },
+  "estimators-bias.qmd": {
+    "estimators-bias.html": "a1c1141b"
+  },
+  "estimators-variance.qmd": {
+    "estimators-variance.html": "fdb30450"
+  },
+  "estimators-mse.qmd": {
+    "estimators-mse.html": "e1b34d21"
   }
 }
