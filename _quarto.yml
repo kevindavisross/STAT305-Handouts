@@ -41,7 +41,7 @@ book:
     - estimators-bias.qmd
     - estimators-variance.qmd
     - estimators-mse.qmd
-    # - CLT.qmd
+    - CLT.qmd
     - references.qmd
   appendices: 
   #   - problem-solving-strategies.qmd
