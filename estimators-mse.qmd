@@ -76,6 +76,8 @@ Does that mean we should prefer $S^2$ over $\hat{\sigma}^2$?
             \text{MSE}(\hat{\theta}) & = \textrm{Var}(\hat{\theta}) + \left(\textrm{E}(\hat{\theta})-\theta\right)^2\\
             & = \textrm{Var}(\hat{\theta}) +\left(\text{bias}(\hat{\theta})\right)^2
         \end{align*}
+    -   Remember that bias is measured in the measurement units of the variable, while variance is measured in squared units. 
+        So MSE basically puts bias and variability on a common unit scale and sums to get a total measure.
     -   There can be many "reasonable" estimators of a parameter. Given
         two estimators, it's often the situation that neither one has
         smaller MSE for all potential values of $\theta$. Choosing an

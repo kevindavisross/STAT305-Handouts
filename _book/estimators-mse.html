@@ -433,6 +433,7 @@ S^2 &amp; = \frac{1}{n-1}\sum_{i=1}^n \left(X_i - \bar{X}\right)^2\\
     \text{MSE}(\hat{\theta}) &amp; = \textrm{Var}(\hat{\theta}) + \left(\textrm{E}(\hat{\theta})-\theta\right)^2\\
     &amp; = \textrm{Var}(\hat{\theta}) +\left(\text{bias}(\hat{\theta})\right)^2
 \end{align*}\]</span></li>
+<li>Remember that bias is measured in the measurement units of the variable, while variance is measured in squared units. So MSE basically puts bias and variability on a common unit scale and sums to get a total measure.</li>
 <li>There can be many “reasonable” estimators of a parameter. Given two estimators, it’s often the situation that neither one has smaller MSE for all potential values of <span class="math inline">\(\theta\)</span>. Choosing an estimator often involves a tradeoff between bias and variability.</li>
 </ul></li>
 <li><p>Use the simulation results to compute the MSE of <span class="math inline">\(S^2\)</span> and <span class="math inline">\(\hat{\sigma}^2\)</span> when <span class="math inline">\(\mu = 2\)</span>. Determine which estimator has smaller MSE when <span class="math inline">\(\mu=2\)</span>, but then explain why this information by itself is not very useful.<br>

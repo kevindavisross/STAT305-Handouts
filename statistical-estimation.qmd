@@ -306,7 +306,7 @@ Let $X_1, \ldots, X_n$ represent the number of cars sold for a sample of $n$ day
 
 
 [^3]: There are two main philosophical approaches to statistical inference that differ mainly in whether they emphasize "fixed number" or "unknown".
-In our brief exploration of estimations, we will follow the *frequentist* approach, which treats a parameter as a *fixed number*.
+In our brief exploration of estimation, we will follow the *frequentist* approach, which treats a parameter as a *fixed number*.
 The *Bayesian* approach treats an *unknown* parameter--- in other words, an *uncertain* parameter---as a *random variable* with a probability distribution that describes the degree of uncertainty.
 Both approaches are valid, each with advantages and disadvantages.
 The frequentist approach has been historically more prevalent, but the Bayesian approach has gained in popularity in the last 30 or so years.

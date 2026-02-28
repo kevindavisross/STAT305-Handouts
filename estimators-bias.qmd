@@ -90,7 +90,7 @@ But then explain why this information by itself itself helpful.
 -   Roughly speaking, an unbiased estimator does not tend to
     systematically overestimate or underestimate the parameter of
     interest, regardless of the true value of the parameter.
--   The **bias (function)** of an estimator^[bias-note] is the difference
+-   The **bias (function)** of an estimator[^bias-note] is the difference
     between its expected value (over many hypothetical samples) and
     the true (but unknown) value of the parameter
     $$
@@ -110,7 +110,7 @@ But then explain why this information by itself itself helpful.
 
 
 
-^[bias-note]: We are only considering bias in *estimation*: is there bias in how we use the data to estimate the parameter? There could also be *bias is data collection*, in how the sample is selected and how the variables are measured. In this course we always assume that we have a "perfect" random sample from the population; in practice, that will never be true, but it might be a reasonable assumption based on how the data are collected. In any case, the bias function onlu quantifies bias in estimation, not bias in data collection.
+[^bias-note]: We are only considering bias in *estimation*: is there bias in how we use the data to estimate the parameter? There could also be *bias in data collection*, in how the sample is selected and how the variables are measured. In this course we always assume that we have a "perfect" random sample from the population; in practice, that will never be true, but it might be a reasonable assumption based on how the data are collected. In any case, the bias function only quantifies bias in estimation, not bias in data collection.
 
 ::: {#exm-bias-poisson}
 Consider estimating $\mu$ for a Poisson($\mu$) distribution.

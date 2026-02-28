@@ -394,7 +394,7 @@
     "href": "statistical-estimation.html#footnotes",
     "title": "27  Statistical Estimation (From Probability to Statistics)",
     "section": "",
-    "text": "Many problems of interest involve multiple variables (e.g., height, weight, income), in which case the population distribution is a joint distribution. But it is simpler — both conceptually and notationally — to consider just a single variable of interest.↩︎\nThere are two main philosophical approaches to statistical inference that differ mainly in whether they emphasize “fixed number” or “unknown”. In our brief exploration of estimations, we will follow the frequentist approach, which treats a parameter as a fixed number. The Bayesian approach treats an unknown parameter— in other words, an uncertain parameter—as a random variable with a probability distribution that describes the degree of uncertainty. Both approaches are valid, each with advantages and disadvantages. The frequentist approach has been historically more prevalent, but the Bayesian approach has gained in popularity in the last 30 or so years.↩︎\nAbuse of notation in the expression: \\(p_\\theta\\) on the left represents the joint distribution of \\((X_1, \\ldots, X_n)\\), a function with \\(n\\) inputs; \\(p_\\theta\\) on the right represents that marginal distribution of each \\(X_i\\) (since i.d.), a function with a single input.↩︎",
+    "text": "Many problems of interest involve multiple variables (e.g., height, weight, income), in which case the population distribution is a joint distribution. But it is simpler — both conceptually and notationally — to consider just a single variable of interest.↩︎\nThere are two main philosophical approaches to statistical inference that differ mainly in whether they emphasize “fixed number” or “unknown”. In our brief exploration of estimation, we will follow the frequentist approach, which treats a parameter as a fixed number. The Bayesian approach treats an unknown parameter— in other words, an uncertain parameter—as a random variable with a probability distribution that describes the degree of uncertainty. Both approaches are valid, each with advantages and disadvantages. The frequentist approach has been historically more prevalent, but the Bayesian approach has gained in popularity in the last 30 or so years.↩︎\nAbuse of notation in the expression: \\(p_\\theta\\) on the left represents the joint distribution of \\((X_1, \\ldots, X_n)\\), a function with \\(n\\) inputs; \\(p_\\theta\\) on the right represents that marginal distribution of each \\(X_i\\) (since i.d.), a function with a single input.↩︎",
     "crumbs": [
       "<span class='chapter-number'>27</span>  <span class='chapter-title'>Statistical Estimation (From Probability to Statistics)</span>"
     ]
@@ -410,21 +410,11 @@
     ]
   },
   {
-    "objectID": "estimators-bias.html",
-    "href": "estimators-bias.html",
-    "title": "29  Bias of Estimators",
-    "section": "",
-    "text": "2: We are only considering bias in estimation: is there bias in how we use the data to estimate the parameter? There could also be bias is data collection, in how the sample is selected and how the variables are measured. In this course we always assume that we have a “perfect” random sample from the population; in practice, that will never be true, but it might be a reasonable assumption based on how the data are collected. In any case, the bias function onlu quantifies bias in estimation, not bias in data collection.",
-    "crumbs": [
-      "<span class='chapter-number'>29</span>  <span class='chapter-title'>Bias of Estimators</span>"
-    ]
-  },
-  {
     "objectID": "estimators-bias.html#footnotes",
     "href": "estimators-bias.html#footnotes",
     "title": "29  Bias of Estimators",
     "section": "",
-    "text": "bias-note↩︎\nbias-note↩︎",
+    "text": "We are only considering bias in estimation: is there bias in how we use the data to estimate the parameter? There could also be bias in data collection, in how the sample is selected and how the variables are measured. In this course we always assume that we have a “perfect” random sample from the population; in practice, that will never be true, but it might be a reasonable assumption based on how the data are collected. In any case, the bias function only quantifies bias in estimation, not bias in data collection.↩︎",
     "crumbs": [
       "<span class='chapter-number'>29</span>  <span class='chapter-title'>Bias of Estimators</span>"
     ]
